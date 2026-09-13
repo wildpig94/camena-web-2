@@ -1,0 +1,408 @@
+/* ═══════════════════════════════════════════════════════════════
+   CAMENA 2.0 · responsive.css
+   No es un escritorio comprimido: en cada ancho cambia la estructura,
+   la jerarquía y el orden de los elementos.
+   Puntos de quiebre: 1140 · 900 · 720 · 560 · 400
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══ ≤ 1140 px · se activa la navegación móvil ═══
+   Por debajo de este ancho, los siete enlaces más el CTA no caben
+   sin apretarse: es preferible el menú desplegable. */
+@media (max-width: 1140px) {
+
+  /* El menú solo se oculta si hay JS; sin JS queda visible y utilizable */
+  .js .nav {
+    position: fixed;
+    inset: var(--alto-cabecera) 0 auto 0;
+    z-index: var(--z-menu);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: calc(100dvh - var(--alto-cabecera));
+    padding: var(--e-4) var(--margen) var(--e-6);
+    background: var(--ink);
+    border-bottom: 1px solid var(--ink-3);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition:
+      opacity var(--dur) var(--curva),
+      transform var(--dur) var(--curva),
+      visibility var(--dur) var(--curva);
+  }
+  .js .nav.is-abierto {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .js .nav__lista {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .js .nav__lista li { border-bottom: 1px solid var(--ink-3); }
+  .js .nav__enlace {
+    display: block;
+    padding: var(--e-4) 0;
+    font-family: var(--display);
+    font-size: 1.375rem;
+    font-weight: var(--peso-fuerte);
+    color: var(--texto-claro);
+  }
+  .js .nav__enlace::after { display: none; }
+  .js .nav__enlace.is-actual { color: var(--oro-lt); }
+
+  .js .nav__contacto {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--e-3);
+    margin-top: var(--e-5);
+    padding-top: var(--e-5);
+    border-top: 1px solid var(--ink-3);
+  }
+  .js .nav__whatsapp { justify-content: center; padding: var(--e-3); font-size: 1rem; }
+  .js .nav__contacto .boton { width: 100%; padding: 1rem; font-size: 1rem; }
+
+  .menu-boton { display: inline-flex; }
+
+  /* Se apaga el bloqueo de scroll del fondo cuando el menú está abierto */
+  body.menu-abierto { overflow: hidden; }
+
+  /* Composiciones que pasan a una sola columna */
+  .hero__interior,
+  .declaracion,
+  .detras,
+  .contacto,
+  .proceso,
+  .precio,
+  .lab__cierre,
+  .resolutor { grid-template-columns: minmax(0, 1fr); }
+
+  /* En tablet el panel deja de ser columna: se separa del texto con una
+     regla y ocupa el ancho útil, para no dejar un hueco muerto al lado. */
+  .hero__panel {
+    max-width: none;
+    margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+    padding-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    border-top: 1px solid var(--borde);
+  }
+  .hero__panel .panel { max-width: 46rem; }
+  .ficha, .proceso__detalle { position: static; }
+  .proceso__detalle { min-height: 0; }
+
+  .declaracion__cuerpo { padding-top: 0; }
+  .declaracion__titulo { max-width: 18ch; }
+
+  .resolutor__lista { border-right: 0; border-bottom: 1px solid var(--borde); }
+
+  .paquetes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .paquete__para { min-height: 0; }
+
+  .lab-pieza--ancha {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lab-pieza--ancha .lab-pieza__visual {
+    border-right: 0;
+    border-bottom: 1px solid var(--borde);
+    min-height: 16rem;
+  }
+
+  /* La cadena pasa de fila horizontal a columna con línea vertical */
+  .cadena__lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--e-5) var(--e-4);
+  }
+  .cadena__lista::before { display: none; }
+  .eslabon__punto { margin-bottom: var(--e-2); }
+
+  .pie__principal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--e-7) var(--e-5);
+  }
+  .pie__marca { grid-column: 1 / -1; }
+
+  .franja-local { grid-template-columns: minmax(0, 1fr); }
+  .franja-local__resto { grid-column: 1; }
+}
+
+/* ═══ ≤ 900 px · las dimensiones y el proceso se reorganizan ═══ */
+@media (max-width: 900px) {
+
+  .dimensiones { grid-template-columns: minmax(0, 1fr); }
+  .dimension {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    column-gap: var(--e-4);
+    padding: clamp(1.25rem, 1rem + 1.4vw, 1.75rem) 0;
+  }
+  .dimension + .dimension {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .dimension__num {
+    grid-row: 1 / span 3;
+    font-size: 2.25rem;
+    padding-top: 0.1em;
+  }
+  .dimension__titulo { margin-top: 0; }
+  .dimension__texto { max-width: 56ch; }
+
+  /* Disciplinas: de cuatro columnas a dos, con el lema debajo */
+  .disciplina__boton {
+    grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
+    grid-template-areas:
+      "num titulo mas"
+      "num lema   mas";
+    gap: var(--e-2) var(--e-4);
+    align-items: start;
+  }
+  .disciplina__num { grid-area: num; padding-top: 0.4em; }
+  .disciplina__titulo { grid-area: titulo; }
+  .disciplina__lema { grid-area: lema; }
+  .disciplina__mas { grid-area: mas; width: 2.25rem; height: 2.25rem; }
+
+  .disciplina__interior {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--e-4);
+  }
+  .disciplina__texto,
+  .campos,
+  .disciplina__aviso { grid-column: 1; }
+
+  .cadena__lista { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .eslabon { border-bottom: 1px solid var(--borde); }
+  .eslabon:last-child { border-bottom: 0; }
+  .eslabon__boton {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--e-4);
+    padding: var(--e-4) 0;
+  }
+  .eslabon__punto { margin-bottom: 0; flex-shrink: 0; }
+  .eslabon__nombre { flex: 1; }
+  .eslabon__dato { flex: 1; text-align: right; font-size: 0.75rem; }
+
+  .lab { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ═══ ≤ 720 px · móvil de trabajo ═══ */
+@media (max-width: 720px) {
+
+  :root {
+    --alto-cabecera: 4rem;
+  }
+
+  /* En móvil el botón flotante es compacto: solo icono, siempre a mano */
+  .flotante { padding: 0.9375rem; gap: 0; }
+  .flotante__texto { display: none; }
+
+  .hero { padding-top: clamp(2rem, 1.5rem + 3vw, 3rem); }
+
+  .hero__hechos {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--e-4);
+  }
+  .hecho {
+    display: grid;
+    grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+    gap: var(--e-3);
+    align-items: baseline;
+  }
+  .hecho dd { margin-top: 0; }
+
+  .hero__acciones .boton { flex: 1 1 100%; }
+
+  .paquetes { grid-template-columns: minmax(0, 1fr); }
+
+  /* Precio: primero el texto, después la acción, para no romper la lectura */
+  .precio { text-align: left; }
+  .precio__acciones { justify-items: stretch; }
+  .precio__acciones .boton { width: 100%; }
+
+  .lab-pieza--ancha .lab-pieza__visual { min-height: 14rem; }
+
+  /* La cifra gigante del CUSTOM pasa a marca de agua superior */
+  .custom::before {
+    top: -6%;
+    right: -6%;
+    transform: none;
+    font-size: min(24rem, 70vw);
+    opacity: 0.32;
+  }
+
+  .llamada__acciones .boton { flex: 1 1 100%; }
+
+  .datos { margin-top: var(--e-6); }
+  .dato {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "clave  copiar"
+      "valor  copiar";
+    gap: 2px var(--e-3);
+    align-items: center;
+  }
+  .dato__clave { grid-area: clave; min-width: 0; }
+  .dato__valor { grid-area: valor; }
+  .copiar { grid-area: copiar; align-self: center; }
+
+  .pie__principal { grid-template-columns: minmax(0, 1fr); gap: var(--e-7); }
+
+  /* Los enlaces del pie se tocan con el dedo: se les da altura cómoda
+     sin que la columna parezca una lista de botones. */
+  .pie__lista > li + li { margin-top: var(--e-3); }
+  .pie__lista a,
+  .pie__lista span {
+    display: inline-block;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+  .pie__lista--contacto .pie__destacado { margin-bottom: var(--e-3); }
+  .pie__legal { flex-direction: column; align-items: flex-start; gap: var(--e-4); }
+
+  .enviado .boton { width: 100%; }
+
+  /* Los mockups se reducen para no forzar scroll horizontal */
+  .mock-panel__kpis { grid-template-columns: minmax(0, 1fr); }
+  .pieza-formato--horizontal { width: 4.5rem; height: 2.5rem; }
+
+  .legal__interior { padding-inline: 0; }
+}
+
+/* ═══ ≤ 560 px · móvil compacto ═══ */
+@media (max-width: 560px) {
+
+  /* Los enlaces de acción dentro de un párrafo se tocan con el dedo:
+     se les da altura de objetivo táctil sin romper el flujo del texto. */
+  .cierre-seccion a,
+  .hero__nota a,
+  .cadena__cierre a,
+  .nota-sistema a,
+  .pie__legal a,
+  .pie__cierre a {
+    display: inline-block;
+    padding-block: 7px;
+  }
+  .pie__legales { gap: var(--e-1) var(--e-5); }
+
+  .marca__nombre { font-size: 1.0625rem; letter-spacing: 0.18em; }
+
+  .hero__entrada { font-size: 1.0625rem; }
+
+  .sello {
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    padding: 6px 12px 6px 9px;
+  }
+
+  .panel { padding: var(--e-4); }
+  .panel__cabecera { flex-direction: column; gap: 2px; align-items: flex-start; }
+
+  .dimension {
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    column-gap: var(--e-4);
+  }
+  .dimension__num { font-size: 1.75rem; }
+
+  .principio {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--e-2);
+  }
+
+  .ficha { padding: var(--e-5); }
+  .ficha__lista > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .resolutor__panel,
+  .formulario,
+  .proceso__detalle { padding: var(--e-5); }
+
+  .situacion__texto { font-size: 1rem; }
+  .situacion__indicio { opacity: 1; transform: none; }
+
+  .disciplina__boton {
+    grid-template-columns: 2rem minmax(0, 1fr) 2.25rem;
+    gap: var(--e-2) var(--e-3);
+  }
+  .disciplina__titulo { font-size: 1.375rem; }
+  .disciplina__lema { font-size: 0.875rem; }
+  .disciplina__mas { width: 2rem; height: 2rem; }
+
+  .campos li { font-size: 0.75rem; padding: 4px 10px; }
+
+  .lab-pieza__visual { padding: var(--e-5) var(--e-4); }
+  .lab-pieza--ancha .lab-pieza__visual { min-height: 12rem; }
+  .mock-chat { max-width: 100%; }
+  .mock-agenda__bloques .bloque { margin-left: calc(var(--i) * 5px); }
+  .mock-identidad__nombre { font-size: 1.375rem; letter-spacing: 0.24em; }
+  .mock-identidad__paleta i { width: 1.875rem; height: 1.875rem; }
+
+  .paquete { padding: var(--e-5); }
+  .paquete__pie { font-size: 0.8125rem; }
+
+  .faq__pregunta { font-size: 1.0625rem; }
+
+  .cadena__nota { padding-left: var(--e-4); }
+
+  .eslabon__boton { flex-wrap: wrap; gap: var(--e-2) var(--e-3); }
+  .eslabon__dato { flex: 1 1 100%; text-align: left; }
+
+  .llamada__pie { font-size: 0.875rem; }
+}
+
+/* ═══ ≤ 400 px · pantallas mínimas (320 px) sin desbordes ═══ */
+@media (max-width: 400px) {
+
+  :root {
+    --margen: 1rem;
+    --t-h1: clamp(2.25rem, 1.6rem + 6vw, 2.75rem);
+  }
+
+  .marca__nombre { letter-spacing: 0.12em; }
+  .menu-boton { width: 40px; height: 40px; }
+
+  .campos li { font-size: 0.6875rem; }
+
+  .mock-panel__cuerpo { padding: 10px; }
+  .mock-tabla p { font-size: 0.625rem; }
+  .mock-kpi strong { font-size: 0.9375rem; }
+
+  .principio__clave { font-size: 1rem; }
+
+  .drawer-margen { margin-inline: 0; }
+}
+
+/* ═══ Pantallas altas y anchas: más aire, misma estructura ═══ */
+@media (min-width: 1400px) {
+  :root { --ancho-max: 1320px; }
+}
+
+/* ═══ Modo claro/oscuro del sistema: el sitio define su propia paleta,
+       pero respetamos la preferencia para el fondo de la barra del navegador ═══ */
+@media (prefers-color-scheme: light) {
+  :root { color-scheme: light; }
+}
+
+/* ═══ Sin JS: nada puede quedar oculto ni inutilizable ═══ */
+@media (max-width: 1140px) {
+  html:not(.js) .nav {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    gap: var(--e-4);
+  }
+  html:not(.js) .nav__lista { flex-direction: row; flex-wrap: wrap; }
+  html:not(.js) .nav__contacto { flex-direction: row; }
+  html:not(.js) .menu-boton { display: none; }
+  html:not(.js) .disciplina__cuerpo[hidden] { display: block; }
+}

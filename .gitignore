@@ -1,0 +1,21 @@
+# ─── Archivos que NUNCA deben publicarse ───
+# CAMENA no publica documentos internos, presupuestos ni datos de clientes.
+*.pdf
+*.zip
+*.key
+*.pem
+*.xlsx
+*.docx
+*.odt
+*.numbers
+*.pages
+
+# ─── Entorno y herramientas ───
+node_modules/
+.netlify/
+.DS_Store
+Thumbs.db
+
+# ─── Capturas y auditorías locales ───
+/tmp-camena/
+*.log

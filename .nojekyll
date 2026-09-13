@@ -1,0 +1,2 @@
+Sitio estático: se sirve tal cual, sin procesar.
+El archivo .nojekyll impide que GitHub Pages pase el sitio por Jekyll.

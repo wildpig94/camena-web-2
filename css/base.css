@@ -1,0 +1,175 @@
+/* ═══════════════════════════════════════════════════════════════
+   CAMENA 2.0 · base.css
+   Reset, tipografía base, elementos nativos y accesibilidad.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Fuente de marca, auto-hospedada ─────────────────────────── */
+@font-face {
+  font-family: "Fraunces";
+  src: url("../assets/fonts/fraunces-normal-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("../assets/fonts/fraunces-italic-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── Reset razonado ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+/* El atributo hidden siempre gana, incluso sobre display:grid/flex,
+   para que los paneles ocultos no aparezcan por un fallo de especificidad */
+[hidden] { display: none !important; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--texto-fuente);
+  font-size: var(--t-cuerpo);
+  line-height: var(--interlinea-texto);
+  color: var(--texto);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button { background: none; border: 0; cursor: pointer; }
+
+ul, ol { list-style: none; padding: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Títulos ─────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: var(--peso-fuerte);
+  line-height: var(--interlinea-titulo);
+  letter-spacing: var(--tracking-titulo);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+h3 { font-size: var(--t-h3); line-height: 1.18; }
+
+p { text-wrap: pretty; }
+
+strong { font-weight: var(--peso-fuerte); }
+
+em { font-style: italic; }
+
+/* ── Enlaces de texto con subrayado dibujado ─────────────────── */
+main a:not([class]),
+.pie__lista a,
+.cierre-seccion a,
+.nota-sistema a,
+.hero__nota a,
+.cadena__cierre a,
+.llamada__pie a,
+.enviado__texto a {
+  color: var(--acento);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: currentColor;
+  transition: opacity var(--dur-rapida) var(--curva);
+}
+main a:not([class]):hover,
+.pie__lista a:hover,
+.cierre-seccion a:hover,
+.nota-sistema a:hover,
+.hero__nota a:hover,
+.cadena__cierre a:hover,
+.llamada__pie a:hover { opacity: 0.72; }
+
+/* ── Foco visible: nunca se elimina, siempre se ve ───────────── */
+:focus { outline: none; }
+
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 3px;
+  border-radius: var(--radio-sm);
+}
+
+.flotante:focus-visible,
+.boton:focus-visible,
+.nav__whatsapp:focus-visible {
+  outline-offset: 4px;
+}
+
+/* ── Salto al contenido ──────────────────────────────────────── */
+.saltar {
+  position: fixed;
+  top: var(--e-3);
+  left: var(--e-3);
+  z-index: var(--z-saltar);
+  padding: var(--e-3) var(--e-5);
+  background: var(--oro);
+  color: var(--ink);
+  font-size: var(--t-menudo);
+  font-weight: var(--peso-fuerte);
+  border-radius: var(--radio-sm);
+  transform: translateY(-160%);
+  transition: transform var(--dur) var(--curva);
+}
+.saltar:focus-visible { transform: translateY(0); }
+
+#principal:focus { outline: none; }
+
+/* ── Texto auxiliar reutilizable ─────────────────────────────── */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── Selección ───────────────────────────────────────────────── */
+::selection {
+  background: var(--oro);
+  color: var(--ink);
+}
+
+/* ── Barra de desplazamiento discreta ────────────────────────── */
+@supports (scrollbar-color: auto) {
+  html { scrollbar-color: var(--borde-fuerte) transparent; }
+}
+
+/* ── Impresión: la página debe seguir siendo legible en papel ── */
+@media print {
+  .cabecera, .flotante, .progreso, .saltar, .llamada__acciones, .formulario { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .seccion, .hero, .llamada, .custom { background: #fff !important; padding-block: 1.5rem !important; }
+  .seccion--oscura *, .hero *, .pie * { color: #000 !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
+}

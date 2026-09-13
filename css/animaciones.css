@@ -1,0 +1,150 @@
+/* ═══════════════════════════════════════════════════════════════
+   CAMENA 2.0 · animaciones.css
+   El movimiento refuerza la narrativa: aparece al entrar en pantalla,
+   nunca se queda girando para siempre y siempre respeta
+   "prefers-reduced-motion".
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Apariciones por scroll ──────────────────────────────────── */
+/* Estado inicial solo cuando hay JS: sin JS todo se ve. */
+.js [data-revelar] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity var(--dur-lenta) var(--curva-salida),
+    transform var(--dur-lenta) var(--curva-salida);
+  will-change: opacity, transform;
+}
+.js [data-revelar].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Los hijos de un grupo entran escalonados */
+.js [data-revelar-grupo] > [data-revelar]:nth-child(1) { transition-delay: 0ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(2) { transition-delay: 90ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(3) { transition-delay: 180ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(4) { transition-delay: 270ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(5) { transition-delay: 360ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(6) { transition-delay: 450ms; }
+
+/* Una vez visible se suelta el will-change para no gastar memoria */
+.js [data-revelar].is-visible { will-change: auto; }
+
+/* ── Titular del hero: entrada por líneas, con máscara ───────── */
+.js .hero__linea {
+  display: block;
+  opacity: 0;
+  transform: translateY(0.42em);
+  animation: subir-linea 900ms var(--curva-salida) forwards;
+}
+.js .hero__linea:nth-child(1) { animation-delay: 120ms; }
+.js .hero__linea:nth-child(2) { animation-delay: 260ms; }
+
+/* ── Aparición genérica ──────────────────────────────────────── */
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes subir-linea {
+  from { opacity: 0; transform: translateY(0.42em); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Pulso del paso activo: marca dónde estás, sin distraer */
+@keyframes pulso {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.72); }
+}
+
+/* ── Panel del hero: entrada escalonada de sus filas ─────────── */
+.js .hero__panel {
+  opacity: 0;
+  animation: subir-linea 900ms var(--curva-salida) 340ms forwards;
+}
+
+/* ── Transición del resolutor y del proceso al cambiar de panel ─ */
+.caso, .detalle {
+  animation: aparecer var(--dur-lenta) var(--curva-salida) both;
+}
+
+/* ── Especificidad: [data-visible] debe ganar a la regla base ─── */
+.flotante[data-visible="false"] {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+}
+
+/* ── Maquetas del LAB: pequeña vida al entrar ────────────────── */
+.lab-pieza__visual > * {
+  transition: transform var(--dur-lenta) var(--curva-salida);
+}
+.lab-pieza:hover .mock-panel,
+.lab-pieza:hover .mock-chat,
+.lab-pieza:hover .mock-audio,
+.lab-pieza:hover .mock-agenda,
+.lab-pieza:hover .mock-identidad,
+.lab-pieza:hover .mock-campana {
+  transform: translateY(-4px);
+}
+
+/* La gráfica del panel crece al aparecer en pantalla */
+.js .lab-pieza.is-visible .mock-grafica span {
+  animation: crecer-barra 900ms var(--curva-salida) both;
+}
+.js .lab-pieza.is-visible .mock-grafica span:nth-child(1) { animation-delay: 60ms; }
+.js .lab-pieza.is-visible .mock-grafica span:nth-child(2) { animation-delay: 110ms; }
+.js .lab-pieza.is-visible .mock-grafica span:nth-child(3) { animation-delay: 160ms; }
+.js .lab-pieza.is-visible .mock-grafica span:nth-child(4) { animation-delay: 210ms; }
+.js .lab-pieza.is-visible .mock-grafica span:nth-child(5) { animation-delay: 260ms; }
+.js .lab-pieza.is-visible .mock-grafica span:nth-child(6) { animation-delay: 310ms; }
+.js .lab-pieza.is-visible .mock-grafica span:nth-child(7) { animation-delay: 360ms; }
+.js .lab-pieza.is-visible .mock-grafica span:nth-child(8) { animation-delay: 410ms; }
+
+@keyframes crecer-barra {
+  from { transform: scaleY(0); transform-origin: bottom; }
+  to   { transform: scaleY(1); transform-origin: bottom; }
+}
+
+/* La onda de audio se dibuja al aparecer */
+.js .lab-pieza.is-visible .mock-audio__onda i {
+  animation: crecer-onda 700ms var(--curva-salida) both;
+}
+.js .lab-pieza.is-visible .mock-audio__onda i:nth-child(odd) { animation-delay: 120ms; }
+.js .lab-pieza.is-visible .mock-audio__onda i:nth-child(even) { animation-delay: 220ms; }
+
+@keyframes crecer-onda {
+  from { transform: scaleY(0.2); opacity: 0.3; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+
+/* ── Cabecera: se esconde al bajar, vuelve al subir ──────────── */
+.cabecera--oculta { transform: translateY(-100%); }
+
+/* ── Movimiento reducido: se apaga todo lo decorativo ────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-revelar],
+  .js .hero__linea,
+  .js .hero__panel {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .boton:hover,
+  .flotante:hover,
+  .lab-pieza:hover,
+  .paquete:hover { transform: none; }
+
+  .paso.is-activo .paso__nombre::after { animation: none; }
+}

@@ -1,0 +1,145 @@
+/* ═══════════════════════════════════════════════════════════════
+   CAMENA 2.0 · variables.css
+   Tokens del sistema. Nada de valores sueltos en los componentes:
+   todo color, tamaño y ritmo sale de aquí.
+   Contraste verificado en docs/verificar-contraste.py (WCAG AA).
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Tinta y papel ────────────────────────────────────────── */
+  --ink:        #0E0E10;
+  --ink-2:      #17171A;
+  --ink-3:      #232327;
+  --ink-4:      #2E2E33;
+  --paper:      #F6F3EA;
+  --paper-2:    #FCFAF5;
+  --linea:      #DED8C8;
+  --linea-2:    #EAE5D9;
+
+  /* ── Texto ────────────────────────────────────────────────── */
+  --texto:      #14140F;
+  --texto-2:    #6B6759;   /* 5.10:1 sobre hueso */
+  --texto-claro: #F4F1E8;
+  --texto-claro-2: #B5B1A8; /* 9.02:1 sobre tinta: legible a 13-14 px */
+
+  /* ── Marca: oro ───────────────────────────────────────────── */
+  --oro:        #C9962B;   /* acento gráfico sobre oscuro (7.24:1) */
+  --oro-lt:     #E5BC55;   /* acento de texto sobre oscuro (10.70:1) */
+  --oro-tx:     #7A560F;   /* acento de texto sobre claro (5.98:1) */
+  --oro-tenue:  rgba(201, 150, 43, 0.14);
+  --oro-linea:  rgba(201, 150, 43, 0.28);
+
+  /* ── Superficies y bordes por contexto ────────────────────── */
+  --borde:        var(--linea);
+  --borde-fuerte: #C9C2B0;
+  --borde-oscuro: var(--ink-3);
+  --acento:       var(--oro-tx);
+  --acento-suave: var(--oro-tenue);
+
+  /* ── Tipografía ───────────────────────────────────────────── */  --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --texto-fuente: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Escala fluida. El h1 ronda 4.5× el cuerpo en escritorio. */
+  --t-micro:  clamp(0.6875rem, 0.66rem + 0.14vw, 0.75rem);
+  --t-menudo: clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
+  --t-cuerpo: clamp(1rem, 0.97rem + 0.16vw, 1.125rem);
+  --t-guia:   clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --t-h3:     clamp(1.375rem, 1.22rem + 0.75vw, 1.75rem);
+  --t-h2:     clamp(2.125rem, 1.5rem + 2.9vw, 4rem);
+  --t-h1:     clamp(2.75rem, 1.4rem + 6.2vw, 6.5rem);
+  --t-declara: clamp(2.5rem, 1.5rem + 4.6vw, 5.25rem);
+  --t-cifra:  clamp(3.5rem, 2rem + 7vw, 8rem);
+
+  --peso-normal: 400;
+  --peso-medio:  500;
+  --peso-fuerte: 600;
+
+  --interlinea-titulo: 1.04;
+  --interlinea-texto:  1.68;
+  --interlinea-guia:   1.4;
+
+  --tracking-titulo: -0.02em;
+  --tracking-etiqueta: 0.16em;
+  --tracking-mono: 0.06em;
+
+  /* ── Espacio: escala de 4 ─────────────────────────────────── */
+  --e-1: 0.25rem;   --e-2: 0.5rem;    --e-3: 0.75rem;
+  --e-4: 1rem;      --e-5: 1.5rem;    --e-6: 2rem;
+  --e-7: 2.5rem;    --e-8: 3rem;      --e-9: 4rem;
+  --e-10: 5rem;     --e-11: 6.5rem;   --e-12: 8rem;
+
+  --ritmo-seccion: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --ritmo-bloque:  clamp(1.5rem, 1rem + 2vw, 2.5rem);
+
+  /* ── Medidas de layout ────────────────────────────────────── */
+  --ancho-max: 1240px;
+  --ancho-texto: 66ch;
+  --ancho-angosto: 46ch;
+  --margen: clamp(1.25rem, 0.6rem + 2.6vw, 3rem);
+  --alto-cabecera: 4.5rem;
+
+  /* ── Formas ───────────────────────────────────────────────── */
+  --radio-sm: 6px;
+  --radio: 12px;
+  --radio-lg: 20px;
+  --radio-pastilla: 999px;
+
+  /* ── Sombras ──────────────────────────────────────────────── */
+  --sombra-sm: 0 2px 10px rgba(14, 14, 16, 0.05);
+  --sombra:    0 14px 40px rgba(14, 14, 16, 0.09);
+  --sombra-lg: 0 30px 70px rgba(14, 14, 16, 0.14);
+
+  /* ── Movimiento ───────────────────────────────────────────── */
+  --curva: cubic-bezier(0.2, 0.7, 0.25, 1);
+  --curva-salida: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-rapida: 160ms;
+  --dur: 320ms;
+  --dur-lenta: 620ms;
+
+  /* ── Capas ────────────────────────────────────────────────── */
+  --z-fondo: 0;
+  --z-contenido: 1;
+  --z-flotante: 40;
+  --z-cabecera: 50;
+  --z-menu: 60;
+  --z-saltar: 80;
+
+  scroll-padding-top: calc(var(--alto-cabecera) + var(--e-4));
+}
+
+/* En superficies oscuras el acento cambia de tono para cumplir contraste. */
+.seccion--oscura,
+.pie,
+.llamada,
+.custom,
+.hero,
+.lab-pieza__visual {
+  --borde: var(--borde-oscuro);
+  --borde-fuerte: var(--ink-4);
+  --acento: var(--oro-lt);
+  --acento-suave: rgba(201, 150, 43, 0.1);
+  --sombra-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --sombra: 0 14px 40px rgba(0, 0, 0, 0.4);
+  --sombra-lg: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Paleta de las maquetas del LAB ───────────────────────────────
+   Las interfaces dibujadas del LAB usan su propia escala de grises
+   oscura. Está calculada contra el fondo más claro que pueden tener
+   (#17171B) para que cualquier texto pase AA, aunque sea de 10 px. */
+:root {
+  --mock-1: #17171B;   /* superficie de panel */
+  --mock-0: #101014;   /* superficie hundida */
+  --mock-texto: #F4F1E8;
+  --mock-2: #C9C6BE;   /* texto secundario */
+  --mock-3: #9A9590;   /* texto terciario / etiquetas */
+  --mock-tenue: #85817A; /* micro-etiquetas de 10 px */
+  --mock-oro: #E5BC55;
+  --mock-azul: #7FB5C9;
+  --mock-verde: #6FB88A;
+  --mock-naranja: #E0A87F;
+  --mock-rosa: #C9A0C9;
+  --mock-oro-linea: rgba(229, 188, 85, 0.42);
+}
+

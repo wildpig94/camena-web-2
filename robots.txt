@@ -1,0 +1,9 @@
+# robots.txt — CAMENA
+# Todo el sitio es público. Ajustar el dominio al publicar.
+
+User-agent: *
+Allow: /
+
+# Nada que ocultar: no hay áreas privadas ni de administración.
+
+Sitemap: https://wildpig94.github.io/camena-web-2/sitemap.xml

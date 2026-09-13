@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="CAMENA">
+  <title>CAMENA</title>
+  <!-- Ícono de app: versión de trazo grueso de la marca, legible de 16 a 512 px. -->
+  <defs>
+    <linearGradient id="cmn-ico" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E5BC55"/>
+      <stop offset="1" stop-color="#C9962B"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="9" fill="#0E0E10"/>
+  <g fill="none" stroke="url(#cmn-ico)" stroke-width="3.7" stroke-linecap="round">
+    <path d="M30.71 16.04A11.4 11.4 0 1 0 30.71 23.96"/>
+  </g>
+  <circle cx="20" cy="20" r="4.2" fill="url(#cmn-ico)"/>
+</svg>

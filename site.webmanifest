@@ -1,0 +1,16 @@
+{
+  "name": "CAMENA — Estudio creativo y tecnológico",
+  "short_name": "CAMENA",
+  "description": "Marcas, web, video, audio, publicidad, sistemas y automatización para negocios y proyectos.",
+  "lang": "es-MX",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0E0E10",
+  "theme_color": "#0E0E10",
+  "icons": [
+    { "src": "/assets/icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icono-camena.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

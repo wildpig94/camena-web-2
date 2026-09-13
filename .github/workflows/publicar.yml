@@ -1,0 +1,114 @@
+# ═══════════════════════════════════════════════════════════════
+# Publicación en GitHub Pages.
+#
+# El sitio es estático y no tiene paso de compilación: se sube tal cual.
+# Este flujo solo lo publica. Antes de hacerlo, comprueba dos cosas que
+# romperían la versión en línea y que no se ven en un diff:
+#   · que no falte ninguna referencia local (css, js, assets, fuentes)
+#   · que el JSON-LD siga siendo JSON válido
+# ═══════════════════════════════════════════════════════════════
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue a la vez; si llega otro, espera en vez de pisarlo
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    name: Comprobar el sitio antes de publicar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verificar que existan todos los archivos referenciados
+        run: |
+          echo "── Referencias locales ──"
+          fallos=0
+          # Extrae src/href locales de los HTML y comprueba que el archivo exista
+          grep -ohE '(src|href)="[^"#][^"]*"' *.html \
+            | sed -E 's/.*="([^"]*)".*/\1/' \
+            | grep -vE '^(https?:|mailto:|tel:|//|#)' \
+            | sort -u > /tmp/refs.txt
+          while read -r ref; do
+            limpio="${ref%%\?*}"
+            if [ ! -e "$limpio" ]; then
+              echo "  ✗ falta: $limpio (referenciado como $ref)"
+              fallos=$((fallos + 1))
+            else
+              echo "  ✓ $limpio"
+            fi
+          done < /tmp/refs.txt
+          if [ "$fallos" -gt 0 ]; then
+            echo "✗ $fallos referencia(s) rota(s). No se publica."
+            exit 1
+          fi
+          echo "✓ Todas las referencias locales existen."
+
+      - name: Verificar el JSON-LD
+        run: |
+          python3 - <<'PY'
+          import json, re, sys, glob
+          fallos = 0
+          for archivo in glob.glob("*.html"):
+              html = open(archivo, encoding="utf-8").read()
+              for bloque in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
+                  try:
+                      json.loads(bloque)
+                      print(f"  ✓ {archivo}: JSON-LD válido")
+                  except json.JSONDecodeError as e:
+                      print(f"  ✗ {archivo}: JSON-LD inválido → {e}")
+                      fallos += 1
+          sys.exit(1 if fallos else 0)
+          PY
+
+      - name: Verificar que existan las páginas enlazadas
+        run: |
+          for pagina in index.html aviso-de-privacidad.html terminos.html; do
+            if [ -f "$pagina" ]; then echo "  ✓ $pagina"; else echo "  ✗ falta $pagina"; exit 1; fi
+          done
+
+  publicar:
+    name: Publicar
+    needs: verificar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Preparar solo lo que se publica
+        run: |
+          # Los archivos de trabajo (docs/, .github/, README, .gitignore) no
+          # forman parte del sitio y no tienen por qué quedar accesibles en la
+          # web. Se publica únicamente lo que el navegador necesita.
+          mkdir -p publicar
+          cp -r assets css js publicar/
+          cp index.html aviso-de-privacidad.html terminos.html publicar/
+          cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
+          echo "── Contenido que se publica ──"
+          find publicar -type f | sort | sed 's|^|  |'
+          echo "  ($(find publicar -type f | wc -l) archivos)"
+
+      - name: Empaquetar el sitio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: publicar
+
+      - name: Desplegar
+        id: despliegue
+        uses: actions/deploy-pages@v4

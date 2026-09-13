@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="CAMENA">
+  <title>CAMENA</title>
+  <!-- Marca CAMENA: arco abierto (C) + foco. Versión de uso general. -->
+  <defs>
+    <linearGradient id="cmn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E5BC55"/>
+      <stop offset="1" stop-color="#C9962B"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#cmn)" stroke-width="2.7" stroke-linecap="round">
+    <path d="M32.21 15.55A13 13 0 1 0 32.21 24.45"/>
+  </g>
+  <circle cx="20" cy="20" r="3.5" fill="url(#cmn)"/>
+</svg>

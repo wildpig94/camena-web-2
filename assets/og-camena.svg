@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="CAMENA — Estudio creativo y tecnológico. Tu idea. Nuestra solución.">
+  <title>CAMENA — Estudio creativo y tecnológico</title>
+  <defs>
+    <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E5BC55"/>
+      <stop offset="1" stop-color="#C9962B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0E0E10"/>
+
+  <!-- retícula técnica -->
+  <g stroke="#232327" stroke-width="1">
+    <path d="M100 0V630M300 0V630M500 0V630M700 0V630M900 0V630M1100 0V630"/>
+    <path d="M0 105H1200M0 210H1200M0 315H1200M0 420H1200M0 525H1200"/>
+  </g>
+
+  <!-- marco -->
+  <rect x="48" y="48" width="1104" height="534" fill="none" stroke="#C9962B" stroke-opacity="0.42" stroke-width="1.5"/>
+  <!-- esquinas marcadas -->
+  <g stroke="#C9962B" stroke-width="3">
+    <path d="M48 96V48h48M1104 48h48v48M1152 534v48h-48M96 582H48v-48"/>
+  </g>
+
+  <!-- marca -->
+  <g transform="translate(104 104) scale(1.62)">
+    <g fill="none" stroke="url(#oro)" stroke-width="2.6" stroke-linecap="round">
+      <path d="M30.5 11.4A13 13 0 1 0 30.5 28.6"/>
+      <path d="M22.2 6.6 26.6 2.2"/>
+    </g>
+    <circle cx="20" cy="20" r="3.4" fill="url(#oro)"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="220" y="152" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="600" letter-spacing="11" fill="#F6F3EA">CAMENA</text>
+  <text x="222" y="186" font-family="Helvetica, Arial, sans-serif" font-size="16.5" letter-spacing="3.4" fill="#9A968A">ESTUDIO CREATIVO Y TECNOLÓGICO</text>
+
+  <!-- claim -->
+  <text x="104" y="392" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" fill="#F6F3EA">TU IDEA.</text>
+  <text x="104" y="482" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" font-style="italic" fill="#E5BC55">NUESTRA SOLUCIÓN.</text>
+
+  <!-- disciplinas -->
+  <text x="104" y="542" font-family="Helvetica, Arial, sans-serif" font-size="17.5" letter-spacing="2.2" fill="#9A968A">MARCA · WEB · VIDEO · AUDIO · PUBLICIDAD · SISTEMAS · AUTOMATIZACIÓN</text>
+
+  <!-- canal -->
+  <text x="1096" y="542" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="17.5" letter-spacing="2.2" fill="#C9962B">CAMENA LABS</text>
+</svg>
