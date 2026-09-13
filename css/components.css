@@ -81,24 +81,16 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto);
   border-color: var(--borde-fuerte);
 }
-.boton--linea:hover { border-color: var(--texto); background: rgba(14, 14, 16, 0.04); }
+.boton--linea:hover { border-color: var(--texto); background: rgba(25, 21, 16, 0.04); }
 
 /* Contorno claro: solo donde el fondo es oscuro de verdad. El hero pasó
    a fondo claro, así que ya no entra en esta lista. */
 .boton--claro,
 .seccion--oscura .boton--linea,
 .llamada .boton--linea,
-.custom .boton--linea {
-  color: var(--texto-claro);
-  border-color: var(--ink-4);
-}
 .boton--claro:hover,
 .seccion--oscura .boton--linea:hover,
 .llamada .boton--linea:hover,
-.custom .boton--linea:hover {
-  border-color: var(--oro);
-  background: rgba(201, 150, 43, 0.1);
-}
 
 /* Oro: reservado al CTA de mayor jerarquía */
 .boton--oro {
@@ -118,7 +110,7 @@ svg.ic path[d^="M12 2a10"] {
   position: sticky;
   top: 0;
   z-index: var(--z-cabecera);
-  background: rgba(14, 14, 16, 0.86);
+  background: rgba(25, 21, 16, 0.86);
   backdrop-filter: blur(16px) saturate(1.5);
   -webkit-backdrop-filter: blur(16px) saturate(1.5);
   border-bottom: 1px solid transparent;
@@ -126,7 +118,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .cabecera--pegada {
   border-bottom-color: var(--ink-3);
-  background: rgba(14, 14, 16, 0.94);
+  background: rgba(25, 21, 16, 0.94);
 }
 .cabecera--oculta { transform: translateY(-100%); }
 .cabecera { transition: transform var(--dur) var(--curva), border-color var(--dur) var(--curva), background var(--dur) var(--curva); }
@@ -236,7 +228,6 @@ svg.ic path[d^="M12 2a10"] {
 
 .menu-boton[aria-expanded="true"] .menu-boton__lineas i:first-child { transform: translateY(5px) rotate(45deg); }
 .menu-boton[aria-expanded="true"] .menu-boton__lineas i:last-child { transform: translateY(-5px) rotate(-45deg); }
-
 
 
 /* ═══════════════ SELLO / MICRO-ETIQUETA DEL HERO ═══════════════ */
@@ -655,7 +646,6 @@ svg.ic path[d^="M12 2a10"] {
 .lab__cierre .boton { justify-self: start; }
 
 
-
 /* La pieza del LAB se lee como un proyecto: problema, solución, qué puedes ver.
    Sustituye a la lista de características, que no contaba nada. */
 .lab-pieza__ficha {
@@ -927,15 +917,6 @@ svg.ic path[d^="M12 2a10"] {
   border-bottom-left-radius: 3px;
 }
 
-.mock-audio {
-  width: 100%;
-  display: grid;
-  gap: 14px;
-  padding: 16px;
-  background: var(--mock-0);
-  border: 1px solid var(--ink-4);
-  border-radius: var(--radio-sm);
-}
 .mock-audio__pistas { display: grid; gap: 8px; }
 .mock-audio__pistas p {
   display: grid;
@@ -975,15 +956,6 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--mock-3);
 }
 
-.mock-agenda {
-  width: 100%;
-  padding: 14px;
-  background: var(--mock-0);
-  border: 1px solid var(--ink-4);
-  border-radius: var(--radio-sm);
-  display: grid;
-  gap: 12px;
-}
 .mock-agenda__dias {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -1025,11 +997,6 @@ svg.ic path[d^="M12 2a10"] {
 /* La hora ocupa casi todo el ancho y a 10 px necesita el oro más claro */
 .bloque--nuevo span { color: var(--mock-oro); }
 
-.mock-campana {
-  display: grid;
-  gap: var(--e-5);
-  width: 100%;
-}
 .mock-campana__claim {
   font-family: var(--display);
   font-size: clamp(1.25rem, 1.05rem + 1vw, 1.875rem);
@@ -1060,8 +1027,6 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--mock-3);
 }
 
-
-/* ═══════════════ PAQUETES ═══════════════ */
 
 /* Precio de referencia del paquete. Va arriba del resumen porque es lo
    primero que se escanea cuando alguien compara opciones. */
@@ -1094,6 +1059,10 @@ svg.ic path[d^="M12 2a10"] {
   transform: translateY(-3px);
   box-shadow: var(--sombra-sm);
 }
+
+/* Con siete tarjetas en tres columnas, la última queda sola. Ocupa el ancho
+   completo para que se lea como el cierre de la lista y no como un hueco. */
+.paquete--destacado { grid-column: 1 / -1; }
 
 .paquete--destacado {
   background: var(--ink);
@@ -1172,8 +1141,6 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-2);
 }
 
-
-/* ═══════════════ FAQ ═══════════════ */
 
 /* ── FAQ: pocas preguntas visibles, el resto plegado ──────────
    La FAQ es para resolver dudas, no para volcar todo el contenido
@@ -1368,7 +1335,6 @@ svg.ic path[d^="M12 2a10"] {
 }
 
 
-
 /* ═══════════════ CONTACTO DENTRO DEL CIERRE ═══════════════
    El bloque de contacto nació sobre fondo claro y ahora vive dentro
    de la sección oscura de cierre. Sin esta corrección, sus textos
@@ -1393,11 +1359,23 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-claro-2);
 }
 .llamada .copiar:hover { border-color: var(--oro); color: var(--texto-claro); }
+/* El estado «Copiado» heredaba el oro oscuro pensado para papel y sobre
+   tinta daba 2.74:1. Aquí el acento tiene que ser el claro. */
+.llamada .copiar.is-copiado {
+  border-color: var(--oro-lt);
+  color: var(--oro-lt);
+  background: rgba(229, 188, 85, 0.14);
+}
 
 /* El formulario conserva su superficie clara: es donde se escribe, y
    un campo oscuro con texto claro se lee peor bajo el sol. */
 .llamada .formulario { box-shadow: var(--sombra-lg); }
 .llamada .campo__etiqueta { color: var(--texto-2); }
+/* El formulario es una superficie clara dentro del cierre oscuro: su título
+   no puede heredar el color de texto claro o queda invisible. */
+.llamada .formulario__titulo { color: var(--texto); }
+.llamada .campo__control { color: var(--texto); }
+.llamada .campo__error { color: #A63A2A; }
 .llamada .formulario__ayuda { color: var(--texto-2); }
 .llamada .contexto-aviso { color: var(--texto); }
 
@@ -1437,7 +1415,7 @@ svg.ic path[d^="M12 2a10"] {
   border-radius: var(--radio-pastilla);
   font-size: 0.875rem;
   font-weight: var(--peso-medio);
-  box-shadow: 0 12px 32px rgba(14, 14, 16, 0.22);
+  box-shadow: 0 12px 32px rgba(25, 21, 16, 0.22);
   opacity: 1;
   visibility: visible;
   transition: transform var(--dur) var(--curva), background var(--dur-rapida) var(--curva),
@@ -1447,7 +1425,7 @@ svg.ic path[d^="M12 2a10"] {
 .flotante:hover {
   transform: translateY(-3px);
   background: var(--ink-2);
-  box-shadow: 0 18px 40px rgba(14, 14, 16, 0.3);
+  box-shadow: 0 18px 40px rgba(25, 21, 16, 0.3);
 }
 .flotante__icono {
   width: 1.25rem; height: 1.25rem;

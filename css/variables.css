@@ -9,8 +9,8 @@
   /* ── Tinta y papel ────────────────────────────────────────── */
   --ink:        #191510;   /* marrón muy oscuro, no negro puro */
   --ink-2:      #201B14;   /* superficie oscura elevada */
-  --ink-3:      #2B251C;   /* bordes y separadores en oscuro */
-  --ink-4:      #382F24;   /* bordes fuertes en oscuro */
+  --ink-3:      #312A22;   /* separadores en oscuro (1.4:1, solo decorativo) */
+  --ink-4:      #7A6340;   /* 3.19:1 sobre tinta: bordes de control */
   --paper:      #F8F3E8;   /* hueso más cálido */
   --paper-2:    #FDFAF3;   /* blanco cálido de tarjetas */
   --linea:      #E0D5C0;
@@ -29,9 +29,11 @@
   --oro-tenue:  rgba(201, 150, 43, 0.14);
   --oro-linea:  rgba(201, 150, 43, 0.28);
 
-  /* ── Superficies y bordes por contexto ────────────────────── */
+  /* ── Superficies y bordes por contexto ────────────────────────
+   Ojo con la distinción: `--linea` es un filete decorativo (1.2:1 basta),
+   `--borde-fuerte` delimita un control y por eso necesita 3:1. */
   --borde:        var(--linea);
-  --borde-fuerte: #CBBFA6;
+  --borde-fuerte: #8A7D62;   /* 3.66:1 sobre hueso: es un control, no un filete */
   --borde-oscuro: var(--ink-3);
   --acento:       var(--oro-tx);
   --acento-suave: var(--oro-tenue);
@@ -86,9 +88,9 @@
   --radio-pastilla: 999px;
 
   /* ── Sombras ──────────────────────────────────────────────── */
-  --sombra-sm: 0 2px 10px rgba(14, 14, 16, 0.05);
-  --sombra:    0 14px 40px rgba(14, 14, 16, 0.09);
-  --sombra-lg: 0 30px 70px rgba(14, 14, 16, 0.14);
+  --sombra-sm: 0 2px 10px rgba(25, 21, 16, 0.05);
+  --sombra:    0 14px 40px rgba(25, 21, 16, 0.09);
+  --sombra-lg: 0 30px 70px rgba(25, 21, 16, 0.14);
 
   /* ── Movimiento ───────────────────────────────────────────── */
   --curva: cubic-bezier(0.2, 0.7, 0.25, 1);
@@ -113,7 +115,6 @@
 .pie,
 .llamada,
 .custom,
-.hero,
 .lab-pieza__visual {
   --borde: var(--borde-oscuro);
   --borde-fuerte: var(--ink-4);
@@ -122,6 +123,13 @@
   --sombra-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
   --sombra: 0 14px 40px rgba(0, 0, 0, 0.4);
   --sombra-lg: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+/* El hero tiene fondo claro pero conserva sus propios acentos: el oro de
+   marca para filetes y el oro oscuro para cualquier cosa que se lea. */
+.hero {
+  --acento: var(--oro-tx);
+  --acento-suave: rgba(201, 150, 43, 0.14);
 }
 
 /* ── Paleta de las maquetas del LAB ───────────────────────────────

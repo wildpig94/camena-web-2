@@ -71,6 +71,9 @@
   /* Se apaga el bloqueo de scroll del fondo cuando el menú está abierto */
   body.menu-abierto { overflow: hidden; }
 
+  /* Cuando el panel de precios deja de estar al lado, aparece la línea. */
+  .hero__precios-breve { display: block; }
+
   /* El mapa de la oferta pasa a columna */
   .grupos { grid-template-columns: minmax(0, 1fr); }
 
@@ -397,6 +400,17 @@
 }
 
 /* ═══ Sin JS: nada puede quedar oculto ni inutilizable ═══ */
+/* Sin JavaScript, todo el contenido que el script revela debe verse igual.
+   Estas reglas no cubren un ancho en particular: van fuera de los bloques
+   de punto de quiebre, porque el problema no es de tamaño de pantalla. */
+html:not(.js) .caso[hidden],
+html:not(.js) .disciplina__cuerpo[hidden],
+html:not(.js) .faq__respuesta--mas > details > .faq__respuesta {
+  display: block;
+}
+html:not(.js) .caso[hidden] { padding-top: var(--e-5); }
+html:not(.js) .caso { animation: none; }
+
 @media (max-width: 1140px) {
   html:not(.js) .nav {
     position: static;
@@ -410,8 +424,22 @@
     padding: 0;
     gap: var(--e-4);
   }
-  html:not(.js) .nav__lista { flex-direction: row; flex-wrap: wrap; }
-  html:not(.js) .nav__contacto { flex-direction: row; }
+  /* Sin JavaScript la cabecera se reordena: la marca arriba y el menú
+     debajo, en dos filas. Si se deja el menú al lado, se sale de la
+     pantalla en un teléfono. */
+  html:not(.js) .cabecera__interior {
+    flex-wrap: wrap;
+    height: auto;
+    padding-block: var(--e-3);
+    row-gap: var(--e-3);
+  }
+  html:not(.js) .nav {
+    order: 3;
+    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
+  html:not(.js) .nav__lista { flex-direction: row; flex-wrap: wrap; gap: var(--e-3); }
+  html:not(.js) .nav__contacto { flex-direction: row; margin-left: auto; }
   html:not(.js) .menu-boton { display: none; }
   html:not(.js) .disciplina__cuerpo[hidden] { display: block; }
 }

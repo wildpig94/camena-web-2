@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/animaciones.css">
 </head>
 <body>
@@ -32,7 +33,7 @@
       <img class="marca__simbolo" src="assets/marca-camena.svg" alt="" width="34" height="34">
       <span class="marca__nombre">CAMENA</span>
     </a>
-    <nav class="nav" aria-label="Navegación de la página">
+    <nav class="nav" id="nav" aria-label="Navegación de la página">
       <ul class="nav__lista">
         <li><a class="nav__enlace" href="index.html">Inicio</a></li>
         <li><a class="nav__enlace" href="index.html#servicios">Servicios</a></li>
@@ -40,9 +41,14 @@
         <li><a class="nav__enlace" href="index.html#faq">FAQ</a></li>
       </ul>
       <div class="nav__contacto">
-        <a class="boton boton--solido boton--sm" href="index.html#empezar">Iniciar proyecto</a>
+        <a class="boton boton--solido boton--sm" href="index.html#empezar">Ver precios</a>
       </div>
     </nav>
+
+    <button class="menu-boton" id="menuBoton" type="button" aria-expanded="false"
+            aria-controls="nav" aria-label="Abrir menú de navegación">
+      <span class="menu-boton__lineas" aria-hidden="true"><i></i><i></i></span>
+    </button>
   </div>
 </header>
 
@@ -197,5 +203,6 @@
 </footer>
 
 <script>document.getElementById("anio").textContent = String(new Date().getFullYear());</script>
+<script src="js/navegacion.js" defer></script>
 </body>
 </html>

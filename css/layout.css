@@ -73,7 +73,6 @@
 .etiqueta--claro { color: var(--oro-lt); }
 
 
-
 /* ── Cierres de sección: frase de enlace al siguiente bloque ─── */
 .cierre-seccion {
   margin-top: clamp(2.5rem, 1.5rem + 2.4vw, 4rem);
@@ -230,10 +229,6 @@
 }
 
 
-
-
-
-
 .panel__pie {
   margin-top: var(--e-4);
   padding-top: var(--e-4);
@@ -246,8 +241,6 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-
-
 
 
 /* ═══════════════ 02 · DECLARACIÓN ═══════════════ */
@@ -287,23 +280,6 @@
 
 
 /* ── Tres dimensiones: columnas con reglas, no tarjetas ─────── */
-.dimensiones {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  margin-top: clamp(3rem, 2rem + 4vw, 6rem);
-  border-top: 1px solid var(--borde);
-}
-
-.dimension {
-  position: relative;
-  padding: clamp(1.5rem, 1rem + 1.6vw, 2.5rem) clamp(1.25rem, 1rem + 1.4vw, 2.25rem) clamp(1.5rem, 1rem + 1.6vw, 2.5rem) 0;
-  border-bottom: 1px solid var(--borde);
-}
-.dimension + .dimension {
-  padding-left: clamp(1.25rem, 1rem + 1.4vw, 2.25rem);
-  border-left: 1px solid var(--borde);
-}
 
 
 .dimension:hover 
@@ -329,13 +305,6 @@
   max-width: 34ch;
 }
 
-.nota-sistema {
-  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
-  max-width: var(--ancho-texto);
-  font-size: var(--t-guia);
-  line-height: var(--interlinea-guia);
-  color: var(--texto-claro-2);
-}
 .nota-sistema__clave {
   display: inline-block;
   margin-right: var(--e-2);
@@ -469,30 +438,11 @@
 
 
 /* ═══════════════ PROCESO ═══════════════ */
-.proceso {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
-  align-items: start;
-}
 
 .proceso__pasos {
   border-top: 1px solid var(--borde);
 }
 
-.paso {
-  display: grid;
-  grid-template-columns: 2.75rem minmax(0, 1fr);
-  grid-template-areas: "num nombre" "num pregunta";
-  gap: 0 var(--e-3);
-  width: 100%;
-  padding: var(--e-4) var(--e-3) var(--e-4) 0;
-  border-bottom: 1px solid var(--borde);
-  text-align: left;
-  color: var(--texto-2);
-  transition: color var(--dur-rapida) var(--curva), padding-left var(--dur) var(--curva);
-}
-.paso:hover { color: var(--texto); padding-left: var(--e-2); }
 
 .paso__num {
   grid-area: num;
@@ -516,18 +466,6 @@
   color: var(--texto-2);
 }
 
-.paso.is-activo { color: var(--texto); padding-left: var(--e-2); }
-.paso.is-activo .paso__num { color: var(--acento); }
-.paso.is-activo .paso__nombre::after {
-  content: "";
-  display: inline-block;
-  width: 8px; height: 8px;
-  margin-left: var(--e-3);
-  border-radius: 50%;
-  background: var(--oro);
-  vertical-align: middle;
-  animation: pulso 2.4s var(--curva) infinite;
-}
 
 /* Panel de detalle del paso */
 .proceso__detalle {
@@ -577,9 +515,6 @@
 
 
 /* ═══════════════ TODO CONECTADO ═══════════════ */
-.cadena {
-  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
-}
 
 .cadena__lista {
   display: grid;
@@ -599,7 +534,6 @@
   background: linear-gradient(to right, transparent, var(--oro-linea) 8%, var(--oro-linea) 92%, transparent);
 }
 
-.eslabon { position: relative; }
 
 .eslabon__boton {
   display: flex;
@@ -621,10 +555,6 @@
 }
 .eslabon__boton:hover .eslabon__punto { transform: scale(1.5); }
 
-.eslabon.is-activo .eslabon__punto {
-  background: var(--oro);
-  box-shadow: 0 0 0 6px rgba(201, 150, 43, 0.16);
-}
 
 .eslabon__nombre {
   font-family: var(--display);
@@ -1023,7 +953,6 @@ a.dato__valor:hover { color: var(--acento); }
 }
 
 
-
 .grupo__titulo {
   margin-top: var(--e-2);
   font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
@@ -1078,34 +1007,9 @@ a.dato__valor:hover { color: var(--acento); }
    Antes eran siete pasos abiertos con un panel lateral. Ahora se lee
    la secuencia completa en una línea y el detalle solo aparece si
    alguien lo pide. */
-.flujo {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--e-2) var(--e-3);
-  padding: clamp(1.25rem, 1rem + 1.4vw, 2rem) 0 0;
-  border-top: 1px solid var(--borde);
-}
 
-.flujo li {
-  display: flex;
-  align-items: center;
-  gap: var(--e-3);
-  font-family: var(--display);
-  font-size: clamp(1.125rem, 0.95rem + 1.1vw, 1.875rem);
-  font-weight: var(--peso-fuerte);
-  letter-spacing: -0.015em;
-  color: var(--texto);
-}
 
 /* Filete entre pasos: la secuencia se lee como una cadena */
-.flujo li:not(:last-child)::after {
-  content: "";
-  width: clamp(1rem, 2.5vw, 2.75rem);
-  height: 1px;
-  background: var(--acento);
-  opacity: 0.5;
-}
 
 .flujo__nota {
   margin-top: var(--e-5);
@@ -1115,18 +1019,9 @@ a.dato__valor:hover { color: var(--acento); }
 }
 
 
-
-
 /* ── Enunciado suelto ─────────────────────────────────────────
    Una idea que se dice una vez y se remite, en lugar de un diagrama
    que reconstruye un argumento ya explicado en Servicios. */
-.enunciado {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--e-3) clamp(1.5rem, 1rem + 3vw, 4rem);
-  align-items: baseline;
-  padding-block: clamp(1rem, 0.5rem + 2vw, 2rem);
-}
 .enunciado__texto {
   font-family: var(--display);
   font-size: clamp(1.5rem, 1.1rem + 2vw, 2.75rem);
@@ -1228,3 +1123,24 @@ a.dato__valor:hover { color: var(--acento); }
   color: var(--acento);
 }
 .detras__enlace a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Línea de precios del hero, solo en pantallas donde el panel de precios
+   queda debajo del pliegue. Sin esto, en un teléfono la primera pantalla no
+   muestra ninguna cifra, y el público decide con el precio a la vista. */
+.hero__precios-breve {
+  display: none;
+  margin-top: var(--e-5);
+  padding-top: var(--e-5);
+  border-top: 1px solid var(--borde);
+  max-width: 46ch;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--texto-2);
+}
+.hero__precios-breve strong { color: var(--texto); font-weight: var(--peso-fuerte); }
+.hero__precios-breve a {
+  display: inline-block;
+  padding-block: 4px;
+  color: var(--acento);
+  font-weight: var(--peso-medio);
+}

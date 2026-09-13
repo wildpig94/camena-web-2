@@ -77,6 +77,39 @@ jobs:
           sys.exit(1 if fallos else 0)
           PY
 
+
+      - name: Verificar que el HTML esté completo
+        run: |
+          # Un corte accidental del HTML deja la página "funcionando" pero
+          # mutilada: sin formulario, sin cierres. Esto lo detecta.
+          python3 - <<'PY'
+          import glob, re, sys
+          fallos = 0
+          PAres = ["main", "section", "div", "form", "article", "aside", "ul", "ol", "li", "dl", "details", "footer", "header", "nav"]
+          for archivo in sorted(glob.glob("*.html")):
+              html = open(archivo, encoding="utf-8").read()
+              problemas = []
+              for etiqueta in PAres:
+                  a = len(re.findall(r"<" + etiqueta + r"[\s>]", html))
+                  c = len(re.findall(r"</" + etiqueta + r">", html))
+                  if a != c:
+                      problemas.append(f"{etiqueta}: {a} abiertas / {c} cierres")
+              # Cada formulario necesita campos y cierre
+              if "<form" in html:
+                  if not re.search(r"<input|<textarea|<select", html):
+                      problemas.append("hay un <form> sin ningún campo")
+                  if "</form>" not in html:
+                      problemas.append("hay un <form> sin cerrar")
+              if problemas:
+                  print(f"  ✗ {archivo}")
+                  for p in problemas:
+                      print("      " + p)
+                  fallos += 1
+              else:
+                  print(f"  ✓ {archivo}")
+          sys.exit(1 if fallos else 0)
+          PY
+
       - name: Verificar que existan las páginas enlazadas
         run: |
           for pagina in index.html como-trabajamos.html aviso-de-privacidad.html terminos.html; do

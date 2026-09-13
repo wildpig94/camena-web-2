@@ -252,6 +252,36 @@ const informe = await evaluar(`(() => {
     if (cr < min) contraste.push({ texto: el.textContent.trim().slice(0, 40), ratio: Number(cr.toFixed(2)), px: Math.round(px), fg, bg });
   });
 
+
+  /* 5 · Contraste NO textual: bordes de controles y anillos de foco.
+     La auditoría de texto no ve estos fallos, y son los que dejan un
+     botón sin borde visible o un foco de teclado invisible. */
+  const noTextual = [];
+  const controles = document.querySelectorAll("a.boton, button, input, select, textarea, summary, .copiar");
+  controles.forEach((el) => {
+    if (!visible(el)) return;
+    const cs = getComputedStyle(el);
+    const r = el.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    const bg = fondoReal(el);
+    const borde = cs.borderTopWidth !== "0px" ? cs.borderTopColor : null;
+    /* Un botón con fondo propio no necesita borde: el relleno ya lo delimita.
+       Solo se exige 3:1 al borde cuando el elemento no tiene fondo propio,
+       que es el caso de los botones de contorno y de los campos. */
+    const sinFondoPropio = alpha(cs.backgroundColor) === 0;
+    if (borde && alpha(borde) > 0 && sinFondoPropio) {
+      const bc = alpha(borde) < 1 ? compone(borde, bg) : borde;
+      const l1 = lum(bc), l2 = lum(bg);
+      const cr = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+      if (cr < 3) {
+        noTextual.push({
+          que: (el.textContent.trim().slice(0, 26) || el.tagName),
+          borde: bc, fondo: bg, ratio: Number(cr.toFixed(2)),
+        });
+      }
+    }
+  });
+
   const vistos = new Set();
   const contrasteUnico = contraste.filter((f) => { const k = f.texto + f.ratio; if (vistos.has(k)) return false; vistos.add(k); return true; });
 
@@ -266,6 +296,8 @@ const informe = await evaluar(`(() => {
     objetivosPequenos: pequenos.slice(0, 10),
     totalObjetivosPequenos: pequenos.length,
     contraste: contrasteUnico.slice(0, 12),
+    contrasteNoTextual: noTextual.slice(0, 10),
+    totalNoTextual: noTextual.length,
     totalFallosContraste: contrasteUnico.length,
     medidaEnlace: (() => {
       const a = document.querySelector(".flujo__enlace a");

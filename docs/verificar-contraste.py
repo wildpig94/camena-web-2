@@ -1,89 +1,114 @@
 #!/usr/bin/env python3
 """
-Verificador de contraste WCAG para la paleta de CAMENA 2.0.
+Verificador de contraste WCAG para la paleta de CAMENA.
 
 Uso:  python3 docs/verificar-contraste.py
 
-Regla: texto 4.5:1 · gráficos y bordes 3:1. Nada se elige "a ojo".
+Reglas:
+  · texto normal ....... 4.5:1
+  · texto grande ....... 3:1
+  · controles y bordes . 3:1   (un botón de contorno es interfaz, no adorno)
+  · filetes decorativos  1.2:1 (una línea de 1 px que no comunica nada)
+
+IMPORTANTE: estos valores deben coincidir con css/variables.css. Si se cambia
+un token allá y no aquí, el verificador pasa en verde midiendo colores que el
+sitio ya no usa. Eso ya ocurrió una vez y dejó entrar dos fallos reales: el
+acento claro sobre hueso (1.63:1) y el borde de los botones de contorno.
 """
 import sys
 
-# ── Paleta candidata ────────────────────────────────────────────
-COLORES = {
-    # Neutros
-    "ink":       "#0E0E10",   # negro de tinta (fondos oscuros, texto)
-    "ink-2":     "#17171A",   # negro elevado (superficies)
-    "ink-3":     "#232327",   # superficie alta / bordes en oscuro
-    "paper":     "#F6F3EA",   # hueso (fondo principal claro)
-    "paper-2":   "#FCFAF5",   # blanco cálido (tarjetas)
-    "linea":     "#DED8C8",   # línea suave sobre hueso
-    "muted":     "#6B6759",   # texto atenuado sobre hueso
-    "muted-osc": "#B5B1A8",   # texto atenuado sobre tinta
+# ── Paleta vigente (debe espejar css/variables.css) ─────────────
+C = {
+    # Neutros claros
+    "paper":         "#F8F3E8",
+    "paper-2":       "#FDFAF3",
+    "texto":         "#16130D",
+    "texto-2":       "#6B6759",
+    "linea":         "#E0D5C0",
+    "borde-fuerte":  "#8A7D62",
+    # Neutros oscuros
+    "ink":           "#191510",
+    "ink-2":         "#201B14",
+    "ink-3":         "#312A22",
+    "ink-4":         "#7A6340",
+    "texto-claro":   "#F4F1E8",
+    "texto-claro-2": "#B5B1A8",
     # Marca
-    "gold":      "#C9962B",   # oro de marca (acento, gráficos, texto grande en oscuro)
-    "gold-lt":   "#E5BC55",   # oro claro (texto pequeño sobre tinta)
-    "gold-tx":   "#7A560F",   # oro de texto sobre claro
+    "oro":           "#C9962B",
+    "oro-lt":        "#E5BC55",
+    "oro-tx":        "#7A560F",
 }
 
-PARES = [
-    # (frente, fondo, mínimo, descripción)
-    ("ink",       "paper",     4.5, "texto principal sobre hueso"),
-    ("muted",     "paper",     4.5, "texto secundario sobre hueso"),
-    ("ink",       "paper-2",   4.5, "texto sobre tarjeta"),
-    ("muted",     "paper-2",   4.5, "texto secundario sobre tarjeta"),
-    ("gold-tx",   "paper",     4.5, "acento como texto sobre hueso"),
-    ("gold-tx",   "paper-2",   4.5, "acento como texto sobre tarjeta"),
-    ("paper",     "ink",       4.5, "texto claro sobre tinta"),
-    ("paper",     "ink-2",     4.5, "texto claro sobre superficie oscura"),
-    ("muted-osc", "ink",       4.5, "texto atenuado sobre tinta"),
-    ("gold-lt",   "ink",       4.5, "acento pequeño sobre tinta"),
-    ("gold-lt",   "ink-2",     4.5, "acento pequeño sobre superficie oscura"),
-    ("gold",      "ink",       3.0, "acento gráfico sobre tinta"),
-    ("gold",      "ink-2",     3.0, "acento gráfico sobre superficie oscura"),
-    # Sobre claro el oro de marca NO puede llevar información: solo filetes y
-    # marcos decorativos de 1px, que se rigen por el mínimo decorativo (1.2).
-    # Cualquier marca con significado sobre hueso usa --gold-tx (5.98:1).
-    ("gold",      "paper",     1.2, "filete decorativo 1px sobre hueso"),
-    ("ink-3",     "ink",       1.2, "borde sobre tinta (decorativo)"),
-    ("linea",     "paper",     1.2, "línea sobre hueso (decorativa)"),
+# (frente, fondo, mínimo, descripción)
+P = [
+    # ── Texto sobre superficies claras ──
+    ("texto",        "paper",    4.5, "texto sobre hueso"),
+    ("texto-2",      "paper",    4.5, "texto secundario sobre hueso"),
+    ("texto",        "paper-2",  4.5, "texto sobre tarjeta"),
+    ("texto-2",      "paper-2",  4.5, "texto secundario sobre tarjeta"),
+    ("oro-tx",       "paper",    4.5, "acento de TEXTO sobre hueso"),
+    ("oro-tx",       "paper-2",  4.5, "acento de TEXTO sobre tarjeta"),
+    # ── Texto sobre superficies oscuras ──
+    ("texto-claro",   "ink",     4.5, "texto claro sobre tinta"),
+    ("texto-claro",   "ink-2",   4.5, "texto claro sobre superficie"),
+    ("texto-claro-2", "ink",     4.5, "texto atenuado sobre tinta"),
+    ("texto-claro-2", "ink-2",   4.5, "texto atenuado sobre superficie"),
+    ("oro-lt",        "ink",     4.5, "acento de texto sobre tinta"),
+    ("oro-lt",        "ink-2",   4.5, "acento de texto sobre superficie"),
+    # ── Gráficos ──
+    ("oro",           "ink",     3.0, "acento gráfico sobre tinta"),
+    ("oro",           "ink-2",   3.0, "acento gráfico sobre superficie"),
+    # ── Controles: un borde de botón es interfaz y exige 3:1 ──
+    ("borde-fuerte",  "paper",   3.0, "borde de control sobre hueso"),
+    ("borde-fuerte",  "paper-2", 3.0, "borde de control sobre tarjeta"),
+    ("ink-4",         "ink",     3.0, "borde de control sobre tinta"),
+    ("ink-4",         "ink-2",   3.0, "borde de control sobre superficie"),
+    # ── Filetes decorativos de 1 px: no comunican información ──
+    ("oro",           "paper",   1.2, "filete decorativo sobre hueso"),
+    ("linea",         "paper",   1.2, "línea divisoria sobre hueso"),
+    ("ink-3",         "ink",     1.2, "línea divisoria sobre tinta"),
 ]
 
 
-def srgb(c):
-    c = c / 255
-    return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+def srgb(v):
+    v /= 255
+    return v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4
 
 
-def lum(hexcol):
-    h = hexcol.lstrip("#")
-    r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+def lum(hx):
+    hx = hx.lstrip("#")
+    r, g, b = (int(hx[i:i + 2], 16) for i in (0, 2, 4))
     return 0.2126 * srgb(r) + 0.7152 * srgb(g) + 0.0722 * srgb(b)
 
 
 def ratio(a, b):
-    la, lb = lum(a), lum(b)
+    la, lb = lum(C[a]), lum(C[b])
     hi, lo = max(la, lb), min(la, lb)
     return (hi + 0.05) / (lo + 0.05)
 
 
 def main():
-    fallos = 0
-    print(f"{'frente':10} {'fondo':10} {'ratio':>7}  {'min':>4}  ok   descripción")
-    print("─" * 78)
-    for fg, bg, minimo, desc in PARES:
-        r = ratio(COLORES[fg], COLORES[bg])
+    fallos = []
+    print(f"{'frente':15} {'fondo':9} {'ratio':>8} {'mín':>5}  ok   descripción")
+    print("─" * 84)
+    for fg, bg, minimo, desc in P:
+        r = ratio(fg, bg)
         ok = r >= minimo
         if not ok:
-            fallos += 1
-        # AAA para texto normal
+            fallos.append((fg, bg, r, minimo, desc))
         marca = "AAA" if r >= 7 and minimo >= 4.5 else ""
-        print(f"{fg:10} {bg:10} {r:6.2f}:1  {minimo:4.1f}  "
-              f"{'✓' if ok else '✗':3}  {desc} {marca}")
-    print("─" * 78)
+        print(f"{fg:15} {bg:9} {r:6.2f}:1 {minimo:5.1f}  {'✓' if ok else '✗':3}  {desc} {marca}")
+    print("─" * 84)
+
     if fallos:
-        print(f"✗ {fallos} par(es) por debajo del mínimo. Corrige antes de seguir.")
+        print(f"\n✗ {len(fallos)} par(es) por debajo del mínimo:\n")
+        for fg, bg, r, minimo, desc in fallos:
+            print(f"   {desc}: {C[fg]} sobre {C[bg]} = {r:.2f}:1 (mínimo {minimo})")
+        print("\n   Ajusta el token en css/variables.css Y aquí: los dos deben coincidir.")
         return 1
-    print("✓ Todos los pares cumplen WCAG AA.")
+
+    print("✓ Todos los pares cumplen WCAG AA, controles incluidos.")
+    print("\nRecuerda: si cambias un token en css/variables.css, cámbialo también aquí.")
     return 0
 
 

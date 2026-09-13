@@ -32,7 +32,7 @@ Tres reglas gobiernan todas las decisiones de aquí:
 
 ```
 camena-2.0/
-├── index.html                  Página principal (12 secciones)
+├── index.html                  Página principal (10 secciones)
 ├── como-trabajamos.html        El método completo, paso por paso
 ├── aviso-de-privacidad.html    Página legal
 ├── terminos.html               Página legal
@@ -232,7 +232,7 @@ referencian con una línea.
 ### Nombres y precios de los paquetes
 
 Van en el idioma del cliente y sin chocar con el nombre de una disciplina:
-**Arranque · Identidad · Sitio · Contenido · Sistema · A la medida**.
+**Arranque · Identidad · Sitio · Contenido · Todo junto · Sistema · A la medida**.
 Cada uno dice explícitamente qué **no** incluye: sin exclusiones, los seis se
 leen como «depende».
 
@@ -264,7 +264,7 @@ correo. Nunca dice «hemos recibido tu mensaje», porque no es cierto.
 - `<title>` y meta description orientados al nuevo posicionamiento.
 - Open Graph y Twitter Card completos, con imagen 1200×630 generada para redes.
 - Datos estructurados JSON-LD: `ProfessionalService` con catálogo de servicios,
-  horario de atención y `FAQPage` con las doce preguntas **en el mismo orden y
+  horario de atención y `FAQPage` con las ocho preguntas **en el mismo orden y
   con el mismo texto que se ve en la página** (Google debe indexar lo mismo que
   lee la persona).
 - `lang="es-MX"`, `canonical`, favicon completo, manifiesto, `robots.txt` y
@@ -324,6 +324,26 @@ y errores de consola.
 se hace, los elementos sin revelar llevan `translateY(22px)` y el detector los
 ve montados sobre el siguiente: un falso positivo de exactamente 22 px que ya
 provocó una búsqueda larga. Está resuelto en el script.
+
+### Lo que esta verificación NO detectaba (y ya sí)
+
+Estas tres comprobaciones faltaban y por eso entraron fallos reales:
+
+1. **HTML incompleto.** Un corte accidental puede dejar la página
+   «funcionando» pero mutilada: sin formulario, sin cierres. Se comprobó en
+   producción y estuvo horas publicado. Ahora el flujo de publicación cuenta
+   etiquetas y campos antes de desplegar.
+2. **Contraste de controles.** La auditoría medía texto, no bordes. Un botón
+   de contorno con borde a 1.31:1 no se percibe como botón, y no aparecía en
+   ningún informe. `docs/movil.mjs` ahora revisa bordes de controles sin fondo
+   propio y exige 3:1.
+3. **Paleta desincronizada.** `docs/verificar-contraste.py` medía los colores
+   anteriores y pasaba en verde. Ahora el script compara sus valores con
+   `css/variables.css` y avisa si no coinciden.
+
+Y una cuarta, de método: **las animaciones de entrada falsean las mediciones.**
+Un elemento sin revelar lleva `translateY(22px)` y el detector de solapes lo ve
+montado sobre el siguiente. Los auditores fuerzan el estado final antes de medir.
 
 ### Limitaciones conocidas del entorno de auditoría
 
