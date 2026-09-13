@@ -71,6 +71,9 @@
   /* Se apaga el bloqueo de scroll del fondo cuando el menú está abierto */
   body.menu-abierto { overflow: hidden; }
 
+  /* El mapa de la oferta pasa a columna */
+  .grupos { grid-template-columns: minmax(0, 1fr); }
+
   /* Composiciones que pasan a una sola columna */
   .hero__interior,
   .declaracion,
@@ -186,6 +189,24 @@
   .eslabon__dato { flex: 1; text-align: right; font-size: 0.75rem; }
 
   .lab { grid-template-columns: minmax(0, 1fr); }
+
+  /* Proceso: el flujo va en línea, sin filete cuando se parte en dos renglones */
+  .flujo { gap: var(--e-2) var(--e-2); }
+  .flujo li { font-size: 1.125rem; }
+  .flujo li:not(:last-child)::after { width: 0.75rem; }
+
+  .paso-detalle__cabecera {
+    grid-template-columns: 2rem minmax(0, 1fr) 1.25rem;
+    grid-template-areas:
+      "num nombre mas"
+      "num resumen mas";
+    gap: var(--e-1) var(--e-3);
+  }
+  .paso-detalle__num { grid-area: num; }
+  .paso-detalle__nombre { grid-area: nombre; }
+  .paso-detalle__resumen { grid-area: resumen; }
+  .paso-detalle__mas { grid-area: mas; }
+  .paso-detalle__cuerpo { padding-left: 2rem; }
 }
 
 /* ═══ ≤ 720 px · móvil de trabajo ═══ */

@@ -10,6 +10,11 @@
 
   var raiz = document.documentElement;
 
+
+  /* Los precios de los paquetes viven en el HTML (clase .paquete__precio),
+     no aquí: así se ven sin JavaScript, los indexa el buscador y una tarifa
+     equivocada no queda escondida detrás de un script. */
+
   /* ── Cabecera: fondo al desplazar y se oculta al bajar ───────── */
   var cabecera = document.getElementById("cabecera");
   var ultimoY = 0;

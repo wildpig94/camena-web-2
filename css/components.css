@@ -665,6 +665,35 @@ svg.ic path[d^="M12 2a10"] {
 .lab__cierre .boton { justify-self: start; }
 
 
+
+/* La pieza del LAB se lee como un proyecto: problema, solución, qué puedes ver.
+   Sustituye a la lista de características, que no contaba nada. */
+.lab-pieza__ficha {
+  margin-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+}
+.lab-pieza__ficha > div {
+  display: grid;
+  grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr);
+  gap: var(--e-3);
+  padding: var(--e-3) 0;
+  border-bottom: 1px solid var(--borde);
+}
+.lab-pieza__ficha > div:last-child { border-bottom: 0; }
+.lab-pieza__ficha dt {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--acento);
+  padding-top: 0.25em;
+}
+.lab-pieza__ficha dd {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--texto-claro-2);
+}
+
 /* ═══════════════ MAQUETAS DEL LAB (interfaces dibujadas en CSS) ═══════════════ */
 
 /* Aviso dentro de cada maqueta. Es imprescindible: en una captura de pantalla
@@ -1008,6 +1037,23 @@ svg.ic path[d^="M12 2a10"] {
 
 
 /* ═══════════════ PAQUETES ═══════════════ */
+
+/* Precio de referencia del paquete. Va arriba del resumen porque es lo
+   primero que se escanea cuando alguien compara opciones. */
+.paquete__precio {
+  margin-top: var(--e-3);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: var(--tracking-mono);
+  color: var(--texto-2);
+}
+.paquete__precio strong {
+  color: var(--acento);
+  font-weight: var(--peso-fuerte);
+}
+.paquete--destacado .paquete__precio strong { color: var(--oro-lt); }
+
+
 .paquete {
   position: relative;
   display: flex;
@@ -1035,7 +1081,13 @@ svg.ic path[d^="M12 2a10"] {
 .paquete--destacado .paquete__incluye li { color: var(--texto-claro); border-color: var(--borde); }
 /* El paquete destacado es oscuro: su acento debe ser el oro claro,
    igual que en el resto de superficies oscuras del sitio. */
-.paquete--destacado { --acento: var(--oro-lt); --acento-suave: rgba(201, 150, 43, 0.12); }
+.paquete--destacado {
+  --acento: var(--oro-lt);
+  --acento-suave: rgba(201, 150, 43, 0.12);
+  /* --texto-2 es un gris de 5.1:1 sobre papel, pero solo 3.41:1 sobre tinta.
+     En esta tarjeta oscura hay que cambiar el token, no el componente. */
+  --texto-2: var(--texto-claro-2);
+}
 
 .paquete__nombre {
   font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
@@ -1097,6 +1149,40 @@ svg.ic path[d^="M12 2a10"] {
 
 
 /* ═══════════════ FAQ ═══════════════ */
+
+/* ── FAQ: pocas preguntas visibles, el resto plegado ──────────
+   La FAQ es para resolver dudas, no para volcar todo el contenido
+   otra vez. Siete preguntas a la vista; el detalle, a un clic. */
+
+.faq__item--mas { border-bottom: 0; }
+
+.faq__pregunta--mas {
+  font-family: var(--mono);
+  font-size: var(--t-menudo);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-mono);
+  color: var(--texto-2);
+  padding-block: var(--e-5);
+}
+.faq__pregunta--mas em { font-style: normal; opacity: 0.7; }
+.faq__pregunta--mas:hover { color: var(--acento); }
+
+.faq__respuesta--mas {
+  padding: 0 0 var(--e-4);
+  max-width: none;
+}
+
+.faq__item--anidado {
+  border-bottom: 1px solid var(--borde);
+}
+.faq__item--anidado:first-child { border-top: 1px solid var(--borde); }
+
+.faq__pregunta--anidada {
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  padding-block: var(--e-4);
+}
+
+
 .faq {
   max-width: 58rem;
   border-top: 1px solid var(--borde);

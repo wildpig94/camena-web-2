@@ -155,6 +155,26 @@ function esperarReal(ms) {
   document.querySelectorAll("h1,h2,h3,h4").forEach(function (n) { orden.push(Number(n.tagName[1])); });
   for (var m = 1; m < orden.length; m++) if (orden[m] - orden[m - 1] > 1) saltos.push(orden[m - 1] + ">" + orden[m]);
 
+  /* Elementos que deben existir siempre. Un contenido que no se genera
+     no rompe nada y no da error de consola: sin esta lista, su ausencia
+     pasa desapercibida. */
+  var esperados = {
+    ".paquete__precio": 6,
+    ".grupo": 3,
+    ".flujo li": 6,
+    ".paso-detalle": 6,
+    ".disciplina": 7,
+    ".lab-pieza": 5,
+    ".faq__item": 8,
+    ".caso": 7,
+    ".eslabon": 8
+  };
+  var faltantes = [];
+  Object.keys(esperados).forEach(function (sel) {
+    var hay = document.querySelectorAll(sel).length;
+    if (hay < esperados[sel]) faltantes.push(sel + ": " + hay + " de " + esperados[sel]);
+  });
+
   var imagenes = Array.prototype.slice.call(document.images);
   var nav = performance.getEntriesByType("navigation")[0] || {};
   var recursos = performance.getEntriesByType("resource");
@@ -199,6 +219,7 @@ function esperarReal(ms) {
       var h = a.getAttribute("href");
       return h.length > 1 && !document.querySelector(h);
     }).map(function (a) { return a.getAttribute("href"); }),
+    elementosFaltantes: faltantes,
     contraste: contraste.slice(0, 20),
     totalFallosContraste: contraste.length,
     fallosJs: window.__fallos

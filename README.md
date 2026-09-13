@@ -190,12 +190,37 @@ La prueba que sustituye a un portafolio de clientes que aún no existe es el
 propio sitio: **está dicho en la sección «Detrás de CAMENA» que esta página la
 diseñamos y programamos aquí.** Es verificable y no exige inventar nada.
 
-### Nombres de los paquetes
+### Los tres grupos de servicio
+
+La oferta se presenta agrupada, porque «hacemos muchas cosas» no dice qué
+contratar. Los siete servicios viven dentro de tres grupos:
+
+| Grupo | Qué resuelve | Disciplinas |
+|---|---|---|
+| **Presencia** | Que te encuentren y te reconozcan | Marca · Web · Google y WhatsApp |
+| **Contenido** | Que tengas qué mostrar y a quién mostrarlo | Video · Audio · Publicidad |
+| **Operación** | Que el negocio funcione sin tu memoria | Sistemas · Automatización · IA |
+
+### Nombres y precios de los paquetes
 
 Van en el idioma del cliente y sin chocar con el nombre de una disciplina:
 **Arranque · Identidad · Sitio · Contenido · Sistema · A la medida**.
 Cada uno dice explícitamente qué **no** incluye: sin exclusiones, los seis se
 leen como «depende».
+
+**⚠️ Dónde se cambian los precios.** En el HTML, en el bloque de cada paquete:
+
+```html
+<p class="paquete__precio">Desde <strong>$8,000 MXN</strong></p>
+```
+
+Los precios **no** se generan por JavaScript a propósito: así se ven aunque el
+visitante no cargue el script, los indexa el buscador y una tarifa equivocada no
+queda escondida detrás de un código que falla. Son precios de partida, no
+cerrados: el valor real de cada proyecto se confirma por escrito.
+
+Los `data-precio` de cada tarjeta se conservan solo como referencia de qué
+tarifa corresponde a qué paquete.
 
 ### Sobre el formulario
 
