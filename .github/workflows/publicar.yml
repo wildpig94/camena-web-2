@@ -41,7 +41,12 @@ jobs:
             | grep -vE '^(https?:|mailto:|tel:|//|#)' \
             | sort -u > /tmp/refs.txt
           while read -r ref; do
-            limpio="${ref%%\?*}"
+            # Un enlace puede traer fragmento o parámetros: index.html#empezar,
+            # estilos.css?v=2. Se comprueba el archivo, no la cadena completa.
+            limpio="${ref%%#*}"
+            limpio="${limpio%%\?*}"
+            # Un ancla suelta (#seccion) apunta a la misma página: no es un archivo
+            [ -z "$limpio" ] && continue
             if [ ! -e "$limpio" ]; then
               echo "  ✗ falta: $limpio (referenciado como $ref)"
               fallos=$((fallos + 1))
