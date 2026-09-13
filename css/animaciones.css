@@ -10,9 +10,11 @@
 .js [data-revelar] {
   opacity: 0;
   transform: translateY(22px);
+  /* 620 ms era demasiado: la persona mira y todavía no está el contenido.
+     ~280 ms se siente inmediato sin perder la aparición. */
   transition:
-    opacity var(--dur-lenta) var(--curva-salida),
-    transform var(--dur-lenta) var(--curva-salida);
+    opacity var(--dur) var(--curva-salida),
+    transform var(--dur) var(--curva-salida);
   will-change: opacity, transform;
 }
 .js [data-revelar].is-visible {
@@ -22,11 +24,11 @@
 
 /* Los hijos de un grupo entran escalonados */
 .js [data-revelar-grupo] > [data-revelar]:nth-child(1) { transition-delay: 0ms; }
-.js [data-revelar-grupo] > [data-revelar]:nth-child(2) { transition-delay: 90ms; }
-.js [data-revelar-grupo] > [data-revelar]:nth-child(3) { transition-delay: 180ms; }
-.js [data-revelar-grupo] > [data-revelar]:nth-child(4) { transition-delay: 270ms; }
-.js [data-revelar-grupo] > [data-revelar]:nth-child(5) { transition-delay: 360ms; }
-.js [data-revelar-grupo] > [data-revelar]:nth-child(6) { transition-delay: 450ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(2) { transition-delay: 40ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(3) { transition-delay: 80ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(4) { transition-delay: 120ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(5) { transition-delay: 160ms; }
+.js [data-revelar-grupo] > [data-revelar]:nth-child(6) { transition-delay: 200ms; }
 
 /* Una vez visible se suelta el will-change para no gastar memoria */
 .js [data-revelar].is-visible { will-change: auto; }

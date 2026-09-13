@@ -113,16 +113,14 @@
       "@type": "FAQPage",
       "@id": "https://wildpig94.github.io/camena-web-2/#faq",
       "mainEntity": [
-        { "@type": "Question", "name": "¿Cómo empiezo?", "acceptedAnswer": { "@type": "Answer", "text": "Se escribe con lo que se tenga y CAMENA analiza el caso y envía una propuesta por escrito con alcance, etapas, calendario y precio antes de cualquier pago. La primera conversación y el análisis no tienen costo." } },
-        { "@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": { "@type": "Answer", "text": "Cada paquete publica su precio de partida. A partir de ahí sube según el alcance. No se publica un número fijo porque obligaría a cobrar de más o entregar de menos." } },
-        { "@type": "Question", "name": "¿Puedo contratar solo una cosa, o tengo que llevarme todo?", "acceptedAnswer": { "@type": "Answer", "text": "Se puede contratar solo el logotipo, solo la página o solo el video. Si esa pieza suelta no resuelve el problema, se dice antes de que el cliente pague." } },
-        { "@type": "Question", "name": "¿Y después de la entrega, qué pasa?", "acceptedAnswer": { "@type": "Answer", "text": "Si algo no funciona como se acordó, se corrige sin costo dentro del periodo que indique la propuesta. El código, los archivos, el dominio y los accesos quedan a nombre del cliente." } },
-        { "@type": "Question", "name": "¿Cómo voy a saber si el proyecto sirvió?", "acceptedAnswer": { "@type": "Answer", "text": "No se garantiza un número de ventas ni una posición exacta en buscadores. Se deja medible lo que depende del trabajo entregado: en un sitio la analítica de visitas, origen y mensajes; en un sistema los reportes de cotizado, cobrado y pendiente." } },
-        { "@type": "Question", "name": "¿Tengo que saber exactamente qué necesito?", "acceptedAnswer": { "@type": "Answer", "text": "No. Casi nadie llega con una lista de servicios: llegan con un problema. Se propone la combinación que tenga sentido para cada caso." } },
-        { "@type": "Question", "name": "¿Trabajan con negocios pequeños?", "acceptedAnswer": { "@type": "Answer", "text": "Está pensado para negocios pequeños: un logotipo, una landing o una campaña suelta. Se puede empezar por una pieza y crecer después." } },
-        { "@type": "Question", "name": "¿Trabajan a distancia?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. El trabajo se hace por videollamada, WhatsApp y correo. La base está en Apatzingán, Michoacán, y el servicio es remoto en todo México." } },
-        { "@type": "Question", "name": "¿Pueden crear algo completamente personalizado?", "acceptedAnswer": { "@type": "Answer", "text": "Si la necesidad no entra en ninguna categoría, se analiza desde cero y se dice con honestidad si se puede resolver, cómo y en cuánto tiempo." } },
-        { "@type": "Question", "name": "¿Usan inteligencia artificial?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, como herramienta para investigar, prototipar y acelerar la producción. La IA no decide qué necesita el negocio ni sustituye la revisión final: eso es criterio humano." } }
+        { "@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": { "@type": "Answer", "text": "Cada paquete dice su precio de partida, desde $3,500 MXN. A partir de ahí sube según el tamaño del proyecto y se confirma por escrito antes de empezar." } },
+        { "@type": "Question", "name": "¿Puedo contratar solo una cosa, o tengo que llevarme todo?", "acceptedAnswer": { "@type": "Answer", "text": "Se puede contratar solo el logo, solo la página o solo el video. Si esa pieza sola no resuelve el problema, se dice antes de que el cliente pague." } },
+        { "@type": "Question", "name": "¿Y después de la entrega, qué pasa?", "acceptedAnswer": { "@type": "Answer", "text": "Si algo no funciona como se acordó, se corrige sin costo dentro del plazo que diga la propuesta. El código, los archivos, el dominio y los accesos quedan a nombre del cliente." } },
+        { "@type": "Question", "name": "¿Cómo voy a saber si el proyecto sirvió?", "acceptedAnswer": { "@type": "Answer", "text": "No se promete un número de ventas ni el primer lugar en buscadores. Se deja medible lo que sí depende del trabajo: visitas, origen del tráfico y mensajes recibidos." } },
+        { "@type": "Question", "name": "¿Tengo que saber exactamente qué necesito?", "acceptedAnswer": { "@type": "Answer", "text": "No, y casi nadie lo sabe. El sitio permite reconocer la situación propia y ver qué la resuelve. Si el caso no está en la lista, se analiza desde cero." } },
+        { "@type": "Question", "name": "¿Trabajan con negocios pequeños?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Se puede empezar por una pieza —un logo, una página, un video— y crecer después." } },
+        { "@type": "Question", "name": "¿Trabajan a distancia?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, por WhatsApp, videollamada y correo. La base está en Apatzingán, Michoacán, con servicio en todo México." } },
+        { "@type": "Question", "name": "¿Usan inteligencia artificial?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, para investigar, prototipar y avanzar más rápido. No decide qué necesita el negocio: eso se piensa y se revisa antes de entregar." } }
       ]
     }
   ]
@@ -132,9 +130,6 @@
 
 <body>
 <a class="saltar" href="#principal">Saltar al contenido principal</a>
-
-<!-- Barra de progreso de lectura: informa avance en una página larga -->
-<div class="progreso" aria-hidden="true"><span class="progreso__barra" id="progresoBarra"></span></div>
 
 <!-- ═══════════════════ CABECERA ═══════════════════ -->
 <header class="cabecera" id="cabecera">
@@ -148,12 +143,12 @@
     <nav class="nav" id="nav" aria-label="Navegación principal">
       <ul class="nav__lista">
         <li><a class="nav__enlace" href="#servicios">Servicios</a></li>
-        <li><a class="nav__enlace" href="#soluciones">Soluciones</a></li>
-        <li><a class="nav__enlace" href="#lab">Lab</a></li>
-        <li><a class="nav__enlace" href="#nosotros">Nosotros</a></li>
+        <li><a class="nav__enlace" href="#soluciones">Qué necesitas</a></li>
+        <li><a class="nav__enlace" href="#lab">Trabajos</a></li>
+        <li><a class="nav__enlace" href="#nosotros">Quién atiende</a></li>
         <li><a class="nav__enlace" href="#proceso">Proceso</a></li>
-        <li><a class="nav__enlace" href="#precio">Inversión</a></li>
-        <li><a class="nav__enlace" href="#faq">FAQ</a></li>
+        <li><a class="nav__enlace" href="#paquetes">Precios</a></li>
+        <li><a class="nav__enlace" href="#faq">Preguntas</a></li>
       </ul>
 
       <div class="nav__contacto">
@@ -183,83 +178,102 @@
       <div class="hero__principal">
         <p class="sello">
           <span class="sello__marca" aria-hidden="true"></span>
-          Estudio digital mexicano · Base en Apatzingán · Trabajo remoto en todo México
+          De Apatzingán, Michoacán · Atendemos en todo México
         </p>
 
         <h1 class="hero__titulo" id="hero-titulo">
-          <span class="hero__linea" data-linea>Tu idea.</span>
-          <span class="hero__linea hero__linea--oro" data-linea>Nuestra solución.</span>
+          <span class="hero__linea">Logo, página web y</span>
+          <span class="hero__linea">el sistema para</span>
+          <span class="hero__linea hero__linea--oro">cobrar sin cuaderno.</span>
         </h1>
 
         <p class="hero__entrada">
-          Cotizas a mano, te confunden con el negocio de la esquina, nadie te encuentra
-          cuando te buscan. Trabajamos sobre eso: <strong>marca</strong>,
-          <strong>contenido</strong>, <strong>campañas</strong>, <strong>páginas web</strong>
-          y <strong>herramientas para operar</strong>.
+          Hacemos lo que se ve de tu negocio —<strong>el logo, el rótulo, la página</strong>—
+          y lo que se usa por dentro: <strong>el programa para cotizar, llevar tus clientes
+          y saber quién te debe</strong>.
         </p>
 
         <p class="hero__texto">
-          Tú traes la necesidad; nosotros decidimos qué construir. A veces es una
-          identidad. A veces es un sistema para dejar de trabajar a mano. Casi siempre
-          es una combinación.
+          Trabajamos con negocios pequeños. Nos dices qué te está costando dinero
+          o tiempo, y te decimos qué conviene hacer y cuánto cuesta.
         </p>
 
         <div class="hero__acciones">
-          <a class="boton boton--solido boton--lg" href="#empezar">
-            Cuéntanos tu idea
-            <svg class="ic ic--flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <a class="boton boton--solido boton--lg"
+             href="https://wa.me/524435794642?text=Hola%20CAMENA%2C%20vengo%20de%20su%20p%C3%A1gina.%20Les%20cuento%20mi%20caso%3A%20"
+             target="_blank" rel="noopener">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.1 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.5-.6a11 11 0 0 1-4.4-4c-.5-.7-1-1.5-1-2.6s.6-1.9.9-2.1c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.6c0 .1.1.2 0 .4l-.3.4-.4.5c-.1.1-.2.2 0 .4.1.2.6.9 1.2 1.4.8.7 1.5 1 1.8 1.2.2.1.3 0 .4-.1l.5-.6c.2-.2.3-.2.5-.1l1.5.7c.2.1.4.2.4.3.1.2.1.6-.1 1.3Z"/></svg>
+            Escríbenos por WhatsApp
           </a>
-          <a class="boton boton--linea boton--lg" href="#servicios">Explorar servicios</a>
+          <a class="boton boton--linea boton--lg" href="#paquetes">Ver precios</a>
         </div>
 
         <dl class="hero__hechos">
           <div class="hecho">
-            <dt>Punto de partida</dt>
-            <dd>Conversación y análisis <em>sin costo</em></dd>
+            <dt>Precios</dt>
+            <dd>Desde <em>$3,500</em>, publicados aquí abajo</dd>
           </div>
           <div class="hecho">
-            <dt>Tamaño</dt>
-            <dd>Trato directo, <em>sin intermediarios</em></dd>
+            <dt>Quién te atiende</dt>
+            <dd>Directo con nosotros, <em>sin intermediarios</em></dd>
           </div>
           <div class="hecho">
-            <dt>Antes de pagar</dt>
-            <dd>Alcance y precio <em>por escrito</em></dd>
+            <dt>La primera vez</dt>
+            <dd>Platicamos y te decimos <em>qué conviene</em>, sin costo</dd>
           </div>
         </dl>
       </div>
 
       <!-- Panel lateral: el índice del estudio. Es la primera prueba de amplitud. -->
+      <!-- Lo que se puede comprar, con su precio, en el primer pantallazo.
+           Sustituye a la lista de disciplinas, que ya se explicaba completa
+           más abajo y se repetía seis veces en la página. -->
       <aside class="hero__panel" aria-labelledby="panel-titulo">
         <div class="panel">
           <div class="panel__cabecera">
-            <h2 class="panel__titulo" id="panel-titulo">Lo que podemos construir</h2>
+            <h2 class="panel__titulo" id="panel-titulo">Qué puedes contratar</h2>
+            <p class="panel__nota">Precios de partida. Lo que sigue depende del tamaño.</p>
           </div>
 
-          <ol class="indice">
-            <li class="indice__fila"><a href="#servicios"><span class="indice__nombre">Marca</span><span class="indice__detalle">Identidad, logotipo, manual</span></a></li>
-            <li class="indice__fila"><a href="#servicios"><span class="indice__nombre">Web</span><span class="indice__detalle">Sitios, landings, catálogos</span></a></li>
-            <li class="indice__fila"><a href="#servicios"><span class="indice__nombre">Video</span><span class="indice__detalle">Comerciales, reels, motion</span></a></li>
-            <li class="indice__fila"><a href="#servicios"><span class="indice__nombre">Audio</span><span class="indice__detalle">Jingles, spots, narración</span></a></li>
-            <li class="indice__fila"><a href="#servicios"><span class="indice__nombre">Publicidad</span><span class="indice__detalle">Concepto, campañas, copy</span></a></li>
-            <li class="indice__fila"><a href="#servicios"><span class="indice__nombre">Sistemas</span><span class="indice__detalle">CRM, inventario, paneles</span></a></li>
-            <li class="indice__fila"><a href="#servicios"><span class="indice__nombre">Automatización</span><span class="indice__detalle">Procesos, asistentes, IA</span></a></li>
-          </ol>
+          <ul class="precios-breves">
+            <li>
+              <a href="#paquetes">
+                <span class="precios-breves__cuando">Para empezar a existir</span>
+                <span class="precios-breves__que">Logo, colores y letra, y tu ficha en Google</span>
+                <span class="precios-breves__cuanto"><strong>desde $3,500</strong></span>
+              </a>
+            </li>
+            <li>
+              <a href="#paquetes">
+                <span class="precios-breves__cuando">Para vender más</span>
+                <span class="precios-breves__que">Identidad, página web, video y anuncios</span>
+                <span class="precios-breves__cuanto"><strong>desde $8,000</strong></span>
+              </a>
+            </li>
+            <li>
+              <a href="#paquetes">
+                <span class="precios-breves__cuando">Para operar mejor</span>
+                <span class="precios-breves__que">El programa para cotizar, cobrar y saber quién te debe</span>
+                <span class="precios-breves__cuanto"><strong>desde $25,000</strong></span>
+              </a>
+            </li>
+            <li>
+              <a href="#paquetes">
+                <span class="precios-breves__cuando">Para hacerlo todo junto</span>
+                <span class="precios-breves__que">Lo que se ve y lo que se usa, en un solo proyecto</span>
+                <span class="precios-breves__cuanto"><strong>desde $14,000</strong></span>
+              </a>
+            </li>
+          </ul>
 
           <p class="panel__pie">
-            Si tu caso no está en esta lista, se analiza desde cero.
-            <a href="#custom">Ver CAMENA CUSTOM</a>
+            ¿No sabes cuál te toca?
+            <a href="#soluciones">Dinos qué te pasa y te decimos qué hacer</a>
           </p>
         </div>
       </aside>
     </div>
 
-    <div class="contenedor">
-      <p class="hero__nota">
-        ¿Vienes por una página web? La hacemos, y casi siempre es por donde se empieza.
-        Solo toma en cuenta una cosa: <a href="#soluciones">la página sola no arregla
-        el problema que te trajo aquí</a>.
-      </p>
-    </div>
   </section>
 
   <!-- ═══════════════════ 02 · QUÉ ES CAMENA ═══════════════════ -->
@@ -274,47 +288,16 @@
         </h2>
         <div class="declaracion__cuerpo">
           <p class="destacado">
-            CAMENA es un estudio creativo y tecnológico. Hacemos la marca con la que te
-            reconocen, el sitio donde te encuentran, el contenido con el que te explican
-            y las herramientas con las que operas: desde el logotipo hasta el sistema
-            donde se cotiza, se cobra y se sabe quién debe.
+            Hacemos la marca con la que te reconocen, el sitio donde te encuentran y
+            el programa con el que operas: desde el logotipo hasta el sistema donde se
+            cotiza, se cobra y se sabe quién debe.
           </p>
           <p>
-            Son tres cosas que normalmente se contratan por separado, y por eso terminan
-            sin hablarse entre sí. Cuando se diseñan con la misma dirección, el negocio
-            se ve y funciona como un solo sistema.
+            Son cosas que normalmente se contratan por separado, y por eso terminan sin
+            hablarse entre sí. Cuando se diseñan juntas, el negocio se ve y funciona
+            como un solo sistema.
           </p>
         </div>
-      </div>
-
-      <!-- Tres dimensiones presentadas como sistema, no como tarjetas -->
-      <div class="dimensiones" data-revelar-grupo>
-        <article class="dimension" data-revelar>
-          <h3 class="dimension__titulo">Creatividad</h3>
-          <p class="dimension__campos">Marca · Diseño · Video · Audio</p>
-          <p class="dimension__texto">
-            Cómo se ve, cómo suena y qué se siente al contacto. Es lo que hace que
-            te recuerden y no te confundan con el de la esquina.
-          </p>
-        </article>
-
-        <article class="dimension" data-revelar>
-          <h3 class="dimension__titulo">Tecnología</h3>
-          <p class="dimension__campos">Web · Sistemas · Automatización · IA</p>
-          <p class="dimension__texto">
-            Qué existe y cómo funciona: el sitio, la herramienta que ordena tu
-            operación y lo que trabaja solo.
-          </p>
-        </article>
-
-        <article class="dimension" data-revelar>
-          <h3 class="dimension__titulo">Comunicación</h3>
-          <p class="dimension__campos">Publicidad · Campañas · Contenido</p>
-          <p class="dimension__texto">
-            Qué dices, a quién y con qué idea. Creatividad sin mensaje claro es
-            decoración; mensaje sin creatividad no lo lee nadie.
-          </p>
-        </article>
       </div>
 
       <p class="nota-sistema" data-revelar>
@@ -379,7 +362,7 @@
               </p>
               <ul class="campos" aria-label="Incluye">
                 <li>Logotipo</li><li>Rediseño de marca</li>
-                <li>Identidad visual completa</li><li>Manual de marca</li>
+                <li>Tu logo, tus colores y tu letra, con el manual de uso</li><li>Manual de marca</li>
                 <li>Plantillas para redes</li><li>Papelería y material corporativo</li>
                 <li>Etiquetas y empaque</li><li>Nombre y slogan</li>
               </ul>
@@ -403,10 +386,10 @@
                 lo que busca y tenga un camino obvio para escribirte.
               </p>
               <ul class="campos" aria-label="Incluye">
-                <li>Sitio completo</li><li>Página de aterrizaje</li><li>Catálogo o menú digital</li>
+                <li>Página web completa</li><li>Página corta para anunciar algo</li><li>Catálogo o menú para el celular</li>
                 <li>Portafolio</li><li>Formularios de contacto</li><li>Botón y enlace a WhatsApp</li>
-                <li>Ficha de Google actualizada</li><li>Buenos títulos y descripciones para buscadores</li>
-                <li>Conexión con otras herramientas</li><li>Mantenimiento y actualizaciones</li>
+                <li>Tu ficha de Google con fotos y horarios</li><li>Que salgas en Google cuando te busquen</li>
+                <li>Conectar tus otras herramientas</li><li>Mantenimiento y actualizaciones</li>
               </ul>
             </div>
           </div>
@@ -432,7 +415,7 @@
               <ul class="campos" aria-label="Incluye">
                 <li>Comercial para redes</li><li>Reels, shorts y TikTok</li>
                 <li>Video corporativo o institucional</li><li>Video que explica un producto</li>
-                <li>Animación de textos y gráficos</li><li>Adaptaciones vertical, cuadrada y horizontal</li>
+                <li>Texto y gráficos en movimiento</li><li>Adaptaciones vertical, cuadrada y horizontal</li>
               </ul>
             </div>
           </div>
@@ -455,8 +438,8 @@
               </p>
               <ul class="campos" aria-label="Incluye">
                 <li>Jingle o canción de marca</li><li>Música para comercial</li>
-                <li>Spot de radio</li><li>Narración y voz comercial</li>
-                <li>Sonido para video (intros y cierres)</li>
+                <li>Spot de radio</li><li>Narración y voz para comercial</li>
+                <li>Sonido para video: entrada y cierre</li>
               </ul>
             </div>
           </div>
@@ -478,7 +461,7 @@
                 concepto primero: qué queremos que la gente piense de tu negocio.
               </p>
               <ul class="campos" aria-label="Incluye">
-                <li>Concepto creativo</li><li>Campaña completa</li><li>Textos publicitarios</li>
+                <li>Concepto creativo</li><li>Campaña completa, de la idea a las piezas</li><li>Los textos de los anuncios</li>
                 <li>Frases y slogans</li><li>Piezas gráficas para anuncios</li>
                 <li>Material para redes</li><li>Campaña de lanzamiento</li>
                 <li>Promociones y campañas institucionales</li>
@@ -510,10 +493,10 @@
                 realmente va a usar.
               </p>
               <ul class="campos" aria-label="Incluye">
-                <li>Clientes y ventas en un solo lugar</li><li>Cotizaciones que se generan solas</li>
-                <li>Inventario con existencias al día</li><li>Citas, reservaciones y pedidos</li>
-                <li>Panel para ver cómo va el mes</li><li>Usuarios con permisos distintos</li>
-                <li>Portal para tus clientes</li>
+                <li>Tus clientes y tus ventas en un solo lugar</li><li>Cotizaciones que se hacen solas</li>
+                <li>Inventario con lo que te queda al día</li><li>Citas, reservaciones y pedidos</li>
+                <li>Un tablero para ver cómo va el mes</li><li>Que cada quien entre con su propia cuenta</li>
+                <li>Una página para que tus clientes consulten</li>
               </ul>
             </div>
           </div>
@@ -537,9 +520,9 @@
               </p>
               <ul class="campos" aria-label="Incluye">
                 <li>Tareas repetitivas que se hacen solas</li><li>Avisos y respuestas automáticas</li>
-                <li>Lectura y captura de documentos</li><li>Conexión entre herramientas que no se hablan</li>
-                <li>Clasificación de información</li><li>Reportes que se envían solos</li>
-                <li>Asistentes para consultar tus datos</li>
+                <li>Que los papeles se capturen solos</li><li>Conectar programas que hoy no se hablan entre sí</li>
+                <li>Clasificación de información</li><li>Reportes que te llegan solos</li>
+                <li>Preguntarle al sistema en vez de buscar en papeles</li>
               </ul>
               <p class="disciplina__aviso">
                 La inteligencia artificial aquí es una herramienta, no el producto.
@@ -752,7 +735,7 @@
       </div>
 
       <p class="cierre-seccion" data-revelar>
-        ¿Ninguna de estas es la tuya? <a href="#custom">Entonces es un caso CAMENA CUSTOM →</a>
+        ¿Ninguna de estas es la tuya? <a href="#soluciones">Entonces es un caso CAMENA CUSTOM →</a>
       </p>
     </div>
   </section>
@@ -763,17 +746,17 @@
 
       <header class="encabezado encabezado--claro" data-revelar>
         <p class="etiqueta etiqueta--claro">CAMENA LAB</p>
-        <h2 class="encabezado__titulo" id="lab-titulo">Trabajo propio, sin clientes de por medio.</h2>
+        <h2 class="encabezado__titulo" id="lab-titulo">Trabajo nuestro, para que veas cómo trabajamos.</h2>
         <p class="encabezado__intro">
-          Cinco ejercicios que diseñamos y construimos aquí, cada uno desde un problema
-          concreto. Se leen igual que un proyecto: problema, solución y qué puedes ver.
+          Tres piezas que diseñamos y construimos aquí, cada una desde un problema concreto.
+          Todavía no tenemos trabajos de clientes que podamos publicar; mientras tanto,
+          esto es lo que podemos enseñarte.
         </p>
       </header>
 
       <p class="lab__regla">
-        <strong>Todo lo que verás aquí es trabajo interno.</strong>
-        Está etiquetado como concepto, prototipo o experimento, no como proyecto de cliente:
-        no publicamos trabajos ajenos sin autorización ni inventamos resultados.
+        <strong>Tres piezas hechas aquí</strong>, para mostrar cómo pensamos. Son prototipos
+        nuestros, no trabajos de clientes: no publicamos trabajos ajenos sin permiso.
       </p>
 
       <div class="lab" data-revelar-grupo>
@@ -793,7 +776,7 @@
           </div>
           <div class="lab-pieza__info">
             <p class="lab-pieza__meta">
-              <span class="chip chip--concepto">Concepto</span>
+              <span class="chip chip--concepto">Idea hecha</span>
               <span class="lab-pieza__area">Marca</span>
             </p>
             <p class="visualmente-oculto">Muestra: símbolo circular con un trazo vertical, el nombre NORTE en tipografía espaciada y una paleta de cuatro colores —negro, arena, café y hueso.</p>
@@ -806,17 +789,17 @@
           </div>
         </article>
 
-        <!-- Prototipo: dashboard -->
+        <!-- Prototipo: tablero de operación -->
         <article class="lab-pieza lab-pieza--visual" data-revelar>
           <div class="lab-pieza__visual" aria-hidden="true">
             <div class="mock-panel">
               <div class="mock-panel__barra"><i></i><i></i><i></i><span>panel / operación</span></div>
-              <p class="mock-panel__aviso">Interfaz de ejemplo · datos ficticios</p>
+              <p class="mock-panel__aviso">Ejemplo · cifras inventadas, no son precios</p>
               <div class="mock-panel__cuerpo">
                 <div class="mock-panel__kpis">
-                  <div class="mock-kpi"><span>Ventas del mes</span><strong>$ 148,300</strong><em class="alza">+12%</em></div>
-                  <div class="mock-kpi"><span>Pendientes</span><strong>23</strong><em class="baja">6 vencidos</em></div>
-                  <div class="mock-kpi"><span>Clientes activos</span><strong>87</strong><em>14 nuevos</em></div>
+                  <div class="mock-kpi"><span>Ventas del mes</span><strong>$ XX,XXX</strong><em class="alza">+XX%</em></div>
+                  <div class="mock-kpi"><span>Pendientes</span><strong>XX</strong><em class="baja">X vencidos</em></div>
+                  <div class="mock-kpi"><span>Clientes activos</span><strong>XX</strong><em>X nuevos</em></div>
                 </div>
                 <div class="mock-grafica">
                   <span style="--h:38%"></span><span style="--h:52%"></span><span style="--h:44%"></span>
@@ -854,7 +837,7 @@
               <p class="mock-chat__entrada">“Necesito la cotización de 40 piezas para el viernes.”</p>
               <p class="mock-chat__salida">Listo. Generé la cotización con el precio de lista vigente y la envié a tu correo para revisión.</p>
               <p class="mock-chat__entrada">“Súmale urgencia de entrega.”</p>
-              <p class="mock-chat__salida">Actualizada: recargo por urgencia aplicado. Total $ 26,400.</p>
+              <p class="mock-chat__salida">Actualizada: recargo por urgencia aplicado. Total $ XX,XXX.</p>
             </div>
           </div>
           <div class="lab-pieza__info">
@@ -875,74 +858,7 @@
           </div>
         </article>
 
-        <!-- Experimento: audio -->
-        <article class="lab-pieza" data-revelar>
-          <div class="lab-pieza__visual" aria-hidden="true">
-            <div class="mock-audio">
-              <div class="mock-audio__pistas">
-                <p><span>Voz</span><i class="pista" style="--w:78%"></i></p>
-                <p><span>Música</span><i class="pista" style="--w:92%"></i></p>
-                <p><span>Efectos</span><i class="pista" style="--w:34%"></i></p>
-              </div>
-              <div class="mock-audio__onda">
-                <i style="--h:20%"></i><i style="--h:48%"></i><i style="--h:72%"></i><i style="--h:36%"></i>
-                <i style="--h:88%"></i><i style="--h:54%"></i><i style="--h:30%"></i><i style="--h:66%"></i>
-                <i style="--h:44%"></i><i style="--h:82%"></i><i style="--h:26%"></i><i style="--h:58%"></i>
-                <i style="--h:38%"></i><i style="--h:70%"></i><i style="--h:22%"></i><i style="--h:50%"></i>
-              </div>
-              <p class="mock-audio__tiempo">00:28 / 00:30 · spot de ejemplo</p>
-            </div>
-          </div>
-          <div class="lab-pieza__info">
-            <p class="lab-pieza__meta">
-              <span class="chip chip--experimento">Experimento</span>
-              <span class="lab-pieza__area">Audio</span>
-            </p>
-            <p class="visualmente-oculto">Muestra: tres pistas de audio —voz, música y efectos— con su forma de onda y una duración de 30 segundos.</p>
-            <h3 class="lab-pieza__titulo">Identidad sonora y spot de 30 segundos</h3>
-            <p class="lab-pieza__texto">
-              Un negocio se ve bien pero suena a cualquiera: la misma música de banco de
-              audios que usan todos. Aquí se compuso un motivo corto que funciona como
-              firma en tres duraciones.
-            </p>
-            <ul class="lab-pieza__lineas">
-              <li>Motivo de marca</li>
-              <li>Spot de radio</li>
-              <li>Cierre para video</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Prototipo: sistema de citas -->
-        <article class="lab-pieza" data-revelar>
-          <div class="lab-pieza__visual" aria-hidden="true">
-            <div class="mock-agenda">
-              <p class="mock-identidad__aviso">Agenda de ejemplo</p>
-              <div class="mock-agenda__dias"><span>L</span><span>M</span><span class="hoy">M</span><span>J</span><span>V</span><span>S</span></div>
-              <div class="mock-agenda__bloques">
-                <p class="bloque bloque--lleno" style="--i:1"><span>09:00</span> Revisión</p>
-                <p class="bloque" style="--i:2"><span>10:30</span> libre</p>
-                <p class="bloque bloque--lleno" style="--i:3"><span>11:15</span> Instalación</p>
-                <p class="bloque bloque--nuevo" style="--i:4"><span>13:00</span> nueva cita</p>
-              </div>
-            </div>
-          </div>
-          <div class="lab-pieza__info">
-            <p class="lab-pieza__meta">
-              <span class="chip chip--prototipo">Prototipo</span>
-              <span class="lab-pieza__area">Sistemas + Web</span>
-            </p>
-            <p class="visualmente-oculto">Muestra: una agenda semanal con bloques de cita ocupados, uno libre y una reservación nueva entrando desde el sitio.</p>
-            <h3 class="lab-pieza__titulo">Agenda con reservación desde el sitio</h3>
-            <dl class="lab-pieza__ficha">
-              <div><dt>Problema</dt><dd>Agendar por mensajes: horarios encimados, citas olvidadas y huecos muertos.</dd></div>
-              <div><dt>Solución</dt><dd>El cliente elige un horario disponible desde la página; el sistema confirma, recuerda y libera los huecos.</dd></div>
-              <div><dt>Qué puedes ver</dt><dd>Disponibilidad, confirmación automática y recordatorios.</dd></div>
-            </dl>
-          </div>
-        </article>
-
-      </div>
+        </div>
 
       <div class="lab__cierre" data-revelar>
         <p class="lab__cierre-texto">
@@ -966,18 +882,19 @@
             Detrás de cada proyecto<br>hay una decisión.
           </h2>
           <p class="destacado">
-            Detrás de cada proyecto hay una decisión. Las herramientas pueden generar
-            imágenes, código o texto; decidir qué necesita tu negocio es otra cosa.
-          </p>
-          <p>
-            No vas a hablar con un departamento. Vas a hablar con la misma persona que
-            analiza tu caso, propone la solución y revisa el resultado antes de entregártelo.
+            No vas a hablar con un departamento. Hablas con la misma persona que analiza
+            tu caso, propone la solución y revisa el resultado antes de entregártelo.
           </p>
           <p>
             Y como todavía no podemos mostrarte trabajos de clientes, te dejamos lo que sí
             es comprobable hoy: <strong>esta página la diseñamos y la programamos aquí</strong>.
             Ábrela en tu celular, revisa la velocidad. Es la muestra que podemos enseñarte
             y es real.
+          </p>
+          <p>
+            Y para que no te quedes con la duda de cómo se ve por dentro: te mandamos
+            <strong>la propuesta y el recibo antes de que pagues nada</strong>. Los ves
+            completos, con el alcance y el precio por escrito.
           </p>
           <p class="detras__enlace">
             <a href="como-trabajamos.html">Cómo trabajamos, paso por paso →</a>
@@ -1064,20 +981,6 @@
     </div>
   </section>
 
-  <!-- La idea de que las piezas se conectan ya se explica completa en Servicios.
-       Aquí solo se enuncia una vez y se remite, para no repetir el argumento. -->
-  <section class="seccion seccion--papel" id="conectado" aria-labelledby="conectado-titulo">
-    <div class="contenedor">
-      <p class="enunciado" data-revelar>
-        <span class="enunciado__texto">Casi nunca se necesita una sola pieza.</span>
-        <span class="enunciado__resto">
-          Cada una se puede contratar sola, pero se diseñan mejor sabiendo que las
-          demás van a existir. <a href="#servicios">El mapa de los tres grupos está aquí</a>.
-        </span>
-      </p>
-    </div>
-  </section>
-
   <!-- ═══════════════════ 09 · PAQUETES ═══════════════════ -->
   <section class="seccion" id="paquetes" aria-labelledby="paquetes-titulo">
     <div class="contenedor">
@@ -1101,7 +1004,7 @@
           </div>
           <ul class="paquete__incluye">
             <li>Logotipo</li>
-            <li>Identidad básica: color y tipografía</li>
+            <li>Tu logo, tus colores y tu letra</li>
             <li>Ficha de Google con fotos, horarios y categorías</li>
             <li>WhatsApp de negocio configurado</li>
           </ul>
@@ -1115,7 +1018,7 @@
             <p class="paquete__para">Para negocios que ya venden pero se ven improvisados.</p>
           </div>
           <ul class="paquete__incluye">
-            <li>Branding completo</li>
+            <li>Marca completa, no solo el logo</li>
             <li>Identidad visual y manual de uso</li>
             <li>Material comercial y corporativo</li>
             <li>Plantillas para redes sociales</li>
@@ -1130,10 +1033,10 @@
             <p class="paquete__para">Para convertir visitas en conversaciones.</p>
           </div>
           <ul class="paquete__incluye">
-            <li>Sitio o landing diseñada a la medida</li>
-            <li>Formularios e integración con WhatsApp</li>
-            <li>Optimización para celular y velocidad</li>
-            <li>Integraciones y SEO técnico básico</li>
+            <li>Página web completa o una página corta para anunciar algo</li>
+            <li>Formulario y botón de WhatsApp</li>
+            <li>Rápida y que se vea bien en el celular</li>
+            <li>Que salgas en Google y te escriban por WhatsApp</li>
           </ul>
           <p class="paquete__pie">No incluye contenido: las fotos, los textos y los videos los entregas tú o los cotizamos aparte.</p>
         </article>
@@ -1147,11 +1050,29 @@
           <ul class="paquete__incluye">
             <li>Concepto y guion</li>
             <li>Producción de video</li>
-            <li>Audio: música, voz o identidad sonora</li>
+            <li>Audio: música, voz o la firma sonora de tu marca</li>
             <li>Adaptaciones vertical, cuadrada y horizontal</li>
           </ul>
           <p class="paquete__pie">No incluye el gasto en plataformas de publicidad, que se paga aparte a tu nombre.</p>
         </article>
+        <!-- Cierra el hueco entre $9,000 y $25,000: es el cliente que hoy
+             se iba sin comprar porque no había nada para su presupuesto. -->
+        <article class="paquete" data-revelar data-precio="14000">
+          <div class="paquete__cabecera">
+            <h3 class="paquete__nombre">CAMENA <span>Presencia + Contenido</span></h3>
+          </div>
+          <p class="paquete__precio">Desde <strong>$14,000 MXN</strong></p>
+          <p class="paquete__para">Para el negocio que necesita verse bien y tener qué mostrar, todo de una vez.</p>
+          <ul class="paquete__incluye">
+            <li>Tu logo, tus colores y tu letra, con el manual de uso, con manual</li>
+            <li>Sitio o página de anuncio</li>
+            <li>Tres piezas de video para redes</li>
+            <li>Audio: firma sonora o narración</li>
+          </ul>
+          <p class="paquete__pie">No incluye el gasto en plataformas de publicidad, que se paga aparte a tu nombre. Es el paquete que más se contrata.</p>
+        </article>
+
+
 
         <article class="paquete" data-revelar data-precio="25000">
           <div class="paquete__cabecera">
@@ -1160,10 +1081,10 @@
             <p class="paquete__para">Para dejar de operar con cuadernos y mensajes.</p>
           </div>
           <ul class="paquete__incluye">
-            <li>Análisis de tu operación actual</li>
-            <li>Sistema a la medida</li>
-            <li>Panel administrativo</li>
-            <li>Base de datos y usuarios con permisos</li>
+            <li>Ver cómo trabajas hoy, para no copiar lo que no sirve</li>
+            <li>El programa hecho para tu forma de trabajar</li>
+            <li>Un tablero para ver cómo va el negocio</li>
+            <li>Todo guardado y con accesos para tu equipo</li>
           </ul>
           <p class="paquete__pie">No incluye equipos de cómputo ni licencias de terceros. Ideal si la información se pierde entre personas y archivos.</p>
         </article>
@@ -1214,63 +1135,27 @@
   </section>
 
   <!-- ═══════════════════ 10 · CAMENA CUSTOM ═══════════════════ -->
-  <section class="custom" id="custom" aria-labelledby="custom-titulo">
-    <div class="contenedor custom__interior" data-revelar>
-      <p class="etiqueta etiqueta--claro custom__etiqueta">
-        CAMENA CUSTOM
-      </p>
-      <h2 class="custom__titulo" id="custom-titulo">
-        ¿No aparece lo que buscas?
-        <span class="custom__mejor">Mejor.</span>
-      </h2>
-      <p class="custom__texto">
-        Cuéntanos qué quieres conseguir. Nosotros pensamos cómo construirlo.
-        La lista de servicios es lo que ya hicimos antes, no lo que somos capaces
-        de analizar. Y si no podemos resolverlo, te lo decimos antes de que pagues.
-      </p>
-      <a class="boton boton--oro boton--lg" href="#empezar">
-        Tengo una idea
-        <svg class="ic ic--flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-  </section>
-
   <!-- ═══════════════════ 11 · FAQ ═══════════════════ -->
   <section class="seccion seccion--papel" id="faq" aria-labelledby="faq-titulo">
     <div class="contenedor">
 
       <header class="encabezado" data-revelar>
         <p class="etiqueta">Preguntas frecuentes</p>
-        <h2 class="encabezado__titulo" id="faq-titulo">Lo que nos preguntan antes de empezar.</h2>
+        <h2 class="encabezado__titulo" id="faq-titulo">Preguntas de antes de empezar.</h2>
       </header>
 
       <div class="faq" id="faq-lista" data-revelar>
 
         <details class="faq__item" open>
           <summary class="faq__pregunta">
-            <span>¿Cómo empiezo?</span>
-            <span class="faq__signo" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__respuesta">
-            <p>
-              Escríbenos con lo que tengas, aunque sea una frase. Analizamos el caso y te enviamos
-              una propuesta por escrito con alcance, etapas, calendario y precio antes de que
-              pagues nada. La primera conversación y el análisis no tienen costo, y no hay
-              compromiso de contratar.
-            </p>
-          </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__pregunta">
             <span>¿Cuánto cuesta?</span>
             <span class="faq__signo" aria-hidden="true"></span>
           </summary>
           <div class="faq__respuesta">
             <p>
-              Cada paquete de la sección anterior dice su precio de partida, para que sepas en qué
-              terreno estás antes de escribirnos. A partir de ahí sube según el alcance: cuántas
-              páginas, cuántos videos, cuántos usuarios tenga el sistema. No publicamos un número
-              fijo porque obligaría a cobrarte de más o a entregarte de menos.
+              Está en la lista de arriba: cada paquete dice su precio de partida, desde $3,500.
+              A partir de ahí sube según el tamaño del proyecto, y te lo confirmamos por
+              escrito antes de empezar. Nada se cobra sin que lo hayas aprobado.
             </p>
           </div>
         </details>
@@ -1281,9 +1166,9 @@
           </summary>
           <div class="faq__respuesta">
             <p>
-              Puedes contratar solo el logotipo, solo la página o solo el video. Ahora bien: si al
-              analizar tu caso vemos que esa pieza suelta no va a resolver lo que necesitas, te lo
-              decimos antes de que pagues, aunque sea un trabajo más pequeño para nosotros.
+              Puedes contratar solo el logo, solo la página o solo el video. Nada te obliga a
+              llevar el paquete completo. Si al ver tu caso nos parece que esa pieza sola no
+              va a resolver lo que necesitas, te lo decimos antes de que pagues.
             </p>
           </div>
         </details>
@@ -1294,9 +1179,10 @@
           </summary>
           <div class="faq__respuesta">
             <p>
-              Si algo no funciona como se acordó, lo corregimos sin costo dentro del periodo que
-              indique la propuesta. Después puedes mantenerlo con nosotros o llevártelo con tu
-              propio equipo: el código, los archivos, el dominio y los accesos quedan a tu nombre.
+              Si algo no funciona como se acordó, lo corregimos sin costo dentro del plazo que
+              diga la propuesta. Después puedes seguir con nosotros o llevártelo con tu
+              propio equipo: el código, los archivos, el dominio y los accesos quedan a tu
+              nombre.
             </p>
           </div>
         </details>
@@ -1307,31 +1193,33 @@
           </summary>
           <div class="faq__respuesta">
             <p>
-              No prometemos un número de ventas ni una posición exacta en Google: eso depende de
-              cosas que no controlamos. Lo que sí hacemos es dejar medible lo que depende del
-              trabajo entregado. En un sitio, la analítica de visitas, origen y mensajes generados;
-              en un sistema, los reportes de qué se cotizó, qué se cobró y qué quedó pendiente.
+              No te vamos a prometer un número de ventas ni el primer lugar en Google: eso no
+              depende de nosotros, y quien te lo garantice te está vendiendo humo. Lo que sí
+              hacemos es dejar medible lo que sí depende del trabajo: visitas, de dónde
+              llega la gente y cuántos mensajes entran.
+            </p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__pregunta">
+            <span>¿Tengo que saber exactamente qué necesito?</span>
+            <span class="faq__signo" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__respuesta">
+            <p>
+              No, y casi nadie lo sabe. Por eso está la sección de arriba: buscas tu situación,
+              la reconoces y te decimos qué la resuelve. Si tu caso no está en la lista,
+              escríbenos y lo vemos desde cero.
             </p>
           </div>
         </details>
 
         <details class="faq__item faq__item--mas">
           <summary class="faq__pregunta faq__pregunta--mas">
-            <span>Más preguntas <em>(5)</em></span>
+            <span>Más preguntas <em>(3)</em></span>
             <span class="faq__signo" aria-hidden="true"></span>
           </summary>
           <div class="faq__respuesta faq__respuesta--mas">
-            <details class="faq__item faq__item--anidado">
-              <summary class="faq__pregunta faq__pregunta--anidada">
-                <span>¿Tengo que saber exactamente qué necesito?</span>
-                <span class="faq__signo" aria-hidden="true"></span>
-              </summary>
-              <div class="faq__respuesta">
-                <p>
-                  No. Casi nadie llega con una lista de servicios: llegan con un problema. Cuéntanos qué quieres conseguir y proponemos la combinación que tenga sentido para tu caso.
-                </p>
-              </div>
-            </details>
             <details class="faq__item faq__item--anidado">
               <summary class="faq__pregunta faq__pregunta--anidada">
                 <span>¿Trabajan con negocios pequeños?</span>
@@ -1339,7 +1227,7 @@
               </summary>
               <div class="faq__respuesta">
                 <p>
-                  Está pensado para negocios pequeños: un logotipo, una landing, una campaña suelta. Puedes empezar por una pieza y crecer después, y no pedimos contratos grandes para empezar.
+                  Sí, es con quienes trabajamos. Puedes empezar por una pieza —un logo, una página, un video— y crecer después.
                 </p>
               </div>
             </details>
@@ -1350,18 +1238,7 @@
               </summary>
               <div class="faq__respuesta">
                 <p>
-                  Sí. Trabajamos por videollamada, WhatsApp y correo con negocios de otras ciudades. Nuestra base está en Apatzingán, Michoacán, y damos servicio remoto en todo México.
-                </p>
-              </div>
-            </details>
-            <details class="faq__item faq__item--anidado">
-              <summary class="faq__pregunta faq__pregunta--anidada">
-                <span>¿Pueden crear algo completamente personalizado?</span>
-                <span class="faq__signo" aria-hidden="true"></span>
-              </summary>
-              <div class="faq__respuesta">
-                <p>
-                  Es la parte que más nos interesa. Si tu necesidad no entra en ninguna categoría, la analizamos desde cero y te decimos con honestidad si podemos resolverla, cómo y en cuánto tiempo.
+                  Sí, por WhatsApp, videollamada y correo. Estamos en Apatzingán, Michoacán, y atendemos en todo México. Si estás aquí, vamos a tu negocio.
                 </p>
               </div>
             </details>
@@ -1372,7 +1249,7 @@
               </summary>
               <div class="faq__respuesta">
                 <p>
-                  Sí, como herramienta para investigar, prototipar y acelerar la producción. Lo que no hace es decidir qué necesita tu negocio ni sustituir la revisión final: eso es criterio humano y lo asumimos nosotros.
+                  Sí, para investigar, hacer prototipos y avanzar más rápido. Lo que no hace es decidir qué necesita tu negocio: eso lo pensamos nosotros y lo revisamos antes de entregarte nada.
                 </p>
               </div>
             </details>
@@ -1389,48 +1266,38 @@
 
   <!-- ═══════════════════ 12 · CTA FINAL ═══════════════════ -->
   <section class="llamada" id="empezar" aria-labelledby="llamada-titulo">
-    <div class="contenedor llamada__interior">
-      <p class="llamada__gancho" data-revelar>¿Tienes una idea?</p>
-      <h2 class="llamada__titulo" id="llamada-titulo" data-revelar>
-        No necesitas saber cómo hacerla.
-        <em>Cuéntanosla.</em>
-      </h2>
-      <p class="llamada__texto" data-revelar>
-        Escríbenos con lo que tengas: una frase, un problema, un boceto en una servilleta.
-        Analizamos tu caso y te respondemos con una propuesta concreta, sin compromiso.
-      </p>
+    <div class="contenedor">
+      <div class="llamada__interior">
+        <p class="llamada__gancho" data-revelar>Y si tu caso no está en la lista</p>
+        <h2 class="llamada__titulo" id="llamada-titulo" data-revelar>
+          Mejor.
+          <em>Cuéntanoslo.</em>
+        </h2>
+        <p class="llamada__texto" data-revelar>
+          No necesitas saber cómo se hace ni saber qué pedir. Escríbenos con lo que
+          tengas: una frase, un problema, un boceto en una servilleta. Te decimos qué
+          conviene y cuánto cuesta, sin compromiso.
+        </p>
 
-      <div class="llamada__acciones" data-revelar>
-        <a class="boton boton--solido boton--lg"
-           href="https://wa.me/524435794642?text=Hola%20CAMENA%2C%20tengo%20una%20idea%20y%20quiero%20cont%C3%A1rsela."
-           target="_blank" rel="noopener">
-          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.1 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.5-.6a11 11 0 0 1-4.4-4c-.5-.7-1-1.5-1-2.6s.6-1.9.9-2.1c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.6c0 .1.1.2 0 .4l-.3.4-.4.5c-.1.1-.2.2 0 .4.1.2.6.9 1.2 1.4.8.7 1.5 1 1.8 1.2.2.1.3 0 .4-.1l.5-.6c.2-.2.3-.2.5-.1l1.5.7c.2.1.4.2.4.3.1.2.1.6-.1 1.3Z"/></svg>
-          Iniciar proyecto por WhatsApp
-        </a>
-        <a class="boton boton--linea boton--lg" href="#contacto">Usar el formulario</a>
+        <div class="llamada__acciones" data-revelar>
+          <a class="boton boton--oro boton--lg"
+             href="https://wa.me/524435794642?text=Hola%20CAMENA%2C%20vengo%20de%20su%20p%C3%A1gina.%20Les%20cuento%20mi%20caso%3A%20"
+             target="_blank" rel="noopener">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.1 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.5-.6a11 11 0 0 1-4.4-4c-.5-.7-1-1.5-1-2.6s.6-1.9.9-2.1c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.6c0 .1.1.2 0 .4l-.3.4-.4.5c-.1.1-.2.2 0 .4.1.2.6.9 1.2 1.4.8.7 1.5 1 1.8 1.2.2.1.3 0 .4-.1l.5-.6c.2-.2.3-.2.5-.1l1.5.7c.2.1.4.2.4.3.1.2.1.6-.1 1.3Z"/></svg>
+            Escribir por WhatsApp
+          </a>
+          <a class="boton boton--linea boton--lg" href="#formulario">Llenar el formulario</a>
+        </div>
       </div>
 
-      <p class="llamada__pie" data-revelar>
-        También puedes escribirnos a
-        <a href="mailto:camenalabs@proton.me">camenalabs@proton.me</a>
-        o llamar al <a href="tel:+524435794642">+52 443 579 4642</a>.
-      </p>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ 13 · CONTACTO ═══════════════════ -->
-  <section class="seccion seccion--papel" id="contacto" aria-labelledby="contacto-titulo">
-    <div class="contenedor">
+      <!-- El contacto vive en la misma sección: eran dos llamadas seguidas
+           pidiendo lo mismo, con el formulario al final del recorrido. -->
       <div class="contacto">
-
         <div class="contacto__info" data-revelar>
-          <p class="etiqueta">Contacto</p>
-          <h2 class="contacto__titulo" id="contacto-titulo">
-            Cuéntanos tu proyecto<br>y te respondemos.
-          </h2>
+          <h3 class="contacto__titulo">Prefieres que te hablemos nosotros</h3>
           <p class="contacto__intro">
-            Llena lo que puedas; no hace falta que tengas todo claro. Con dos líneas
-            sobre lo que quieres conseguir es suficiente para empezar.
+            Déjanos tu número y te marcamos. También puedes escribirnos o llamarnos
+            directo: contestamos nosotros, no un conmutador.
           </p>
 
           <ul class="datos">
@@ -1453,78 +1320,13 @@
               <span class="dato__valor">Lunes a sábado · 9:00 a 20:00 h</span>
             </li>
             <li class="dato">
-              <span class="dato__clave">Ubicación</span>
-              <span class="dato__valor">Apatzingán, Michoacán · trabajo remoto en todo México</span>
+              <span class="dato__clave">Dónde estamos</span>
+              <span class="dato__valor">Apatzingán, Michoacán · vamos a tu negocio si estás aquí</span>
             </li>
           </ul>
         </div>
 
-        <!-- El formulario compone el mensaje y lo entrega a WhatsApp o correo.
-             No hay servidor: no fingimos un backend que no existe. -->
         <form class="formulario" id="formulario" novalidate data-revelar>
-          <h3 class="formulario__titulo">Cuéntanos tu idea</h3>
-
-          <div class="campo">
-            <label class="campo__etiqueta" for="campo-nombre">Tu nombre</label>
-            <input class="campo__control" type="text" id="campo-nombre" name="nombre"
-                   autocomplete="name" required placeholder="Cómo te llamas">
-            <p class="campo__error" id="error-nombre" hidden>Escribe tu nombre para saber cómo dirigirnos a ti.</p>
-          </div>
-
-          <div class="campo">
-            <label class="campo__etiqueta" for="campo-contacto">Teléfono o correo</label>
-            <input class="campo__control" type="text" id="campo-contacto" name="contacto"
-                   autocomplete="email" required placeholder="Para poder responderte">
-            <p class="campo__error" id="error-contacto" hidden>Déjanos un teléfono o un correo para responderte.</p>
-          </div>
-
-          <div class="campo">
-            <label class="campo__etiqueta" for="campo-tipo">¿Qué necesitas? <span class="campo__opcional">(opcional)</span></label>
-            <select class="campo__control campo__control--select" id="campo-tipo" name="tipo">
-              <option value="">No estoy seguro, quiero que me orienten</option>
-              <option value="Marca e identidad">Marca e identidad</option>
-              <option value="Página web">Página web</option>
-              <option value="Video">Video</option>
-              <option value="Audio">Audio</option>
-              <option value="Publicidad y campañas">Publicidad y campañas</option>
-              <option value="Sistema o herramienta">Sistema o herramienta</option>
-              <option value="Automatización">Automatización</option>
-              <option value="Varias cosas / proyecto completo">Varias cosas / proyecto completo</option>
-            </select>
-          </div>
-
-          <div class="campo">
-            <label class="campo__etiqueta" for="campo-mensaje">Cuéntanos qué quieres conseguir</label>
-            <textarea class="campo__control campo__control--area" id="campo-mensaje" name="mensaje" rows="4"
-                      required placeholder="Ej. Tengo una ferretería y pierdo mucho tiempo haciendo cotizaciones a mano."></textarea>
-            <p class="campo__error" id="error-mensaje" hidden>Cuéntanos al menos en una línea qué necesitas.</p>
-          </div>
-
-          <button class="boton boton--solido boton--ancho" type="submit">
-            Preparar mensaje
-            <svg class="ic ic--flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-
-          <p class="formulario__ayuda">
-            Al enviar, se abre WhatsApp con el mensaje ya escrito para que lo revises
-            antes de mandarlo. Este formulario no guarda nada en un servidor.
-          </p>
-
-          <!-- Confirmación con alternativa por correo -->
-          <div class="enviado" id="enviado" role="status" aria-live="polite" hidden>
-            <p class="enviado__titulo">Listo, abrimos WhatsApp con tu mensaje.</p>
-            <p class="enviado__texto">
-              Si no se abrió, revisa el bloqueador de ventanas emergentes o usa
-              el correo:
-            </p>
-            <a class="boton boton--linea boton--sm" id="enviadoCorreo" href="mailto:camenalabs@proton.me">
-              Enviar por correo en su lugar
-            </a>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
 </main>
 
 <!-- ═══════════════════ PIE ═══════════════════ -->
@@ -1561,7 +1363,7 @@
           <li><a href="#proceso">El proceso</a></li>
           <li><a href="como-trabajamos.html">Cómo trabajamos, a detalle</a></li>
           <li><a href="#paquetes">Paquetes</a></li>
-          <li><a href="#custom">CAMENA CUSTOM</a></li>
+          <li><a href="#soluciones">CAMENA CUSTOM</a></li>
           <li><a href="#faq">Preguntas frecuentes</a></li>
         </ul>
       </nav>

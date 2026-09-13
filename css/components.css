@@ -63,7 +63,6 @@ svg.ic path[d^="M12 2a10"] {
 .boton--solido:hover { background: var(--ink-3); border-color: var(--ink-3); }
 
 .seccion--oscura .boton--solido,
-.hero .boton--solido,
 .llamada .boton--solido,
 .custom .boton--solido,
 .precio .boton--solido {
@@ -72,7 +71,6 @@ svg.ic path[d^="M12 2a10"] {
   border-color: var(--paper);
 }
 .seccion--oscura .boton--solido:hover,
-.hero .boton--solido:hover,
 .llamada .boton--solido:hover,
 .custom .boton--solido:hover,
 .precio .boton--solido:hover { background: var(--paper-2); border-color: var(--paper-2); }
@@ -85,9 +83,10 @@ svg.ic path[d^="M12 2a10"] {
 }
 .boton--linea:hover { border-color: var(--texto); background: rgba(14, 14, 16, 0.04); }
 
+/* Contorno claro: solo donde el fondo es oscuro de verdad. El hero pasó
+   a fondo claro, así que ya no entra en esta lista. */
 .boton--claro,
 .seccion--oscura .boton--linea,
-.hero .boton--linea,
 .llamada .boton--linea,
 .custom .boton--linea {
   color: var(--texto-claro);
@@ -95,7 +94,6 @@ svg.ic path[d^="M12 2a10"] {
 }
 .boton--claro:hover,
 .seccion--oscura .boton--linea:hover,
-.hero .boton--linea:hover,
 .llamada .boton--linea:hover,
 .custom .boton--linea:hover {
   border-color: var(--oro);
@@ -240,24 +238,6 @@ svg.ic path[d^="M12 2a10"] {
 .menu-boton[aria-expanded="true"] .menu-boton__lineas i:last-child { transform: translateY(-5px) rotate(-45deg); }
 
 
-/* ═══════════════ PROGRESO DE LECTURA ═══════════════ */
-.progreso {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  z-index: calc(var(--z-cabecera) + 1);
-  pointer-events: none;
-}
-.progreso__barra {
-  display: block;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to right, var(--oro), var(--oro-lt));
-  transform-origin: left center;
-}
-
 
 /* ═══════════════ SELLO / MICRO-ETIQUETA DEL HERO ═══════════════ */
 .sello {
@@ -265,14 +245,14 @@ svg.ic path[d^="M12 2a10"] {
   align-items: center;
   gap: var(--e-3);
   padding: 7px 15px 7px 11px;
-  background: rgba(201, 150, 43, 0.08);
+  background: rgba(201, 150, 43, 0.1);
   border: 1px solid var(--oro-linea);
   border-radius: var(--radio-pastilla);
   font-family: var(--mono);
   font-size: var(--t-micro);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--oro-lt);
+  color: var(--oro-tx);
   max-width: 100%;
 }
 .sello__marca {
@@ -289,7 +269,17 @@ svg.ic path[d^="M12 2a10"] {
 
 .disciplina { border-bottom: 1px solid var(--borde); }
 
-.disciplina__cabecera { font-size: inherit; font-weight: inherit; line-height: inherit; letter-spacing: normal; }
+/* El <h3> que envuelve el botón conserva los márgenes del navegador (1em
+   arriba y abajo). Como el artículo tiene borde inferior, esos márgenes no
+   colapsan y la caja del h3 sobresale del artículo: se montaba sobre el
+   rótulo del grupo siguiente. Se anulan explícitamente. */
+.disciplina__cabecera {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+}
 
 .disciplina__boton {
   display: grid;
@@ -1211,6 +1201,10 @@ svg.ic path[d^="M12 2a10"] {
   border-bottom: 1px solid var(--borde);
 }
 .faq__item--anidado:first-child { border-top: 1px solid var(--borde); }
+/* Dentro del contenedor plegado, cada pregunta cierra con su propia línea:
+   sin esto, la última se monta sobre el texto que sigue en pantallas chicas. */
+.faq__respuesta--mas > .faq__item--anidado:last-child { border-bottom: 1px solid var(--borde); }
+.faq__respuesta--mas { padding-bottom: var(--e-5); }
 
 .faq__pregunta--anidada {
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
@@ -1336,6 +1330,17 @@ svg.ic path[d^="M12 2a10"] {
   color: #A63A2A;
 }
 
+.contexto-aviso {
+  margin-bottom: var(--e-4);
+  padding: var(--e-3) var(--e-4);
+  background: rgba(201, 150, 43, 0.1);
+  border-left: 2px solid var(--oro);
+  border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--texto);
+}
+
 .formulario__ayuda {
   margin-top: var(--e-3);
   font-size: 0.8125rem;
@@ -1362,6 +1367,39 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-2);
 }
 
+
+
+/* ═══════════════ CONTACTO DENTRO DEL CIERRE ═══════════════
+   El bloque de contacto nació sobre fondo claro y ahora vive dentro
+   de la sección oscura de cierre. Sin esta corrección, sus textos
+   heredaban los colores de papel sobre tinta: ilegibles.
+   Los tokens se reasignan aquí, no se reescriben los componentes. */
+.llamada .contacto {
+  margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  padding-top: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  border-top: 1px solid var(--borde);
+}
+
+.llamada .contacto__titulo { color: var(--texto-claro); }
+.llamada .contacto__intro { color: var(--texto-claro-2); }
+
+.llamada .dato { border-bottom-color: var(--borde); }
+.llamada .dato__clave { color: var(--texto-claro-2); }
+.llamada .dato__valor { color: var(--texto-claro); }
+.llamada a.dato__valor:hover { color: var(--oro-lt); }
+
+.llamada .copiar {
+  border-color: var(--ink-4);
+  color: var(--texto-claro-2);
+}
+.llamada .copiar:hover { border-color: var(--oro); color: var(--texto-claro); }
+
+/* El formulario conserva su superficie clara: es donde se escribe, y
+   un campo oscuro con texto claro se lee peor bajo el sol. */
+.llamada .formulario { box-shadow: var(--sombra-lg); }
+.llamada .campo__etiqueta { color: var(--texto-2); }
+.llamada .formulario__ayuda { color: var(--texto-2); }
+.llamada .contexto-aviso { color: var(--texto); }
 
 /* ═══════════════ BOTÓN COPIAR ═══════════════ */
 .copiar {
@@ -1431,7 +1469,6 @@ svg.ic path[d^="M12 2a10"] {
    y debe conservar texto oscuro sobre fondo oro incluso dentro de un
    bloque oscuro, sin depender del orden en que se hayan escrito las
    reglas de contexto. */
-.hero .boton--oro,
 .seccion--oscura .boton--oro,
 .llamada .boton--oro,
 .custom .boton--oro,

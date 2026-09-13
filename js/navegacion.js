@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
    CAMENA 2.0 · navegacion.js
-   Cabecera, menú móvil, progreso de lectura, sección activa y
+   Cabecera, menú móvil, sección activa y
    acceso flotante a WhatsApp.
    Todo es mejora progresiva: sin este archivo el sitio sigue
    navegándose y leyéndose completo.
@@ -31,14 +31,7 @@
   }
 
   /* ── Progreso de lectura ─────────────────────────────────────── */
-  var barra = document.getElementById("progresoBarra");
 
-  function actualizarProgreso(y) {
-    if (!barra) return;
-    var alto = document.documentElement.scrollHeight - window.innerHeight;
-    var avance = alto > 0 ? Math.min(y / alto, 1) : 0;
-    barra.style.transform = "scaleX(" + avance.toFixed(4) + ")";
-  }
 
   /* ── Acceso flotante: aparece al dejar el hero atrás ─────────── */
   var flotante = document.getElementById("flotante");
@@ -59,7 +52,6 @@
       bajando = y > ultimoY;
       ultimoY = y;
       actualizarCabecera(y);
-      actualizarProgreso(y);
       actualizarFlotante(y);
       pendiente = false;
     });
@@ -153,6 +145,5 @@
 
   /* Estado inicial */
   actualizarCabecera(window.scrollY || 0);
-  actualizarProgreso(window.scrollY || 0);
   actualizarFlotante(window.scrollY || 0);
 })();

@@ -159,22 +159,111 @@ function esperarReal(ms) {
      no rompe nada y no da error de consola: sin esta lista, su ausencia
      pasa desapercibida. */
   var esperados = {
-    ".paquete__precio": 6,
+    ".paquete__precio": 7,
     ".grupo": 3,
     ".flujo li": 6,
     ".flujo__enlace": 1,
-    ".lab-pieza__ficha": 3,
+    ".lab-pieza__ficha": 2,
     ".lab-pieza__cita": 1,
     ".disciplina": 7,
-    ".lab-pieza": 5,
+    ".lab-pieza": 3,
     ".faq__item": 8,
     ".caso": 7,
-    ".enunciado": 1
+    ".precios-breves li": 4
   };
   var faltantes = [];
   Object.keys(esperados).forEach(function (sel) {
     var hay = document.querySelectorAll(sel).length;
     if (hay < esperados[sel]) faltantes.push(sel + ": " + hay + " de " + esperados[sel]);
+  });
+
+
+  /* ── Problemas específicos de móvil ──────────────────────────
+     El desborde horizontal no es el único defecto que aparece en
+     pantallas chicas: también el texto pisado, lo que se sale del
+     borde, los objetivos táctiles juntos y las líneas de texto
+     demasiado largas o demasiado cortas. */
+  var problemasMovil = [];
+  var anchoPantalla = d.clientWidth;
+
+  /* 1 · Elementos que se salen de la pantalla por los lados */
+  document.querySelectorAll("body *").forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    if (r.width === 0 || r.height === 0) return;
+    if (r.right > anchoPantalla + 1 || r.left < -1) {
+      problemasMovil.push("fuera de pantalla: " + el.tagName.toLowerCase()
+        + "." + String(el.className).split(" ")[0]
+        + " (izq " + Math.round(r.left) + ", der " + Math.round(r.right) + ")");
+    }
+  });
+
+  /* 2 · Texto pisado: dos elementos con texto que se encabalgan */
+  /* Solo cuenta lo que de verdad se ve: se descartan los paneles de
+     acordeón cerrados y lo que está fuera del flujo. El menú fijo se
+     excluye aparte porque se superpone al contenido a propósito. */
+  function visibleDeVerdad(el) {
+    if (el.closest("[hidden]")) return false;
+    var detalles = el.closest("details");
+    if (detalles && !detalles.open && !el.closest("summary")) return false;
+    if (el.closest(".cabecera, .flotante, .saltar")) return false;
+    var n = el, cs;
+    while (n && n !== document.body) {
+      cs = getComputedStyle(n);
+      if (cs.display === "none" || cs.visibility === "hidden") return false;
+      n = n.parentElement;
+    }
+    return true;
+  }
+
+  var conTexto = Array.prototype.filter.call(document.querySelectorAll("p, h1, h2, h3, span, a, li, dt, dd, strong"), function (el) {
+    return el.textContent.trim().length > 1 && el.children.length === 0 && visibleDeVerdad(el);
+  }).slice(0, 400);
+  for (var i = 0; i < conTexto.length; i++) {
+    var a = conTexto[i].getBoundingClientRect();
+    if (a.width === 0 || a.height === 0) continue;
+    for (var j = i + 1; j < conTexto.length; j++) {
+      var b = conTexto[j].getBoundingClientRect();
+      if (b.width === 0 || b.height === 0) continue;
+      var solapaX = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+      var solapaY = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+      /* Solape real: más de 4px en ambos ejes */
+      if (solapaX > 4 && solapaY > 4) {
+        /* Que no sean ancestro y descendiente */
+        if (conTexto[i].contains(conTexto[j]) || conTexto[j].contains(conTexto[i])) continue;
+        problemasMovil.push("texto pisado: «" + conTexto[i].textContent.trim().slice(0, 22)
+          + "» y «" + conTexto[j].textContent.trim().slice(0, 22) + "»");
+        break;
+      }
+    }
+    if (problemasMovil.length > 14) break;
+  }
+
+  /* 3 · Líneas de texto demasiado largas para leer en el celular */
+  document.querySelectorAll("p").forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    if (r.width === 0) return;
+    var fs = parseFloat(getComputedStyle(el).fontSize);
+    var porLinea = Math.round(r.width / (fs * 0.5));
+    if (porLinea > 95) {
+      problemasMovil.push("línea muy larga: " + porLinea + " caracteres («"
+        + el.textContent.trim().slice(0, 30) + "…»)");
+    }
+  });
+
+  /* 4 · Elementos que se salen por abajo de su contenedor */
+  document.querySelectorAll("section, article, aside").forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    if (r.width === 0) return;
+    if (el.scrollHeight > el.clientHeight + 4 && getComputedStyle(el).overflow === "visible") {
+      var hijos = Array.prototype.filter.call(el.children, function (h) {
+        var hr = h.getBoundingClientRect();
+        return hr.height > 0 && hr.bottom > r.bottom + 4;
+      });
+      if (hijos.length) {
+        problemasMovil.push("contenido desbordado en " + el.tagName.toLowerCase()
+          + "." + String(el.className).split(" ")[0]);
+      }
+    }
   });
 
   var imagenes = Array.prototype.slice.call(document.images);
@@ -222,6 +311,7 @@ function esperarReal(ms) {
       return h.length > 1 && !document.querySelector(h);
     }).map(function (a) { return a.getAttribute("href"); }),
     elementosFaltantes: faltantes,
+    problemasMovil: problemasMovil.slice(0, 14),
     contraste: contraste.slice(0, 20),
     totalFallosContraste: contraste.length,
     fallosJs: window.__fallos

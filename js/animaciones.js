@@ -98,5 +98,9 @@
     });
   }, 900);
 
-  window.setTimeout(revelarTodo, 3000);
+  window.setTimeout(function () {
+    todos.forEach(function (nodo) {
+      if (!nodo.classList.contains("is-visible")) revelar(nodo);
+    });
+  }, 3000);
 })();

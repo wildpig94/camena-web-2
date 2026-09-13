@@ -40,6 +40,94 @@
     });
   });
 
+
+  /* ── Contexto del visitante: los botones «Cuéntanos…» ─────────
+     Cada botón de la sección «¿Qué necesitas?» trae en data-prellenar
+     el caso que la persona acaba de reconocer como suyo. Antes ese
+     dato se perdía: el visitante llegaba al formulario y tenía que
+     volver a explicarse. Aquí se conserva y llega escrito. */
+  var campoMensaje = document.getElementById("campo-mensaje");
+  var botonesContexto = Array.prototype.slice.call(document.querySelectorAll("[data-prellenar]"));
+  var ultimoContexto = "";
+
+  if (campoMensaje && botonesContexto.length) {
+    botonesContexto.forEach(function (boton) {
+      boton.addEventListener("click", function () {
+        var contexto = boton.dataset.prellenar;
+        if (!contexto) return;
+        ultimoContexto = contexto;
+
+        /* No se pisa lo que la persona ya haya escrito a mano: solo se
+           reemplaza si el campo está vacío o si lo puso otro botón. */
+        var actual = campoMensaje.value.trim();
+        var puestoPorNosotros = campoMensaje.dataset.puesto === "1";
+        if (actual === "" || puestoPorNosotros) {
+          campoMensaje.value = contexto + ". ";
+          campoMensaje.dataset.puesto = "1";
+        }
+
+        /* El foco va al final del texto para que pueda seguir escribiendo */
+        campoMensaje.focus();
+        var fin = campoMensaje.value.length;
+        try { campoMensaje.setSelectionRange(fin, fin); } catch (e) { /* sin selección */ }
+
+        /* Y se avisa, porque si no el salto parece que no hizo nada */
+        var avisar = document.getElementById("contexto-aviso");
+        if (avisar) {
+          avisar.hidden = false;
+          avisar.textContent = "Anotamos tu caso: «" + contexto + "». Complétalo abajo cuando quieras.";
+        }
+      });
+    });
+
+    /* Si la persona borra el texto a mano, se deja de considerar nuestro */
+    campoMensaje.addEventListener("input", function () {
+      if (campoMensaje.dataset.puesto === "1" && campoMensaje.value.trim() === "") {
+        campoMensaje.dataset.puesto = "";
+      }
+    });
+  }
+
+
+  /* ── Los mismos botones, abriendo WhatsApp con el caso ya escrito ──
+     En una cultura que se resuelve por WhatsApp, obligar a llenar un
+     formulario pierde ventas. Pero el contexto no se puede perder:
+     el mensaje sale redactado con lo que la persona acaba de elegir. */
+  Array.prototype.slice.call(document.querySelectorAll("[data-prellenar]")).forEach(function (boton) {
+    boton.setAttribute("data-canal", "whatsapp");
+  });
+
+  document.addEventListener("click", function (evento) {
+    var boton = evento.target.closest ? evento.target.closest("[data-prellenar]") : null;
+    if (!boton) return;
+    var contexto = boton.dataset.prellenar;
+    if (!contexto) return;
+
+    var texto = "Hola CAMENA, vengo de su página. " + contexto + ". "
+      + "Quiero saber qué me conviene y cuánto cuesta.";
+    var abierto = window.open(
+      "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(texto),
+      "_blank", "noopener"
+    );
+
+    /* Si el navegador bloquea la ventana, no se deja a la persona sin salida:
+       el contexto ya quedó escrito en el formulario, y se le dice dónde. */
+    if (!abierto) {
+      evento.preventDefault();
+      var aviso = document.getElementById("contexto-aviso");
+      var destino = document.getElementById("campo-mensaje");
+      if (destino) {
+        destino.focus();
+        destino.scrollIntoView({ block: "center", behavior: "smooth" });
+      }
+      if (aviso) {
+        aviso.hidden = false;
+        aviso.textContent = "Tu navegador bloqueó WhatsApp. Anotamos tu caso abajo: "
+          + "revísalo y envíalo desde aquí.";
+      }
+    }
+  });
+
   /* ── Formulario ─────────────────────────────────────────────── */
   var formulario = document.getElementById("formulario");
   if (!formulario) return;

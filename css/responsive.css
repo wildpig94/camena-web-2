@@ -197,6 +197,23 @@
 /* ═══ ≤ 720 px · móvil de trabajo ═══ */
 @media (max-width: 720px) {
 
+  /* Enlaces de acción dentro de un párrafo: se tocan con el dedo, así que
+     llevan altura de objetivo táctil sin romper el flujo del texto.
+     Vive aquí y no en 560px porque en tablet el dedo también toca. */
+  .cierre-seccion a,
+  .cadena__cierre a,
+  .nota-sistema a,
+  .pie__legal a,
+  .pie__cierre a,
+  .panel__pie a,
+  .detras__enlace a,
+  .flujo__enlace a {
+    display: inline-block;
+    padding-block: 9px;
+  }
+  .pie__legales { gap: var(--e-1) var(--e-5); }
+
+
   :root {
     --alto-cabecera: 4rem;
   }
@@ -279,19 +296,6 @@
 
 /* ═══ ≤ 560 px · móvil compacto ═══ */
 @media (max-width: 560px) {
-
-  /* Los enlaces de acción dentro de un párrafo se tocan con el dedo:
-     se les da altura de objetivo táctil sin romper el flujo del texto. */
-  .cierre-seccion a,
-  .hero__nota a,
-  .cadena__cierre a,
-  .nota-sistema a,
-  .pie__legal a,
-  .pie__cierre a {
-    display: inline-block;
-    padding-block: 7px;
-  }
-  .pie__legales { gap: var(--e-1) var(--e-5); }
 
   .marca__nombre { font-size: 1.0625rem; letter-spacing: 0.18em; }
 

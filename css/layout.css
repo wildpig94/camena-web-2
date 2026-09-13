@@ -88,8 +88,8 @@
 /* ═══════════════ HERO ═══════════════ */
 .hero {
   position: relative;
-  background: var(--ink);
-  color: var(--texto-claro);
+  background: var(--paper);
+  color: var(--texto);
   padding-top: clamp(3rem, 2rem + 5vw, 6rem);
   padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 5rem);
   overflow: hidden;
@@ -100,8 +100,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(244, 241, 232, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(244, 241, 232, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgba(22, 19, 13, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22, 19, 13, 0.055) 1px, transparent 1px);
   background-size: clamp(60px, 8vw, 110px) clamp(60px, 8vw, 110px);
   mask-image: radial-gradient(ellipse 90% 70% at 30% 20%, #000 20%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse 90% 70% at 30% 20%, #000 20%, transparent 78%);
@@ -128,7 +128,8 @@
 
 .hero__linea--oro {
   font-style: italic;
-  color: var(--oro-lt);
+  /* Sobre claro el oro de marca no lleva información: se usa el oscuro */
+  color: var(--oro-tx);
 }
 
 .hero__entrada {
@@ -136,14 +137,14 @@
   max-width: 46ch;
   font-size: var(--t-guia);
   line-height: 1.55;
-  color: var(--texto-claro);
+  color: var(--texto);
 }
-.hero__entrada strong { color: var(--paper); font-weight: var(--peso-fuerte); }
+.hero__entrada strong { color: var(--texto); font-weight: var(--peso-fuerte); }
 
 .hero__texto {
   margin-top: var(--e-5);
   max-width: 52ch;
-  color: var(--texto-claro-2);
+  color: var(--texto-2);
 }
 
 .hero__acciones {
@@ -167,15 +168,15 @@
   font-size: var(--t-micro);
   letter-spacing: var(--tracking-etiqueta);
   text-transform: uppercase;
-  color: var(--texto-claro-2);
+  color: var(--texto-2);
 }
 .hecho dd {
   margin-top: var(--e-2);
   font-size: var(--t-menudo);
   line-height: 1.5;
-  color: var(--texto-claro);
+  color: var(--texto);
 }
-.hecho em { color: var(--oro-lt); font-style: normal; }
+.hecho em { color: var(--oro-tx); font-style: normal; font-weight: var(--peso-fuerte); }
 
 
 /* ═══════════════ PANEL LATERAL DEL HERO ═══════════════ */
@@ -187,6 +188,16 @@
   background: var(--ink-2);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
+  /* Superficie oscura dentro de una sección clara: se cambian los tokens
+     de texto, no los componentes. Sin esto, el contenido del panel hereda
+     la tinta pensada para papel y queda ilegible sobre el fondo oscuro. */
+  --texto: var(--texto-claro);
+  --texto-2: var(--texto-claro-2);
+  --borde: var(--borde-oscuro);
+  --borde-fuerte: var(--ink-4);
+  --acento: var(--oro-lt);
+  --acento-suave: rgba(201, 150, 43, 0.12);
+  color: var(--texto-claro);
 }
 
 /* Esquinas marcadas: detalle técnico de plano de construcción */
@@ -219,43 +230,9 @@
 }
 
 
-.indice { margin-top: var(--e-2); }
 
-.indice__fila { border-bottom: 1px solid var(--borde); }
-.indice__fila:last-child { border-bottom: 0; }
 
-.indice__fila a {
-  /* Sin subrayado: la fila entera es el objetivo y el hover ya lo indica.
-     El color sí se conserva para que se lea como enlace. */
-  text-decoration: none;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: "nombre" "detalle";
-  align-items: baseline;
-  gap: 0 var(--e-3);
-  padding: var(--e-3) var(--e-2);
-  border-radius: var(--radio-sm);
-  transition: background var(--dur-rapida) var(--curva), padding-left var(--dur-rapida) var(--curva);
-}
-.indice__fila a:hover,
-.indice__fila a:focus-visible {
-  background: var(--acento-suave);
-  padding-left: var(--e-3);
-}
 
-.indice__nombre {
-  grid-area: nombre;
-  font-family: var(--display);
-  font-size: 1.0625rem;
-  font-weight: var(--peso-fuerte);
-  letter-spacing: -0.01em;
-}
-.indice__detalle {
-  grid-area: detalle;
-  font-size: var(--t-menudo);
-  color: var(--texto-claro-2);
-  line-height: 1.4;
-}
 
 .panel__pie {
   margin-top: var(--e-4);
@@ -270,17 +247,7 @@
   text-underline-offset: 3px;
 }
 
-.hero__nota {
-  position: relative;
-  z-index: var(--z-contenido);
-  margin-top: clamp(2rem, 1rem + 3vw, 3.5rem);
-  padding-top: var(--e-4);
-  border-top: 1px dashed var(--borde-fuerte);
-  max-width: var(--ancho-texto);
-  font-size: var(--t-menudo);
-  color: var(--texto-claro-2);
-}
-.hero__nota a { color: var(--oro-lt); }
+
 
 
 /* ═══════════════ 02 · DECLARACIÓN ═══════════════ */
@@ -1085,7 +1052,9 @@ a.dato__valor:hover { color: var(--acento); }
   display: flex;
   align-items: baseline;
   gap: var(--e-3);
-  padding: var(--e-5) 0 var(--e-3);
+  /* Relleno simétrico: con menos abajo que arriba, el rótulo del grupo
+     se montaba sobre el último botón del grupo anterior. */
+  padding: var(--e-5) 0;
   font-family: var(--mono);
   font-size: var(--t-micro);
   font-weight: var(--peso-medio);
@@ -1172,3 +1141,90 @@ a.dato__valor:hover { color: var(--acento); }
   line-height: var(--interlinea-guia);
   color: var(--texto-2);
 }
+
+/* ── Qué puedes contratar (panel del hero) ────────────────────
+   Responde «¿qué venden y cuánto?» en el primer pantallazo, con el
+   precio de partida a la vista. Sustituye al índice de disciplinas. */
+.panel__nota {
+  margin-top: var(--e-2);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--texto-claro-2);
+}
+
+.precios-breves { margin-top: var(--e-3); }
+
+.precios-breves li { border-bottom: 1px solid var(--borde); }
+.precios-breves li:last-child { border-bottom: 0; }
+
+.precios-breves a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "cuando  cuanto"
+    "que     cuanto";
+  align-items: baseline;
+  gap: 2px var(--e-3);
+  padding: var(--e-3) var(--e-2);
+  border-radius: var(--radio-sm);
+  text-decoration: none;
+  transition: background var(--dur-rapida) var(--curva), padding-left var(--dur-rapida) var(--curva);
+}
+.precios-breves a:hover,
+.precios-breves a:focus-visible {
+  background: var(--acento-suave);
+  padding-left: var(--e-3);
+}
+
+.precios-breves__cuando {
+  grid-area: cuando;
+  font-family: var(--display);
+  font-size: 1.0625rem;
+  font-weight: var(--peso-fuerte);
+  letter-spacing: -0.01em;
+  color: var(--texto-claro);
+}
+
+.precios-breves__que {
+  grid-area: que;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--texto-claro-2);
+}
+
+.precios-breves__cuanto {
+  grid-area: cuanto;
+  align-self: center;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--texto-claro-2);
+  white-space: nowrap;
+}
+.precios-breves__cuanto strong { color: var(--oro-lt); font-weight: var(--peso-fuerte); }
+
+/* El enlace al detalle del proceso se toca con el dedo: necesita altura
+   de objetivo táctil, no la altura de una línea de texto. */
+.flujo__enlace {
+  margin-top: var(--e-5);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+}
+.flujo__enlace a {
+  display: inline-block;
+  /* 12px arriba y abajo: 14 de texto + 24 = 38px de alto táctil */
+  padding-block: 12px;
+  font-weight: var(--peso-medio);
+  color: var(--acento);
+}
+
+/* Enlace de continuidad al final de un bloque. Se toca con el dedo:
+   necesita altura de objetivo táctil, no la de una línea de texto. */
+.detras__enlace { margin-top: var(--e-5); }
+.detras__enlace a {
+  display: inline-block;
+  padding-block: 12px;
+  font-weight: var(--peso-medio);
+  color: var(--acento);
+}
+.detras__enlace a:hover { text-decoration: underline; text-underline-offset: 3px; }

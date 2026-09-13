@@ -305,12 +305,36 @@ Criterios de aceptación: cero fallos de contraste, cero desbordes
 horizontales a 320 px, cero errores de consola, jerarquía de encabezados sin
 saltos y ningún enlace interno roto.
 
-**Limitación conocida del entorno de auditoría:** el Chromium headless de esta
-máquina no dispara `IntersectionObserver`, `setTimeout` ni
-`requestAnimationFrame` bajo `--dump-dom`, y no permite desplazar la ventana.
-Por eso la auditoría no puede comprobar aquí la animación de aparición: se
-verifica por revisión de código y por captura de pantalla. Es una limitación
-del entorno, no del sitio.
+### Auditoría de móvil (importante)
+
+**Chromium impone un ancho mínimo de ventana de 500 px**, así que
+`--window-size=390` **no** da 390 px de verdad. Por eso existe
+`docs/movil.mjs`, que usa el protocolo DevTools para emular el ancho exacto:
+
+```bash
+node docs/movil.mjs http://127.0.0.1:8899/index.html 390 844
+node docs/movil.mjs http://127.0.0.1:8899/index.html 320 844   # el más estrecho
+```
+
+Mide lo que `auditar.sh` no puede ver en móvil: elementos que se salen de la
+pantalla, texto pisado, objetivos táctiles por debajo de 24 px, contraste real
+y errores de consola.
+
+**Antes de medir, fuerza el estado final de las animaciones de entrada.** Si no
+se hace, los elementos sin revelar llevan `translateY(22px)` y el detector los
+ve montados sobre el siguiente: un falso positivo de exactamente 22 px que ya
+provocó una búsqueda larga. Está resuelto en el script.
+
+### Limitaciones conocidas del entorno de auditoría
+
+- El Chromium headless de esta máquina **no dispara `IntersectionObserver`,
+  `setTimeout` ni `requestAnimationFrame`** bajo `--dump-dom`, y no permite
+  desplazar la ventana. Por eso la animación de aparición se verifica por
+  revisión de código y captura, no por ejecución.
+- **Los errores de JavaScript solo aparecen al escuchar la consola con
+  emulación de móvil.** Así se encontró un `ReferenceError` que rompía las
+  animaciones y dejaba secciones invisibles en el teléfono: en escritorio no se
+  manifestaba. Conviene revisar `consola` en la salida de `movil.mjs`.
 
 ---
 
