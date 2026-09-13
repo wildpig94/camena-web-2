@@ -32,7 +32,8 @@ Tres reglas gobiernan todas las decisiones de aquí:
 
 ```
 camena-2.0/
-├── index.html                  Página principal (13 secciones)
+├── index.html                  Página principal (12 secciones)
+├── como-trabajamos.html        El método completo, paso por paso
 ├── aviso-de-privacidad.html    Página legal
 ├── terminos.html               Página legal
 ├── site.webmanifest            Datos de instalación como app
@@ -94,8 +95,8 @@ cambia según el fondo porque el mismo dorado no sirve en los dos:
 
 | Token | Valor | Uso | Contraste medido |
 |---|---|---|---|
-| `--ink` | `#0E0E10` | Fondo oscuro, texto sobre claro | 17.38:1 sobre hueso |
-| `--paper` | `#F6F3EA` | Fondo principal claro | — |
+| `--ink` | `#191510` | Fondo oscuro, texto sobre claro | 16.75:1 sobre hueso |
+| `--paper` | `#F8F3E8` | Fondo principal claro (hueso cálido) | — |
 | `--oro` | `#C9962B` | Acento gráfico sobre oscuro | 7.24:1 sobre tinta |
 | `--oro-lt` | `#E5BC55` | Acento de **texto** sobre oscuro | 10.70:1 sobre tinta |
 | `--oro-tx` | `#7A560F` | Acento de **texto** sobre claro | 5.98:1 sobre hueso |
@@ -105,6 +106,17 @@ información** (2.40:1). Ahí solo se usa como filete decorativo de 1 px; para
 cualquier marca con significado se usa `--oro-tx`. El acento se resuelve solo:
 los bloques oscuros redefinen `--acento`, así que un componente escrito una vez
 funciona en claro y en oscuro.
+
+La tinta es un **marrón muy oscuro** (`#191510`), no negro puro. El público
+del estudio son negocios tradicionales; un negro neutro comunica estudio
+sofisticado pero puede leerse frío o distante. El fondo cálido mantiene el
+contraste (16.75:1) y se acerca más.
+
+**Pendiente de validar con personas reales:** este cambio de temperatura se
+decidió por criterio, no por evidencia. Antes de darlo por bueno, conviene
+mostrar el sitio a dos o tres dueños de negocio y preguntarles si les da
+confianza. Si la respuesta es que prefieren algo más claro, el cambio es
+cambiar los tokens de `variables.css`, no rehacer el diseño.
 
 ### Tipografía
 
@@ -124,6 +136,20 @@ estructura en cada sección a propósito: declaración a dos columnas, disciplin
 como acordeón, necesidades como panel interactivo, proceso con panel fijo,
 ecosistema como cadena, paquetes en cuadrícula, CTA a pantalla completa. El
 objetivo es que no se lea como «título, texto, tres tarjetas, botón» repetido.
+
+### Qué se queda fuera del home y dónde vive
+
+Todo lo que no ayuda a decidir una compra vive en `como-trabajamos.html`:
+el detalle de los seis pasos, los principios de trabajo, la mecánica de pago
+y qué pasa después de la entrega. El home conserva el flujo de una línea y un
+enlace. Así el scroll principal no obliga a leer un manifiesto.
+
+### Sin sistema de numeración
+
+La página **no** numera las secciones (01, 02, 03…). Numerar cada bloque era
+un recurso de plantilla: decoraba sin informar. Los números sobreviven solo
+donde ubican algo concreto: las siete disciplinas dentro de su acordeón y las
+preguntas plegadas del FAQ.
 
 ### Movimiento
 
@@ -193,7 +219,9 @@ diseñamos y programamos aquí.** Es verificable y no exige inventar nada.
 ### Los tres grupos de servicio
 
 La oferta se presenta agrupada, porque «hacemos muchas cosas» no dice qué
-contratar. Los siete servicios viven dentro de tres grupos:
+contratar. Los siete servicios viven dentro de tres grupos, y **esta es la
+única sección donde el marco se explica completo**: las demás solo lo
+referencian con una línea.
 
 | Grupo | Qué resuelve | Disciplinas |
 |---|---|---|

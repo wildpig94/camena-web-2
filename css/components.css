@@ -75,7 +75,7 @@ svg.ic path[d^="M12 2a10"] {
 .hero .boton--solido:hover,
 .llamada .boton--solido:hover,
 .custom .boton--solido:hover,
-.precio .boton--solido:hover { background: #fff; border-color: #fff; }
+.precio .boton--solido:hover { background: var(--paper-2); border-color: var(--paper-2); }
 
 /* Línea: contorno que se rellena al pasar */
 .boton--linea {
@@ -694,6 +694,41 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-claro-2);
 }
 
+
+/* Los formatos alternativos del LAB existen para que la sección no se lea
+   como la misma plantilla cinco veces seguidas. */
+.lab-pieza__cita {
+  margin-top: var(--e-4);
+  padding-left: var(--e-4);
+  border-left: 2px solid var(--oro);
+  font-family: var(--display);
+  font-size: clamp(1.0625rem, 1rem + 0.5vw, 1.375rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--texto-claro);
+}
+
+.lab-pieza__lineas {
+  margin-top: var(--e-4);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+  display: grid;
+  gap: var(--e-2);
+}
+.lab-pieza__lineas li {
+  position: relative;
+  padding-left: var(--e-5);
+  font-size: 0.9375rem;
+  color: var(--texto-claro-2);
+}
+.lab-pieza__lineas li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.7em;
+  width: 9px; height: 1px;
+  background: var(--acento);
+}
+
 /* ═══════════════ MAQUETAS DEL LAB (interfaces dibujadas en CSS) ═══════════════ */
 
 /* Aviso dentro de cada maqueta. Es imprescindible: en una captura de pantalla
@@ -890,7 +925,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .mock-chat__entrada {
   justify-self: end;
-  background: #232327;
+  background: var(--ink-3);
   color: var(--mock-2);
   border-bottom-right-radius: 3px;
 }
@@ -1281,7 +1316,7 @@ svg.ic path[d^="M12 2a10"] {
 .campo__control:focus {
   border-color: var(--oro-tx);
   box-shadow: 0 0 0 3px rgba(201, 150, 43, 0.18);
-  background: #fff;
+  background: var(--paper-2);
   outline: none;
 }
 .campo__control--select {

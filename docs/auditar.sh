@@ -162,12 +162,14 @@ function esperarReal(ms) {
     ".paquete__precio": 6,
     ".grupo": 3,
     ".flujo li": 6,
-    ".paso-detalle": 6,
+    ".flujo__enlace": 1,
+    ".lab-pieza__ficha": 3,
+    ".lab-pieza__cita": 1,
     ".disciplina": 7,
     ".lab-pieza": 5,
     ".faq__item": 8,
     ".caso": 7,
-    ".eslabon": 8
+    ".enunciado": 1
   };
   var faltantes = [];
   Object.keys(esperados).forEach(function (sel) {

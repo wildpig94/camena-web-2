@@ -74,6 +74,8 @@
   /* El mapa de la oferta pasa a columna */
   .grupos { grid-template-columns: minmax(0, 1fr); }
 
+  .enunciado { grid-template-columns: minmax(0, 1fr); }
+
   /* Composiciones que pasan a una sola columna */
   .hero__interior,
   .declaracion,
@@ -145,11 +147,6 @@
     padding-left: 0;
     border-left: 0;
   }
-  .dimension__num {
-    grid-row: 1 / span 3;
-    font-size: 2.25rem;
-    padding-top: 0.1em;
-  }
   .dimension__titulo { margin-top: 0; }
   .dimension__texto { max-width: 56ch; }
 
@@ -190,23 +187,11 @@
 
   .lab { grid-template-columns: minmax(0, 1fr); }
 
-  /* Proceso: el flujo va en línea, sin filete cuando se parte en dos renglones */
+  /* Proceso: el flujo se lee en línea */
   .flujo { gap: var(--e-2) var(--e-2); }
   .flujo li { font-size: 1.125rem; }
   .flujo li:not(:last-child)::after { width: 0.75rem; }
 
-  .paso-detalle__cabecera {
-    grid-template-columns: 2rem minmax(0, 1fr) 1.25rem;
-    grid-template-areas:
-      "num nombre mas"
-      "num resumen mas";
-    gap: var(--e-1) var(--e-3);
-  }
-  .paso-detalle__num { grid-area: num; }
-  .paso-detalle__nombre { grid-area: nombre; }
-  .paso-detalle__resumen { grid-area: resumen; }
-  .paso-detalle__mas { grid-area: mas; }
-  .paso-detalle__cuerpo { padding-left: 2rem; }
 }
 
 /* ═══ ≤ 720 px · móvil de trabajo ═══ */
@@ -325,7 +310,6 @@
     grid-template-columns: 2.75rem minmax(0, 1fr);
     column-gap: var(--e-4);
   }
-  .dimension__num { font-size: 1.75rem; }
 
   .principio {
     grid-template-columns: minmax(0, 1fr);

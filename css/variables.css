@@ -7,17 +7,17 @@
 
 :root {
   /* ── Tinta y papel ────────────────────────────────────────── */
-  --ink:        #0E0E10;
-  --ink-2:      #17171A;
-  --ink-3:      #232327;
-  --ink-4:      #2E2E33;
-  --paper:      #F6F3EA;
-  --paper-2:    #FCFAF5;
-  --linea:      #DED8C8;
-  --linea-2:    #EAE5D9;
+  --ink:        #191510;   /* marrón muy oscuro, no negro puro */
+  --ink-2:      #201B14;   /* superficie oscura elevada */
+  --ink-3:      #2B251C;   /* bordes y separadores en oscuro */
+  --ink-4:      #382F24;   /* bordes fuertes en oscuro */
+  --paper:      #F8F3E8;   /* hueso más cálido */
+  --paper-2:    #FDFAF3;   /* blanco cálido de tarjetas */
+  --linea:      #E0D5C0;
+  --linea-2:    #EDE4D3;
 
   /* ── Texto ────────────────────────────────────────────────── */
-  --texto:      #14140F;
+  --texto:      #16130D;
   --texto-2:    #6B6759;   /* 5.10:1 sobre hueso */
   --texto-claro: #F4F1E8;
   --texto-claro-2: #B5B1A8; /* 9.02:1 sobre tinta: legible a 13-14 px */
@@ -31,7 +31,7 @@
 
   /* ── Superficies y bordes por contexto ────────────────────── */
   --borde:        var(--linea);
-  --borde-fuerte: #C9C2B0;
+  --borde-fuerte: #CBBFA6;
   --borde-oscuro: var(--ink-3);
   --acento:       var(--oro-tx);
   --acento-suave: var(--oro-tenue);
@@ -129,12 +129,12 @@
    oscura. Está calculada contra el fondo más claro que pueden tener
    (#17171B) para que cualquier texto pase AA, aunque sea de 10 px. */
 :root {
-  --mock-1: #17171B;   /* superficie de panel */
-  --mock-0: #101014;   /* superficie hundida */
+  --mock-1: #201B14;   /* superficie de panel */
+  --mock-0: #191510;   /* superficie hundida */
   --mock-texto: #F4F1E8;
   --mock-2: #C9C6BE;   /* texto secundario */
   --mock-3: #9A9590;   /* texto terciario / etiquetas */
-  --mock-tenue: #85817A; /* micro-etiquetas de 10 px */
+  --mock-tenue: #8E8A82; /* micro-etiquetas de 10 px: 4.97:1 sobre --mock-1 */
   --mock-oro: #E5BC55;
   --mock-azul: #7FB5C9;
   --mock-verde: #6FB88A;
