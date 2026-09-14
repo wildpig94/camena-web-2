@@ -40,6 +40,11 @@
 
 .encabezado__titulo { max-width: 24ch; }
 
+/* Título de una página secundaria: es el h1 del documento —Google y los
+   lectores de pantalla necesitan uno por página— pero no debe gritar como el
+   del hero. Se queda en la escala de h2, que es la que tenía cuando era un h2. */
+.encabezado__titulo--pagina { font-size: var(--t-h2); }
+
 .encabezado__intro {
   margin-top: var(--e-5);
   max-width: var(--ancho-texto);
@@ -131,19 +136,23 @@
   color: var(--oro-tx);
 }
 
+/* Subtítulo de servicios: dice qué se contrata, en segundo plano. */
 .hero__entrada {
-  margin-top: var(--e-6);
+  margin-top: var(--e-5);
   max-width: 46ch;
   font-size: var(--t-guia);
-  line-height: 1.55;
-  color: var(--texto);
+  line-height: 1.5;
+  color: var(--texto-2);
 }
 .hero__entrada strong { color: var(--texto); font-weight: var(--peso-fuerte); }
 
+/* La línea del dolor: es el golpe del hero, así que va en tinta plena y con
+   más cuerpo que el subtítulo. */
 .hero__texto {
-  margin-top: var(--e-5);
-  max-width: 52ch;
-  color: var(--texto-2);
+  margin-top: var(--e-4);
+  max-width: 44ch;
+  font-weight: var(--peso-medio);
+  color: var(--texto);
 }
 
 .hero__acciones {
@@ -178,35 +187,30 @@
 .hecho em { color: var(--oro-tx); font-style: normal; font-weight: var(--peso-fuerte); }
 
 
-/* ═══════════════ PANEL LATERAL DEL HERO ═══════════════ */
+/* ═══════════════ PANEL LATERAL DEL HERO ═══════════════
+   Es un índice, no un protagonista. Antes era una caja oscura de esquinas
+   doradas que pesaba lo mismo que el titular y se llevaba el ojo antes que
+   el botón de WhatsApp. Ahora va sobre papel, con filete de 1 px, letra
+   menuda y sin subrayados: se lee si lo buscas, no compite si no. */
 .hero__panel { position: relative; }
 
 .panel {
   position: relative;
-  padding: var(--e-5);
-  background: var(--ink-2);
+  padding: var(--e-4) var(--e-5) var(--e-5);
+  background: var(--paper-2);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
-  /* Superficie oscura dentro de una sección clara: se cambian los tokens
-     de texto, no los componentes. Sin esto, el contenido del panel hereda
-     la tinta pensada para papel y queda ilegible sobre el fondo oscuro. */
-  --texto: var(--texto-claro);
-  --texto-2: var(--texto-claro-2);
-  --borde: var(--borde-oscuro);
-  --borde-fuerte: var(--ink-4);
-  --acento: var(--oro-lt);
-  --acento-suave: rgba(201, 150, 43, 0.12);
-  color: var(--texto-claro);
 }
 
-/* Esquinas marcadas: detalle técnico de plano de construcción */
+/* Esquinas marcadas: detalle técnico de plano, ahora en el mismo filete
+   que el resto para no añadir peso visual. */
 .panel::before,
 .panel::after {
   content: "";
   position: absolute;
-  width: 14px; height: 14px;
-  border: 1px solid var(--oro);
-  opacity: 0.6;
+  width: 12px; height: 12px;
+  border: 1px solid var(--borde-fuerte);
+  opacity: 0.5;
 }
 .panel::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
 .panel::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
@@ -225,19 +229,19 @@
   font-weight: var(--peso-medio);
   letter-spacing: var(--tracking-etiqueta);
   text-transform: uppercase;
-  color: var(--texto-claro);
+  color: var(--texto-2);
 }
 
 
 .panel__pie {
-  margin-top: var(--e-4);
-  padding-top: var(--e-4);
+  margin-top: var(--e-3);
+  padding-top: var(--e-3);
   border-top: 1px solid var(--borde);
-  font-size: var(--t-menudo);
-  color: var(--texto-claro-2);
+  font-size: var(--t-micro);
+  color: var(--texto-2);
 }
 .panel__pie a {
-  color: var(--oro-lt);
+  color: var(--acento);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -1118,33 +1122,32 @@ a.dato__valor:hover { color: var(--acento); }
   color: var(--acento);
 }
 
-/* Lista limpia del panel: solo los nombres de lo que hacemos. */
-.panel__lista { margin-top: var(--e-2); }
+/* Lista limpia del panel: solo los nombres de lo que se puede contratar, en
+   tono menor, para no robarle peso al titular ni al botón. */
+.panel__lista { margin-top: var(--e-1); }
 
-.panel__lista li { border-bottom: 1px solid var(--borde); }
+.panel__lista li { border-bottom: 1px solid var(--linea-2); }
 .panel__lista li:last-child { border-bottom: 0; }
 
-.panel__lista a {
+/* Ojo con la especificidad: los enlaces del panel van sin clase, así que la
+   regla de enlaces de texto de base.css (`main a:not([class])`, que los pinta
+   de oro y subrayados) les gana. Por eso el selector lleva el contenedor. */
+.hero__panel .panel__lista a {
   display: block;
-  padding: var(--e-3) var(--e-2);
-  border-radius: var(--radio-sm);
-  font-size: 1rem;
-  color: var(--texto-claro);
+  padding: var(--e-2) 0;
+  font-size: var(--t-menudo);
+  color: var(--texto-2);
   text-decoration: none;
-  transition: background var(--dur-rapida) var(--curva), padding-left var(--dur-rapida) var(--curva);
+  transition: color var(--dur-rapida) var(--curva), padding-left var(--dur-rapida) var(--curva);
 }
-.panel__lista a:hover,
-.panel__lista a:focus-visible {
-  background: var(--acento-suave);
-  padding-left: var(--e-3);
+.hero__panel .panel__lista a:hover,
+.hero__panel .panel__lista a:focus-visible {
+  color: var(--texto);
+  text-decoration: none;
+  padding-left: var(--e-2);
 }
 
-.panel__pie {
-  margin-top: var(--e-4);
-  padding-top: var(--e-4);
-  border-top: 1px solid var(--borde);
-  font-size: 0.875rem;
-  color: var(--texto-claro-2);
-}
-.panel__pie strong { color: var(--oro-lt); }
-.panel__pie a { color: var(--oro-lt); text-decoration: underline; text-underline-offset: 3px; }
+.panel__pie strong { color: var(--texto); }
+/* El enlace lleva relleno propio para no quedar por debajo del objetivo
+   táctil mínimo de 24 px: es un enlace de texto, no una línea decorativa. */
+.hero__panel .panel__pie a { display: inline-block; padding-block: 5px; }

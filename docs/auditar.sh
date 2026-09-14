@@ -28,12 +28,25 @@ FLAGS=(--headless --no-sandbox --disable-gpu --disable-software-rasterizer
        --force-device-scale-factor=1)
 
 # ── 1 · Copia local del sitio con el script de medición inyectado ──
+# Nunca se mide sobre el archivo original: el script AÑADE código al HTML que
+# mide, así que apuntar a un archivo del repositorio lo dejaría mutilado (pasó:
+# servicios.html y como-trabajamos.html crecieron cientos de líneas). Siempre
+# se trabaja sobre la copia temporal, sea la entrada una URL o una ruta local.
+cp -r "$RAIZ"/. "$TIERRA"/
+PAGINA="index.html"
 if [[ "$URL" == http* ]]; then
-  cp -r "$RAIZ"/. "$TIERRA"/
-  ARCHIVO="$TIERRA/index.html"
+  # La ruta de la URL importa: auditar /servicios.html no es auditar el inicio.
+  RUTA="${URL#*://}"; RUTA="${RUTA#*/}"
+  RUTA="${RUTA%%\?*}"; RUTA="${RUTA%%#*}"
+  [[ -n "$RUTA" ]] && PAGINA="$RUTA"
 else
-  ARCHIVO="$URL"
+  PAGINA="$(basename "${URL%%\?*}")"
 fi
+if [[ ! -f "$TIERRA/$PAGINA" ]]; then
+  echo "✗ no existe $PAGINA en el sitio: se audita index.html"
+  PAGINA="index.html"
+fi
+ARCHIVO="$TIERRA/$PAGINA"
 
 # AUDITAR_REVELADO=1 fuerza el estado "ya apareció todo", para medir
 # contraste y desbordes como los ve una persona que ya recorrió la página.
@@ -158,7 +171,7 @@ function esperarReal(ms) {
   /* Elementos que deben existir siempre. Un contenido que no se genera
      no rompe nada y no da error de consola: sin esta lista, su ausencia
      pasa desapercibida. */
-  var esperados = {
+  var esperados = /index\.html$|\/$/.test(location.pathname) ? {
     ".etapa": 4,
     ".servicios li": 26,
     ".opcion input": 16,
@@ -169,7 +182,7 @@ function esperarReal(ms) {
     ".faq__item": 8,
     ".caso-tarjeta": 7,
     ".panel__lista li": 6
-  };
+  } : {};
   var faltantes = [];
   Object.keys(esperados).forEach(function (sel) {
     var hay = document.querySelectorAll(sel).length;
@@ -300,7 +313,7 @@ function esperarReal(ms) {
     totalRevelar: document.querySelectorAll("[data-revelar]").length,
     secciones: document.querySelectorAll("main section").length,
     fuentesCargadas: document.fonts ? document.fonts.size : 0,
-    familiaTitulo: getComputedStyle(document.querySelector("h1")).fontFamily,
+    familiaTitulo: document.querySelector("h1") ? getComputedStyle(document.querySelector("h1")).fontFamily : null,
     msDomContentLoaded: Math.round(nav.domContentLoadedEventEnd || 0),
     msCarga: Math.round(nav.loadEventEnd || 0),
     recursos: recursos.length,

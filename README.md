@@ -15,7 +15,7 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 
 | Página | Para qué sirve |
 |---|---|
-| `index.html` | Qué se vende con precio, siete casos, cuatro etapas, armador de paquete, preguntas y contacto |
+| `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres prototipos, armador de paquete, preguntas y contacto |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
 
@@ -42,6 +42,39 @@ Tres reglas gobiernan todas las decisiones de aquí:
    del sitio, la propuesta seguiría en pie.
 3. **El criterio es humano.** La tecnología acelera, pero decide y revisa una
    persona, y eso se dice con claridad.
+
+---
+
+## Voz y redacción (cómo se escribe aquí)
+
+El sitio pasó por dos correcciones de identidad: primero sonaba a agencia
+genérica, después a explicación defensiva. La voz que quedó es esta, y aplica a
+cualquier texto nuevo:
+
+| Regla | Se escribe así | No se escribe así |
+|---|---|---|
+| **Entra por el dolor, no por la justificación.** | «Si tu imagen no está a la altura de tu trabajo, estás perdiendo clientes antes de que te conozcan.» | «Casi nadie llega pidiendo un servicio…» |
+| **Frases cortas y en segunda persona.** El sujeto es el negocio del cliente, no el estudio. | «Te ves más pequeño de lo que eres.» | «Un logotipo hecho en una app puede transmitir…» |
+| **Un párrafo, una idea.** Máximo dos o tres renglones. | Un renglón por viñeta, en sustantivos concretos. | Párrafos que explican por qué el problema es un problema. |
+| **Se dice qué se entrega, no cómo nos sentimos.** | «Cotizaciones que se arman solas.» | «Nos apasiona acompañarte en tu proceso.» |
+| **La honestidad es parte del tono, no una disculpa.** | «No son trabajos de clientes: son problemas de negocio reales, resueltos hasta el final.» | «Todavía no tenemos autorización, pero…» |
+
+**Reglas de estructura de la página que acompañan a la voz:**
+
+- **El titular del hero son dos golpes cortos**, no una frase completa. La
+  promesa entera («ayudamos a los negocios locales a verse profesionales y a
+  operar sin enredos») ocupa cinco renglones a cuerpo de display y empuja el
+  botón fuera de la primera pantalla. El subtítulo dice qué se contrata; la
+  línea siguiente dice el dolor; el botón de WhatsApp cierra el primer
+  pantallazo.
+- **El panel lateral del hero es un índice, no un protagonista.** Va sobre
+  papel, con filete de 1 px, letra menuda y sin subrayados: el ojo debe ir al
+  titular y al botón, no a la lista.
+- **Los diagnósticos son tarjetas de impacto**: el problema en una frase, tres
+  entregables de cuatro palabras y el botón. Nunca tres viñetas de dos
+  renglones.
+- **Evitar el registro de manual de autoayuda**: nada de «no estás solo»,
+  «transforma tu negocio» ni promesas de crecimiento.
 
 ---
 
@@ -180,7 +213,10 @@ tiempo): es preferible perder el efecto a que un bloque se quede invisible.
 
 ## Accesibilidad
 
-- Un solo `h1` y jerarquía de encabezados sin saltos.
+- Un solo `h1` y jerarquía de encabezados sin saltos. En `servicios.html` el
+  `h1` lleva la clase `encabezado__titulo--pagina`: la página necesita su
+  encabezado principal, pero no debe gritar como el del hero. Los rótulos de
+  grupo (Marca, Presencia en internet…) son `h2`, y cada disciplina es un `h3`.
 - Enlace «Saltar al contenido» y foco visible en todo elemento interactivo.
 - Pestañas y acordeones con teclado completo (flechas, Inicio, Fin) y
   `aria-expanded` / `aria-selected` / `aria-controls` correctos.
@@ -226,47 +262,60 @@ decidir. El sitio las responde de forma explícita, sin inventar nada:
 
 | Pregunta | Dónde se responde |
 |---|---|
-| ¿Quién eres y me vas a facturar? | Ficha de «Detrás de CAMENA»: quién atiende, base, facturación, propiedad |
-| ¿Cuánto cuesta y cómo se paga? | Bloque de inversión (sección 09) y FAQ |
-| ¿Y si no funciona, o después de la entrega qué? | Ficha, FAQ y «Términos del servicio» |
+| ¿Quién eres y me vas a facturar? | Bloque de contacto: quién atiende, base, horario |
+| ¿Cuánto cuesta y cómo se paga? | Cuatro etapas de precios con tarifa a la vista, armador de paquete y FAQ |
+| ¿Y si no funciona, o después de la entrega qué? | FAQ y «Términos del servicio» |
 
 La prueba que sustituye a un portafolio de clientes que aún no existe es el
-propio sitio: **está dicho en la sección «Detrás de CAMENA» que esta página la
-diseñamos y programamos aquí.** Es verificable y no exige inventar nada.
+propio sitio más los prototipos: **esta página la diseñamos y programamos aquí,
+y las piezas del LAB son trabajo propio documentado.** Es verificable y no exige
+inventar nada.
 
-### Los tres grupos de servicio
+### Cómo se agrupa la oferta
 
-La oferta se presenta agrupada, porque «hacemos muchas cosas» no dice qué
-contratar. Los siete servicios viven dentro de tres grupos, y **esta es la
-única sección donde el marco se explica completo**: las demás solo lo
-referencian con una línea.
+El inicio agrupa la oferta por **etapa del negocio**, porque «hacemos muchas
+cosas» no dice qué contratar:
 
-| Grupo | Qué resuelve | Disciplinas |
+| Etapa | Para quién | Qué entra |
 |---|---|---|
-| **Presencia** | Que te encuentren y te reconozcan | Marca · Web · Google y WhatsApp |
-| **Contenido** | Que tengas qué mostrar y a quién mostrarlo | Video · Audio · Publicidad |
-| **Operación** | Que el negocio funcione sin tu memoria | Sistemas · Automatización · IA |
+| 1 · Marca | Todavía no tiene logo ni colores | Logo · identidad · hoja de uso · papelería · etiquetas |
+| 2 · Presencia | Ya tiene marca y no lo encuentran | Páginas · catálogos · ficha de Google · video · audio · campañas |
+| 3 · Operación | Ya vende y la información vive en cuadernos | Sistemas a la medida · inventario · citas · tableros · automatización |
+| 4 · Campañas | Necesita presencia constante | Marca de campaña · contenido por mes · piezas · base de datos |
 
-### Nombres y precios de los paquetes
+`servicios.html` usa el mismo material en cuatro grupos —Marca · Presencia en
+internet · Contenido y publicidad · Para ordenar el negocio—, uno por disciplina.
 
-Van en el idioma del cliente y sin chocar con el nombre de una disciplina:
-**Arranque · Identidad · Sitio · Contenido · Todo junto · Sistema · A la medida**.
-Cada uno dice explícitamente qué **no** incluye: sin exclusiones, los seis se
-leen como «depende».
+### Los tres casos de estudio del LAB
 
-**⚠️ Dónde se cambian los precios.** En el HTML, en el bloque de cada paquete:
+La sección se llamaba «laboratorio» y sonaba a borrador de aficionado. Ahora se
+presenta como **casos de estudio y prototipos de innovación**: portafolio de
+diseño y de ingeniería, con el problema, el enfoque y la decisión documentados.
+La honestidad no cambió —son piezas propias, sin cliente detrás—; lo que cambió
+es que ya no se disculpa por serlo. Cada ficha usa `Problema · Enfoque ·
+Decisión` (técnica o de diseño) en lugar de un relato.
 
-```html
-<p class="paquete__precio">Desde <strong>$8,000 MXN</strong></p>
-```
+### Precios: dónde se cambian
 
-Los precios **no** se generan por JavaScript a propósito: así se ven aunque el
-visitante no cargue el script, los indexa el buscador y una tarifa equivocada no
-queda escondida detrás de un código que falla. Son precios de partida, no
-cerrados: el valor real de cada proyecto se confirma por escrito.
+**⚠️ Los precios viven en el HTML, nunca en JavaScript.** Aparecen dos veces y
+hay que mover los dos sitios a la vez:
 
-Los `data-precio` de cada tarjeta se conservan solo como referencia de qué
-tarifa corresponde a qué paquete.
+1. La lista visible de cada etapa:
+   ```html
+   <li><span class="servicios__que">Programa para cotizar y cobrar</span><span class="servicios__cuanto">desde $8,000</span></li>
+   ```
+2. La casilla equivalente del armador de paquete, que además suma el total:
+   ```html
+   <label class="opcion"><input type="checkbox" name="sistema" value="Programa para cotizar y cobrar" data-precio="8000">…</label>
+   ```
+
+Así se ven aunque el visitante no cargue el script y las indexa el buscador. Son
+precios de partida, no cerrados: el valor real se confirma por escrito.
+
+**Coherencia obligatoria:** el precio mínimo publicado en el hero, el armador y
+la primera respuesta del FAQ tiene que ser el mismo (hoy, $1,500). Estuvieron
+desincronizados —el FAQ decía $3,500— y eso rompe la confianza justo en la
+pregunta que más se hace.
 
 ### Sobre el formulario
 
@@ -282,7 +331,7 @@ correo. Nunca dice «hemos recibido tu mensaje», porque no es cierto.
 - `<title>` y meta description orientados al nuevo posicionamiento.
 - Open Graph y Twitter Card completos, con imagen 1200×630 generada para redes.
 - Datos estructurados JSON-LD: `ProfessionalService` con catálogo de servicios,
-  horario de atención y `FAQPage` con las ocho preguntas **en el mismo orden y
+  horario de atención y `FAQPage` con las siete preguntas **en el mismo orden y
   con el mismo texto que se ve en la página** (Google debe indexar lo mismo que
   lee la persona).
 - `lang="es-MX"`, `canonical`, favicon completo, manifiesto, `robots.txt` y
@@ -342,6 +391,20 @@ y errores de consola.
 se hace, los elementos sin revelar llevan `translateY(22px)` y el detector los
 ve montados sobre el siguiente: un falso positivo de exactamente 22 px que ya
 provocó una búsqueda larga. Está resuelto en el script.
+
+### Cómo se auditan las páginas secundarias
+
+`docs/auditar.sh` mide **la página que se le pide**, no siempre el inicio:
+
+```bash
+bash docs/auditar.sh http://127.0.0.1:8899/servicios.html 1440 1000 servicios
+```
+
+Dos cosas que hacía mal y ya no: auditaba `index.html` ignorando la ruta de la
+URL, y —si se le pasaba una ruta local— **escribía el código de medición dentro
+del archivo del repositorio**, dejándolo mutilado. Ahora todo el trabajo ocurre
+sobre una copia temporal y la página auditada es la que se pidió. Si una página
+no carga o no hay `h1`, el informe lo dice en lugar de reventar.
 
 ### Lo que esta verificación NO detectaba (y ya sí)
 
@@ -408,7 +471,13 @@ resultados **sin rearmar la página**.
 - [x] Sitio completo en español, responsive, accesible y sin dependencias
 - [x] Páginas legales (aviso de privacidad y términos)
 - [x] Copy revisado contra el test «agencia genérica» y el test «IA»
+- [x] Segunda pasada de voz: titular en dos golpes, párrafos a la mitad,
+      diagnósticos como tarjetas de impacto, LAB reencuadrado como casos de
+      estudio e índice del hero en tono menor
 - [x] Auditoría en 1440 / 1024 / 390 / 320 px sin hallazgos
+- [ ] Decidir el lema: «Tu idea. Nuestra solución.» sigue en el pie, en Open
+      Graph y en los datos estructurados, y es lo más genérico que queda del
+      sitio. Si se cambia, hay que cambiarlo en los tres sitios a la vez
 - [ ] Conectar `camena.mx` y reemplazar la URL de GitHub Pages (ver arriba)
 - [ ] Sumar proyectos reales al LAB cuando haya autorización
 - [ ] Páginas individuales por servicio (la estructura ya lo permite)
