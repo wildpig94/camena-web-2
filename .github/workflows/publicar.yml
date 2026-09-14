@@ -6,6 +6,12 @@
 # romperían la versión en línea y que no se ven en un diff:
 #   · que no falte ninguna referencia local (css, js, assets, fuentes)
 #   · que el JSON-LD siga siendo JSON válido
+#
+# Versiones de las acciones: se mantienen en la última versión mayor. Las
+# antiguas (checkout v4 y anteriores) corrían sobre Node 20, que GitHub ya
+# retiró: seguían funcionando a la fuerza y dejaban un aviso en cada
+# publicación. Al subir de versión mayor, conviene volver a publicar y
+# comprobar el sitio en línea.
 # ═══════════════════════════════════════════════════════════════
 name: Publicar en GitHub Pages
 
@@ -29,7 +35,7 @@ jobs:
     name: Comprobar el sitio antes de publicar
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Verificar que existan todos los archivos referenciados
         run: |
@@ -124,10 +130,10 @@ jobs:
       name: github-pages
       url: ${{ steps.despliegue.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Configurar Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Preparar solo lo que se publica
         run: |
@@ -143,10 +149,14 @@ jobs:
           echo "  ($(find publicar -type f | wc -l) archivos)"
 
       - name: Empaquetar el sitio
-        uses: actions/upload-pages-artifact@v3
+        # A partir de la v4, este paso NO incluye archivos ocultos en el paquete
+        # (el `.nojekyll` de arriba queda fuera). No importa: este flujo publica
+        # el artefacto tal cual, sin pasar por Jekyll, que es justo para lo que
+        # servía ese archivo.
+        uses: actions/upload-pages-artifact@v5
         with:
           path: publicar
 
       - name: Desplegar
         id: despliegue
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
