@@ -15,7 +15,7 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 
 | Página | Para qué sirve |
 |---|---|
-| `index.html` | Servicios principales con precio, cuatro etapas, armador de paquete, preguntas y contacto |
+| `index.html` | Qué se vende con precio, siete casos, cuatro etapas, armador de paquete, preguntas y contacto |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
 
@@ -362,6 +362,13 @@ Estas tres comprobaciones faltaban y por eso entraron fallos reales:
 Y una cuarta, de método: **las animaciones de entrada falsean las mediciones.**
 Un elemento sin revelar lleva `translateY(22px)` y el detector de solapes lo ve
 montado sobre el siguiente. Los auditores fuerzan el estado final antes de medir.
+
+### Comprobación de estructura del HTML
+
+Un corte accidental deja la página «funcionando» pero mutilada: sin formulario,
+sin cierres, con el pie anidado dentro de otro elemento. Ya pasó una vez y
+estuvo publicado. El flujo de publicación ahora cuenta etiquetas, campos y
+cierres antes de desplegar, y falla si algo no cuadra.
 
 ### Limitaciones conocidas del entorno de auditoría
 

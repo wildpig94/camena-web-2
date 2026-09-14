@@ -164,12 +164,11 @@ function esperarReal(ms) {
     ".opcion input": 16,
     ".flujo li": 6,
     ".flujo__enlace": 1,
-    ".lab-pieza__ficha": 2,
-    ".lab-pieza__cita": 1,
+    ".lab-pieza__ficha": 3,
     ".lab-pieza": 3,
     ".faq__item": 8,
-    ".caso": 7,
-    ".precios-breves li": 4
+    ".caso-tarjeta": 7,
+    ".panel__lista li": 6
   };
   var faltantes = [];
   Object.keys(esperados).forEach(function (sel) {

@@ -1050,63 +1050,12 @@ a.dato__valor:hover { color: var(--acento); }
 /* ── Qué puedes contratar (panel del hero) ────────────────────
    Responde «¿qué venden y cuánto?» en el primer pantallazo, con el
    precio de partida a la vista. Sustituye al índice de disciplinas. */
-.panel__nota {
-  margin-top: var(--e-2);
-  font-size: 0.8125rem;
-  line-height: 1.4;
-  color: var(--texto-claro-2);
-}
 
-.precios-breves { margin-top: var(--e-3); }
 
-.precios-breves li { border-bottom: 1px solid var(--borde); }
-.precios-breves li:last-child { border-bottom: 0; }
 
-.precios-breves a {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "cuando  cuanto"
-    "que     cuanto";
-  align-items: baseline;
-  gap: 2px var(--e-3);
-  padding: var(--e-3) var(--e-2);
-  border-radius: var(--radio-sm);
-  text-decoration: none;
-  transition: background var(--dur-rapida) var(--curva), padding-left var(--dur-rapida) var(--curva);
-}
-.precios-breves a:hover,
-.precios-breves a:focus-visible {
-  background: var(--acento-suave);
-  padding-left: var(--e-3);
-}
 
-.precios-breves__cuando {
-  grid-area: cuando;
-  font-family: var(--display);
-  font-size: 1.0625rem;
-  font-weight: var(--peso-fuerte);
-  letter-spacing: -0.01em;
-  color: var(--texto-claro);
-}
 
-.precios-breves__que {
-  grid-area: que;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  color: var(--texto-claro-2);
-}
 
-.precios-breves__cuanto {
-  grid-area: cuanto;
-  align-self: center;
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
-  color: var(--texto-claro-2);
-  white-space: nowrap;
-}
-.precios-breves__cuanto strong { color: var(--oro-lt); font-weight: var(--peso-fuerte); }
 
 /* El enlace al detalle del proceso se toca con el dedo: necesita altura
    de objetivo táctil, no la altura de una línea de texto. */
@@ -1168,3 +1117,34 @@ a.dato__valor:hover { color: var(--acento); }
   font-weight: var(--peso-medio);
   color: var(--acento);
 }
+
+/* Lista limpia del panel: solo los nombres de lo que hacemos. */
+.panel__lista { margin-top: var(--e-2); }
+
+.panel__lista li { border-bottom: 1px solid var(--borde); }
+.panel__lista li:last-child { border-bottom: 0; }
+
+.panel__lista a {
+  display: block;
+  padding: var(--e-3) var(--e-2);
+  border-radius: var(--radio-sm);
+  font-size: 1rem;
+  color: var(--texto-claro);
+  text-decoration: none;
+  transition: background var(--dur-rapida) var(--curva), padding-left var(--dur-rapida) var(--curva);
+}
+.panel__lista a:hover,
+.panel__lista a:focus-visible {
+  background: var(--acento-suave);
+  padding-left: var(--e-3);
+}
+
+.panel__pie {
+  margin-top: var(--e-4);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+  font-size: 0.875rem;
+  color: var(--texto-claro-2);
+}
+.panel__pie strong { color: var(--oro-lt); }
+.panel__pie a { color: var(--oro-lt); text-decoration: underline; text-underline-offset: 3px; }

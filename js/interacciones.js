@@ -86,13 +86,6 @@
     activar(inicial < 0 ? 0 : inicial, false);
   }
 
-  /* Resolutor de necesidades */
-  activarPestanas(document.getElementById("resolutor"), {
-    selectorBoton: ".situacion",
-    selectorPanel: ".caso",
-    claseActiva: "is-activa"
-  });
-
   /* Proceso */
   activarPestanas(document.getElementById("proceso-lista"), {
     selectorBoton: ".paso",
