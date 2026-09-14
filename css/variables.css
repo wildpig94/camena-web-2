@@ -3,65 +3,71 @@
    Tokens del sistema. Nada de valores sueltos en los componentes:
    todo color, tamaño y ritmo sale de aquí.
    Contraste verificado en docs/verificar-contraste.py (WCAG AA).
+
+   Paleta editorial: dos superficies neutras (hueso muy sutil y carbón
+   profundo) y UN solo acento —verde esmeralda de terminal—. Sin degradados,
+   sin tonos tierra apagados: el contraste hace todo el trabajo.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Tinta y papel ────────────────────────────────────────── */
-  --ink:        #191510;   /* marrón muy oscuro, no negro puro */
-  --ink-2:      #201B14;   /* superficie oscura elevada */
-  --ink-3:      #312A22;   /* separadores en oscuro (1.4:1, solo decorativo) */
-  --ink-4:      #7A6340;   /* 3.19:1 sobre tinta: bordes de control */
-  --paper:      #F8F3E8;   /* hueso más cálido */
-  --paper-2:    #FDFAF3;   /* blanco cálido de tarjetas */
-  --linea:      #E0D5C0;
-  --linea-2:    #EDE4D3;
+  /* ── Carbón y papel ───────────────────────────────────────── */
+  --ink:        #111111;   /* negro carbón, no negro puro de pantalla */
+  --ink-2:      #181818;   /* superficie oscura elevada */
+  --ink-3:      #2B2B2B;   /* separadores en oscuro (1.3:1, solo decorativo) */
+  --ink-4:      #757570;   /* 4.08:1 sobre tinta: bordes de control */
+  --paper:      #F7F6F3;   /* hueso muy sutil, no blanco clínico */
+  --paper-2:    #FCFBF9;   /* tarjetas, un punto más claras que el fondo */
+  --linea:      #E3E1DB;
+  --linea-2:    #EFEDE7;
 
   /* ── Texto ────────────────────────────────────────────────── */
-  --texto:      #16130D;
-  --texto-2:    #6B6759;   /* 5.10:1 sobre hueso */
-  --texto-claro: #F4F1E8;
-  --texto-claro-2: #B5B1A8; /* 9.02:1 sobre tinta: legible a 13-14 px */
+  --texto:        #111111;
+  --texto-2:      #5C5C58;  /* 6.21:1 sobre hueso */
+  --texto-claro:  #F4F3F0;
+  --texto-claro-2:#A8A8A2;  /* 7.90:1 sobre tinta: legible a 13-14 px */
 
-  /* ── Marca: oro ───────────────────────────────────────────── */
-  --oro:        #C9962B;   /* acento gráfico sobre oscuro (7.24:1) */
-  --oro-lt:     #E5BC55;   /* acento de texto sobre oscuro (10.70:1) */
-  --oro-tx:     #7A560F;   /* acento de texto sobre claro (5.98:1) */
-  --oro-tenue:  rgba(201, 150, 43, 0.14);
-  --oro-linea:  rgba(201, 150, 43, 0.28);
+  /* ── Acento: un solo verde, en tres tonos según el fondo ──── */
+  --verde:      #0E9F6E;   /* acento gráfico: pasa 3:1 en claro Y en oscuro */
+  --verde-lt:   #34D399;   /* acento de TEXTO sobre oscuro (9.82:1 sobre tinta) */
+  --verde-tx:   #0A6B4C;   /* acento de TEXTO sobre claro (6.03:1 sobre hueso) */
+  --verde-tenue: rgba(14, 159, 110, 0.10);
+  --verde-linea: rgba(14, 159, 110, 0.30);
 
   /* ── Superficies y bordes por contexto ────────────────────────
    Ojo con la distinción: `--linea` es un filete decorativo (1.2:1 basta),
    `--borde-fuerte` delimita un control y por eso necesita 3:1. */
   --borde:        var(--linea);
-  --borde-fuerte: #8A7D62;   /* 3.66:1 sobre hueso: es un control, no un filete */
+  --borde-fuerte: #6F6F69;   /* 4.68:1 sobre hueso: es un control, no un filete */
   --borde-oscuro: var(--ink-3);
-  --acento:       var(--oro-tx);
-  --acento-suave: var(--oro-tenue);
+  --acento:       var(--verde-tx);
+  --acento-suave: var(--verde-tenue);
 
-  /* ── Tipografía ───────────────────────────────────────────── */  --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-  --texto-fuente: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  /* ── Tipografía ───────────────────────────────────────────── */
+  --display: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --texto-fuente: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
-  /* Escala fluida. El h1 ronda 4.5× el cuerpo en escritorio. */
+  /* Escala fluida. El h1 ronda 4× el cuerpo en escritorio: con una geométrica
+     ancha, más cuerpo que eso deja de ser titular y pasa a ser cartel. */
   --t-micro:  clamp(0.6875rem, 0.66rem + 0.14vw, 0.75rem);
   --t-menudo: clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
   --t-cuerpo: clamp(1rem, 0.97rem + 0.16vw, 1.125rem);
   --t-guia:   clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
   --t-h3:     clamp(1.375rem, 1.22rem + 0.75vw, 1.75rem);
-  --t-h2:     clamp(2.125rem, 1.5rem + 2.9vw, 4rem);
-  --t-h1:     clamp(2.75rem, 1.4rem + 6.2vw, 6.5rem);
-  --t-declara: clamp(2.5rem, 1.5rem + 4.6vw, 5.25rem);
+  --t-h2:     clamp(1.875rem, 1.4rem + 2.3vw, 3.25rem);
+  --t-h1:     clamp(2.25rem, 1.4rem + 4.2vw, 4.5rem);
+  --t-declara: clamp(2.25rem, 1.5rem + 4vw, 4.5rem);
   --t-cifra:  clamp(3.5rem, 2rem + 7vw, 8rem);
 
   --peso-normal: 400;
   --peso-medio:  500;
-  --peso-fuerte: 600;
+  --peso-fuerte: 700;
 
-  --interlinea-titulo: 1.04;
+  --interlinea-titulo: 1.06;
   --interlinea-texto:  1.68;
   --interlinea-guia:   1.4;
 
-  --tracking-titulo: -0.02em;
+  --tracking-titulo: -0.03em;
   --tracking-etiqueta: 0.16em;
   --tracking-mono: 0.06em;
 
@@ -81,16 +87,16 @@
   --margen: clamp(1.25rem, 0.6rem + 2.6vw, 3rem);
   --alto-cabecera: 4.5rem;
 
-  /* ── Formas ───────────────────────────────────────────────── */
-  --radio-sm: 6px;
-  --radio: 12px;
-  --radio-lg: 20px;
-  --radio-pastilla: 999px;
+  /* ── Formas: bordes de taller, no pastillas de plantilla ──── */
+  --radio-sm: 3px;
+  --radio: 6px;
+  --radio-lg: 10px;
+  --radio-control: 4px;
 
   /* ── Sombras ──────────────────────────────────────────────── */
-  --sombra-sm: 0 2px 10px rgba(25, 21, 16, 0.05);
-  --sombra:    0 14px 40px rgba(25, 21, 16, 0.09);
-  --sombra-lg: 0 30px 70px rgba(25, 21, 16, 0.14);
+  --sombra-sm: 0 2px 10px rgba(17, 17, 17, 0.06);
+  --sombra:    0 14px 40px rgba(17, 17, 17, 0.10);
+  --sombra-lg: 0 26px 60px rgba(17, 17, 17, 0.18);
 
   /* ── Movimiento ───────────────────────────────────────────── */
   --curva: cubic-bezier(0.2, 0.7, 0.25, 1);
@@ -118,36 +124,37 @@
 .lab-pieza__visual {
   --borde: var(--borde-oscuro);
   --borde-fuerte: var(--ink-4);
-  --acento: var(--oro-lt);
-  --acento-suave: rgba(201, 150, 43, 0.1);
+  --acento: var(--verde-lt);
+  --acento-suave: rgba(14, 159, 110, 0.12);
   --sombra-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
   --sombra: 0 14px 40px rgba(0, 0, 0, 0.4);
-  --sombra-lg: 0 30px 70px rgba(0, 0, 0, 0.5);
+  --sombra-lg: 0 26px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* El hero tiene fondo claro pero conserva sus propios acentos: el oro de
-   marca para filetes y el oro oscuro para cualquier cosa que se lea. */
+/* El hero tiene fondo claro pero conserva sus propios acentos: el verde de
+   marca para filetes y el verde oscuro para cualquier cosa que se lea. */
 .hero {
-  --acento: var(--oro-tx);
-  --acento-suave: rgba(201, 150, 43, 0.14);
+  --acento: var(--verde-tx);
+  --acento-suave: rgba(14, 159, 110, 0.10);
 }
 
 /* ── Paleta de las maquetas del LAB ───────────────────────────────
-   Las interfaces dibujadas del LAB usan su propia escala de grises
-   oscura. Está calculada contra el fondo más claro que pueden tener
-   (#17171B) para que cualquier texto pase AA, aunque sea de 10 px. */
+   Las interfaces dibujadas del LAB usan su propia escala de carbón.
+   Está calculada contra el fondo más claro que pueden tener (#1A1A1A)
+   para que cualquier texto pase AA, aunque sea de 10 px. Los colores
+   con significado (aprobado, en proceso, sin anticipo) se quedan: son
+   estados, no decoración. */
 :root {
-  --mock-1: #201B14;   /* superficie de panel */
-  --mock-0: #191510;   /* superficie hundida */
-  --mock-texto: #F4F1E8;
-  --mock-2: #C9C6BE;   /* texto secundario */
-  --mock-3: #9A9590;   /* texto terciario / etiquetas */
-  --mock-tenue: #8E8A82; /* micro-etiquetas de 10 px: 4.97:1 sobre --mock-1 */
-  --mock-oro: #E5BC55;
+  --mock-1: #1A1A1A;   /* superficie de panel */
+  --mock-0: #141414;   /* superficie hundida */
+  --mock-texto: #F2F1EE;
+  --mock-2: #C6C5C1;   /* texto secundario */
+  --mock-3: #9C9B97;   /* texto terciario / etiquetas */
+  --mock-tenue: #8C8B87; /* micro-etiquetas de 10 px: 5.10:1 sobre --mock-1 */
+  --mock-acento: #34D399;
   --mock-azul: #7FB5C9;
-  --mock-verde: #6FB88A;
+  --mock-verde: #6FD79B;
   --mock-naranja: #E0A87F;
   --mock-rosa: #C9A0C9;
-  --mock-oro-linea: rgba(229, 188, 85, 0.42);
+  --mock-acento-linea: rgba(52, 211, 153, 0.42);
 }
-

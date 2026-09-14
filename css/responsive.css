@@ -53,7 +53,7 @@
     color: var(--texto-claro);
   }
   .js .nav__enlace::after { display: none; }
-  .js .nav__enlace.is-actual { color: var(--oro-lt); }
+  .js .nav__enlace.is-actual { color: var(--verde-lt); }
 
   .js .nav__contacto {
     flex-direction: column;
@@ -99,8 +99,12 @@
     max-width: none;
     margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
     padding-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
-    border-top: 1px solid var(--borde);
+    padding-left: 0;
+    border-top: 1px dotted var(--borde);
   }
+  /* El filete vertical solo tiene sentido cuando el índice va al lado del
+     titular. Al pasar debajo, la separación la hace el filete superior. */
+  .hero__panel::before { display: none; }
   .hero__panel .panel { max-width: 46rem; }
   .ficha, .proceso__detalle { position: static; }
   .proceso__detalle { min-height: 0; }

@@ -37,7 +37,7 @@ eso se entienda en los primeros segundos.
 
 | Sección | Cómo se ve el eje |
 |---|---|
-| Hero | Titular en dos golpes (`Te ves profesional.` / `Operas sin enredos.`) y **dos mitades en columnas del mismo ancho**, una por cada mitad del estudio. El titular nunca se cambia por una frase larga. |
+| Hero | Titular en dos renglones —`Taller de sistemas y diseño.` / `Soluciones a tu medida.`— y **dos mitades en columnas del mismo ancho**, una por cada mitad del estudio. La segunda línea va en el acento: el contraste de color es el recurso, no la cursiva. |
 | Datos del hero | Primer dato: diseño desde $1,500. Segundo: sistemas desde $8,000. Mismo peso, mismas cifras publicadas. |
 | Índice lateral | Abre con «Sistemas a la medida» y «Automatización»; después, la parte de diseño. |
 | Diagnósticos | La sección se titula **«¿Qué te está costando dinero?»** y cada tarjeta nombra el costo (regateo, ventas que no cuadran, deudas que no se cobran). La tarjeta resaltada es la operativa, no la de diseño. |
@@ -65,7 +65,7 @@ que quedó es esta, y aplica a cualquier texto nuevo:
 
 | Regla | Se escribe así | No se escribe así |
 |---|---|---|
-| **Entra por el dolor, no por la justificación.** | «Si tu imagen no está a la altura de tu trabajo, estás perdiendo clientes antes de que te conozcan.» | «Casi nadie llega pidiendo un servicio…» |
+| **Entra por el dolor, no por la justificación.** | «Si tu imagen no está a la altura de tu trabajo, pierdes clientes. Si tu operación vive en un cuaderno, pierdes dinero.» | «Casi nadie llega pidiendo un servicio…» |
 | **Frases cortas y en segunda persona.** El sujeto es el negocio del cliente, no el estudio. | «Te ves más pequeño de lo que eres.» | «Un logotipo hecho en una app puede transmitir…» |
 | **Un párrafo, una idea.** Máximo dos o tres renglones. | Un renglón por viñeta, en sustantivos concretos. | Párrafos que explican por qué el problema es un problema. |
 | **Se dice qué se entrega, no cómo nos sentimos.** | «Cotizaciones que se arman solas.» | «Nos apasiona acompañarte en tu proceso.» |
@@ -74,10 +74,10 @@ que quedó es esta, y aplica a cualquier texto nuevo:
 
 **Reglas de estructura de la página que acompañan a la voz:**
 
-- **El titular del hero son dos golpes cortos**, no una frase completa. La
-  promesa entera («ayudamos a los negocios locales a verse profesionales y a
-  operar sin enredos») ocupa cinco renglones a cuerpo de display y empuja el
-  botón fuera de la primera pantalla. Debajo van **las dos mitades del estudio en
+- **El titular del hero son dos renglones cortos** —qué es el taller y qué se
+  lleva el cliente—, nunca una frase completa: una promesa larga ocupa cinco
+  renglones a cuerpo de display y empuja el botón fuera de la primera pantalla.
+  Debajo van **las dos mitades del estudio en
   columnas del mismo ancho** —«te ves profesional» y «operas sin enredos»— para
   que ninguna quede en segundo plano; después la línea del dolor, en dos frases
   simétricas (imagen y operación), y el botón de WhatsApp que cierra el primer
@@ -129,7 +129,7 @@ camena-2.0/
 │   ├── favicon.ico / .png      Juego de íconos
 │   ├── apple-touch-icon.png
 │   ├── og-camena.png / .webp   Imagen para compartir en redes
-│   └── fonts/                  Fraunces auto-hospedada (normal + itálica)
+│   └── fonts/                  Jakarta Sans + JetBrains Mono auto-hospedadas
 │
 └── docs/
     ├── verificar-contraste.py  Comprueba la paleta contra WCAG AA
@@ -159,44 +159,60 @@ python3 -m http.server 8899 --bind 127.0.0.1
 
 ### Color
 
-Paleta de dos superficies con un solo acento. El acento es **oro**, y su tono
-cambia según el fondo porque el mismo dorado no sirve en los dos:
+Paleta editorial: **dos superficies neutras y un solo acento**. Sin degradados,
+sin tonos tierra apagados y sin un segundo color de marca compitiendo: el
+contraste hace todo el trabajo.
 
 | Token | Valor | Uso | Contraste medido |
 |---|---|---|---|
-| `--ink` | `#191510` | Fondo oscuro, texto sobre claro | 16.75:1 sobre hueso |
-| `--paper` | `#F8F3E8` | Fondo principal claro (hueso cálido) | — |
-| `--oro` | `#C9962B` | Acento gráfico sobre oscuro | 7.24:1 sobre tinta |
-| `--oro-lt` | `#E5BC55` | Acento de **texto** sobre oscuro | 10.70:1 sobre tinta |
-| `--oro-tx` | `#7A560F` | Acento de **texto** sobre claro | 5.98:1 sobre hueso |
+| `--ink` | `#111111` | Fondo oscuro, texto sobre claro | 17.47:1 sobre hueso |
+| `--paper` | `#F7F6F3` | Fondo claro (hueso muy sutil, no blanco clínico) | — |
+| `--verde` | `#0E9F6E` | Acento gráfico: pasa 3:1 **en los dos fondos** | 3.13:1 sobre hueso · 5.58:1 sobre tinta |
+| `--verde-lt` | `#34D399` | Acento de **texto** sobre oscuro | 9.82:1 sobre tinta |
+| `--verde-tx` | `#0A6B4C` | Acento de **texto** sobre claro | 6.03:1 sobre hueso |
 
-Detalle que importa: sobre fondo claro el oro de marca **no puede llevar
-información** (2.40:1). Ahí solo se usa como filete decorativo de 1 px; para
-cualquier marca con significado se usa `--oro-tx`. El acento se resuelve solo:
-los bloques oscuros redefinen `--acento`, así que un componente escrito una vez
-funciona en claro y en oscuro.
+El verde de marca es el único que funciona igual sobre papel y sobre carbón, así
+que sirve para el punto de estado de la etiqueta superior y para los filetes,
+sin cambiar de token. El acento se resuelve solo: los bloques oscuros redefinen
+`--acento`, así que un componente escrito una vez funciona en claro y en oscuro.
 
-La tinta es un **marrón muy oscuro** (`#191510`), no negro puro. El público
-del estudio son negocios tradicionales; un negro neutro comunica estudio
-sofisticado pero puede leerse frío o distante. El fondo cálido mantiene el
-contraste (16.75:1) y se acerca más.
-
-**Pendiente de validar con personas reales:** este cambio de temperatura se
-decidió por criterio, no por evidencia. Antes de darlo por bueno, conviene
-mostrar el sitio a dos o tres dueños de negocio y preguntarles si les da
-confianza. Si la respuesta es que prefieren algo más claro, el cambio es
-cambiar los tokens de `variables.css`, no rehacer el diseño.
+**Por qué el verde y no otro.** Verde esmeralda de terminal: es el color del
+registro del estudio —sistemas, monitoreo, estado— y no del repertorio cálido
+de agencia creativa. El acento anterior (oro sobre marrón) daba una temperatura
+cálida y artesanal, pero se leía «tienda de artesanías» antes que «taller de
+software».
 
 ### Tipografía
 
-- **Títulos:** Fraunces, auto-hospedada (107 KB, dos archivos). Una serif con
-  carácter en lugar de la sans genérica.
-- **Texto:** la fuente del sistema. Cero peticiones, cero parpadeo.
-- **Detalle técnico:** pila monoespaciada del sistema para números, etiquetas y
-  metadatos. Es lo que le da al sitio su aire de estudio y no de plantilla.
+- **Titulares y texto:** Plus Jakarta Sans, auto-hospedada, variable (2 archivos,
+  57 KB). Geométrica, ancha y limpia: da autoridad sin la expresividad de una
+  serif, que en un negocio de sistemas suena a portada de libro.
+- **Etiquetas, precios y cifras:** JetBrains Mono, auto-hospedada (1 archivo,
+  31 KB). Es lo que le da al sitio su aire de terminal y de ficha técnica.
+- **Total: 88 KB** en tres archivos, **menos** que la serif anterior (110 KB en
+  dos). La variable cubre los pesos 200–800 en un solo archivo.
+- La segunda línea del titular se distingue por **color, no por cursiva**: en una
+  geométrica la cursiva falsa se nota, y el contraste editorial es más serio.
 
-El `h1` ronda 4.5× el tamaño del cuerpo en escritorio, con escala fluida
-(`clamp`) para que no haya saltos entre anchos.
+El `h1` ronda 4× el tamaño del cuerpo en escritorio, con escala fluida (`clamp`)
+para que no haya saltos entre anchos.
+
+### Detalles de taller (craftsmanship digital)
+
+Cuatro cosas que no se ven en una captura de pantalla pero se sienten al usarlo:
+
+1. **Filetes punteados, no líneas perfectas.** Los separadores de listas largas
+   (servicios, disciplinas, datos del hero, índice lateral) son punteados de
+   1 px: leen como papel y lápiz, no como borde de caja.
+2. **Sin cajas por defecto.** Los contenedores se ganan el borde: el índice del
+   hero no tiene fondo ni caja, solo un filete vertical de 1 px que lo separa
+   del titular. Menos contenedor, más tipografía.
+3. **Botones que responden.** Al pasar el mouse crecen un 2 % y levantan una
+   sombra profunda; al pulsarlos bajan un 0.5 %. Nada de rebotes ni de bucles, y
+   todo desactivado con `prefers-reduced-motion`.
+4. **El sello del pie.** «Diseñado píxel a píxel en Apatzingán», con un engrane
+   dibujado a mano: dientes de longitud irregular, aro levemente ovalado. Es la
+   firma de quien lo hizo, no el logo otra vez.
 
 ### Retícula y ritmo
 
@@ -251,8 +267,8 @@ tiempo): es preferible perder el efecto a que un bloque se quede invisible.
 ## Rendimiento
 
 - Sin frameworks, sin dependencias, sin build. Cuatro archivos JS pequeños.
-- Dos archivos de fuente auto-hospedados, precargados, con `font-display: swap`
-  y `unicode-range` limitado a latino.
+- Tres archivos de fuente auto-hospedados (88 KB), los dos de la primera pantalla
+  precargados, con `font-display: swap` y `unicode-range` limitado a latino.
 - Las maquetas del LAB son interfaces construidas con CSS, no imágenes: cero
   fotografías y cero peticiones extra.
 - JavaScript con `defer`, animaciones por `transform` y `opacity`, y un único
@@ -503,6 +519,10 @@ resultados **sin rearmar la página**.
 - [x] Eje reposicionado a **estudio de diseño y sistemas operativos**: hero con
       dos mitades, diagnósticos por costo, etapa de sistemas como protagonista,
       catálogo de servicios abierto por sistemas y tesis en «Cómo trabajamos»
+- [x] Rediseño editorial: paleta neutra con un solo acento verde, tipografía
+      geométrica auto-hospedada (Jakarta Sans + JetBrains Mono, 88 KB), índice
+      del hero sin caja, etiqueta de estado con punto verde, filetes punteados,
+      botones con escala contenida y sello de taller en el pie
 - [ ] Decidir el lema: «Tu idea. Nuestra solución.» sigue en el pie, en Open
       Graph y en los datos estructurados, y es lo más genérico que queda del
       sitio. Si se cambia, hay que cambiarlo en los tres sitios a la vez

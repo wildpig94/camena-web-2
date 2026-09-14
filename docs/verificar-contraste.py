@@ -20,23 +20,23 @@ import sys
 # ── Paleta vigente (debe espejar css/variables.css) ─────────────
 C = {
     # Neutros claros
-    "paper":         "#F8F3E8",
-    "paper-2":       "#FDFAF3",
-    "texto":         "#16130D",
-    "texto-2":       "#6B6759",
-    "linea":         "#E0D5C0",
-    "borde-fuerte":  "#8A7D62",
+    "paper":         "#F7F6F3",
+    "paper-2":       "#FCFBF9",
+    "texto":         "#111111",
+    "texto-2":       "#5C5C58",
+    "linea":         "#E3E1DB",
+    "borde-fuerte":  "#6F6F69",
     # Neutros oscuros
-    "ink":           "#191510",
-    "ink-2":         "#201B14",
-    "ink-3":         "#312A22",
-    "ink-4":         "#7A6340",
-    "texto-claro":   "#F4F1E8",
-    "texto-claro-2": "#B5B1A8",
-    # Marca
-    "oro":           "#C9962B",
-    "oro-lt":        "#E5BC55",
-    "oro-tx":        "#7A560F",
+    "ink":           "#111111",
+    "ink-2":         "#181818",
+    "ink-3":         "#2B2B2B",
+    "ink-4":         "#757570",
+    "texto-claro":   "#F4F3F0",
+    "texto-claro-2": "#A8A8A2",
+    # Acento único: verde esmeralda, en tres tonos según el fondo
+    "verde":         "#0E9F6E",
+    "verde-lt":      "#34D399",
+    "verde-tx":      "#0A6B4C",
 }
 
 # (frente, fondo, mínimo, descripción)
@@ -46,25 +46,25 @@ P = [
     ("texto-2",      "paper",    4.5, "texto secundario sobre hueso"),
     ("texto",        "paper-2",  4.5, "texto sobre tarjeta"),
     ("texto-2",      "paper-2",  4.5, "texto secundario sobre tarjeta"),
-    ("oro-tx",       "paper",    4.5, "acento de TEXTO sobre hueso"),
-    ("oro-tx",       "paper-2",  4.5, "acento de TEXTO sobre tarjeta"),
+    ("verde-tx",       "paper",    4.5, "acento de TEXTO sobre hueso"),
+    ("verde-tx",       "paper-2",  4.5, "acento de TEXTO sobre tarjeta"),
     # ── Texto sobre superficies oscuras ──
     ("texto-claro",   "ink",     4.5, "texto claro sobre tinta"),
     ("texto-claro",   "ink-2",   4.5, "texto claro sobre superficie"),
     ("texto-claro-2", "ink",     4.5, "texto atenuado sobre tinta"),
     ("texto-claro-2", "ink-2",   4.5, "texto atenuado sobre superficie"),
-    ("oro-lt",        "ink",     4.5, "acento de texto sobre tinta"),
-    ("oro-lt",        "ink-2",   4.5, "acento de texto sobre superficie"),
+    ("verde-lt",        "ink",     4.5, "acento de texto sobre tinta"),
+    ("verde-lt",        "ink-2",   4.5, "acento de texto sobre superficie"),
     # ── Gráficos ──
-    ("oro",           "ink",     3.0, "acento gráfico sobre tinta"),
-    ("oro",           "ink-2",   3.0, "acento gráfico sobre superficie"),
+    ("verde",           "ink",     3.0, "acento gráfico sobre tinta"),
+    ("verde",           "ink-2",   3.0, "acento gráfico sobre superficie"),
     # ── Controles: un borde de botón es interfaz y exige 3:1 ──
     ("borde-fuerte",  "paper",   3.0, "borde de control sobre hueso"),
     ("borde-fuerte",  "paper-2", 3.0, "borde de control sobre tarjeta"),
     ("ink-4",         "ink",     3.0, "borde de control sobre tinta"),
     ("ink-4",         "ink-2",   3.0, "borde de control sobre superficie"),
     # ── Filetes decorativos de 1 px: no comunican información ──
-    ("oro",           "paper",   1.2, "filete decorativo sobre hueso"),
+    ("verde",           "paper",   3.0, "punto de estado y acento gráfico sobre hueso"),
     ("linea",         "paper",   1.2, "línea divisoria sobre hueso"),
     ("ink-3",         "ink",     1.2, "línea divisoria sobre tinta"),
 ]

@@ -31,7 +31,7 @@ svg.ic path[d^="M12 2a10"] {
   gap: var(--e-2);
   padding: 0.875rem 1.5rem;
   border: 1px solid transparent;
-  border-radius: var(--radio-pastilla);
+  border-radius: var(--radio-control);
   font-family: var(--texto-fuente);
   font-size: 0.9375rem;
   font-weight: var(--peso-fuerte);
@@ -39,15 +39,18 @@ svg.ic path[d^="M12 2a10"] {
   letter-spacing: 0.01em;
   text-align: center;
   cursor: pointer;
-  transition:
-    transform var(--dur-rapida) var(--curva),
-    background var(--dur-rapida) var(--curva),
-    color var(--dur-rapida) var(--curva),
-    border-color var(--dur-rapida) var(--curva),
-    box-shadow var(--dur-rapida) var(--curva);
+  transition: transform var(--dur-rapida) var(--curva), box-shadow var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva), color var(--dur-rapida) var(--curva), border-color var(--dur-rapida) var(--curva);
 }
 .boton:hover { transform: translateY(-2px); }
 .boton:active { transform: translateY(0); }
+/* Micro-detalle de taller: el botón crece un 2 % y levanta una sombra
+   profunda. Nada de rebotes ni de movimiento infinito. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .boton:hover { transform: scale(1.02); box-shadow: var(--sombra-lg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .boton:active { transform: scale(0.995); }
+}
 .boton:hover .ic--flecha { transform: translateX(4px); }
 
 .boton--sm { padding: 0.5625rem 1.125rem; font-size: 0.875rem; }
@@ -81,7 +84,7 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto);
   border-color: var(--borde-fuerte);
 }
-.boton--linea:hover { border-color: var(--texto); background: rgba(25, 21, 16, 0.04); }
+.boton--linea:hover { border-color: var(--texto); background: rgba(17, 17, 17, 0.04); }
 
 /* Contorno claro: solo donde el fondo es oscuro de verdad. El hero pasó
    a fondo claro, así que ya no entra en esta lista. */
@@ -93,15 +96,15 @@ svg.ic path[d^="M12 2a10"] {
 .llamada .boton--linea:hover,
 
 /* Oro: reservado al CTA de mayor jerarquía */
-.boton--oro {
-  background: var(--oro);
+.boton--verde {
+  background: var(--verde);
   color: var(--ink);
-  border-color: var(--oro);
+  border-color: var(--verde);
 }
-.boton--oro:hover {
-  background: var(--oro-lt);
-  border-color: var(--oro-lt);
-  box-shadow: 0 12px 30px rgba(201, 150, 43, 0.3);
+.boton--verde:hover {
+  background: var(--verde-lt);
+  border-color: var(--verde-lt);
+  box-shadow: 0 12px 30px rgba(14, 159, 110, 0.3);
 }
 
 
@@ -110,7 +113,7 @@ svg.ic path[d^="M12 2a10"] {
   position: sticky;
   top: 0;
   z-index: var(--z-cabecera);
-  background: rgba(25, 21, 16, 0.86);
+  background: rgba(17, 17, 17, 0.86);
   backdrop-filter: blur(16px) saturate(1.5);
   -webkit-backdrop-filter: blur(16px) saturate(1.5);
   border-bottom: 1px solid transparent;
@@ -118,7 +121,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .cabecera--pegada {
   border-bottom-color: var(--ink-3);
-  background: rgba(25, 21, 16, 0.94);
+  background: rgba(17, 17, 17, 0.94);
 }
 .cabecera--oculta { transform: translateY(-100%); }
 .cabecera { transition: transform var(--dur) var(--curva), border-color var(--dur) var(--curva), background var(--dur) var(--curva); }
@@ -174,13 +177,13 @@ svg.ic path[d^="M12 2a10"] {
   bottom: 0;
   width: 0;
   height: 1px;
-  background: var(--oro);
+  background: var(--verde);
   transition: width var(--dur) var(--curva);
 }
 .nav__enlace:hover,
 .nav__enlace.is-actual { color: var(--texto-claro); }
 .nav__enlace:hover::after { width: 100%; }
-.nav__enlace.is-actual { color: var(--oro-lt); }
+.nav__enlace.is-actual { color: var(--verde-lt); }
 .nav__enlace.is-actual::after { width: 100%; }
 
 .nav__contacto { display: flex; align-items: center; gap: var(--e-3); }
@@ -192,10 +195,10 @@ svg.ic path[d^="M12 2a10"] {
   padding: var(--e-2) var(--e-3);
   font-size: 0.875rem;
   color: var(--texto-claro-2);
-  border-radius: var(--radio-pastilla);
+  border-radius: var(--radio-control);
   transition: color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
 }
-.nav__whatsapp:hover { color: var(--oro-lt); background: rgba(201, 150, 43, 0.1); }
+.nav__whatsapp:hover { color: var(--verde-lt); background: rgba(14, 159, 110, 0.1); }
 
 /* Botón de menú móvil */
 .menu-boton {
@@ -231,26 +234,27 @@ svg.ic path[d^="M12 2a10"] {
 
 
 /* ═══════════════ SELLO / MICRO-ETIQUETA DEL HERO ═══════════════ */
+/* Etiqueta de estado. Antes era una píldora con fondo y borde: contenedor de
+   plantilla. Ahora es tipografía: mono muy chica, punto de estado y nada más.
+   La línea de abajo la ancla al titular como un renglón de ficha técnica. */
 .sello {
   display: inline-flex;
   align-items: center;
-  gap: var(--e-3);
-  padding: 7px 15px 7px 11px;
-  background: rgba(201, 150, 43, 0.1);
-  border: 1px solid var(--oro-linea);
-  border-radius: var(--radio-pastilla);
+  gap: var(--e-2);
+  padding-bottom: 6px;
+  border-bottom: 1px dotted var(--borde);
   font-family: var(--mono);
   font-size: var(--t-micro);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--oro-tx);
-  max-width: 100%;
+  color: var(--texto-2);
 }
+
 .sello__marca {
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--oro);
-  box-shadow: 0 0 0 3px rgba(201, 150, 43, 0.2);
+  background: var(--verde);
+  box-shadow: 0 0 0 3px var(--verde-tenue);
   flex-shrink: 0;
 }
 
@@ -258,7 +262,7 @@ svg.ic path[d^="M12 2a10"] {
 /* ═══════════════ DISCIPLINAS (acordeón editorial) ═══════════════ */
 .disciplinas { border-top: 1px solid var(--borde); }
 
-.disciplina { border-bottom: 1px solid var(--borde); }
+.disciplina { border-bottom: 1px dotted var(--borde); }
 
 /* El <h3> que envuelve el botón conserva los márgenes del navegador (1em
    arriba y abajo). Como el artículo tiene borde inferior, esos márgenes no
@@ -334,8 +338,8 @@ svg.ic path[d^="M12 2a10"] {
 .disciplina__boton:hover .disciplina__mas::after { background: var(--paper); }
 
 .disciplina__boton[aria-expanded="true"] .disciplina__mas {
-  background: var(--oro);
-  border-color: var(--oro);
+  background: var(--verde);
+  border-color: var(--verde);
   transform: rotate(135deg);
 }
 .disciplina__boton[aria-expanded="true"] .disciplina__mas::before,
@@ -363,7 +367,7 @@ svg.ic path[d^="M12 2a10"] {
   margin-top: var(--e-4);
   padding: var(--e-3) var(--e-4);
   background: var(--paper);
-  border-left: 2px solid var(--oro);
+  border-left: 2px solid var(--verde);
   border-radius: var(--radio-sm);
   font-size: 0.8125rem;
   line-height: 1.6;
@@ -388,7 +392,7 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-2);
   transition: border-color var(--dur-rapida) var(--curva), color var(--dur-rapida) var(--curva);
 }
-.campos li:hover { border-color: var(--oro-linea); color: var(--texto); }
+.campos li:hover { border-color: var(--verde-linea); color: var(--texto); }
 
 
 /* ═══════════════ RESOLUTOR DE NECESIDADES ═══════════════ */
@@ -423,7 +427,7 @@ svg.ic path[d^="M12 2a10"] {
   position: absolute;
   left: 0; top: 0;
   width: 2px; height: 100%;
-  background: var(--oro);
+  background: var(--verde);
   transform: scaleY(0);
   transform-origin: center;
   transition: transform var(--dur) var(--curva);
@@ -529,8 +533,8 @@ svg.ic path[d^="M12 2a10"] {
   max-width: 62ch;
   margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
   padding: var(--e-4) var(--e-5);
-  background: rgba(201, 150, 43, 0.07);
-  border-left: 2px solid var(--oro);
+  background: rgba(14, 159, 110, 0.07);
+  border-left: 2px solid var(--verde);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
   font-size: 0.9375rem;
   line-height: 1.6;
@@ -553,7 +557,7 @@ svg.ic path[d^="M12 2a10"] {
   border-radius: var(--radio);
   transition: border-color var(--dur) var(--curva), transform var(--dur-lenta) var(--curva);
 }
-.lab-pieza:hover { border-color: var(--oro-linea); transform: translateY(-3px); }
+.lab-pieza:hover { border-color: var(--verde-linea); transform: translateY(-3px); }
 
 .lab-pieza--ancha { grid-column: 1 / -1; }
 .lab-pieza--ancha { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
@@ -564,7 +568,7 @@ svg.ic path[d^="M12 2a10"] {
   place-items: center;
   padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   background:
-    linear-gradient(135deg, rgba(201, 150, 43, 0.06), transparent 60%),
+    linear-gradient(135deg, rgba(14, 159, 110, 0.06), transparent 60%),
     var(--ink);
   border-bottom: 1px solid var(--borde);
   overflow: hidden;
@@ -589,7 +593,7 @@ svg.ic path[d^="M12 2a10"] {
 
 .chip {
   padding: 4px 10px;
-  border-radius: var(--radio-pastilla);
+  border-radius: var(--radio-control);
   font-family: var(--mono);
   font-size: var(--t-micro);
   font-weight: var(--peso-medio);
@@ -597,7 +601,7 @@ svg.ic path[d^="M12 2a10"] {
   text-transform: uppercase;
   border: 1px solid currentColor;
 }
-.chip--concepto { color: var(--oro-lt); }
+.chip--concepto { color: var(--verde-lt); }
 .chip--prototipo { color: var(--mock-azul); }
 .chip--experimento { color: var(--mock-rosa); }
 /* Etiquetas previstas para cuando existan proyectos publicables */
@@ -809,7 +813,7 @@ svg.ic path[d^="M12 2a10"] {
 .mock-grafica span {
   flex: 1;
   height: var(--h);
-  background: linear-gradient(to top, rgba(201, 150, 43, 0.35), rgba(201, 150, 43, 0.85));
+  background: linear-gradient(to top, rgba(14, 159, 110, 0.35), rgba(14, 159, 110, 0.85));
   border-radius: 2px 2px 0 0;
 }
 
@@ -828,7 +832,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .estado {
   padding: 2px 8px;
-  border-radius: var(--radio-pastilla);
+  border-radius: var(--radio-control);
   font-size: 0.625rem;
   font-family: var(--mono);
   letter-spacing: 0.04em;
@@ -880,9 +884,9 @@ svg.ic path[d^="M12 2a10"] {
 }
 .mock-chat__salida {
   justify-self: start;
-  background: rgba(201, 150, 43, 0.12);
-  border: 1px solid rgba(201, 150, 43, 0.3);
-  color: var(--mock-oro);
+  background: rgba(14, 159, 110, 0.12);
+  border: 1px solid rgba(14, 159, 110, 0.3);
+  color: var(--mock-acento);
   border-bottom-left-radius: 3px;
 }
 
@@ -902,7 +906,7 @@ svg.ic path[d^="M12 2a10"] {
   display: block;
   height: 6px;
   width: var(--w);
-  background: linear-gradient(to right, rgba(201, 150, 43, 0.7), rgba(201, 150, 43, 0.25));
+  background: linear-gradient(to right, rgba(14, 159, 110, 0.7), rgba(14, 159, 110, 0.25));
   border-radius: 3px;
 }
 .mock-audio__onda {
@@ -915,7 +919,7 @@ svg.ic path[d^="M12 2a10"] {
 .mock-audio__onda i {
   flex: 1;
   height: var(--h);
-  background: rgba(229, 188, 85, 0.5);
+  background: rgba(52, 211, 153, 0.5);
   border-radius: 2px;
 }
 .mock-audio__tiempo {
@@ -936,7 +940,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .mock-agenda__dias .hoy {
   color: var(--ink);
-  background: var(--oro);
+  background: var(--verde);
   border-radius: 3px;
   font-weight: 700;
 }
@@ -959,12 +963,12 @@ svg.ic path[d^="M12 2a10"] {
 }
 .bloque--lleno { background: var(--mock-1); color: var(--mock-2); }
 .bloque--nuevo {
-  background: rgba(229, 188, 85, 0.13);
-  border-color: var(--mock-oro-linea);
-  color: var(--mock-oro);
+  background: rgba(52, 211, 153, 0.13);
+  border-color: var(--mock-acento-linea);
+  color: var(--mock-acento);
 }
 /* La hora ocupa casi todo el ancho y a 10 px necesita el oro más claro */
-.bloque--nuevo span { color: var(--mock-oro); }
+.bloque--nuevo span { color: var(--mock-acento); }
 
 .mock-campana__claim {
   font-family: var(--display);
@@ -978,12 +982,12 @@ svg.ic path[d^="M12 2a10"] {
 .pieza-formato {
   display: grid;
   place-items: center;
-  border: 1px dashed rgba(201, 150, 43, 0.45);
+  border: 1px dashed rgba(14, 159, 110, 0.45);
   border-radius: var(--radio-sm);
   font-family: var(--mono);
   font-size: 0.625rem;
   letter-spacing: 0.08em;
-  color: var(--oro-lt);
+  color: var(--verde-lt);
 }
 .pieza-formato--cuadrada { width: 3.5rem; height: 3.5rem; }
 .pieza-formato--vertical { width: 2.5rem; height: 4.5rem; }
@@ -1010,7 +1014,7 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--acento);
   font-weight: var(--peso-fuerte);
 }
-.paquete--destacado .paquete__precio strong { color: var(--oro-lt); }
+.paquete--destacado .paquete__precio strong { color: var(--verde-lt); }
 
 
 .paquete {
@@ -1045,8 +1049,8 @@ svg.ic path[d^="M12 2a10"] {
 /* El paquete destacado es oscuro: su acento debe ser el oro claro,
    igual que en el resto de superficies oscuras del sitio. */
 .paquete--destacado {
-  --acento: var(--oro-lt);
-  --acento-suave: rgba(201, 150, 43, 0.12);
+  --acento: var(--verde-lt);
+  --acento-suave: rgba(14, 159, 110, 0.12);
   /* --texto-2 es un gris de 5.1:1 sobre papel, pero solo 3.41:1 sobre tinta.
      En esta tarjeta oscura hay que cambiar el token, no el componente. */
   --texto-2: var(--texto-claro-2);
@@ -1244,8 +1248,8 @@ svg.ic path[d^="M12 2a10"] {
 .campo__control::placeholder { color: var(--texto-2); opacity: 0.62; }
 .campo__control:hover { border-color: var(--texto-2); }
 .campo__control:focus {
-  border-color: var(--oro-tx);
-  box-shadow: 0 0 0 3px rgba(201, 150, 43, 0.18);
+  border-color: var(--verde-tx);
+  box-shadow: 0 0 0 3px rgba(14, 159, 110, 0.18);
   background: var(--paper-2);
   outline: none;
 }
@@ -1269,8 +1273,8 @@ svg.ic path[d^="M12 2a10"] {
 .contexto-aviso {
   margin-bottom: var(--e-4);
   padding: var(--e-3) var(--e-4);
-  background: rgba(201, 150, 43, 0.1);
-  border-left: 2px solid var(--oro);
+  background: rgba(14, 159, 110, 0.1);
+  border-left: 2px solid var(--verde);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -1287,8 +1291,8 @@ svg.ic path[d^="M12 2a10"] {
 .enviado {
   margin-top: var(--e-5);
   padding: var(--e-4) var(--e-5);
-  background: rgba(201, 150, 43, 0.08);
-  border: 1px solid var(--oro-linea);
+  background: rgba(14, 159, 110, 0.08);
+  border: 1px solid var(--verde-linea);
   border-radius: var(--radio-sm);
   animation: aparecer var(--dur-lenta) var(--curva-salida) both;
 }
@@ -1321,19 +1325,19 @@ svg.ic path[d^="M12 2a10"] {
 .llamada .dato { border-bottom-color: var(--borde); }
 .llamada .dato__clave { color: var(--texto-claro-2); }
 .llamada .dato__valor { color: var(--texto-claro); }
-.llamada a.dato__valor:hover { color: var(--oro-lt); }
+.llamada a.dato__valor:hover { color: var(--verde-lt); }
 
 .llamada .copiar {
   border-color: var(--ink-4);
   color: var(--texto-claro-2);
 }
-.llamada .copiar:hover { border-color: var(--oro); color: var(--texto-claro); }
+.llamada .copiar:hover { border-color: var(--verde); color: var(--texto-claro); }
 /* El estado «Copiado» heredaba el oro oscuro pensado para papel y sobre
    tinta daba 2.74:1. Aquí el acento tiene que ser el claro. */
 .llamada .copiar.is-copiado {
-  border-color: var(--oro-lt);
-  color: var(--oro-lt);
-  background: rgba(229, 188, 85, 0.14);
+  border-color: var(--verde-lt);
+  color: var(--verde-lt);
+  background: rgba(52, 211, 153, 0.14);
 }
 
 /* El formulario conserva su superficie clara: es donde se escribe, y
@@ -1370,7 +1374,7 @@ svg.ic path[d^="M12 2a10"] {
 .copiar {
   padding: 5px 11px;
   border: 1px solid var(--borde-fuerte);
-  border-radius: var(--radio-pastilla);
+  border-radius: var(--radio-control);
   font-family: var(--mono);
   font-size: var(--t-micro);
   letter-spacing: var(--tracking-mono);
@@ -1380,9 +1384,9 @@ svg.ic path[d^="M12 2a10"] {
 }
 .copiar:hover { border-color: var(--texto); color: var(--texto); }
 .copiar.is-copiado {
-  border-color: var(--oro-tx);
-  color: var(--oro-tx);
-  background: rgba(201, 150, 43, 0.1);
+  border-color: var(--verde-tx);
+  color: var(--verde-tx);
+  background: rgba(14, 159, 110, 0.1);
 }
 
 
@@ -1399,10 +1403,10 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--ink);
   color: var(--paper);
   border: 1px solid var(--ink-4);
-  border-radius: var(--radio-pastilla);
+  border-radius: var(--radio-control);
   font-size: 0.875rem;
   font-weight: var(--peso-medio);
-  box-shadow: 0 12px 32px rgba(25, 21, 16, 0.22);
+  box-shadow: 0 12px 32px rgba(17, 17, 17, 0.22);
   opacity: 1;
   visibility: visible;
   transition: transform var(--dur) var(--curva), background var(--dur-rapida) var(--curva),
@@ -1412,11 +1416,11 @@ svg.ic path[d^="M12 2a10"] {
 .flotante:hover {
   transform: translateY(-3px);
   background: var(--ink-2);
-  box-shadow: 0 18px 40px rgba(25, 21, 16, 0.3);
+  box-shadow: 0 18px 40px rgba(17, 17, 17, 0.3);
 }
 .flotante__icono {
   width: 1.25rem; height: 1.25rem;
-  fill: var(--oro-lt);
+  fill: var(--verde-lt);
   flex-shrink: 0;
 }
 .flotante__texto { white-space: nowrap; }
@@ -1434,23 +1438,23 @@ svg.ic path[d^="M12 2a10"] {
    y debe conservar texto oscuro sobre fondo oro incluso dentro de un
    bloque oscuro, sin depender del orden en que se hayan escrito las
    reglas de contexto. */
-.seccion--oscura .boton--oro,
-.llamada .boton--oro,
-.custom .boton--oro,
-.precio .boton--oro,
-.pie .boton--oro {
-  background: var(--oro);
+.seccion--oscura .boton--verde,
+.llamada .boton--verde,
+.custom .boton--verde,
+.precio .boton--verde,
+.pie .boton--verde {
+  background: var(--verde);
   color: var(--ink);
-  border-color: var(--oro);
+  border-color: var(--verde);
 }
-.hero .boton--oro:hover,
-.seccion--oscura .boton--oro:hover,
-.llamada .boton--oro:hover,
-.custom .boton--oro:hover,
-.precio .boton--oro:hover,
-.pie .boton--oro:hover {
-  background: var(--oro-lt);
-  border-color: var(--oro-lt);
+.hero .boton--verde:hover,
+.seccion--oscura .boton--verde:hover,
+.llamada .boton--verde:hover,
+.custom .boton--verde:hover,
+.precio .boton--verde:hover,
+.pie .boton--verde:hover {
+  background: var(--verde-lt);
+  border-color: var(--verde-lt);
   color: var(--ink);
 }
 
@@ -1494,15 +1498,15 @@ svg.ic path[d^="M12 2a10"] {
   --texto: var(--texto-claro);
   --texto-2: var(--texto-claro-2);
   --borde: var(--borde-oscuro);
-  --acento: var(--oro-lt);
-  --acento-suave: rgba(201, 150, 43, 0.1);
+  --acento: var(--verde-lt);
+  --acento-suave: rgba(14, 159, 110, 0.1);
 }
 .etapa--destacada::before {
   content: "";
   position: absolute;
   inset: 0 0 auto 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--oro), transparent 65%);
+  background: linear-gradient(90deg, var(--verde), transparent 65%);
   border-radius: var(--radio) var(--radio) 0 0;
 }
 
@@ -1511,8 +1515,8 @@ svg.ic path[d^="M12 2a10"] {
   display: inline-block;
   margin-bottom: var(--e-3);
   padding: 4px 11px;
-  border: 1px solid var(--oro-linea);
-  border-radius: var(--radio-pastilla);
+  border: 1px solid var(--verde-linea);
+  border-radius: var(--radio-control);
   font-family: var(--mono);
   font-size: var(--t-micro);
   letter-spacing: var(--tracking-etiqueta);
@@ -1593,7 +1597,7 @@ svg.ic path[d^="M12 2a10"] {
   align-items: baseline;
   gap: var(--e-3);
   padding: var(--e-3) 0;
-  border-bottom: 1px solid var(--borde);
+  border-bottom: 1px dotted var(--borde);
 }
 .servicios li:last-child { border-bottom: 0; }
 
@@ -1615,7 +1619,7 @@ svg.ic path[d^="M12 2a10"] {
   margin-top: var(--e-4);
   padding: var(--e-3) var(--e-4);
   background: var(--acento-suave);
-  border-left: 2px solid var(--oro);
+  border-left: 2px solid var(--verde);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
   font-size: 0.875rem;
   line-height: 1.55;
@@ -1646,8 +1650,8 @@ svg.ic path[d^="M12 2a10"] {
   --texto: var(--texto-claro);
   --texto-2: var(--texto-claro-2);
   --borde: var(--borde-oscuro);
-  --acento: var(--oro-lt);
-  --acento-suave: rgba(201, 150, 43, 0.12);
+  --acento: var(--verde-lt);
+  --acento-suave: rgba(14, 159, 110, 0.12);
 }
 
 .armar__titulo {
@@ -1668,7 +1672,7 @@ svg.ic path[d^="M12 2a10"] {
   font-size: 0.9375rem;
   color: var(--texto-2);
 }
-.armar__ayuda a { color: var(--oro-lt); font-weight: var(--peso-medio); }
+.armar__ayuda a { color: var(--verde-lt); font-weight: var(--peso-medio); }
 
 .armar__formulario { display: grid; gap: var(--e-5); }
 
@@ -1686,7 +1690,7 @@ svg.ic path[d^="M12 2a10"] {
   font-size: var(--t-micro);
   letter-spacing: var(--tracking-etiqueta);
   text-transform: uppercase;
-  color: var(--oro-lt);
+  color: var(--verde-lt);
 }
 
 .opcion {
@@ -1701,7 +1705,7 @@ svg.ic path[d^="M12 2a10"] {
   cursor: pointer;
   transition: border-color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
 }
-.opcion:hover { border-color: var(--oro); background: rgba(201, 150, 43, 0.08); }
+.opcion:hover { border-color: var(--verde); background: rgba(14, 159, 110, 0.08); }
 
 /* La casilla nativa se oculta y se dibuja una a medida: así mide 24px de
    verdad (el mínimo táctil) y el área de toque es la etiqueta completa.
@@ -1735,13 +1739,13 @@ svg.ic path[d^="M12 2a10"] {
   transition: transform var(--dur-rapida) var(--curva);
 }
 .opcion:has(input:checked) .opcion__marca {
-  background: var(--oro);
-  border-color: var(--oro);
+  background: var(--verde);
+  border-color: var(--verde);
 }
 .opcion:has(input:checked) .opcion__marca::after { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
 /* Foco de teclado visible en la casilla dibujada */
 .opcion:has(input:focus-visible) .opcion__marca {
-  outline: 2px solid var(--oro-lt);
+  outline: 2px solid var(--verde-lt);
   outline-offset: 2px;
 }
 
@@ -1768,8 +1772,8 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-2);
   white-space: nowrap;
 }
-.opcion:has(input:checked) { border-color: var(--oro); background: rgba(201, 150, 43, 0.14); }
-.opcion:has(input:checked) em { color: var(--oro-lt); font-weight: var(--peso-fuerte); }
+.opcion:has(input:checked) { border-color: var(--verde); background: rgba(14, 159, 110, 0.14); }
+.opcion:has(input:checked) em { color: var(--verde-lt); font-weight: var(--peso-fuerte); }
 
 .armar__total {
   display: flex;
@@ -1789,7 +1793,7 @@ svg.ic path[d^="M12 2a10"] {
 .armar__total-cifra {
   font-family: var(--display);
   font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
-  color: var(--oro-lt);
+  color: var(--verde-lt);
   font-weight: var(--peso-fuerte);
 }
 .armar__total-nota {
@@ -1832,7 +1836,7 @@ svg.ic path[d^="M12 2a10"] {
   --texto: var(--texto-claro);
   --texto-2: var(--texto-claro-2);
   --borde: var(--borde-oscuro);
-  --acento: var(--oro-lt);
+  --acento: var(--verde-lt);
 }
 
 .caso-tarjeta__problema {
