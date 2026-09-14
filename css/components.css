@@ -1474,7 +1474,20 @@ svg.ic path[d^="M12 2a10"] {
   border-radius: var(--radio);
 }
 
-.etapa--campanas {
+/* Nota: la superficie oscura es exclusiva de la etapa protagonista. Antes la
+   compartía con la etapa de campañas y las dos bandas pesaban igual: cuando
+   todo se destaca, nada se destaca. Las etapas de campañas y de entrada van
+   sobre papel y el contraste hace el trabajo de jerarquía. */
+
+/* ── Etapa protagonista: sistemas y automatización ────────────────
+   El eje del estudio es diseño + sistemas operativos, y en la sección de
+   precios eso se ve: esta etapa ocupa las dos columnas, es la única que
+   lleva sello, filete dorado y título a escala mayor. El paquete de entrada
+   (marca) sigue existiendo, pero ya no es lo primero que pesa en la página. */
+.etapa--ancha { grid-column: 1 / -1; }
+
+.etapa--destacada {
+  position: relative;
   background: var(--ink);
   color: var(--texto-claro);
   border-color: var(--ink);
@@ -1482,7 +1495,66 @@ svg.ic path[d^="M12 2a10"] {
   --texto-2: var(--texto-claro-2);
   --borde: var(--borde-oscuro);
   --acento: var(--oro-lt);
+  --acento-suave: rgba(201, 150, 43, 0.1);
 }
+.etapa--destacada::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--oro), transparent 65%);
+  border-radius: var(--radio) var(--radio) 0 0;
+}
+
+/* Sello: dice para quién es la etapa en cuatro palabras. */
+.etapa__sello {
+  display: inline-block;
+  margin-bottom: var(--e-3);
+  padding: 4px 11px;
+  border: 1px solid var(--oro-linea);
+  border-radius: var(--radio-pastilla);
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--acento);
+}
+
+/* Dentro de una banda de ancho completo, el contenido se parte en dos
+   columnas: el problema a la izquierda, los entregables y el precio a la
+   derecha. En una columna, la lista de precios quedaría flotando sola. */
+.etapa__cuerpo { display: flex; flex-direction: column; min-width: 0; }
+
+@media (min-width: 901px) {
+  .etapa--ancha {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: var(--e-4) clamp(1.5rem, 1rem + 2.5vw, 3.5rem);
+    align-items: start;
+  }
+  .etapa--destacada .etapa__titulo {
+    font-size: clamp(1.875rem, 1.3rem + 2.1vw, 3rem);
+    max-width: 24ch;
+  }
+  .etapa--destacada .etapa__texto { font-size: 1rem; max-width: 46ch; }
+  /* La lista arranca al ras del título, sin el aire de tarjeta suelta */
+  .etapa--ancha .servicios { margin-top: 0; }
+}
+
+/* Enlace secundario de la etapa protagonista: el armador sigue ahí, pero
+   como salida, no como la acción principal (esa es WhatsApp). Lleva relleno
+   propio para no quedar por debajo del objetivo táctil mínimo de 24 px. */
+.etapa__armador {
+  display: inline-block;
+  padding-block: 6px;
+  font-size: 0.875rem;
+  color: var(--texto-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--borde);
+}
+.etapa__armador:hover,
+.etapa__armador:focus-visible { color: var(--texto); text-decoration-color: currentColor; }
 
 .etapa__cuando {
   font-family: var(--mono);

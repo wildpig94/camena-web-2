@@ -26,12 +26,24 @@ una página secundaria. El inicio no es un folleto.
 
 ## Qué es esto
 
-CAMENA dejó de ser «la agencia que hace páginas web». Ahora es un estudio que
-diseña marcas, produce contenido, arma campañas y construye herramientas
-—incluidos sistemas y automatizaciones— para negocios y proyectos. Este sitio
-existe para que eso se entienda en los primeros segundos, y para que quien
-llegue con un problema —no con una lista de servicios— encuentre por dónde
-empezar.
+CAMENA dejó de ser «la agencia que hace páginas web». Es un **estudio de diseño y
+sistemas operativos para negocios locales**: hace que el negocio se vea del tamaño
+de su trabajo y que funcione sin depender de la memoria del dueño. Las dos mitades
+pesan igual —marca, página web, video y publicidad por un lado; ventas, cobros,
+inventario y automatización por el otro— y el sitio entero está ordenado para que
+eso se entienda en los primeros segundos.
+
+**El eje se repite en todas las secciones, y ahí está la prueba de que es el eje:**
+
+| Sección | Cómo se ve el eje |
+|---|---|
+| Hero | Titular en dos golpes (`Te ves profesional.` / `Operas sin enredos.`) y **dos mitades en columnas del mismo ancho**, una por cada mitad del estudio. El titular nunca se cambia por una frase larga. |
+| Datos del hero | Primer dato: diseño desde $1,500. Segundo: sistemas desde $8,000. Mismo peso, mismas cifras publicadas. |
+| Índice lateral | Abre con «Sistemas a la medida» y «Automatización»; después, la parte de diseño. |
+| Diagnósticos | La sección se titula **«¿Qué te está costando dinero?»** y cada tarjeta nombra el costo (regateo, ventas que no cuadran, deudas que no se cobran). La tarjeta resaltada es la operativa, no la de diseño. |
+| Precios | La etapa 3 —sistemas desde $8,000— es la **banda protagonista**: ancho completo, única superficie oscura, sello, filete dorado, título a escala mayor y CTA directo a WhatsApp. Las etapas de diseño quedan sobre papel. El paquete de entrada sigue existiendo, pero ya no es lo que más pesa. |
+| `servicios.html` | El catálogo **abre con «Sistemas y operación»** (01 y 02) y sigue con marca, presencia y contenido. |
+| `como-trabajamos.html` | Sección propia: «Diseño y sistemas, en el mismo estudio», con las tres piezas del puente entre ambas mitades. |
 
 Tres reglas gobiernan todas las decisiones de aquí:
 
@@ -47,9 +59,9 @@ Tres reglas gobiernan todas las decisiones de aquí:
 
 ## Voz y redacción (cómo se escribe aquí)
 
-El sitio pasó por dos correcciones de identidad: primero sonaba a agencia
-genérica, después a explicación defensiva. La voz que quedó es esta, y aplica a
-cualquier texto nuevo:
+El sitio pasó por tres correcciones: primero sonaba a agencia genérica, después a
+explicación defensiva y al final a estudio que hace sobre todo páginas web. La voz
+que quedó es esta, y aplica a cualquier texto nuevo:
 
 | Regla | Se escribe así | No se escribe así |
 |---|---|---|
@@ -57,6 +69,7 @@ cualquier texto nuevo:
 | **Frases cortas y en segunda persona.** El sujeto es el negocio del cliente, no el estudio. | «Te ves más pequeño de lo que eres.» | «Un logotipo hecho en una app puede transmitir…» |
 | **Un párrafo, una idea.** Máximo dos o tres renglones. | Un renglón por viñeta, en sustantivos concretos. | Párrafos que explican por qué el problema es un problema. |
 | **Se dice qué se entrega, no cómo nos sentimos.** | «Cotizaciones que se arman solas.» | «Nos apasiona acompañarte en tu proceso.» |
+| **El dolor se cuenta en dinero, tiempo o control.** | «Entregas y no sabes quién te debe ni cuánto.» | «La organización es clave para crecer.» |
 | **La honestidad es parte del tono, no una disculpa.** | «No son trabajos de clientes: son problemas de negocio reales, resueltos hasta el final.» | «Todavía no tenemos autorización, pero…» |
 
 **Reglas de estructura de la página que acompañan a la voz:**
@@ -64,15 +77,20 @@ cualquier texto nuevo:
 - **El titular del hero son dos golpes cortos**, no una frase completa. La
   promesa entera («ayudamos a los negocios locales a verse profesionales y a
   operar sin enredos») ocupa cinco renglones a cuerpo de display y empuja el
-  botón fuera de la primera pantalla. El subtítulo dice qué se contrata; la
-  línea siguiente dice el dolor; el botón de WhatsApp cierra el primer
-  pantallazo.
+  botón fuera de la primera pantalla. Debajo van **las dos mitades del estudio en
+  columnas del mismo ancho** —«te ves profesional» y «operas sin enredos»— para
+  que ninguna quede en segundo plano; después la línea del dolor, en dos frases
+  simétricas (imagen y operación), y el botón de WhatsApp que cierra el primer
+  pantallazo. En móvil, el rótulo de cada mitad pasa a ir en línea: esos dos
+  renglones son el botón dentro de la pantalla.
 - **El panel lateral del hero es un índice, no un protagonista.** Va sobre
   papel, con filete de 1 px, letra menuda y sin subrayados: el ojo debe ir al
   titular y al botón, no a la lista.
 - **Los diagnósticos son tarjetas de impacto**: el problema en una frase, tres
   entregables de cuatro palabras y el botón. Nunca tres viñetas de dos
-  renglones.
+  renglones. La tarjeta resaltada (`.caso-tarjeta--abierta`, la única oscura) es
+  la del caso operativo: si el eje del estudio cambia, la tarjeta resaltada
+  cambia con él.
 - **Evitar el registro de manual de autoayuda**: nada de «no estás solo»,
   «transforma tu negocio» ni promesas de crecimiento.
 
@@ -276,15 +294,21 @@ inventar nada.
 El inicio agrupa la oferta por **etapa del negocio**, porque «hacemos muchas
 cosas» no dice qué contratar:
 
-| Etapa | Para quién | Qué entra |
-|---|---|---|
-| 1 · Marca | Todavía no tiene logo ni colores | Logo · identidad · hoja de uso · papelería · etiquetas |
-| 2 · Presencia | Ya tiene marca y no lo encuentran | Páginas · catálogos · ficha de Google · video · audio · campañas |
-| 3 · Operación | Ya vende y la información vive en cuadernos | Sistemas a la medida · inventario · citas · tableros · automatización |
-| 4 · Campañas | Necesita presencia constante | Marca de campaña · contenido por mes · piezas · base de datos |
+| Etapa | Para quién | Qué entra | Tratamiento |
+|---|---|---|---|
+| 1 · Marca | Todavía no tiene logo ni colores | Logo · identidad · hoja de uso · papelería · etiquetas | Tarjeta sobre papel |
+| 2 · Presencia | Ya tiene marca y no lo encuentran | Páginas · catálogos · ficha de Google · video · audio · campañas | Tarjeta sobre papel |
+| **3 · Operación** | **Ya vende y la información vive en cuadernos** | **Sistemas a la medida · ventas · cobros · inventario · citas · tableros · automatización** | **Banda a todo el ancho, superficie oscura, sello, título grande y CTA a WhatsApp** |
+| 4 · Campañas | Necesita presencia constante | Marca de campaña · contenido por mes · piezas · base de datos | Banda a todo el ancho, sobre papel |
 
-`servicios.html` usa el mismo material en cuatro grupos —Marca · Presencia en
-internet · Contenido y publicidad · Para ordenar el negocio—, uno por disciplina.
+**Regla de la banda oscura:** es exclusiva de la etapa de sistemas. Cuando dos
+etapas la compartían, las dos pesaban igual y ninguna destacaba. Si algún día se
+añade otra etapa, va sobre papel.
+
+`servicios.html` usa el mismo material en cuatro grupos, **en otro orden**: abre
+con *Sistemas y operación* (disciplinas 01 y 02), y sigue con *Marca*, *Presencia
+en internet* y *Contenido y publicidad*. El catálogo abre por donde está el
+trabajo de mayor valor y el que menos se parece a «agencia de páginas web».
 
 ### Los tres casos de estudio del LAB
 
@@ -312,10 +336,11 @@ hay que mover los dos sitios a la vez:
 Así se ven aunque el visitante no cargue el script y las indexa el buscador. Son
 precios de partida, no cerrados: el valor real se confirma por escrito.
 
-**Coherencia obligatoria:** el precio mínimo publicado en el hero, el armador y
-la primera respuesta del FAQ tiene que ser el mismo (hoy, $1,500). Estuvieron
-desincronizados —el FAQ decía $3,500— y eso rompe la confianza justo en la
-pregunta que más se hace.
+**Coherencia obligatoria de las cifras.** Hay dos precios de entrada y aparecen
+en cinco sitios: hero (línea de precios y datos), índice lateral, etapas, armador y
+la primera respuesta del FAQ, además de los datos estructurados. Hoy son **$1,500
+el diseño y $8,000 los sistemas**. Estuvieron desincronizados —el FAQ decía
+$3,500— y eso rompe la confianza justo en la pregunta que más se hace.
 
 ### Sobre el formulario
 
@@ -475,6 +500,9 @@ resultados **sin rearmar la página**.
       diagnósticos como tarjetas de impacto, LAB reencuadrado como casos de
       estudio e índice del hero en tono menor
 - [x] Auditoría en 1440 / 1024 / 390 / 320 px sin hallazgos
+- [x] Eje reposicionado a **estudio de diseño y sistemas operativos**: hero con
+      dos mitades, diagnósticos por costo, etapa de sistemas como protagonista,
+      catálogo de servicios abierto por sistemas y tesis en «Cómo trabajamos»
 - [ ] Decidir el lema: «Tu idea. Nuestra solución.» sigue en el pie, en Open
       Graph y en los datos estructurados, y es lo más genérico que queda del
       sitio. Si se cambia, hay que cambiarlo en los tres sitios a la vez
