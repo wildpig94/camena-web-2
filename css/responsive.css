@@ -74,6 +74,10 @@
   /* Cuando el panel de precios deja de estar al lado, aparece la línea. */
   .hero__precios-breve { display: block; }
 
+  /* Las cuatro etapas y el armador pasan a una columna */
+  .etapas,
+  .armar { grid-template-columns: minmax(0, 1fr); }
+
   /* El mapa de la oferta pasa a columna */
   .grupos { grid-template-columns: minmax(0, 1fr); }
 
@@ -215,6 +219,7 @@
     padding-block: 9px;
   }
   .pie__legales { gap: var(--e-1) var(--e-5); }
+  .pie__legales a { display: inline-block; padding-block: 7px; }
 
 
   :root {

@@ -112,7 +112,7 @@ jobs:
 
       - name: Verificar que existan las páginas enlazadas
         run: |
-          for pagina in index.html como-trabajamos.html aviso-de-privacidad.html terminos.html; do
+          for pagina in index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html; do
             if [ -f "$pagina" ]; then echo "  ✓ $pagina"; else echo "  ✗ falta $pagina"; exit 1; fi
           done
 
@@ -136,7 +136,7 @@ jobs:
           # web. Se publica únicamente lo que el navegador necesita.
           mkdir -p publicar
           cp -r assets css js publicar/
-          cp index.html como-trabajamos.html aviso-de-privacidad.html terminos.html publicar/
+          cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html publicar/
           cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
           echo "── Contenido que se publica ──"
           find publicar -type f | sort | sed 's|^|  |'

@@ -7,6 +7,23 @@ Estático, sin dependencias, sin paso de compilación: se sube tal cual.
 
 ---
 
+## Estructura: qué va en el inicio y qué no
+
+La página de inicio está pensada para **una sola cosa: que alguien vea qué se
+vende, cuánto cuesta y pueda pedir su cotización en menos de un minuto.**
+Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
+
+| Página | Para qué sirve |
+|---|---|
+| `index.html` | Servicios principales con precio, cuatro etapas, armador de paquete, preguntas y contacto |
+| `servicios.html` | El catálogo completo: los siete servicios en detalle |
+| `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
+
+**Regla al añadir contenido:** si algo explica pero no ayuda a decidir, va en
+una página secundaria. El inicio no es un folleto.
+
+---
+
 ## Qué es esto
 
 CAMENA dejó de ser «la agencia que hace páginas web». Ahora es un estudio que
@@ -32,7 +49,8 @@ Tres reglas gobiernan todas las decisiones de aquí:
 
 ```
 camena-2.0/
-├── index.html                  Página principal (10 secciones)
+├── index.html                  Página principal (7 secciones)
+├── servicios.html              Catálogo completo, con precios
 ├── como-trabajamos.html        El método completo, paso por paso
 ├── aviso-de-privacidad.html    Página legal
 ├── terminos.html               Página legal

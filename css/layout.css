@@ -878,14 +878,17 @@ a.dato__valor:hover { color: var(--acento); }
 }
 .legal__interior { max-width: 46rem; margin-inline: auto; }
 .legal__volver {
+  /* Se toca con el dedo: altura mínima de objetivo táctil */
   display: inline-flex;
   align-items: center;
   gap: var(--e-2);
-  margin-bottom: var(--e-6);
+  min-height: 44px;
+  padding-block: var(--e-2);
+  margin-bottom: var(--e-5);
   font-family: var(--mono);
-  font-size: var(--t-micro);
+  font-size: var(--t-menudo);
   letter-spacing: var(--tracking-mono);
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--texto-2);
 }
 .legal__volver:hover { color: var(--acento); }
@@ -917,6 +920,13 @@ a.dato__valor:hover { color: var(--acento); }
   background: var(--acento);
 }
 .legal a:not([class]) { color: var(--acento); text-decoration: underline; text-underline-offset: 3px; }
+.legal__aviso a,
+.legal p a,
+.legal li a {
+  display: inline-block;
+  padding-block: 6px;
+}
+
 .legal__aviso {
   margin-top: var(--e-6);
   padding: var(--e-5);
@@ -1143,4 +1153,18 @@ a.dato__valor:hover { color: var(--acento); }
   padding-block: 4px;
   color: var(--acento);
   font-weight: var(--peso-medio);
+}
+
+/* Enlace de regreso en las páginas secundarias */
+.volver {
+  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  padding-bottom: var(--e-4);
+  border-bottom: 1px solid var(--borde);
+}
+.volver a {
+  display: inline-block;
+  padding-block: 8px;
+  font-size: 0.9375rem;
+  font-weight: var(--peso-medio);
+  color: var(--acento);
 }

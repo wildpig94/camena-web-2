@@ -244,6 +244,58 @@
     });
   }
 
+
+  /* ═══ 5 · Armar el paquete y cotizar al momento ══════════════
+     La persona marca lo que necesita y ve la suma mientras elige.
+     El botón arma el mensaje con la lista y el total, para que la
+     cotización salga sin una ida y vuelta. */
+  function iniciarArmador() {
+    var formulario = document.getElementById("armarFormulario");
+    var total = document.getElementById("armarTotal");
+    var nota = document.getElementById("armarNota");
+    var enlace = document.getElementById("armarEnviar");
+    if (!formulario || !total || !enlace) return;
+
+    var casillas = Array.prototype.slice.call(formulario.querySelectorAll('input[type="checkbox"]'));
+
+    function miles(n) {
+      return "$" + n.toLocaleString("es-MX");
+    }
+
+    function calcular() {
+      var elegidos = casillas.filter(function (c) { return c.checked; });
+      var suma = elegidos.reduce(function (t, c) { return t + Number(c.dataset.precio || 0); }, 0);
+
+      total.textContent = miles(suma);
+
+      if (!elegidos.length) {
+        nota.textContent = "Marca lo que necesitas para ver el total.";
+      } else {
+        nota.textContent = elegidos.length === 1
+          ? "Un servicio. El precio final puede variar según el tamaño."
+          : elegidos.length + " servicios. El precio final puede variar según el tamaño.";
+      }
+
+      /* El mensaje sale armado: la persona no tiene que volver a explicarse */
+      var lineas = ["Hola CAMENA, armé mi paquete desde su página:"];
+      lineas.push("");
+      elegidos.forEach(function (c) {
+        lineas.push("· " + c.value + " (" + miles(Number(c.dataset.precio || 0)) + ")");
+      });
+      lineas.push("");
+      lineas.push(elegidos.length
+        ? "Suma aproximada: " + miles(suma) + " MXN"
+        : "Todavía no sé qué necesito, quiero que me orienten.");
+      lineas.push("");
+      lineas.push("¿Me confirman el precio y el tiempo de entrega?");
+
+      enlace.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(lineas.join("\n"));
+    }
+
+    casillas.forEach(function (c) { c.addEventListener("change", calcular); });
+    calcular();
+  }
+
   /* ═══ Arranque ═══════════════════════════════════════════════
      Cada bloque por separado: si uno falla o no encuentra su parte en
      la página, los demás siguen funcionando. */
@@ -251,4 +303,5 @@
   iniciarContexto();
   iniciarWhatsAppConContexto();
   iniciarFormulario();
+  iniciarArmador();
 })();

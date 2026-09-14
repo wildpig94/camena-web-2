@@ -1379,6 +1379,24 @@ svg.ic path[d^="M12 2a10"] {
 .llamada .formulario__ayuda { color: var(--texto-2); }
 .llamada .contexto-aviso { color: var(--texto); }
 
+
+/* El armador se toca con el dedo: cada casilla necesita 24px de alto como
+   mínimo, y su etiqueta completa tiene que ser el área de toque. */
+.opcion {
+  min-height: 44px;
+  padding: var(--e-3) var(--e-4);
+}
+/* Enlaces de texto dentro de un párrafo: se tocan con el dedo */
+.armar__ayuda a,
+.armar__intro a,
+.encabezado__intro a,
+.volver a,
+.cierre-seccion a,
+.servicios ~ p a {
+  display: inline-block;
+  padding-block: 7px;
+}
+
 /* ═══════════════ BOTÓN COPIAR ═══════════════ */
 .copiar {
   padding: 5px 11px;
@@ -1465,4 +1483,282 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--oro-lt);
   border-color: var(--oro-lt);
   color: var(--ink);
+}
+
+/* ═══════════════ ETAPAS Y ARMADOR DE PAQUETE ═══════════════
+   Cuatro categorías por etapa del negocio. Cada una lista sus servicios
+   con el precio a la vista: quien viene por un logo lo encuentra en la
+   primera tarjeta y no tiene que leer nada más. */
+
+.etapas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-4);
+}
+
+.etapa {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  background: var(--paper);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.etapa--campanas {
+  background: var(--ink);
+  color: var(--texto-claro);
+  border-color: var(--ink);
+  --texto: var(--texto-claro);
+  --texto-2: var(--texto-claro-2);
+  --borde: var(--borde-oscuro);
+  --acento: var(--oro-lt);
+}
+
+.etapa__cuando {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--acento);
+}
+
+.etapa__titulo {
+  margin-top: var(--e-3);
+  font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+}
+
+.etapa__texto {
+  margin-top: var(--e-3);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--texto-2);
+  max-width: 42ch;
+}
+
+/* Lista de servicios con precio: lo que la gente viene a buscar */
+.servicios {
+  margin-top: var(--e-5);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+  flex: 1;
+}
+
+.servicios li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--e-3);
+  padding: var(--e-3) 0;
+  border-bottom: 1px solid var(--borde);
+}
+.servicios li:last-child { border-bottom: 0; }
+
+.servicios__que {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--texto);
+}
+
+.servicios__cuanto {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  color: var(--acento);
+  font-weight: var(--peso-fuerte);
+}
+
+.etapa__nota {
+  margin-top: var(--e-4);
+  padding: var(--e-3) var(--e-4);
+  background: var(--acento-suave);
+  border-left: 2px solid var(--oro);
+  border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--texto-2);
+}
+.etapa__nota strong { color: var(--texto); }
+
+.etapa__pie {
+  margin-top: var(--e-5);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+  display: grid;
+  gap: var(--e-3);
+  justify-items: start;
+}
+.etapa__paquete { font-size: 0.875rem; color: var(--texto-2); }
+
+/* ── Armador de paquete ─────────────────────────────────────── */
+.armar {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+  padding: clamp(1.5rem, 1.2rem + 2vw, 2.75rem);
+  background: var(--ink);
+  color: var(--texto-claro);
+  border-radius: var(--radio-lg);
+  --texto: var(--texto-claro);
+  --texto-2: var(--texto-claro-2);
+  --borde: var(--borde-oscuro);
+  --acento: var(--oro-lt);
+  --acento-suave: rgba(201, 150, 43, 0.12);
+}
+
+.armar__titulo {
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  letter-spacing: -0.02em;
+}
+.armar__intro {
+  margin-top: var(--e-4);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--texto-2);
+  max-width: 40ch;
+}
+.armar__ayuda {
+  margin-top: var(--e-5);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+  font-size: 0.9375rem;
+  color: var(--texto-2);
+}
+.armar__ayuda a { color: var(--oro-lt); font-weight: var(--peso-medio); }
+
+.armar__formulario { display: grid; gap: var(--e-5); }
+
+.armar__grupo {
+  border: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--e-2);
+}
+
+.armar__leyenda {
+  padding: 0;
+  margin-bottom: var(--e-2);
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--oro-lt);
+}
+
+.opcion {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-4);
+  background: rgba(244, 241, 232, 0.04);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
+  cursor: pointer;
+  transition: border-color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
+}
+.opcion:hover { border-color: var(--oro); background: rgba(201, 150, 43, 0.08); }
+
+/* La casilla nativa se oculta y se dibuja una a medida: así mide 24px de
+   verdad (el mínimo táctil) y el área de toque es la etiqueta completa.
+   El input sigue existiendo y sigue siendo accesible por teclado. */
+.opcion input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opcion__marca {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border: 1.5px solid var(--borde-fuerte);
+  border-radius: var(--radio-sm);
+  background: transparent;
+  transition: border-color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
+}
+.opcion__marca::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 46%;
+  width: 6px; height: 11px;
+  border: solid var(--ink);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  transition: transform var(--dur-rapida) var(--curva);
+}
+.opcion:has(input:checked) .opcion__marca {
+  background: var(--oro);
+  border-color: var(--oro);
+}
+.opcion:has(input:checked) .opcion__marca::after { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+/* Foco de teclado visible en la casilla dibujada */
+.opcion:has(input:focus-visible) .opcion__marca {
+  outline: 2px solid var(--oro-lt);
+  outline-offset: 2px;
+}
+
+/* En pantallas chicas el nombre y el precio no caben en una línea:
+   se envuelven en lugar de salirse de la pantalla. */
+.opcion span {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2px var(--e-3);
+  min-width: 0;
+  flex: 1 1 auto;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  color: var(--texto-claro);
+}
+.opcion span > span,
+.opcion span { text-wrap: pretty; }
+.opcion em {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.8125rem;
+  color: var(--texto-2);
+  white-space: nowrap;
+}
+.opcion:has(input:checked) { border-color: var(--oro); background: rgba(201, 150, 43, 0.14); }
+.opcion:has(input:checked) em { color: var(--oro-lt); font-weight: var(--peso-fuerte); }
+
+.armar__total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--e-2) var(--e-4);
+  padding: var(--e-4) 0 0;
+  border-top: 1px solid var(--borde);
+}
+.armar__total-etiqueta {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+.armar__total-cifra {
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  color: var(--oro-lt);
+  font-weight: var(--peso-fuerte);
+}
+.armar__total-nota {
+  flex: 1 1 100%;
+  font-size: 0.875rem;
+  color: var(--texto-2);
+}
+
+.armar__aviso {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--texto-2);
 }

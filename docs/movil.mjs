@@ -211,6 +211,9 @@ const informe = await evaluar(`(() => {
   document.querySelectorAll("a,button,summary,input,select").forEach((el) => {
     if (!visible(el)) return;
     const r = el.getBoundingClientRect();
+    /* Un input oculto a propósito dentro de una etiqueta no es un problema:
+       el área de toque es la etiqueta entera, y sigue siendo accesible. */
+    if (el.tagName === "INPUT" && el.closest("label") && r.width < 4) return;
     if (r.width > 0 && r.height > 0 && (r.height < 24 || r.width < 24)) {
       const cs2 = getComputedStyle(el);
       pequenos.push({

@@ -159,13 +159,13 @@ function esperarReal(ms) {
      no rompe nada y no da error de consola: sin esta lista, su ausencia
      pasa desapercibida. */
   var esperados = {
-    ".paquete__precio": 7,
-    ".grupo": 3,
+    ".etapa": 4,
+    ".servicios li": 26,
+    ".opcion input": 16,
     ".flujo li": 6,
     ".flujo__enlace": 1,
     ".lab-pieza__ficha": 2,
     ".lab-pieza__cita": 1,
-    ".disciplina": 7,
     ".lab-pieza": 3,
     ".faq__item": 8,
     ".caso": 7,
