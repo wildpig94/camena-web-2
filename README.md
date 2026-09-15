@@ -44,7 +44,23 @@ El eje se repite en todas las secciones, y ahí está la prueba de que es el eje
 | `servicios.html` | Tres grupos separados: **sistemas y diseño** (los cuatro pilares), **contenido y producción** y **campañas y proyectos especiales**. Nada se mezcla. |
 | `como-trabajamos.html` | Abre con el manifiesto del método y sigue con los seis pasos. |
 
-### El producto en vivo: control de autos
+### Los dos productos en vivo
+
+Hay **dos** páginas de producto, y no son la misma cosa ni se muestran igual:
+
+| | `producto/taller.html` | `producto/control-de-autos.html` |
+|---|---|---|
+| Qué es | El **expediente del taller**, reconstruido desde los dolores reales | La app original de **Control de Autos**, ya sellada con la marca |
+| Diseño | El sistema de diseño del sitio (`css/variables.css`) | Propio: fondo oscuro, Oswald + IBM Plex Sans |
+| Se muestra | En los ejemplos del inicio, con «ábrelo y pruébalo» | **No.** Se comparte por enlace con quien la va a usar |
+| Archivos | `taller.html` + `taller.js` | Un solo archivo, sin dependencias |
+| Guarda en | `camena:taller:estado` (+ fotos en IndexedDB) | `taller_autos_v1` y `taller_aseguradoras_v1` |
+
+Ninguna de las dos es una maqueta: las dos se abren y se usan. Y ninguna se
+presenta como lo que no es — la segunda no tiene fotos por etapa, ni conformidad
+firmada, ni control de refacciones detenidas; eso vive en la primera.
+
+#### Expediente del taller (`producto/taller.html`)
 
 `producto/taller.html` no es una maqueta: es un producto completo que
 cualquiera puede abrir y usar, y está enlazado desde los ejemplos del inicio con
@@ -84,6 +100,36 @@ transcritas en esta máquina y analizadas en `docs/investigacion-taller.md`. Ese
 documento —interno, no se publica— lista cada dolor con la cita que lo prueba, su
 costo y la función que lo resuelve, y marca lo que todavía falta preguntar. Es la
 base de la siguiente versión del producto.
+
+#### Control de Autos (`producto/control-de-autos.html`)
+
+Es la app que el taller ya conocía, publicada tal cual para poder pasarla por
+enlace —el encargado la abre desde el celular sin instalar nada—. Registra la
+entrada de un auto (descripción, color, placa, aseguradora, folio, notas), cuenta
+los días que lleva en piso, marca la salida, lo manda al historial, filtra por
+aseguradora, deja ajustar la lista de aseguradoras y descarga un respaldo en JSON.
+
+**Cómo vive aquí, y qué se le cambió al subirla:**
+
+- **Se le quitaron las peticiones a Google.** Traía un `@import` de Google Fonts
+  (Oswald e IBM Plex Sans). Ahora las dos familias se sirven desde
+  `assets/fonts/`: son archivos **variables**, uno por familia, así que un solo
+  `@font-face` cubre todos los pesos (Oswald 500–700, IBM Plex Sans 400–700). La
+  página ya no pide nada a ningún tercero, igual que el resto del sitio.
+- **Se le puso descripción, color de tema y favicon**, para que al compartir el
+  enlace no aparezca en blanco y para que la pestaña traiga la marca.
+- **No se enlaza desde el sitio y no entra al sitemap.** Es una herramienta, no
+  una página de venta: se comparte con quien la va a usar, no se anuncia.
+
+**Lo que NO es.** No tiene fotos por etapa, ni conformidad firmada, ni refacciones
+detenidas: eso es el expediente. Los datos viven en el navegador de cada
+computadora (claves `taller_autos_v1` y `taller_aseguradoras_v1`), así que no se
+sincronizan solos — para eso está el respaldo en JSON.
+
+**Se prueba sola.** `node docs/probar-producto.mjs` abre la página con Chrome,
+comprueba que no haga ninguna petición externa, que carguen las fuentes, que no
+se desborde a lo ancho, y da de alta un auto para verificar que se guarde y siga
+ahí después de recargar. Pasa en 1440, 768, 390 y 320 px.
 
 ---
 
@@ -153,7 +199,11 @@ camena-2.0/
 ├── servicios.html              Catálogo completo, con precios
 ├── producto/
 │   ├── taller.html             Producto en vivo: expediente del taller
-│   └── taller.js               Lógica del producto (estado, fotos, etapas)
+│   ├── taller.js               Lógica del producto (estado, fotos, etapas)
+│   └── control-de-autos.html   Control de Autos: app de una sola página, con
+│                               su propio enlace para el taller. No se enlaza
+│                               desde el sitio ni entra al sitemap: se comparte
+│                               con quien la va a usar.
 │
 ├── assets/video/               Videos del sitio (720×1280, comprimidos):
 │   ├── camena-promo.mp4        Promo propio de 30 s
@@ -186,12 +236,19 @@ camena-2.0/
 │   ├── favicon.ico / .png      Juego de íconos
 │   ├── apple-touch-icon.png
 │   ├── og-camena.png / .webp   Imagen para compartir en redes
-│   └── fonts/                  Jakarta Sans + JetBrains Mono auto-hospedadas
+│   └── fonts/                  Jakarta Sans + JetBrains Mono auto-hospedadas,
+│                               más Oswald e IBM Plex Sans (solo para
+│                               Control de Autos: es otro diseño, no el del sitio)
 │
 └── docs/
     ├── verificar-contraste.py  Comprueba la paleta contra WCAG AA
     ├── auditar.sh              Auditoría del sitio renderizado
     ├── movil.mjs               Auditoría con ancho de móvil real
+    ├── probar-producto.mjs     Prueba Control de Autos de punta a punta: que no
+    │                           pida nada externo, que carguen las fuentes, que
+    │                           no se desborde y que un alta se guarde y siga
+    │                           ahí después de recargar
+    ├── autorizaciones.md       Qué trabajo de cliente está autorizado y qué cubre
     ├── recetas.md              Recetario para editar el sitio
     ├── laboratorio.html        Colores, texturas y resaltes, con CSS para copiar
     ├── revisar.sh              Prepara la copia local con el marcador
@@ -231,6 +288,7 @@ flujo de despliegue no copia esa carpeta):
 | `docs/capturar-revision.mjs` | **El visor.** Abre la copia con una revisión cargada y saca una captura por página con los dibujos y las notas encima: sirve para revisar el trabajo sin abrir el navegador. | `node docs/capturar-revision.mjs Revision-CAMENA.json` |
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
+| `docs/probar-producto.mjs` | **El probador del producto.** Abre Control de Autos con Chrome y la usa como una persona: comprueba que no pida nada externo, que las fuentes propias carguen, que no se desborde, y da de alta un auto para ver que se guarde y siga ahí tras recargar. | `node docs/probar-producto.mjs` (con el servidor en 8899) |
 
 **El flujo de revisión completo:**
 
