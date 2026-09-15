@@ -145,6 +145,29 @@ jobs:
           cp -r assets css js producto publicar/
           cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html publicar/
           cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
+
+          # ── Candado: el código de un producto terminado no se publica ──
+          # Lo que el navegador muestra, el navegador lo guarda: una página de
+          # producto publicada es una página de producto copiable. El expediente
+          # del taller vive fuera de este repo (ver README) y no se enlaza ni se
+          # publica. Si algún día alguien lo deja caer en producto/, este paso
+          # frena la publicación en vez de regalarlo en silencio.
+          permitidos="producto/control-de-autos.html"
+          sobrantes=""
+          for f in $(find publicar/producto -type f 2>/dev/null | sed 's|^publicar/||'); do
+            case " $permitidos " in
+              *" $f "*) ;;
+              *) sobrantes="$sobrantes $f" ;;
+            esac
+          done
+          if [ -n "$sobrantes" ]; then
+            echo "✗ Hay archivos de producto que no deben publicarse:$sobrantes"
+            echo "  Muévelos fuera del repo (ver «Los dos productos» en el README)"
+            echo "  o agrégalos a la lista de permitidos si la decisión cambió."
+            exit 1
+          fi
+          echo "✓ Ningún producto terminado fuera de la lista permitida."
+
           echo "── Contenido que se publica ──"
           find publicar -type f | sort | sed 's|^|  |'
           echo "  ($(find publicar -type f | wc -l) archivos)"

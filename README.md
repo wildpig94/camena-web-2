@@ -18,7 +18,7 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 | `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres prototipos, armador de paquete, preguntas y contacto |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
-| `producto/taller.html` | **Producto en vivo**: expediente del taller (recepción con evidencia, etapas y refacciones) |
+| `producto/control-de-autos.html` | La herramienta del taller, publicada sin marca ni nombre para compartirla por enlace |
 
 **Regla al añadir contenido:** si algo explica pero no ayuda a decidir, va en
 una página secundaria. El inicio no es un folleto.
@@ -44,25 +44,36 @@ El eje se repite en todas las secciones, y ahí está la prueba de que es el eje
 | `servicios.html` | Tres grupos separados: **sistemas y diseño** (los cuatro pilares), **contenido y producción** y **campañas y proyectos especiales**. Nada se mezcla. |
 | `como-trabajamos.html` | Abre con el manifiesto del método y sigue con los seis pasos. |
 
-### Los dos productos en vivo
+### Los dos productos
 
-Hay **dos** páginas de producto, y no son la misma cosa ni se muestran igual:
+Hay **dos** productos, y no son la misma cosa ni se muestran igual. Uno de ellos
+**ya no vive en este repo**: su código se movió fuera, a `~/productos-camena/`,
+para que no se pueda leer ni copiar desde GitHub.
 
-| | `producto/taller.html` | `producto/control-de-autos.html` |
+| | Expediente del taller | `producto/control-de-autos.html` |
 |---|---|---|
 | Qué es | El **expediente del taller**, reconstruido desde los dolores reales | La app original de **Control de Autos**, tal como la usaba el taller |
 | Diseño | El sistema de diseño del sitio (`css/variables.css`) | Propio: fondo oscuro, Oswald + IBM Plex Sans |
 | Se muestra | En los ejemplos del inicio, con capturas reales y **sin enlace para abrirlo** | **No.** Se comparte por enlace con quien la va a usar |
-| Archivos | `taller.html` + `taller.js` | Un solo archivo, sin dependencias |
+| Archivos | `taller.html` + `taller.js`, **fuera del repo** | Un solo archivo, sin dependencias |
 | Guarda en | `camena:taller:estado` (+ fotos en IndexedDB) | `taller_autos_v1` y `taller_aseguradoras_v1` |
 
-Ninguna de las dos es una maqueta: las dos se abren y se usan. Y ninguna se
-presenta como lo que no es — la segunda no tiene fotos por etapa, ni conformidad
-firmada, ni control de refacciones detenidas; eso vive en la primera.
+Ninguno de los dos es una maqueta: los dos se abren y se usan. Y ninguno se
+presenta como lo que no es — Control de Autos no tiene fotos por etapa, ni
+conformidad firmada, ni refacciones detenidas; eso vive en el expediente.
 
-#### Expediente del taller (`producto/taller.html`)
+**Dónde vive el código y por qué.** El expediente está en
+`~/productos-camena/taller/` (`taller.html` + `taller.js`), fuera del repo. Se
+saca de aquí por una razón concreta: este repositorio es **público**, así que
+cualquier archivo que entre queda legible para todo el mundo, aunque la página
+no se publique. Publicar sin enlazar no protege nada; sacarlo del repo, sí.
+El despliegue además lleva un candado: si alguien vuelve a dejar un archivo de
+producto en `producto/`, la publicación **falla** en vez de regalarlo en
+silencio (ver el paso «Preparar solo lo que se publica»).
 
-`producto/taller.html` no es una maqueta: es un producto completo y funcional.
+#### Expediente del taller (fuera del repo, en `~/productos-camena/taller/`)
+
+El expediente del taller no es una maqueta: es un producto completo y funcional.
 En los ejemplos del inicio **se muestra con capturas reales, sin enlace para
 abrirlo**, y esa decisión es a propósito: el código de una página publicada se
 puede descargar entero desde el navegador, así que si el sistema se puede
@@ -215,8 +226,6 @@ camena-2.0/
 ├── index.html                  Página principal (7 secciones)
 ├── servicios.html              Catálogo completo, con precios
 ├── producto/
-│   ├── taller.html             Producto en vivo: expediente del taller
-│   ├── taller.js               Lógica del producto (estado, fotos, etapas)
 │   └── control-de-autos.html   Control de Autos: app de una sola página, con
 │                               su propio enlace para el taller. Sin marca y sin
 │                               nombre. No se enlaza desde el sitio ni entra al
