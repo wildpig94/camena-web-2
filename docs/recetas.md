@@ -169,16 +169,44 @@ horizontales, cero errores de consola y un solo `h1` por página.
 
 ---
 
-## 5 · Cómo pedir cambios sin explicarlos por chat
+## 5 · Cómo revisar el sitio tú mismo
 
-1. Levanta el marcador: `bash docs/revisar.sh`
-2. Enciende **Marcar** (o la tecla `M`) y haz clic en cada cosa que quieras
-   cambiar. Escribe la nota y elige color: oro, magenta, verde o carbón.
-3. Pulsa **Descargar Marcas.md** (o **Copiar todo**) y mándame ese archivo.
+1. **Prepara la copia:** `bash docs/revisar.sh` (te dice la dirección para abrir).
+2. **Enciende el marcador:** botón **Marcar** o la tecla `M`.
+3. **Para cambiar una palabra o una frase:** selecciónala con el ratón (o doble
+   clic en una palabra) y haz clic. En **«Cómo debe quedar»** escribes el texto
+   nuevo; al guardar, el cambio se aplica en la copia al instante. Así vas
+   viendo la versión final mientras revisas.
 
-El archivo lleva, por cada marca, el selector exacto (`#paquetes .etapa__titulo`),
-el texto que se ve y lo que quieres. Con eso no hace falta adivinar nada. Las
-marcas se quedan guardadas en el navegador por página, así que puedes ir
-revisando en varios días y exportar al final.
+   ```
+   Antes:   Sin adaptaciones forzadas
+   Después: Sin forzar nada        ← se ve aplicado, en verde con ✎
+   ```
 
-> Nada de esto se publica: todo lo de `docs/` queda fuera del despliegue.
+4. **Para solo comentar algo:** haz clic en un bloque sin seleccionar nada y
+   escribe la nota. Color: **magenta** (cambio), **oro** (revisar), **verde**
+   (está bien así) o **carbón** (duda).
+5. **Al terminar:** en el panel, **Descargar revisión** (Markdown para leer) y
+   **JSON para aplicar** (el archivo que lleva los cambios al sitio real).
+
+### Pasar la revisión al sitio real
+
+```bash
+# 1 · Simular: dice qué haría, sin escribir nada
+node docs/aplicar.mjs Revision-CAMENA.json
+
+# 2 · Aplicar de verdad
+node docs/aplicar.mjs Revision-CAMENA.json --escribir
+
+# 3 · Comprobar que nada se rompió
+python3 docs/verificar-contraste.py
+bash docs/auditar.sh http://127.0.0.1:8899/index.html 1440 1000 despues
+```
+
+El aplicador es cuidadoso a propósito: **si el texto original aparece cero
+veces o más de una, no toca nada** y lo apunta en `Revision-pendientes.md` para
+revisarlo a mano. Las notas también van a ese archivo, ordenadas por página.
+
+> Nada de esto se publica: todo lo de `docs/` queda fuera del despliegue. El
+> sitio solo cambia cuando el aplicador corre con `--escribir` (o cuando yo
+> edito el HTML directamente).

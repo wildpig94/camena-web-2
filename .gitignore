@@ -23,3 +23,8 @@ Thumbs.db
 # ─── Copia local de revisión (la genera docs/revisar.sh) ───
 docs/revision/sitio/
 docs/revision/sitio/*
+
+# ─── Revisiones y tareas que salen del marcador ───
+Revision-CAMENA.md
+Revision-CAMENA.json
+Revision-pendientes.md

@@ -113,7 +113,7 @@ html.rv-activo a, html.rv-activo button { cursor: crosshair !important; }
   position: absolute;
   z-index: 10002;
   display: none;
-  width: 320px;
+  width: 360px;
   padding: 14px;
   border-radius: 8px;
   background: #FCFBF9;
@@ -138,9 +138,20 @@ html.rv-activo a, html.rv-activo button { cursor: crosshair !important; }
   color: #5C5C58;
   word-break: break-all;
 }
+.rv-campo { margin-bottom: 10px; }
+.rv-rotulo {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5C5C58;
+}
+.rv-opcional { font-weight: 400; text-transform: none; letter-spacing: 0; }
 #rv-nota textarea {
   width: 100%;
-  min-height: 74px;
+  min-height: 62px;
   resize: vertical;
   padding: 9px 10px;
   border: 1px solid #E3E1DB;
@@ -239,6 +250,47 @@ html.rv-activo a, html.rv-activo button { cursor: crosshair !important; }
 .rv-item__borrar { border: 0; background: none; color: #A81B5A; cursor: pointer; font-size: 16px; line-height: 1; padding: 2px 4px; }
 .rv-panel__pie { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-top: 1px solid #E3E1DB; }
 .rv-vacio { padding: 18px 14px; font-size: 13px; color: #5C5C58; line-height: 1.5; }
+.rv-cambio-linea {
+  display: block;
+  margin-top: 4px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #111111;
+}
+.rv-cambio-linea s { color: #A81B5A; opacity: 0.75; }
+.rv-cambio-linea strong { color: #0A6B4C; }
+
+/* El texto que ya se cambió en la copia: subrayado verde de "esto está tocado" */
+.rv-editado {
+  background: rgba(14, 159, 110, 0.14);
+  box-shadow: inset 0 -0.35em 0 rgba(14, 159, 110, 0.22);
+  border-radius: 2px;
+}
+.rv-editado::after {
+  content: "✎";
+  margin-left: 2px;
+  font-size: 0.7em;
+  vertical-align: super;
+  color: #0A6B4C;
+}
+
+/* Botón secundario «Ver revisión» */
+#rv-ver {
+  position: fixed;
+  left: 18px; bottom: 64px;
+  z-index: 10001;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #E3E1DB;
+  background: #FCFBF9;
+  color: #111111;
+  font-family: var(--texto-fuente, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.18);
+}
+#rv-ver:hover { border-color: #111111; }
 
 /* ── Aviso de que esto es una copia de revisión ── */
 #rv-aviso {
