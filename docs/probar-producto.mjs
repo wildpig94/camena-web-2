@@ -6,8 +6,11 @@ import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const URL = process.argv[2] || "http://127.0.0.1:8899/producto/control-de-autos.html";
+const PAGINA = process.argv[2] || "http://127.0.0.1:8899/producto/control-de-autos.html";
 const ANCHO = Number(process.argv[3] || 390);
+/* El origen se saca de la URL que se pide: así sirve igual contra el servidor
+   local y contra el sitio publicado, sin marcar lo propio como externo. */
+const ORIGEN = new URL(PAGINA).origin;
 const ALTO = Number(process.argv[4] || 844);
 const CHROME = "/home/alexis/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome";
 const PERFIL = mkdtempSync(join(tmpdir(), "camena-cda-"));
@@ -100,13 +103,13 @@ const evaluar = async (expr) => {
   return r.result.value;
 };
 
-const informe = { url: URL, ventana: `${ANCHO}x${ALTO}` };
+const informe = { url: PAGINA, ventana: `${ANCHO}x${ALTO}` };
 
-await enviar("Page.navigate", { url: URL });
+await enviar("Page.navigate", { url: PAGINA });
 await esperar(1800);
 
 informe.recursos = await evaluar(`performance.getEntriesByType('resource').map(r => r.name)`);
-informe.externos = informe.recursos.filter((u) => !u.startsWith("http://127.0.0.1:8899"));
+informe.externos = informe.recursos.filter((u) => !u.startsWith(ORIGEN));
 informe.fuentes = await evaluar(`({
   oswald: document.fonts.check('600 16px "Oswald"'),
   plex: document.fonts.check('400 16px "IBM Plex Sans"'),
@@ -152,7 +155,7 @@ informe.persistencia = await evaluar(`({
   guardado: JSON.parse(localStorage.getItem('taller_autos_v1') || '[]').length,
   enPantalla: document.body.innerText.includes('Prueba automatizada'),
   externosTrasRecarga: performance.getEntriesByType('resource')
-    .map(r => r.name).filter(u => !u.startsWith('http://127.0.0.1:8899'))
+    .map(r => r.name).filter(u => !u.startsWith('${ORIGEN}'))
 })`);
 
 informe.consola = consola;
