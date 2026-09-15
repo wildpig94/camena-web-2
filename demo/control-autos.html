@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Control de autos — producto CAMENA</title>
+<meta name="description" content="Control de entradas y salidas para un taller de autos: registro, días en taller, historial y respaldo. Producto CAMENA, funciona sin cuentas ni internet.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark light">
+
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="../assets/icono-camena.svg">
+<link rel="preload" href="../assets/fonts/jakarta-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- El producto usa los mismos tokens y la misma tipografía que el sitio:
+     no hay una segunda identidad que mantener. -->
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   Control de autos · estilos propios del producto
+   Solo usa los tokens del sistema (variables.css). Nada de colores
+   sueltos: si mañana cambia la paleta del estudio, esto cambia solo.
+   ═══════════════════════════════════════════════════════════════ */
+
+body {
+  background: var(--ink);
+  color: var(--texto-claro);
+  font-family: var(--texto-fuente);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.app { max-width: 62rem; margin: 0 auto; padding: 1.25rem var(--e-5) 4rem; }
+
+/* ── Barra de producto: vuelve al sitio y dice de quién es ── */
+.barra-producto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-4);
+  flex-wrap: wrap;
+  padding: 0 0 var(--e-4);
+  margin-bottom: var(--e-5);
+  border-bottom: 1px solid var(--ink-3);
+  font-size: 0.8125rem;
+  color: var(--texto-claro-2);
+}
+.barra-producto a { display: inline-block; padding-block: 5px; color: var(--oro-lt); text-decoration: underline; text-underline-offset: 3px; }
+.barra-producto__marca { display: inline-flex; align-items: center; gap: var(--e-2); }
+.barra-producto__marca img { width: 22px; height: 22px; }
+
+/* ── Cabecera del producto ── */
+.cabecera {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--e-4);
+  flex-wrap: wrap;
+  padding-bottom: var(--e-4);
+  margin-bottom: var(--e-5);
+  border-bottom: 3px solid var(--oro);
+}
+.cabecera h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.cabecera h1 span {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--texto-claro-2);
+  font-weight: var(--peso-normal);
+}
+.cabecera__acciones { display: flex; gap: var(--e-3); flex-wrap: wrap; }
+
+/* ── Botones ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radio-control);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: var(--peso-fuerte);
+  cursor: pointer;
+  transition: transform var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva),
+              border-color var(--dur-rapida) var(--curva), color var(--dur-rapida) var(--curva);
+}
+.btn--principal { background: var(--oro); color: var(--ink); border-color: var(--oro); }
+.btn--principal:hover { background: var(--oro-lt); border-color: var(--oro-lt); }
+.btn--linea { background: none; color: var(--texto-claro); border-color: var(--ink-4); }
+.btn--linea:hover { border-color: var(--oro); color: var(--oro-lt); }
+.btn--peligro { background: none; color: var(--magenta-lt); border-color: transparent; }
+.btn--peligro:hover { border-color: var(--magenta); }
+.btn--sm { min-height: 34px; padding: 6px 12px; font-size: 0.875rem; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn:hover { transform: scale(1.02); }
+}
+
+/* ── Ayuda: se abre y se cierra, no ocupa la pantalla ── */
+.ayuda { margin-bottom: var(--e-5); }
+.ayuda__disparador {
+  width: 100%;
+  padding: var(--e-3) var(--e-4);
+  border: 1px dashed var(--ink-4);
+  border-radius: var(--radio-sm);
+  background: none;
+  color: var(--texto-claro-2);
+  font: inherit;
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+}
+.ayuda__disparador:hover { color: var(--texto-claro); border-color: var(--oro); }
+.ayuda__cuerpo {
+  padding: var(--e-4);
+  background: var(--ink-2);
+  border: 1px solid var(--ink-3);
+  border-left: 2px solid var(--oro);
+  border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
+  font-size: 0.9375rem;
+  color: var(--texto-claro-2);
+}
+.ayuda__cuerpo h2 {
+  margin: 0 0 var(--e-2);
+  font-family: var(--display);
+  font-size: 1.0625rem;
+  color: var(--texto-claro);
+}
+.ayuda__cuerpo ol { margin: 0; padding-left: 1.25rem; display: grid; gap: 6px; }
+.ayuda__cuerpo b { color: var(--texto-claro); }
+
+/* ── Filtros ── */
+.filtros {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 14rem);
+  gap: var(--e-3);
+  margin-bottom: var(--e-4);
+}
+.campo-control {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 12px;
+  background: var(--ink-2);
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-control);
+  color: var(--texto-claro);
+  font: inherit;
+  font-size: 0.9375rem;
+}
+.campo-control::placeholder { color: var(--texto-claro-2); }
+.campo-control:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; }
+select.campo-control { appearance: none; padding-right: 34px; background-image: linear-gradient(45deg, transparent 50%, var(--texto-claro-2) 50%), linear-gradient(135deg, var(--texto-claro-2) 50%, transparent 50%); background-position: right 18px center, right 13px center; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+
+/* ── Pestañas ── */
+.pestanas { display: flex; gap: var(--e-2); margin-bottom: var(--e-4); border-bottom: 1px solid var(--ink-3); }
+.pestana {
+  padding: 10px 14px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--texto-claro-2);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+}
+.pestana:hover { color: var(--texto-claro); }
+.pestana[aria-selected="true"] { color: var(--oro-lt); border-bottom-color: var(--oro); }
+.pestana .cuenta {
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: var(--radio-control);
+  background: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+/* ── Lista de autos ── */
+.lista { display: grid; gap: var(--e-3); }
+.auto {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--e-4);
+  padding: var(--e-4);
+  background: var(--ink-2);
+  border: 1px solid var(--ink-3);
+  border-left: 3px solid var(--ink-4);
+  border-radius: var(--radio-sm);
+}
+.auto--demorado { border-left-color: var(--oro); }
+.auto--vencido { border-left-color: var(--magenta); }
+.auto--entregado { border-left-color: var(--verde); opacity: 0.88; }
+
+.auto__titulo { font-weight: var(--peso-fuerte); font-size: 1.0625rem; color: var(--texto-claro); }
+.auto__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.chip {
+  padding: 2px 9px;
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-control);
+  font-size: 0.75rem;
+  color: var(--texto-claro-2);
+}
+.chip--placa { font-family: var(--mono); letter-spacing: 0.04em; color: var(--texto-claro); }
+.auto__fechas { margin-top: 8px; font-size: 0.8125rem; color: var(--texto-claro-2); }
+.auto__fechas b { font-family: var(--mono); color: var(--texto-claro); font-weight: var(--peso-medio); }
+.auto__notas { margin-top: 8px; font-size: 0.8125rem; color: var(--texto-claro-2); }
+
+/* Los días llevan color Y palabra: el color solo no informa a todo el mundo */
+.auto__dias { text-align: center; min-width: 5.5rem; }
+.auto__dias .num { font-family: var(--display); font-size: 1.75rem; font-weight: 700; line-height: 1; color: var(--texto-claro); }
+.auto__dias .etq { display: block; margin-top: 2px; font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--texto-claro-2); }
+.auto--demorado .num { color: var(--oro-lt); }
+.auto--vencido .num { color: var(--magenta-lt); }
+.auto--entregado .num { color: var(--verde-lt); }
+
+.auto__acciones { display: flex; flex-direction: column; gap: 6px; min-width: 9.5rem; }
+.auto__acciones .btn { width: 100%; }
+
+.vacio {
+  padding: var(--e-6) var(--e-5);
+  border: 1px dashed var(--ink-4);
+  border-radius: var(--radio-sm);
+  text-align: center;
+  color: var(--texto-claro-2);
+}
+.vacio b { display: block; margin-bottom: 4px; color: var(--texto-claro); font-size: 1.0625rem; }
+
+/* ── Ventanas (registrar, editar, ajustes) ── */
+.velo {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: grid;
+  place-items: center;
+  padding: var(--e-4);
+  background: rgba(0, 0, 0, 0.66);
+  overflow-y: auto;
+}
+.ventana {
+  width: min(34rem, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--e-5);
+  background: var(--ink-2);
+  border: 1px solid var(--ink-3);
+  border-top: 3px solid var(--oro);
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra-lg);
+}
+.ventana h2 { margin: 0 0 var(--e-4); font-family: var(--display); font-size: 1.375rem; letter-spacing: -0.01em; }
+.campo { margin-bottom: var(--e-4); }
+.campo label { display: block; margin-bottom: 5px; font-size: 0.8125rem; color: var(--texto-claro-2); }
+.campo__fila { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e-3); }
+.campo__error { margin: 5px 0 0; font-size: 0.8125rem; color: var(--magenta-lt); }
+.ventana__acciones { display: flex; justify-content: flex-end; gap: var(--e-3); margin-top: var(--e-5); }
+.ajuste-aseguradoras { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--e-3); }
+.ajuste-aseguradoras .chip { display: inline-flex; align-items: center; gap: 6px; }
+.ajuste-aseguradoras button { border: 0; background: none; color: var(--magenta-lt); cursor: pointer; font-size: 0.875rem; line-height: 1; }
+.fila-agregar { display: flex; gap: var(--e-2); }
+.aviso-datos {
+  margin-top: var(--e-5);
+  padding: var(--e-3) var(--e-4);
+  border-left: 2px solid var(--oro);
+  background: rgba(168, 130, 31, 0.08);
+  font-size: 0.8125rem;
+  color: var(--texto-claro-2);
+}
+
+/* ── Aviso flotante (con deshacer) ── */
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  z-index: var(--z-flotante);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--e-4);
+  max-width: min(38rem, calc(100vw - 2rem));
+  padding: 12px 16px;
+  background: var(--ink-2);
+  border: 1px solid var(--ink-4);
+  border-left: 3px solid var(--verde);
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra-lg);
+  font-size: 0.875rem;
+}
+.aviso button { border: 0; background: none; color: var(--oro-lt); font: inherit; font-weight: var(--peso-fuerte); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+.pie-producto {
+  margin-top: var(--e-6);
+  padding-top: var(--e-4);
+  border-top: 1px dotted var(--ink-3);
+  font-size: 0.8125rem;
+  color: var(--texto-claro-2);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--e-4);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+  .filtros { grid-template-columns: minmax(0, 1fr); }
+  .auto { grid-template-columns: minmax(0, 1fr); gap: var(--e-3); }
+  .auto__dias { display: flex; align-items: baseline; gap: 8px; text-align: left; min-width: 0; }
+  .auto__acciones { flex-direction: row; min-width: 0; }
+  .auto__acciones .btn { flex: 1; }
+  .campo__fila { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="barra-producto">
+    <span class="barra-producto__marca">
+      <img src="../assets/marca-camena.svg" alt="" width="22" height="22">
+      Producto <a href="../index.html">CAMENA</a>
+    </span>
+    <span>Funciona sin cuenta y sin internet: los datos viven en este navegador.</span>
+  </div>
+
+  <div class="cabecera">
+    <h1>Control de autos<span>Entradas y salidas del taller</span></h1>
+    <div class="cabecera__acciones">
+      <button class="btn btn--linea btn--sm" type="button" id="abrir-ajustes">Aseguradoras y respaldo</button>
+      <button class="btn btn--principal" type="button" id="abrir-registro">+ Registrar entrada</button>
+    </div>
+  </div>
+
+  <div class="ayuda">
+    <button class="ayuda__disparador" type="button" id="ayuda-disparador" aria-expanded="false" aria-controls="ayuda-cuerpo">
+      ¿Cómo se usa esto? Ver las instrucciones
+    </button>
+    <div class="ayuda__cuerpo" id="ayuda-cuerpo" hidden>
+      <h2>Cómo se usa, en cuatro pasos</h2>
+      <ol>
+        <li>Cuando entra un auto, <b>Registrar entrada</b>: color, aseguradora y de qué se trata. La fecha de hoy se pone sola.</li>
+        <li>El auto aparece en <b>En el taller</b>. Ahí se ven los que faltan por salir y cuántos días llevan.</li>
+        <li>Cuando sale, <b>Marcar salida</b>. Se mueve al <b>Historial</b> con los días que estuvo en total.</li>
+        <li>De vez en cuando, <b>Aseguradoras y respaldo → Descargar respaldo</b>. Así no se pierde nada si se limpia el navegador.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="filtros">
+    <label class="visualmente-oculto" for="buscar">Buscar auto</label>
+    <input class="campo-control" type="search" id="buscar" placeholder="Buscar por descripción, color, placa, folio o aseguradora…">
+    <label class="visualmente-oculto" for="filtrar-aseguradora">Filtrar por aseguradora</label>
+    <select class="campo-control" id="filtrar-aseguradora"></select>
+  </div>
+
+  <div class="pestanas" role="tablist" aria-label="Vistas del control">
+    <button class="pestana" type="button" role="tab" id="tab-taller" aria-controls="panel-taller" aria-selected="true">
+      En el taller <span class="cuenta" id="cuenta-taller">0</span>
+    </button>
+    <button class="pestana" type="button" role="tab" id="tab-historial" aria-controls="panel-historial" aria-selected="false">
+      Historial <span class="cuenta" id="cuenta-historial">0</span>
+    </button>
+  </div>
+
+  <div id="panel-taller" role="tabpanel" aria-labelledby="tab-taller">
+    <div class="lista" id="lista-taller"></div>
+  </div>
+
+  <div id="panel-historial" role="tabpanel" aria-labelledby="tab-historial" hidden>
+    <div class="lista" id="lista-historial"></div>
+  </div>
+
+  <p class="pie-producto">
+    <span>Los datos se guardan en este navegador y en esta computadora. Con el respaldo se llevan a otra.</span>
+    <span>Hecho por CAMENA</span>
+  </p>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Control de autos · lógica
+   Todo pasa en el navegador: no hay servidor, no hay cuenta y no sale
+   ningún dato de la máquina. Se guarda en localStorage y se puede
+   descargar un respaldo en JSON para no perderlo.
+   ═══════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  var CLAVE_AUTOS = "camena:taller:autos";
+  var CLAVE_ASEGURADORAS = "camena:taller:aseguradoras";
+  var ASEGURADORAS_BASE = ["GNP", "Quálitas", "AXA", "HDI", "Mapfre", "Chubb", "Zurich", "ANA"];
+  var DIAS_DEMORADO = 7;
+  var DIAS_VENCIDO = 14;
+
+  var autos = [];
+  var aseguradoras = [];
+  var vista = "taller";
+  var busqueda = "";
+  var filtro = "";
+  var ultimoCambio = null;
+
+  var el = {
+    taller: document.getElementById("lista-taller"),
+    historial: document.getElementById("lista-historial"),
+    panelTaller: document.getElementById("panel-taller"),
+    panelHistorial: document.getElementById("panel-historial"),
+    tabTaller: document.getElementById("tab-taller"),
+    tabHistorial: document.getElementById("tab-historial"),
+    cuentaTaller: document.getElementById("cuenta-taller"),
+    cuentaHistorial: document.getElementById("cuenta-historial"),
+    buscar: document.getElementById("buscar"),
+    filtro: document.getElementById("filtrar-aseguradora"),
+    ayudaDisparador: document.getElementById("ayuda-disparador"),
+    ayudaCuerpo: document.getElementById("ayuda-cuerpo")
+  };
+
+  /* ── Almacén ──────────────────────────────────────────────── */
+
+  function leer(clave, porDefecto) {
+    try {
+      var crudo = localStorage.getItem(clave);
+      return crudo ? JSON.parse(crudo) : porDefecto;
+    } catch (e) {
+      return porDefecto;
+    }
+  }
+
+  function guardarAutos() {
+    try { localStorage.setItem(CLAVE_AUTOS, JSON.stringify(autos)); } catch (e) { /* modo privado */ }
+  }
+
+  function guardarAseguradoras() {
+    try { localStorage.setItem(CLAVE_ASEGURADORAS, JSON.stringify(aseguradoras)); } catch (e) { /* modo privado */ }
+  }
+
+  /* ── Utilidades ───────────────────────────────────────────── */
+
+  function hoyISO() { return new Date().toISOString().slice(0, 10); }
+
+  function fechaCorta(iso) {
+    if (!iso) return "—";
+    var p = iso.split("-");
+    return p[2] + "/" + p[1] + "/" + p[0];
+  }
+
+  function diasEntre(inicio, fin) {
+    var a = new Date(inicio + "T00:00:00");
+    var b = new Date((fin || hoyISO()) + "T00:00:00");
+    return Math.max(0, Math.round((b - a) / 86400000));
+  }
+
+  function nuevoId() { return "c" + Date.now() + Math.random().toString(36).slice(2, 7); }
+
+  function escapar(t) {
+    return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function normalizar(t) { return String(t || "").toLowerCase().trim(); }
+
+  /* ── Estado de un auto, en palabras además de color ───────── */
+
+  function estadoDias(dias) {
+    if (dias >= DIAS_VENCIDO) return { clase: "auto--vencido", etq: "vencido" };
+    if (dias >= DIAS_DEMORADO) return { clase: "auto--demorado", etq: "demorado" };
+    return { clase: "", etq: "días" };
+  }
+
+  /* ── Filtros ──────────────────────────────────────────────── */
+
+  function filtrar(lista) {
+    var salida = lista;
+    if (filtro) salida = salida.filter(function (a) { return a.aseguradora === filtro; });
+    if (busqueda.trim()) {
+      var q = normalizar(busqueda);
+      salida = salida.filter(function (a) {
+        return [a.descripcion, a.color, a.placa, a.aseguradora, a.folio].some(function (v) {
+          return normalizar(v).indexOf(q) >= 0;
+        });
+      });
+    }
+    return salida;
+  }
+
+  /* ── Pintado ──────────────────────────────────────────────── */
+
+  function tarjetaAuto(a, entregado) {
+    var dias = diasEntre(a.fechaEntrada, entregado ? a.fechaSalida : null);
+    var estado = entregado ? { clase: "auto--entregado", etq: "días en total" } : estadoDias(dias);
+    return '' +
+      '<article class="auto ' + estado.clase + '">' +
+        '<div>' +
+          '<div class="auto__titulo">' + escapar(a.descripcion) + '</div>' +
+          '<div class="auto__meta">' +
+            (a.color ? '<span class="chip">' + escapar(a.color) + '</span>' : '') +
+            '<span class="chip">' + escapar(a.aseguradora || "Particular") + '</span>' +
+            (a.placa ? '<span class="chip chip--placa">' + escapar(a.placa) + '</span>' : '') +
+            (a.folio ? '<span class="chip chip--placa">Folio ' + escapar(a.folio) + '</span>' : '') +
+          '</div>' +
+          '<p class="auto__fechas">Entró: <b>' + fechaCorta(a.fechaEntrada) + '</b>' +
+            (entregado ? ' · Salió: <b>' + fechaCorta(a.fechaSalida) + '</b>' : '') + '</p>' +
+          (a.notas ? '<p class="auto__notas">' + escapar(a.notas) + '</p>' : '') +
+        '</div>' +
+        '<div class="auto__dias">' +
+          '<span class="num">' + dias + '</span>' +
+          '<span class="etq">' + estado.etq + '</span>' +
+        '</div>' +
+        '<div class="auto__acciones">' +
+          (entregado
+            ? '<button class="btn btn--linea btn--sm" type="button" data-accion="reingresar" data-id="' + a.id + '">Reingresar</button>'
+            : '<button class="btn btn--principal btn--sm" type="button" data-accion="salida" data-id="' + a.id + '">Marcar salida</button>' +
+              '<button class="btn btn--linea btn--sm" type="button" data-accion="editar" data-id="' + a.id + '">Editar</button>') +
+          '<button class="btn btn--peligro btn--sm" type="button" data-accion="eliminar" data-id="' + a.id + '">Eliminar</button>' +
+        '</div>' +
+      '</article>';
+  }
+
+  function pintar() {
+    var enTaller = filtrar(autos.filter(function (a) { return a.estado === "en_taller"; }))
+      .sort(function (a, b) { return a.fechaEntrada.localeCompare(b.fechaEntrada); });
+    var entregados = filtrar(autos.filter(function (a) { return a.estado === "entregado"; }))
+      .sort(function (a, b) { return (b.fechaSalida || "").localeCompare(a.fechaSalida || ""); });
+
+    el.taller.innerHTML = enTaller.length
+      ? enTaller.map(function (a) { return tarjetaAuto(a, false); }).join("")
+      : '<div class="vacio"><b>No hay autos aquí</b>Registra una entrada o ajusta la búsqueda.</div>';
+
+    el.historial.innerHTML = entregados.length
+      ? entregados.map(function (a) { return tarjetaAuto(a, true); }).join("")
+      : '<div class="vacio"><b>Historial vacío</b>Aquí aparecen los autos ya entregados.</div>';
+
+    el.cuentaTaller.textContent = String(autos.filter(function (a) { return a.estado === "en_taller"; }).length);
+    el.cuentaHistorial.textContent = String(autos.filter(function (a) { return a.estado === "entregado"; }).length);
+
+    pintarFiltro();
+  }
+
+  function pintarFiltro() {
+    var valor = el.filtro.value;
+    el.filtro.innerHTML = '<option value="">Todas las aseguradoras</option>' +
+      aseguradoras.map(function (a) { return '<option value="' + escapar(a) + '">' + escapar(a) + '</option>'; }).join("");
+    el.filtro.value = aseguradoras.indexOf(valor) >= 0 ? valor : "";
+    filtro = el.filtro.value;
+  }
+
+  /* ── Cambiar de vista ─────────────────────────────────────── */
+
+  function mostrarVista(cual) {
+    vista = cual;
+    var enTaller = cual === "taller";
+    el.panelTaller.hidden = !enTaller;
+    el.panelHistorial.hidden = enTaller;
+    el.tabTaller.setAttribute("aria-selected", enTaller ? "true" : "false");
+    el.tabHistorial.setAttribute("aria-selected", enTaller ? "false" : "true");
+  }
+
+  /* ── Aviso flotante con deshacer ──────────────────────────── */
+
+  var relojAviso = null;
+
+  function avisar(mensaje, deshacer) {
+    cerrarAviso();
+    var caja = document.createElement("div");
+    caja.className = "aviso";
+    caja.setAttribute("role", "status");
+    caja.setAttribute("aria-live", "polite");
+    caja.innerHTML = "<span>" + escapar(mensaje) + "</span>";
+    if (deshacer) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = "Deshacer";
+      b.addEventListener("click", deshacer);
+      caja.appendChild(b);
+    }
+    document.body.appendChild(caja);
+    relojAviso = setTimeout(cerrarAviso, 7000);
+  }
+
+  function cerrarAviso() {
+    var viejo = document.querySelector(".aviso");
+    if (viejo) viejo.remove();
+    if (relojAviso) { clearTimeout(relojAviso); relojAviso = null; }
+  }
+
+  /* ── Acciones ─────────────────────────────────────────────── */
+
+  function marcarSalida(id) {
+    var a = buscarAuto(id);
+    if (!a) return;
+    ultimoCambio = { id: id, estado: a.estado, salida: a.fechaSalida };
+    a.estado = "entregado";
+    a.fechaSalida = hoyISO();
+    guardarAutos();
+    pintar();
+    avisar(a.descripcion + " quedó marcado como entregado.", deshacer);
+  }
+
+  function deshacer() {
+    if (!ultimoCambio) return;
+    var a = buscarAuto(ultimoCambio.id);
+    if (a) {
+      a.estado = ultimoCambio.estado;
+      a.fechaSalida = ultimoCambio.salida;
+      guardarAutos();
+      pintar();
+    }
+    ultimoCambio = null;
+    cerrarAviso();
+  }
+
+  function reingresar(id) {
+    var a = buscarAuto(id);
+    if (!a) return;
+    a.estado = "en_taller";
+    a.fechaSalida = null;
+    guardarAutos();
+    pintar();
+  }
+
+  function eliminar(id) {
+    var a = buscarAuto(id);
+    if (!a) return;
+    if (!window.confirm('¿Eliminar el registro de "' + a.descripcion + '"? No se puede deshacer.')) return;
+    autos = autos.filter(function (x) { return x.id !== id; });
+    guardarAutos();
+    pintar();
+  }
+
+  function buscarAuto(id) {
+    for (var i = 0; i < autos.length; i++) if (autos[i].id === id) return autos[i];
+    return null;
+  }
+
+  /* ── Ventana de registro y edición ────────────────────────── */
+
+  var veloActual = null;
+  var focoAntes = null;
+
+  function cerrarVentana() {
+    if (veloActual) veloActual.remove();
+    veloActual = null;
+    document.body.style.overflow = "";
+    if (focoAntes && focoAntes.focus) focoAntes.focus();
+    focoAntes = null;
+  }
+
+  function abrirVentana(contenido, alAbrir) {
+    cerrarVentana();
+    focoAntes = document.activeElement;
+    veloActual = document.createElement("div");
+    veloActual.className = "velo";
+    veloActual.innerHTML = '<div class="ventana" role="dialog" aria-modal="true">' + contenido + "</div>";
+    veloActual.addEventListener("mousedown", function (ev) {
+      if (ev.target === veloActual) cerrarVentana();
+    });
+    document.body.appendChild(veloActual);
+    document.body.style.overflow = "hidden";
+    if (alAbrir) alAbrir(veloActual.querySelector(".ventana"));
+  }
+
+  function abrirRegistro(auto) {
+    var editando = !!auto;
+    var opciones = aseguradoras.map(function (a) {
+      return '<option value="' + escapar(a) + '"' + (auto && auto.aseguradora === a ? " selected" : "") + ">" + escapar(a) + "</option>";
+    }).join("");
+
+    abrirVentana(
+      '<h2 id="titulo-ventana">' + (editando ? "Editar auto" : "Registrar entrada") + "</h2>" +
+      '<form id="forma-auto" novalidate>' +
+        '<div class="campo">' +
+          '<label for="f-descripcion">Descripción del auto (marca y modelo)</label>' +
+          '<input class="campo-control" id="f-descripcion" name="descripcion" required placeholder="Ej. Nissan Versa" value="' + (auto ? escapar(auto.descripcion) : "") + '">' +
+        "</div>" +
+        '<div class="campo campo__fila">' +
+          '<div><label for="f-color">Color</label>' +
+            '<input class="campo-control" id="f-color" name="color" placeholder="Ej. Gris" value="' + (auto ? escapar(auto.color || "") : "") + '"></div>' +
+          '<div><label for="f-placa">Placa (opcional)</label>' +
+            '<input class="campo-control" id="f-placa" name="placa" placeholder="Ej. ABC-123" value="' + (auto ? escapar(auto.placa || "") : "") + '"></div>' +
+        "</div>" +
+        '<div class="campo">' +
+          '<label for="f-aseguradora">Aseguradora</label>' +
+          '<select class="campo-control" id="f-aseguradora" name="aseguradora">' +
+            '<option value="">Particular / sin aseguradora</option>' + opciones +
+          "</select>" +
+        "</div>" +
+        '<div class="campo campo__fila">' +
+          '<div><label for="f-folio">Folio u orden (opcional)</label>' +
+            '<input class="campo-control" id="f-folio" name="folio" value="' + (auto ? escapar(auto.folio || "") : "") + '"></div>' +
+          '<div><label for="f-fecha">Fecha de entrada</label>' +
+            '<input class="campo-control" id="f-fecha" name="fechaEntrada" type="date" required value="' + (auto ? auto.fechaEntrada : hoyISO()) + '"></div>' +
+        "</div>" +
+        '<div class="campo">' +
+          '<label for="f-notas">Notas (opcional)</label>' +
+          '<textarea class="campo-control" id="f-notas" name="notas" rows="3" placeholder="Ej. golpe en la puerta trasera, esperando refacción…">' + (auto ? escapar(auto.notas || "") : "") + "</textarea>" +
+        "</div>" +
+        '<p class="campo__error" id="f-error" hidden>Falta la descripción del auto.</p>' +
+        '<div class="ventana__acciones">' +
+          '<button class="btn btn--linea" type="button" data-cerrar>Cancelar</button>' +
+          '<button class="btn btn--principal" type="submit">' + (editando ? "Guardar cambios" : "Registrar") + "</button>" +
+        "</div>" +
+      "</form>",
+      function (ventana) {
+        ventana.querySelector("[data-cerrar]").addEventListener("click", cerrarVentana);
+        var forma = ventana.querySelector("#forma-auto");
+        var error = ventana.querySelector("#f-error");
+        ventana.querySelector("#f-descripcion").focus();
+
+        forma.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var datos = new FormData(forma);
+          var descripcion = String(datos.get("descripcion") || "").trim();
+          if (!descripcion) {
+            error.hidden = false;
+            ventana.querySelector("#f-descripcion").focus();
+            return;
+          }
+          var valores = {
+            descripcion: descripcion,
+            color: String(datos.get("color") || "").trim(),
+            placa: String(datos.get("placa") || "").trim(),
+            aseguradora: String(datos.get("aseguradora") || ""),
+            folio: String(datos.get("folio") || "").trim(),
+            fechaEntrada: String(datos.get("fechaEntrada") || hoyISO()),
+            notas: String(datos.get("notas") || "").trim()
+          };
+          if (editando) {
+            Object.assign(auto, valores);
+          } else {
+            autos.push(Object.assign({ id: nuevoId(), estado: "en_taller", fechaSalida: null }, valores));
+          }
+          guardarAutos();
+          cerrarVentana();
+          pintar();
+        });
+      }
+    );
+  }
+
+  function abrirAjustes() {
+    abrirVentana(
+      '<h2 id="titulo-ventana">Aseguradoras y respaldo</h2>' +
+      '<div class="campo">' +
+        '<label for="nueva-aseguradora">Agregar aseguradora</label>' +
+        '<div class="fila-agregar">' +
+          '<input class="campo-control" id="nueva-aseguradora" placeholder="Ej. Sura">' +
+          '<button class="btn btn--linea" type="button" id="agregar-aseguradora">Agregar</button>' +
+        "</div>" +
+        '<div class="ajuste-aseguradoras" id="lista-aseguradoras"></div>' +
+      "</div>" +
+      '<div class="campo">' +
+        "<label>Respaldo de datos</label>" +
+        '<div class="fila-agregar" style="flex-wrap:wrap">' +
+          '<button class="btn btn--principal btn--sm" type="button" id="descargar-respaldo">Descargar respaldo</button>' +
+          '<button class="btn btn--linea btn--sm" type="button" id="cargar-respaldo">Cargar respaldo</button>' +
+          '<input type="file" id="archivo-respaldo" accept="application/json" hidden>' +
+        "</div>" +
+        '<p class="aviso-datos">El respaldo es un archivo de texto con todo lo registrado. Sirve para no perder la información y para pasarla a otra computadora. Al cargarlo se reemplaza lo que hay en este navegador.</p>' +
+      "</div>" +
+      '<div class="ventana__acciones"><button class="btn btn--linea" type="button" data-cerrar>Cerrar</button></div>',
+      function (ventana) {
+        ventana.querySelector("[data-cerrar]").addEventListener("click", cerrarVentana);
+        ventana.querySelector("#nueva-aseguradora").focus();
+
+        pintarAseguradoras(ventana);
+
+        ventana.querySelector("#agregar-aseguradora").addEventListener("click", function () {
+          var campo = ventana.querySelector("#nueva-aseguradora");
+          var nombre = campo.value.trim();
+          if (!nombre) return;
+          if (aseguradoras.indexOf(nombre) < 0) aseguradoras.push(nombre);
+          guardarAseguradoras();
+          campo.value = "";
+          pintarAseguradoras(ventana);
+          campo.focus();
+        });
+
+        ventana.querySelector("#descargar-respaldo").addEventListener("click", descargarRespaldo);
+        ventana.querySelector("#cargar-respaldo").addEventListener("click", function () {
+          ventana.querySelector("#archivo-respaldo").click();
+        });
+        ventana.querySelector("#archivo-respaldo").addEventListener("change", function () {
+          if (this.files && this.files[0]) cargarRespaldo(this.files[0]);
+        });
+      }
+    );
+  }
+
+  function pintarAseguradoras(ventana) {
+    var caja = ventana.querySelector("#lista-aseguradoras");
+    caja.innerHTML = aseguradoras.map(function (a) {
+      return '<span class="chip">' + escapar(a) + '<button type="button" data-quitar="' + escapar(a) + '" aria-label="Quitar ' + escapar(a) + '">✕</button></span>';
+    }).join("") || '<span class="chip">Todavía no hay ninguna</span>';
+
+    Array.prototype.forEach.call(caja.querySelectorAll("[data-quitar]"), function (b) {
+      b.addEventListener("click", function () {
+        var nombre = b.getAttribute("data-quitar");
+        aseguradoras = aseguradoras.filter(function (x) { return x !== nombre; });
+        guardarAseguradoras();
+        pintarAseguradoras(ventana);
+        pintarFiltro();
+      });
+    });
+  }
+
+  /* ── Respaldo ─────────────────────────────────────────────── */
+
+  function descargarRespaldo() {
+    var datos = { producto: "control-autos", version: 1, exportado: new Date().toISOString(), autos: autos, aseguradoras: aseguradoras };
+    var blob = new Blob([JSON.stringify(datos, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "respaldo-taller-" + hoyISO() + ".json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+  }
+
+  function cargarRespaldo(archivo) {
+    var lector = new FileReader();
+    lector.onload = function (ev) {
+      var datos;
+      try {
+        datos = JSON.parse(ev.target.result);
+      } catch (e) {
+        window.alert("No se pudo leer el archivo. Tiene que ser un respaldo generado por esta misma herramienta.");
+        return;
+      }
+      if (!datos || !Array.isArray(datos.autos)) {
+        window.alert("Este archivo no tiene el formato del respaldo.");
+        return;
+      }
+      if (!window.confirm("Se va a reemplazar todo lo registrado en este navegador con lo del respaldo. ¿Continuar?")) return;
+      autos = datos.autos;
+      aseguradoras = Array.isArray(datos.aseguradoras) && datos.aseguradoras.length ? datos.aseguradoras : ASEGURADORAS_BASE.slice();
+      guardarAutos();
+      guardarAseguradoras();
+      cerrarVentana();
+      pintar();
+      avisar("Respaldo cargado: " + autos.length + " registro(s).");
+    };
+    lector.readAsText(archivo);
+  }
+
+  /* ── Eventos de la página ─────────────────────────────────── */
+
+  document.addEventListener("click", function (ev) {
+    var boton = ev.target.closest ? ev.target.closest("[data-accion]") : null;
+    if (!boton) return;
+    var id = boton.getAttribute("data-id");
+    var accion = boton.getAttribute("data-accion");
+    if (accion === "salida") marcarSalida(id);
+    else if (accion === "editar") abrirRegistro(buscarAuto(id));
+    else if (accion === "eliminar") eliminar(id);
+    else if (accion === "reingresar") reingresar(id);
+  });
+
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && veloActual) cerrarVentana();
+  });
+
+  el.buscar.addEventListener("input", function () { busqueda = this.value; pintar(); });
+  el.filtro.addEventListener("change", function () { filtro = this.value; pintar(); });
+  el.tabTaller.addEventListener("click", function () { mostrarVista("taller"); });
+  el.tabHistorial.addEventListener("click", function () { mostrarVista("historial"); });
+  el.tabTaller.addEventListener("keydown", function (ev) { if (ev.key === "ArrowRight") { mostrarVista("historial"); el.tabHistorial.focus(); } });
+  el.tabHistorial.addEventListener("keydown", function (ev) { if (ev.key === "ArrowLeft") { mostrarVista("taller"); el.tabTaller.focus(); } });
+
+  document.getElementById("abrir-registro").addEventListener("click", function () { abrirRegistro(null); });
+  document.getElementById("abrir-ajustes").addEventListener("click", abrirAjustes);
+
+  el.ayudaDisparador.addEventListener("click", function () {
+    var abierto = this.getAttribute("aria-expanded") === "true";
+    this.setAttribute("aria-expanded", abierto ? "false" : "true");
+    el.ayudaCuerpo.hidden = abierto;
+    this.textContent = abierto ? "¿Cómo se usa esto? Ver las instrucciones" : "Ocultar las instrucciones";
+  });
+
+  /* ── Arranque ─────────────────────────────────────────────── */
+
+  autos = leer(CLAVE_AUTOS, []);
+  aseguradoras = leer(CLAVE_ASEGURADORAS, ASEGURADORAS_BASE.slice());
+  if (!Array.isArray(autos)) autos = [];
+  if (!Array.isArray(aseguradoras) || !aseguradoras.length) aseguradoras = ASEGURADORAS_BASE.slice();
+
+  mostrarVista("taller");
+  pintar();
+})();
+</script>
+</body>
+</html>

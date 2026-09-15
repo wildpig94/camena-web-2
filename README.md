@@ -18,6 +18,7 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 | `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres prototipos, armador de paquete, preguntas y contacto |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
+| `demo/control-autos.html` | **Producto en vivo**: control de entradas y salidas de un taller de autos |
 
 **Regla al añadir contenido:** si algo explica pero no ayuda a decidir, va en
 una página secundaria. El inicio no es un folleto.
@@ -42,6 +43,42 @@ El eje se repite en todas las secciones, y ahí está la prueba de que es el eje
 | Precios | Tres etapas (marca · presencia · **sistemas**) y **dos líneas aparte** (producción de contenido y proyectos especiales). La etapa de sistemas es la banda protagonista, en magenta. |
 | `servicios.html` | Tres grupos separados: **sistemas y diseño** (los cuatro pilares), **contenido y producción** y **campañas y proyectos especiales**. Nada se mezcla. |
 | `como-trabajamos.html` | Abre con el manifiesto del método y sigue con los seis pasos. |
+
+### El producto en vivo: control de autos
+
+`demo/control-autos.html` no es una maqueta: es un micro-sistema completo que
+cualquiera puede abrir y usar, y está enlazado desde los ejemplos del inicio con
+un «ábrelo y pruébalo». Sirve para lo mismo que el armador de paquetes: demostrar
+sin inventar nada.
+
+**Qué hace.** Registra la entrada de un auto (descripción, color, placa,
+aseguradora, folio y notas), cuenta los días que lleva dentro, marca la salida y
+lo manda al historial, busca y filtra por aseguradora, permite reingresar y
+eliminar, deja ajustar la lista de aseguradoras y descarga un respaldo en JSON
+que se puede volver a cargar en otra computadora.
+
+**Cómo está hecho, y por qué así.**
+
+- **Vive en el navegador.** Los datos se guardan en `localStorage` bajo las claves
+  `camena:taller:*`. No hay servidor, no hay cuenta y no sale ningún dato de la
+  máquina; el precio de eso es que hay que descargar el respaldo si se limpia el
+  navegador, y el producto lo dice en su propio pie en lugar de esconderlo.
+- **Usa el sistema de diseño del sitio.** Enlaza `css/variables.css` y
+  `css/base.css`: los mismos tokens y las mismas fuentes auto-hospedadas, sin
+  `@import` de Google Fonts ni un segundo juego de colores que mantener.
+- **El estado se dice con palabra y color.** Los días llevan la etiqueta
+  «demorado» (7+) o «vencido» (14+) además del color: el color solo no informa a
+  todo el mundo.
+- **Accesibilidad de serie**: etiquetas asociadas a cada campo, ventanas con
+  `role="dialog"` y `aria-modal`, cierre con `Escape`, foco que vuelve al botón
+  que abrió, pestañas con `role="tab"` y flechas del teclado, y el aviso flotante
+  con `aria-live`.
+
+**Lo que NO es.** No tiene respaldo en la nube, no sincroniza entre computadoras,
+no maneja varias sucursales y no distingue usuarios: es un micro-sistema de un
+solo mostrador. Está dicho así para que nadie lo contrate esperando otra cosa.
+
+---
 
 **Los cuatro pilares** (grupo «Sistemas y diseño» en el catálogo):
 
@@ -107,6 +144,8 @@ que quedó es esta, y aplica a cualquier texto nuevo:
 camena-2.0/
 ├── index.html                  Página principal (7 secciones)
 ├── servicios.html              Catálogo completo, con precios
+├── demo/
+│   └── control-autos.html      Producto en vivo (micro-sistema de taller)
 ├── como-trabajamos.html        El método completo, paso por paso
 ├── aviso-de-privacidad.html    Página legal
 ├── terminos.html               Página legal
@@ -382,14 +421,22 @@ superficie oscura, las dos pesaban igual y ninguna destacaba.
 3. **Campañas y proyectos especiales** — su propia disciplina (08), con la
    advertencia de normativa electoral dentro y no mezclada con el resto.
 
-### Los tres casos de estudio del LAB
+### Los cinco ejemplos de proyectos
 
 La sección se llamaba «laboratorio» y sonaba a borrador de aficionado. Ahora se
-presenta como **casos de estudio y prototipos de innovación**: portafolio de
-diseño y de ingeniería, con el problema, el enfoque y la decisión documentados.
-La honestidad no cambió —son piezas propias, sin cliente detrás—; lo que cambió
-es que ya no se disculpa por serlo. Cada ficha usa `Problema · Enfoque ·
-Decisión` (técnica o de diseño) en lugar de un relato.
+presenta como **ejemplos de proyectos**, con las etiquetas en palabras llanas
+—`El problema · Qué hicimos · Por qué así`— y una frase ancla que educa: ninguno
+se vende tal cual, cada uno se construye desde cero.
+
+Son cinco piezas y **dos están en vivo**: el armador de paquetes que cotiza por
+WhatsApp (está en esta misma página) y el control de autos de taller
+(`demo/control-autos.html`). Las otras tres son maquetas de interfaces hechas
+con CSS: mostrador con cobros y adeudos, recepción de servicios, y la identidad
+NORTE como contraparte de diseño.
+
+**Regla al añadir una pieza:** la que se pueda probar de verdad lleva su enlace y
+el chip «Está en vivo»; la que no, se marca como ejemplo propio. Nunca se
+presenta una maqueta como si fuera un producto funcionando.
 
 ### Precios: dónde se cambian
 
@@ -575,6 +622,8 @@ resultados **sin rearmar la página**.
 - [x] Eje reposicionado a **estudio de diseño y sistemas operativos**: hero con
       dos mitades, diagnósticos por costo, etapa de sistemas como protagonista,
       catálogo de servicios abierto por sistemas y tesis en «Cómo trabajamos»
+- [x] Producto en vivo publicado como demo (control de autos de taller), con su
+      ficha en los ejemplos y entrada en el sitemap
 - [x] Herramientas de trabajo: marcador de revisión, laboratorio de estilos y
       recetario de edición (todo en `docs/`, fuera del sitio publicado)
 - [x] Arquitectura de oferta en cuatro pilares de sistemas y diseño, con

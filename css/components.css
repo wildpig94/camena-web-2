@@ -988,6 +988,30 @@ svg.ic path[d^="M12 2a10"] {
 .mock-adeudo__dias { font-family: var(--mono); font-size: 0.625rem; color: var(--mock-naranja); }
 .mock-adeudo__monto { font-family: var(--mono); font-size: 0.6875rem; color: var(--mock-verde); }
 
+/* ── Control de autos: lo que está dentro del taller y hace cuánto ── */
+.mock-taller { width: 100%; background: var(--mock-0); border: 1px solid var(--ink-4); border-radius: var(--radio-sm); overflow: hidden; }
+.mock-taller__cuerpo { padding: 14px; display: grid; gap: 8px; }
+.mock-auto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  background: var(--mock-1);
+  border: 1px solid var(--ink-4);
+  border-left: 3px solid var(--mock-acento);
+  border-radius: var(--radio-sm);
+}
+.mock-auto__titulo { display: block; font-size: 0.75rem; font-weight: 600; color: var(--mock-texto); }
+.mock-auto__meta { display: block; margin-top: 3px; font-family: var(--mono); font-size: 0.625rem; color: var(--mock-tenue); }
+.mock-auto__dias { text-align: center; }
+.mock-auto__dias strong { display: block; font-family: var(--display); font-size: 1.25rem; line-height: 1; color: var(--mock-texto); }
+.mock-auto__dias em { display: block; margin-top: 2px; font-family: var(--mono); font-size: 0.5625rem; font-style: normal; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mock-tenue); }
+.mock-auto--vencido { border-left-color: #E5484D; }
+.mock-auto--vencido .mock-auto__dias strong { color: #F08C8F; }
+.mock-auto--listo { border-left-color: var(--mock-verde); }
+.mock-auto--listo .mock-auto__dias strong { color: var(--mock-verde); }
+
 /* ── Órdenes de servicio: cada trabajo en su etapa ── */
 .mock-ordenes { display: grid; gap: 6px; }
 .mock-orden {

@@ -395,9 +395,9 @@
         <p class="etiqueta etiqueta--claro">Ejemplos de proyectos</p>
         <h2 class="encabezado__titulo" id="lab-titulo">Así se ve un proyecto CAMENA.</h2>
         <p class="encabezado__intro">
-          Cuatro piezas hechas por nosotros, de principio a fin. No son trabajos de
+          Cinco piezas hechas por nosotros, de principio a fin. No son trabajos de
           clientes, pero sí el mismo proceso que aplicaríamos al tuyo: el problema,
-          lo que hicimos y por qué así.
+          lo que hicimos y por qué así. Dos de ellas están en vivo y se pueden usar.
         </p>
       </header>
 
@@ -519,7 +519,60 @@
           </div>
         </article>
 
-        <article class="lab-pieza lab-pieza--ancha" data-revelar>
+        <article class="lab-pieza" data-revelar>
+          <div class="lab-pieza__visual" aria-hidden="true">
+            <div class="mock-taller">
+              <div class="mock-panel__barra"><i></i><i></i><i></i><span>taller / adentro y salida</span></div>
+              <div class="mock-taller__cuerpo">
+                <div class="mock-auto">
+                  <div>
+                    <span class="mock-auto__titulo">Nissan Versa</span>
+                    <span class="mock-auto__meta">Gris · GNP · ABC-123</span>
+                  </div>
+                  <div class="mock-auto__dias"><strong>3</strong><em>días</em></div>
+                </div>
+                <div class="mock-auto mock-auto--vencido">
+                  <div>
+                    <span class="mock-auto__titulo">Toyota Hilux</span>
+                    <span class="mock-auto__meta">Blanca · Quálitas · Folio 248</span>
+                  </div>
+                  <div class="mock-auto__dias"><strong>16</strong><em>vencido</em></div>
+                </div>
+                <div class="mock-auto">
+                  <div>
+                    <span class="mock-auto__titulo">Sedán · servicio completo</span>
+                    <span class="mock-auto__meta">Azul · Particular</span>
+                  </div>
+                  <div class="mock-auto__dias"><strong>7</strong><em>demorado</em></div>
+                </div>
+                <div class="mock-auto mock-auto--listo">
+                  <div>
+                    <span class="mock-auto__titulo">Pick-up · suspensión</span>
+                    <span class="mock-auto__meta">Salió hoy · HDI</span>
+                  </div>
+                  <div class="mock-auto__dias"><strong>0</strong><em>entregado</em></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lab-pieza__info">
+            <p class="lab-pieza__meta">
+              <span class="chip chip--caso">Está en vivo</span>
+              <span class="lab-pieza__area">Sistemas</span>
+            </p>
+            <p class="visualmente-oculto">Muestra: lista de autos dentro del taller. Cada renglón trae el modelo, el color, la aseguradora, la placa y los días que lleva adentro, marcados como días, demorado, vencido o entregado.</p>
+            <h3 class="lab-pieza__titulo">Control de autos: entradas y salidas del taller</h3>
+            <dl class="lab-pieza__ficha">
+              <div><dt>El problema</dt><dd>Nadie sabía con certeza qué autos estaban adentro, desde cuándo ni con qué aseguradora: la lista vivía en una libreta y en la memoria del encargado.</dd></div>
+              <div><dt>Qué hicimos</dt><dd>Un micro-sistema que registra la entrada en cuatro campos, cuenta los días que lleva cada auto, manda al historial lo que ya salió y descarga un respaldo de todo.</dd></div>
+              <div><dt>Por qué así</dt><dd>Sin cuentas ni internet: los datos viven en la computadora del taller. Y el aviso de demorado o vencido sale del tiempo, no de que alguien se acuerde de revisar la libreta.</dd></div>
+            </dl>
+            <p class="lab-pieza__enlace"><a href="demo/control-autos.html">Ábrelo y pruébalo aquí mismo →</a></p>
+            <p class="lab-pieza__pie">Es el producto completo, no una simulación: registra un auto de prueba y bórralo después. Lo que escribas no sale de tu navegador.</p>
+          </div>
+        </article>
+
+        <article class="lab-pieza" data-revelar>
           <div class="lab-pieza__visual" aria-hidden="true">
             <div class="mock-identidad">
               <p class="mock-identidad__aviso">Ejemplo propio</p>

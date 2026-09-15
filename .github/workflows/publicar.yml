@@ -42,11 +42,17 @@ jobs:
           echo "── Referencias locales ──"
           fallos=0
           # Extrae src/href locales de los HTML y comprueba que el archivo exista
-          grep -ohE '(src|href)="[^"#][^"]*"' *.html \
+          grep -ohE '(src|href)="[^"#][^"]*"' *.html demo/*.html \
             | sed -E 's/.*="([^"]*)".*/\1/' \
             | grep -vE '^(https?:|mailto:|tel:|//|#)' \
             | sort -u > /tmp/refs.txt
+          # La demo vive en /demo, así que sus rutas relativas se resuelven ahí
           while read -r ref; do
+            case "$ref" in
+              ../*) set -- "${ref#../}" "$ref" ;;
+              *) set -- "$ref" "$ref" ;;
+            esac
+            ref="$1"; original="$2"
             # Un enlace puede traer fragmento o parámetros: index.html#empezar,
             # estilos.css?v=2. Se comprueba el archivo, no la cadena completa.
             limpio="${ref%%#*}"
@@ -54,7 +60,7 @@ jobs:
             # Un ancla suelta (#seccion) apunta a la misma página: no es un archivo
             [ -z "$limpio" ] && continue
             if [ ! -e "$limpio" ]; then
-              echo "  ✗ falta: $limpio (referenciado como $ref)"
+              echo "  ✗ falta: $limpio (referenciado como $original)"
               fallos=$((fallos + 1))
             else
               echo "  ✓ $limpio"
@@ -141,7 +147,7 @@ jobs:
           # forman parte del sitio y no tienen por qué quedar accesibles en la
           # web. Se publica únicamente lo que el navegador necesita.
           mkdir -p publicar
-          cp -r assets css js publicar/
+          cp -r assets css js demo publicar/
           cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html publicar/
           cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
           echo "── Contenido que se publica ──"
