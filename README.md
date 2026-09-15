@@ -50,7 +50,7 @@ Hay **dos** páginas de producto, y no son la misma cosa ni se muestran igual:
 
 | | `producto/taller.html` | `producto/control-de-autos.html` |
 |---|---|---|
-| Qué es | El **expediente del taller**, reconstruido desde los dolores reales | La app original de **Control de Autos**, ya sellada con la marca |
+| Qué es | El **expediente del taller**, reconstruido desde los dolores reales | La app original de **Control de Autos**, tal como la usaba el taller |
 | Diseño | El sistema de diseño del sitio (`css/variables.css`) | Propio: fondo oscuro, Oswald + IBM Plex Sans |
 | Se muestra | En los ejemplos del inicio, con «ábrelo y pruébalo» | **No.** Se comparte por enlace con quien la va a usar |
 | Archivos | `taller.html` + `taller.js` | Un solo archivo, sin dependencias |
@@ -108,6 +108,11 @@ enlace —el encargado la abre desde el celular sin instalar nada—. Registra l
 entrada de un auto (descripción, color, placa, aseguradora, folio, notas), cuenta
 los días que lleva en piso, marca la salida, lo manda al historial, filtra por
 aseguradora, deja ajustar la lista de aseguradoras y descarga un respaldo en JSON.
+
+**Va sin marca y sin nombre.** La página no dice CAMENA en ningún lado —ni en el
+título de la pestaña, ni en la cabecera, ni en el pie— y **no lleva el nombre de
+nadie**: es la herramienta de trabajo del taller, no un anuncio. Si algún día se
+quiere volver a firmar, se agrega un renglón al pie; hoy no lo lleva a propósito.
 
 **Cómo vive aquí, y qué se le cambió al subirla:**
 
@@ -201,9 +206,9 @@ camena-2.0/
 │   ├── taller.html             Producto en vivo: expediente del taller
 │   ├── taller.js               Lógica del producto (estado, fotos, etapas)
 │   └── control-de-autos.html   Control de Autos: app de una sola página, con
-│                               su propio enlace para el taller. No se enlaza
-│                               desde el sitio ni entra al sitemap: se comparte
-│                               con quien la va a usar.
+│                               su propio enlace para el taller. Sin marca y sin
+│                               nombre. No se enlaza desde el sitio ni entra al
+│                               sitemap: se comparte con quien la va a usar.
 │
 ├── assets/video/               Videos del sitio (720×1280, comprimidos):
 │   ├── camena-promo.mp4        Promo propio de 30 s
