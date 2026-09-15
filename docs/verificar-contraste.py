@@ -40,6 +40,11 @@ C = {
     "magenta":       "#D6247A",   # eje de sistemas
     "magenta-lt":    "#F472B6",
     "magenta-tx":    "#A81B5A",
+    # Fondos con color y sus acentos
+    "oro-fondo":       "#F5EFDF",
+    "oro-fondo-suave": "#F4EEE0",
+    "oro-fuerte":      "#6F550B",
+    "verde-fondo":     "#EFF4F0",
     "verde":         "#0E9F6E",   # estado
     "verde-lt":      "#34D399",
     "verde-tx":      "#0A6B4C",
@@ -80,6 +85,18 @@ P = [
     ("verde",          "paper",   3.0, "punto de estado y acento gráfico sobre hueso"),
     ("linea",         "paper",   1.2, "línea divisoria sobre hueso"),
     ("ink-3",         "ink",     1.2, "línea divisoria sobre tinta"),
+    # ── Fondos con color: el mismo rasero para texto y acento ──
+    ("texto",      "oro-fondo",       4.5, "texto sobre el fondo oro del hero"),
+    ("texto-2",    "oro-fondo",       4.5, "texto secundario sobre fondo oro"),
+    ("oro-fuerte", "oro-fondo",       4.5, "acento del hero sobre su fondo oro"),
+    ("verde-tx",   "oro-fondo",       3.0, "punto de estado sobre el fondo oro"),
+    ("texto",      "oro-fondo-suave", 4.5, "texto sobre tarjeta de marca"),
+    ("texto-2",    "oro-fondo-suave", 4.5, "texto secundario sobre tarjeta de marca"),
+    ("oro-fuerte", "oro-fondo-suave", 4.5, "acento sobre tarjeta de marca"),
+    ("texto",      "verde-fondo",     4.5, "texto sobre tarjeta de presencia"),
+    ("texto-2",    "verde-fondo",     4.5, "texto secundario sobre tarjeta de presencia"),
+    ("verde-tx",   "verde-fondo",     4.5, "acento sobre tarjeta de presencia"),
+    ("verde",      "verde-fondo",     3.0, "filete de la tarjeta de presencia"),
 ]
 
 

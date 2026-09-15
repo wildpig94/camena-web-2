@@ -95,7 +95,10 @@
   /* Por encima de la sección que sigue: las tarjetas de la franja de precios
      se abren hacia abajo y tienen que verse completas, no por detrás. */
   z-index: var(--z-contenido);
-  background: var(--paper);
+  /* Fondo oro cálido: el hero deja de ser papel neutro y abre la página con
+     temperatura. El tono está medido para que el texto y el acento que van
+     encima sigan pasando AA (ver variables.css). */
+  background: var(--oro-fondo);
   color: var(--texto);
   padding-top: clamp(3rem, 2rem + 5vw, 6rem);
   /* El aire de abajo no es decorativo: es donde se abren las tarjetas. */
@@ -109,15 +112,24 @@
 }
 
 /* Retícula técnica de fondo: da contexto de estudio, muy baja presencia */
+/* Textura cuadriculada: dos retículas superpuestas —una fina y otra gruesa—
+   en tinta oro, sobre el fondo cálido. Es papel de cuaderno técnico, no una
+   imagen: cero peso y cero peticiones. */
 .hero__rejilla {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(17, 17, 17, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(17, 17, 17, 0.055) 1px, transparent 1px);
-  background-size: clamp(60px, 8vw, 110px) clamp(60px, 8vw, 110px);
-  mask-image: radial-gradient(ellipse 90% 70% at 30% 20%, #000 20%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 30% 20%, #000 20%, transparent 78%);
+    linear-gradient(to right, rgba(111, 85, 11, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(111, 85, 11, 0.09) 1px, transparent 1px),
+    linear-gradient(to right, rgba(111, 85, 11, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(111, 85, 11, 0.05) 1px, transparent 1px);
+  background-size:
+    clamp(52px, 6vw, 84px) clamp(52px, 6vw, 84px),
+    clamp(52px, 6vw, 84px) clamp(52px, 6vw, 84px),
+    clamp(13px, 1.5vw, 21px) clamp(13px, 1.5vw, 21px),
+    clamp(13px, 1.5vw, 21px) clamp(13px, 1.5vw, 21px);
+  mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
   pointer-events: none;
 }
 
@@ -183,7 +195,9 @@
   line-height: 1.5;
   color: var(--texto);
 }
-.hecho em { color: var(--oro-tx); font-style: normal; font-weight: var(--peso-fuerte); }
+/* Por el alias contextual, no por la familia: este texto vive en el hero, que
+   va sobre fondo oro, y ahí el oro de siempre se queda en 4.41:1. */
+.hecho em { color: var(--acento); font-style: normal; font-weight: var(--peso-fuerte); }
 
 /* Cada dato de la franja es un botón: al pasar el ratón, al hacer clic o al
    llegar con el teclado, se abre su tarjeta. Es el mismo contenido de la ficha,
@@ -1206,6 +1220,44 @@ a.dato__valor:hover { color: var(--acento); }
 .hero__panel .panel__lista { margin-top: var(--e-3); }
 
 .hero__panel .panel__lista li + li { margin-top: 2px; }
+
+/* Índice numerado: el número va en mono y en el acento, y al pasar el ratón
+   aparece una barra fina a la izquierda. Es un menú, así que se comporta como
+   un menú: se ve dónde estás y adónde puedes ir. */
+.hero__panel .panel__lista { counter-reset: indice; }
+
+.hero__panel .panel__lista li {
+  position: relative;
+  padding-left: 0;
+  transition: padding-left var(--dur-rapida) var(--curva);
+}
+.hero__panel .panel__lista li::before {
+  counter-increment: indice;
+  content: counter(indice, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  color: var(--acento);
+  opacity: 0;
+  transition: opacity var(--dur-rapida) var(--curva);
+}
+.hero__panel .panel__lista li:hover { padding-left: 1.75rem; }
+.hero__panel .panel__lista li:hover::before { opacity: 1; }
+.hero__panel .panel__lista li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 60%;
+  width: 2px;
+  transform: translateY(-50%) scaleY(0);
+  background: var(--acento-grafico);
+  transition: transform var(--dur-rapida) var(--curva);
+}
+.hero__panel .panel__lista li:hover::after { transform: translateY(-50%) scaleY(1); }
 
 .hero__panel .panel__lista a {
   display: inline-block;

@@ -60,6 +60,17 @@
   --verde-tenue:  rgba(14, 159, 110, 0.10);
   --verde-linea:  rgba(14, 159, 110, 0.34);
 
+  /* ── Fondos con color y sus filetes ───────────────────────────
+     Un fondo teñido obliga a repetir la cuenta del contraste: el mismo acento
+     que se lee sobre hueso puede quedarse corto sobre un fondo de su propio
+     color. Por eso cada fondo trae su tono de texto y su filete ya medidos. */
+  --oro-fondo:        #F5EFDF;  /* fondo cálido del hero (oro muy suave) */
+  --oro-fondo-suave:  #F4EEE0;  /* fondo de las tarjetas de marca y campañas */
+  --oro-fuerte:       #6F550B;  /* acento de texto sobre fondos oro (6.14:1) */
+  --filete-oro:       #E4D9BE;  /* filete sobre fondo oro (1.22:1, decorativo) */
+  --verde-fondo:      #EFF4F0;  /* fondo de las tarjetas de presencia y producción */
+  --filete-verde:     #CBDDD3;  /* filete sobre fondo verde */
+
   /* ── Superficies y bordes por contexto ────────────────────────
    Ojo con la distinción: `--linea` es un filete decorativo (1.2:1 basta),
    `--borde-fuerte` delimita un control y por eso necesita 3:1. */
@@ -165,11 +176,15 @@
   --sombra-lg: 0 26px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* El hero tiene fondo claro pero conserva sus propios acentos: el oro de
-   marca para filetes y el oro oscuro para cualquier cosa que se lea. */
+/* El hero va sobre fondo oro con textura de cuadrícula. Sobre ese fondo el
+   acento normal (#8A6A0F) se queda en 4.41:1: no pasa. El contexto baja al
+   oro fuerte (#6F550B, 6.14:1) y los filetes se tiñen para seguir viéndose. */
 .hero {
-  --acento: var(--oro-tx);
-  --acento-suave: rgba(168, 130, 31, 0.10);
+  --acento: var(--oro-fuerte);
+  --acento-grafico: var(--oro-fuerte);
+  --acento-suave: rgba(111, 85, 11, 0.10);
+  --acento-linea: rgba(111, 85, 11, 0.30);
+  --borde: var(--filete-oro);
 }
 
 /* ── Contextos de SISTEMAS: aquí manda el magenta ─────────────────

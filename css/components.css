@@ -162,31 +162,59 @@ svg.ic path[d^="M12 2a10"] {
   gap: clamp(0.75rem, 0.3rem + 1.2vw, 1.625rem);
 }
 
+/* ── Menú de la cabecera ──────────────────────────────────────────
+   Tres estados, cada uno con su recurso: al pasar el ratón se enciende una
+   píldora de tinta clara, la sección en la que estás lleva filete de oro y un
+   punto, y el resto se queda en gris. Nada de subrayados por defecto. */
 .nav__enlace {
   position: relative;
-  padding: var(--e-2) 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* Relleno medido: con 11 px por lado el menú no cabe a 1440 y el botón de
+     la derecha se parte en dos renglones. Con 8 px entra y sigue habiendo
+     superficie táctil de sobra. */
+  padding: 6px 8px;
+  border-radius: var(--radio-control);
   font-size: 0.9375rem;
   color: var(--texto-claro-2);
-  transition: color var(--dur-rapida) var(--curva);
+  transition: color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
   white-space: nowrap;
+}
+.nav__enlace::before {
+  content: "";
+  width: 0;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--oro);
+  transition: width var(--dur-rapida) var(--curva);
 }
 .nav__enlace::after {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: 0;
+  left: 8px;
+  right: 8px;
+  bottom: 2px;
   width: 0;
   height: 1px;
   background: var(--oro);
   transition: width var(--dur) var(--curva);
 }
-.nav__enlace:hover,
-.nav__enlace.is-actual { color: var(--texto-claro); }
-.nav__enlace:hover::after { width: 100%; }
-.nav__enlace.is-actual { color: var(--oro-lt); }
-.nav__enlace.is-actual::after { width: 100%; }
+.nav__enlace:hover {
+  color: var(--texto-claro);
+  background: rgba(255, 255, 255, 0.07);
+}
+.nav__enlace:hover::after { width: calc(100% - 16px); }
+.nav__enlace.is-actual { color: var(--oro-lt); background: rgba(168, 130, 31, 0.12); }
+.nav__enlace.is-actual::before { width: 5px; }
+.nav__enlace.is-actual::after { width: calc(100% - 16px); }
 
 .nav__contacto { display: flex; align-items: center; gap: var(--e-3); }
+
+/* El botón de la cabecera no se parte en dos renglones. La regla va aquí y no
+   en .boton: un botón largo dentro del cuerpo sí tiene que poder envolver, o
+   desborda la tarjeta en un teléfono. */
+.cabecera .boton { white-space: nowrap; }
 
 .nav__whatsapp {
   display: inline-flex;
@@ -256,6 +284,12 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--verde);
   box-shadow: 0 0 0 3px var(--verde-tenue);
   flex-shrink: 0;
+}
+/* Sobre el fondo oro del hero, el verde de estado tiene que ser el oscuro:
+   el normal se queda en 2.95:1 y el punto informa, no decora. */
+.hero .sello__marca {
+  background: var(--verde-tx);
+  box-shadow: 0 0 0 3px rgba(10, 107, 76, 0.14);
 }
 
 
@@ -1692,6 +1726,34 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--paper);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
+}
+
+/* ── Fondo de color por etapa ─────────────────────────────────────
+   Cada etapa tiene su temperatura, para que la rejilla se lea de un vistazo:
+   oro = identidad (marca y campañas), verde = que te vean (presencia y
+   producción), carbón = el sistema, que sigue siendo el protagonista.
+   El acento de dentro cambia con el fondo: sobre fondo de su propio color, el
+   tono normal de cada familia se queda corto de contraste. */
+.etapa--marca,
+.etapa--campanas {
+  background: var(--oro-fondo-suave);
+  border-top: 3px solid var(--oro);
+  --acento: var(--oro-fuerte);
+  --acento-grafico: var(--oro-fuerte);
+  --acento-suave: rgba(111, 85, 11, 0.10);
+  --acento-linea: rgba(111, 85, 11, 0.30);
+  --borde: var(--filete-oro);
+}
+
+.etapa--presencia,
+.etapa--produccion {
+  background: var(--verde-fondo);
+  border-top: 3px solid var(--verde);
+  --acento: var(--verde-tx);
+  --acento-grafico: var(--verde);
+  --acento-suave: rgba(14, 159, 110, 0.10);
+  --acento-linea: var(--verde-linea);
+  --borde: var(--filete-verde);
 }
 
 /* Nota: la superficie oscura es exclusiva de la etapa protagonista. Antes la
