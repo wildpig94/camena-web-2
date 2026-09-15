@@ -74,6 +74,14 @@
   /* Cuando el panel de precios deja de estar al lado, aparece la línea. */
   .hero__precios-breve { display: block; }
 
+  /* Los globos de precio también dejan de flotar: en una columna taparían el
+     renglón siguiente. Entran en el flujo y empujan el contenido. */
+  .servicios__globo {
+    position: static;
+    margin: 0 0 var(--e-3);
+    box-shadow: none;
+  }
+
   /* Las tarjetas de la franja de precios dejan de flotar: en una columna
      taparían el dato de abajo. Entran en el flujo y empujan el contenido. */
   .hecho__globo {

@@ -216,7 +216,7 @@
         <dl class="hero__hechos">
           <div class="hecho">
             <dt>
-              <button class="hecho__boton" type="button" aria-expanded="false" aria-controls="hecho-paginas">
+              <button class="hecho__boton" type="button" data-globo="hecho-paginas" aria-expanded="false" aria-controls="hecho-paginas">
                 Páginas y marca<span class="hecho__signo" aria-hidden="true"></span>
               </button>
             </dt>
@@ -231,7 +231,7 @@
 
           <div class="hecho">
             <dt>
-              <button class="hecho__boton" type="button" aria-expanded="false" aria-controls="hecho-sistema">
+              <button class="hecho__boton" type="button" data-globo="hecho-sistema" aria-expanded="false" aria-controls="hecho-sistema">
                 Sistema para tu negocio<span class="hecho__signo" aria-hidden="true"></span>
               </button>
             </dt>
@@ -245,7 +245,7 @@
 
           <div class="hecho">
             <dt>
-              <button class="hecho__boton" type="button" aria-expanded="false" aria-controls="hecho-quien">
+              <button class="hecho__boton" type="button" data-globo="hecho-quien" aria-expanded="false" aria-controls="hecho-quien">
                 Quién te atiende<span class="hecho__signo" aria-hidden="true"></span>
               </button>
             </dt>
@@ -593,11 +593,41 @@
           </div>
 
           <ul class="servicios">
-            <li><span class="servicios__que">Logo</span><span class="servicios__cuanto">desde $1,500</span></li>
-            <li><span class="servicios__que">Logo, colores y letra, con la hoja de uso</span><span class="servicios__cuanto">desde $3,000</span></li>
-            <li><span class="servicios__que">Marca completa, con papelería y plantillas</span><span class="servicios__cuanto">desde $5,000</span></li>
-            <li><span class="servicios__que">Nombre y frase de la marca</span><span class="servicios__cuanto">desde $1,500</span></li>
-            <li><span class="servicios__que">Etiquetas o empaque</span><span class="servicios__cuanto">desde $2,000</span></li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-logo" aria-expanded="false">
+                <span class="servicios__que">Logo</span>
+                <span class="servicios__cuanto">desde $1,500</span>
+              </button>
+              <span class="servicios__globo" id="g-logo" role="region" aria-label="Qué incluye: Logo">Símbolo y tipografía en archivos listos para fachada, recibo y redes.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-logo-colores-y-letra-con-la-hoja-de-uso" aria-expanded="false">
+                <span class="servicios__que">Logo, colores y letra, con la hoja de uso</span>
+                <span class="servicios__cuanto">desde $3,000</span>
+              </button>
+              <span class="servicios__globo" id="g-logo-colores-y-letra-con-la-hoja-de-uso" role="region" aria-label="Qué incluye: Logo, colores y letra, con la hoja de uso">Suma la hoja de uso: qué colores, qué letra y cómo aplicarlos sin que se deformen.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-marca-completa-con-papeler-a-y-plantilla" aria-expanded="false">
+                <span class="servicios__que">Marca completa, con papelería y plantillas</span>
+                <span class="servicios__cuanto">desde $5,000</span>
+              </button>
+              <span class="servicios__globo" id="g-marca-completa-con-papeler-a-y-plantilla" role="region" aria-label="Qué incluye: Marca completa, con papelería y plantillas">Todo lo anterior más papelería y plantillas, para que publicar no dependa de un diseñador.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-nombre-y-frase-de-la-marca" aria-expanded="false">
+                <span class="servicios__que">Nombre y frase de la marca</span>
+                <span class="servicios__cuanto">desde $1,500</span>
+              </button>
+              <span class="servicios__globo" id="g-nombre-y-frase-de-la-marca" role="region" aria-label="Qué incluye: Nombre y frase de la marca">Buscamos el nombre y la frase que expliquen tu negocio en una línea.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-etiquetas-o-empaque" aria-expanded="false">
+                <span class="servicios__que">Etiquetas o empaque</span>
+                <span class="servicios__cuanto">desde $2,000</span>
+              </button>
+              <span class="servicios__globo" id="g-etiquetas-o-empaque" role="region" aria-label="Qué incluye: Etiquetas o empaque">Etiquetas y empaque con medidas y archivos listos para la imprenta.</span>
+            </li>
           </ul>
 
           <div class="etapa__pie">
@@ -618,16 +648,41 @@
           </div>
 
           <ul class="servicios">
-            <li><span class="servicios__que">Página de una pantalla, para anunciar algo</span><span class="servicios__cuanto">desde $3,500</span></li>
-            <li><span class="servicios__que">Página completa, hasta 5 secciones</span><span class="servicios__cuanto">desde $6,000</span></li>
-            <li><span class="servicios__que">Catálogo o menú digital</span><span class="servicios__cuanto">desde $4,500</span></li>
-            <li><span class="servicios__que">Tu ficha de Google, con fotos y horarios</span><span class="servicios__cuanto">desde $1,200</span></li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-p-gina-de-una-pantalla-para-anunciar-alg" aria-expanded="false">
+                <span class="servicios__que">Página de una pantalla, para anunciar algo</span>
+                <span class="servicios__cuanto">desde $3,500</span>
+              </button>
+              <span class="servicios__globo" id="g-p-gina-de-una-pantalla-para-anunciar-alg" role="region" aria-label="Qué incluye: Página de una pantalla, para anunciar algo">Una sola pantalla: qué vendes, por qué contigo y un botón directo a tu WhatsApp.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-p-gina-completa-hasta-5-secciones" aria-expanded="false">
+                <span class="servicios__que">Página completa, hasta 5 secciones</span>
+                <span class="servicios__cuanto">desde $6,000</span>
+              </button>
+              <span class="servicios__globo" id="g-p-gina-completa-hasta-5-secciones" role="region" aria-label="Qué incluye: Página completa, hasta 5 secciones">Cinco secciones como máximo. Se puede rentar a <strong>$500 al mes</strong> o pagarse completa y quedar a tu nombre.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-cat-logo-o-men-digital" aria-expanded="false">
+                <span class="servicios__que">Catálogo o menú digital</span>
+                <span class="servicios__cuanto">desde $4,500</span>
+              </button>
+              <span class="servicios__globo" id="g-cat-logo-o-men-digital" role="region" aria-label="Qué incluye: Catálogo o menú digital">Tus productos con foto y precio, con un enlace para pedir por WhatsApp.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-tu-ficha-de-google-con-fotos-y-horarios" aria-expanded="false">
+                <span class="servicios__que">Tu ficha de Google, con fotos y horarios</span>
+                <span class="servicios__cuanto">desde $1,200</span>
+              </button>
+              <span class="servicios__globo" id="g-tu-ficha-de-google-con-fotos-y-horarios" role="region" aria-label="Qué incluye: Tu ficha de Google, con fotos y horarios">Para aparecer en Maps con horario, fotos y cómo llegar.</span>
+            </li>
           </ul>
 
           <p class="etapa__nota">
-            Las páginas web se rentan a <strong>$500 al mes</strong>: dominio, hospedaje,
-            ajustes menores y respaldos. Si prefieres pagarla completa y que quede a tu
-            nombre, también se puede.
+            Las páginas se pueden <strong>rentar a $500 al mes</strong> —dominio,
+            hospedaje, ajustes menores y respaldos— o pagarse completas y quedar a tu
+            nombre. El sistema de la etapa 3 es otra cosa: ese se entrega y es tuyo,
+            sin renta mensual.
           </p>
 
           <div class="etapa__pie">
@@ -661,24 +716,76 @@
               <p>Un cuaderno no te avisa quién te debe, se pierde, no calcula totales
               solo y se deteriora. Un sistema a la medida pone orden exacto en tu
               mostrador por una sola inversión, sin mensualidades que te ahoguen.</p>
+              <p>Sácalo con tus números: si con el sistema recuperas un par de fiados al
+              mes y dejas de perder mercancía que no sabías que tenías, la inversión ya
+              se pagó sola.</p>
             </div>
           </div>
 
           <div class="etapa__cuerpo">
             <ul class="servicios">
-              <li><span class="servicios__que">Cotizar, cobrar y saber quién te debe</span><span class="servicios__cuanto">desde $8,000</span></li>
-              <li><span class="servicios__que">Tus clientes y tus ventas en un solo lugar</span><span class="servicios__cuanto">desde $8,000</span></li>
-              <li><span class="servicios__que">Inventario con lo que te queda al día</span><span class="servicios__cuanto">desde $7,000</span></li>
-              <li><span class="servicios__que">Citas, reservaciones o pedidos en línea</span><span class="servicios__cuanto">desde $6,000</span></li>
-              <li><span class="servicios__que">Tablero para ver cómo va el mes</span><span class="servicios__cuanto">desde $4,000</span></li>
-              <li><span class="servicios__que">Que las tareas repetidas se hagan solas</span><span class="servicios__cuanto">desde $3,000</span></li>
-              <li><span class="servicios__que">Respuestas automáticas y avisos por WhatsApp</span><span class="servicios__cuanto">desde $2,000</span></li>
-              <li><span class="servicios__que">Sistema completo para toda la operación</span><span class="servicios__cuanto">desde $15,000</span></li>
+              <li>
+              <button class="servicios__fila" type="button" data-globo="g-cotizar-cobrar-y-saber-qui-n-te-debe" aria-expanded="false">
+                <span class="servicios__que">Cotizar, cobrar y saber quién te debe</span>
+                <span class="servicios__cuanto">desde $8,000</span>
+              </button>
+              <span class="servicios__globo" id="g-cotizar-cobrar-y-saber-qui-n-te-debe" role="region" aria-label="Qué incluye: Cotizar, cobrar y saber quién te debe">Del presupuesto al pago: cada cotización, cada abono y quién sigue debiendo. <strong>Es tuyo: no se renta ni se paga por mes.</strong></span>
+            </li>
+              <li>
+              <button class="servicios__fila" type="button" data-globo="g-tus-clientes-y-tus-ventas-en-un-solo-lug" aria-expanded="false">
+                <span class="servicios__que">Tus clientes y tus ventas en un solo lugar</span>
+                <span class="servicios__cuanto">desde $8,000</span>
+              </button>
+              <span class="servicios__globo" id="g-tus-clientes-y-tus-ventas-en-un-solo-lug" role="region" aria-label="Qué incluye: Tus clientes y tus ventas en un solo lugar">El historial de cada cliente y lo que te compró, sin cuadernos ni hojas sueltas.</span>
+            </li>
+              <li>
+              <button class="servicios__fila" type="button" data-globo="g-inventario-con-lo-que-te-queda-al-d-a" aria-expanded="false">
+                <span class="servicios__que">Inventario con lo que te queda al día</span>
+                <span class="servicios__cuanto">desde $7,000</span>
+              </button>
+              <span class="servicios__globo" id="g-inventario-con-lo-que-te-queda-al-d-a" role="region" aria-label="Qué incluye: Inventario con lo que te queda al día">Entradas y salidas al momento: sabes qué hay y qué hace falta reponer.</span>
+            </li>
+              <li>
+              <button class="servicios__fila" type="button" data-globo="g-citas-reservaciones-o-pedidos-en-l-nea" aria-expanded="false">
+                <span class="servicios__que">Citas, reservaciones o pedidos en línea</span>
+                <span class="servicios__cuanto">desde $6,000</span>
+              </button>
+              <span class="servicios__globo" id="g-citas-reservaciones-o-pedidos-en-l-nea" role="region" aria-label="Qué incluye: Citas, reservaciones o pedidos en línea">Tu agenda o tus pedidos, con avisos para que no se te pierda ninguno.</span>
+            </li>
+              <li>
+              <button class="servicios__fila" type="button" data-globo="g-tablero-para-ver-c-mo-va-el-mes" aria-expanded="false">
+                <span class="servicios__que">Tablero para ver cómo va el mes</span>
+                <span class="servicios__cuanto">desde $4,000</span>
+              </button>
+              <span class="servicios__globo" id="g-tablero-para-ver-c-mo-va-el-mes" role="region" aria-label="Qué incluye: Tablero para ver cómo va el mes">Una pantalla con lo que vendiste, lo que te deben y lo que está por vencerse.</span>
+            </li>
+              <li>
+              <button class="servicios__fila" type="button" data-globo="g-que-las-tareas-repetidas-se-hagan-solas" aria-expanded="false">
+                <span class="servicios__que">Que las tareas repetidas se hagan solas</span>
+                <span class="servicios__cuanto">desde $3,000</span>
+              </button>
+              <span class="servicios__globo" id="g-que-las-tareas-repetidas-se-hagan-solas" role="region" aria-label="Qué incluye: Que las tareas repetidas se hagan solas">Copiar datos, mandar el mismo mensaje, armar reportes: se hacen solos.</span>
+            </li>
+              <li>
+              <button class="servicios__fila" type="button" data-globo="g-respuestas-autom-ticas-y-avisos-por-what" aria-expanded="false">
+                <span class="servicios__que">Respuestas automáticas y avisos por WhatsApp</span>
+                <span class="servicios__cuanto">desde $2,000</span>
+              </button>
+              <span class="servicios__globo" id="g-respuestas-autom-ticas-y-avisos-por-what" role="region" aria-label="Qué incluye: Respuestas automáticas y avisos por WhatsApp">Contesta lo de siempre y avisa lo que urge, sin estar pegado al teléfono.</span>
+            </li>
+              <li>
+              <button class="servicios__fila" type="button" data-globo="g-sistema-completo-para-toda-la-operaci-n" aria-expanded="false">
+                <span class="servicios__que">Sistema completo para toda la operación</span>
+                <span class="servicios__cuanto">desde $15,000</span>
+              </button>
+              <span class="servicios__globo" id="g-sistema-completo-para-toda-la-operaci-n" role="region" aria-label="Qué incluye: Sistema completo para toda la operación">Todo lo anterior, hecho para tu forma de trabajar y entregado por etapas.</span>
+            </li>
             </ul>
 
             <p class="etapa__nota">
               Nada aquí es genérico: se construye para tu forma de trabajar. Se entrega
               por etapas y cada una se aprueba antes de seguir.
+              <strong>El sistema queda a tu nombre: no se renta ni se paga por mes.</strong>
             </p>
 
             <div class="etapa__pie">
@@ -731,10 +838,34 @@
           </div>
 
           <ul class="servicios">
-            <li><span class="servicios__que">Tres videos cortos para redes</span><span class="servicios__cuanto">desde $3,500</span></li>
-            <li><span class="servicios__que">Jingle o canción de tu marca</span><span class="servicios__cuanto">desde $2,500</span></li>
-            <li><span class="servicios__que">Campaña para redes, con la idea y las piezas</span><span class="servicios__cuanto">desde $4,000</span></li>
-            <li><span class="servicios__que">Publicaciones del mes, listas para subir</span><span class="servicios__cuanto">desde $2,500</span></li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-tres-videos-cortos-para-redes" aria-expanded="false">
+                <span class="servicios__que">Tres videos cortos para redes</span>
+                <span class="servicios__cuanto">desde $3,500</span>
+              </button>
+              <span class="servicios__globo" id="g-tres-videos-cortos-para-redes" role="region" aria-label="Qué incluye: Tres videos cortos para redes">Guion, grabación y edición, con versiones para cada red.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-jingle-o-canci-n-de-tu-marca" aria-expanded="false">
+                <span class="servicios__que">Jingle o canción de tu marca</span>
+                <span class="servicios__cuanto">desde $2,500</span>
+              </button>
+              <span class="servicios__globo" id="g-jingle-o-canci-n-de-tu-marca" role="region" aria-label="Qué incluye: Jingle o canción de tu marca">La parte sonora de la marca: eso que la gente tararea sin darse cuenta.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-campa-a-para-redes-con-la-idea-y-las-pie" aria-expanded="false">
+                <span class="servicios__que">Campaña para redes, con la idea y las piezas</span>
+                <span class="servicios__cuanto">desde $4,000</span>
+              </button>
+              <span class="servicios__globo" id="g-campa-a-para-redes-con-la-idea-y-las-pie" role="region" aria-label="Qué incluye: Campaña para redes, con la idea y las piezas">Primero la idea, después las piezas: qué quieres que piensen de tu negocio.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-publicaciones-del-mes-listas-para-subir" aria-expanded="false">
+                <span class="servicios__que">Publicaciones del mes, listas para subir</span>
+                <span class="servicios__cuanto">desde $2,500</span>
+              </button>
+              <span class="servicios__globo" id="g-publicaciones-del-mes-listas-para-subir" role="region" aria-label="Qué incluye: Publicaciones del mes, listas para subir">El mes resuelto: textos, imágenes y fechas para publicar.</span>
+            </li>
           </ul>
 
           <div class="etapa__pie">
@@ -758,13 +889,55 @@
 
           <div class="etapa__cuerpo">
           <ul class="servicios">
-            <li><span class="servicios__que">Marca completa para la campaña</span><span class="servicios__cuanto">desde $5,000</span></li>
-            <li><span class="servicios__que">Contenido para redes, por mes</span><span class="servicios__cuanto">desde $4,000</span></li>
-            <li><span class="servicios__que">Videos y piezas para anunciar</span><span class="servicios__cuanto">desde $3,500</span></li>
-            <li><span class="servicios__que">Base de datos y control de simpatizantes</span><span class="servicios__cuanto">desde $8,000</span></li>
-            <li><span class="servicios__que">Respuestas automáticas y atención por WhatsApp</span><span class="servicios__cuanto">desde $2,000</span></li>
-            <li><span class="servicios__que">Página con la propuesta y el registro</span><span class="servicios__cuanto">desde $6,000</span></li>
-            <li><span class="servicios__que">Campaña completa, por etapas</span><span class="servicios__cuanto">desde $12,000</span></li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-marca-completa-para-la-campa-a" aria-expanded="false">
+                <span class="servicios__que">Marca completa para la campaña</span>
+                <span class="servicios__cuanto">desde $5,000</span>
+              </button>
+              <span class="servicios__globo" id="g-marca-completa-para-la-campa-a" role="region" aria-label="Qué incluye: Marca completa para la campaña">Identidad propia de la campaña, sin copiar la del partido ni la del vecino.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-contenido-para-redes-por-mes" aria-expanded="false">
+                <span class="servicios__que">Contenido para redes, por mes</span>
+                <span class="servicios__cuanto">desde $4,000</span>
+              </button>
+              <span class="servicios__globo" id="g-contenido-para-redes-por-mes" role="region" aria-label="Qué incluye: Contenido para redes, por mes">Piezas del mes con el mensaje de la campaña.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-videos-y-piezas-para-anunciar" aria-expanded="false">
+                <span class="servicios__que">Videos y piezas para anunciar</span>
+                <span class="servicios__cuanto">desde $3,500</span>
+              </button>
+              <span class="servicios__globo" id="g-videos-y-piezas-para-anunciar" role="region" aria-label="Qué incluye: Videos y piezas para anunciar">Lo que se publica y lo que se pauta, con el mismo mensaje.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-base-de-datos-y-control-de-simpatizantes" aria-expanded="false">
+                <span class="servicios__que">Base de datos y control de simpatizantes</span>
+                <span class="servicios__cuanto">desde $8,000</span>
+              </button>
+              <span class="servicios__globo" id="g-base-de-datos-y-control-de-simpatizantes" role="region" aria-label="Qué incluye: Base de datos y control de simpatizantes">Registro ordenado y a tu nombre, con control de quién entra y quién no.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-respuestas-autom-ticas-y-atenci-n-por-wh" aria-expanded="false">
+                <span class="servicios__que">Respuestas automáticas y atención por WhatsApp</span>
+                <span class="servicios__cuanto">desde $2,000</span>
+              </button>
+              <span class="servicios__globo" id="g-respuestas-autom-ticas-y-atenci-n-por-wh" role="region" aria-label="Qué incluye: Respuestas automáticas y atención por WhatsApp">Contestar rápido sin perder el tono de la campaña.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-p-gina-con-la-propuesta-y-el-registro" aria-expanded="false">
+                <span class="servicios__que">Página con la propuesta y el registro</span>
+                <span class="servicios__cuanto">desde $6,000</span>
+              </button>
+              <span class="servicios__globo" id="g-p-gina-con-la-propuesta-y-el-registro" role="region" aria-label="Qué incluye: Página con la propuesta y el registro">Una página que explica la propuesta y recoge los datos.</span>
+            </li>
+            <li>
+              <button class="servicios__fila" type="button" data-globo="g-campa-a-completa-por-etapas" aria-expanded="false">
+                <span class="servicios__que">Campaña completa, por etapas</span>
+                <span class="servicios__cuanto">desde $12,000</span>
+              </button>
+              <span class="servicios__globo" id="g-campa-a-completa-por-etapas" role="region" aria-label="Qué incluye: Campaña completa, por etapas">Todo junto, por etapas, con revisión antes de cada arranque.</span>
+            </li>
           </ul>
 
           <p class="etapa__nota">

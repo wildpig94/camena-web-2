@@ -1711,11 +1711,13 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--ink);
   color: var(--texto-claro);
   border-color: var(--ink);
+  /* Solo se cambian los tokens de texto y borde: el acento NO se toca aquí.
+     Lo pone variables.css (magenta, porque es el eje de sistemas) y si se
+     repitiera en este archivo, el orden de carga lo pisaría con el oro. */
   --texto: var(--texto-claro);
   --texto-2: var(--texto-claro-2);
   --borde: var(--borde-oscuro);
-  --acento: var(--oro-lt);
-  --acento-suave: rgba(168, 130, 31, 0.1);
+  --acento-suave: rgba(214, 36, 122, 0.12);
 }
 .etapa--destacada::before {
   content: "";
@@ -1761,6 +1763,9 @@ svg.ic path[d^="M12 2a10"] {
   /* La lista arranca al ras del título, sin el aire de tarjeta suelta */
   .etapa--ancha .servicios { margin-top: 0; }
 }
+
+/* El globo dentro de la banda oscura: fondo de la misma familia del carbón */
+.etapa--destacada .servicios__globo { background: var(--ink-2); }
 
 /* Caja que justifica la inversión: en la banda oscura, un fondo apenas más
    claro y un filete de acento. Sin ella, la cifra de $8,000 llega sin contexto. */
@@ -1864,14 +1869,65 @@ svg.ic path[d^="M12 2a10"] {
 }
 
 .servicios li {
+  position: relative;
+  border-bottom: 1px dotted var(--borde);
+}
+.servicios li:last-child { border-bottom: 0; }
+
+/* Cada renglón de precio es un botón: al pasar el ratón, al hacer clic o al
+   llegar con el teclado se abre su globo explicando qué incluye esa opción.
+   Así la lista deja de ser una lista y pasa a ser la ficha de cada cosa. */
+.servicios__fila {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
   gap: var(--e-3);
+  width: 100%;
   padding: var(--e-3) 0;
-  border-bottom: 1px dotted var(--borde);
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
-.servicios li:last-child { border-bottom: 0; }
+.servicios__fila:hover .servicios__que,
+.servicios__fila[aria-expanded="true"] .servicios__que { color: var(--acento); }
+
+.servicios__globo {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: var(--z-contenido);
+  padding: var(--e-4);
+  background: var(--paper-2);
+  border: 1px solid var(--borde);
+  border-left: 2px solid var(--acento);
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  font-weight: var(--peso-normal);
+  color: var(--texto-2);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--dur-rapida) var(--curva), transform var(--dur-rapida) var(--curva);
+}
+.servicios__globo strong { color: var(--texto); }
+
+.servicios li:hover .servicios__globo,
+.servicios li:focus-within .servicios__globo,
+.servicios__globo[data-abierto="si"] {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .servicios__globo { transition: none; transform: none; }
+}
 
 .servicios__que {
   font-size: 0.9375rem;

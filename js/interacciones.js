@@ -93,28 +93,28 @@
     claseActiva: "is-activo"
   });
 
-  /* ── 3 · Tarjetas de la franja de precios ───────────────────
-     Cada dato del hero abre su detalle. Con ratón ya se abre al pasar por
-     encima (eso lo hace el CSS); aquí se resuelve el clic y el teclado, que es
-     lo que necesitan el dedo y quien navega sin ratón. */
-  var hechos = Array.prototype.slice.call(document.querySelectorAll(".hecho__boton"));
+  /* ── 3 · Globo flotante (franja de precios y lista de precios) ─────
+     Cualquier botón con data-globo abre el elemento con ese id. Con ratón ya
+     se abre al pasar por encima (eso lo hace el CSS); aquí se resuelve el clic
+     y el teclado, que es lo que necesitan el dedo y quien navega sin ratón. */
+  var disparadores = Array.prototype.slice.call(document.querySelectorAll("[data-globo]"));
 
-  function cerrarHechos(excepto) {
-    hechos.forEach(function (boton) {
+  function cerrarGlobos(excepto) {
+    disparadores.forEach(function (boton) {
       if (boton === excepto) return;
       boton.setAttribute("aria-expanded", "false");
-      var globo = document.getElementById(boton.getAttribute("aria-controls"));
+      var globo = document.getElementById(boton.getAttribute("data-globo"));
       if (globo) globo.removeAttribute("data-abierto");
     });
   }
 
-  hechos.forEach(function (boton) {
-    var globo = document.getElementById(boton.getAttribute("aria-controls"));
+  disparadores.forEach(function (boton) {
+    var globo = document.getElementById(boton.getAttribute("data-globo"));
     if (!globo) return;
 
     boton.addEventListener("click", function () {
       var abierto = boton.getAttribute("aria-expanded") === "true";
-      cerrarHechos(boton);
+      cerrarGlobos(boton);
       boton.setAttribute("aria-expanded", abierto ? "false" : "true");
       if (abierto) globo.removeAttribute("data-abierto");
       else globo.setAttribute("data-abierto", "si");
@@ -122,11 +122,11 @@
   });
 
   document.addEventListener("keydown", function (evento) {
-    if (evento.key === "Escape") cerrarHechos(null);
+    if (evento.key === "Escape") cerrarGlobos(null);
   });
 
   document.addEventListener("click", function (evento) {
-    if (!evento.target.closest || !evento.target.closest(".hecho")) cerrarHechos(null);
+    if (!evento.target.closest || !evento.target.closest("[data-globo]")) cerrarGlobos(null);
   });
 
   /* ── 4 · Cadena del ecosistema ────────────────────────────── */
