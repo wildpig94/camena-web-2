@@ -138,7 +138,12 @@ camena-2.0/
 │
 └── docs/
     ├── verificar-contraste.py  Comprueba la paleta contra WCAG AA
-    └── auditar.sh              Auditoría del sitio renderizado
+    ├── auditar.sh              Auditoría del sitio renderizado
+    ├── movil.mjs               Auditoría con ancho de móvil real
+    ├── recetas.md              Recetario para editar el sitio
+    ├── laboratorio.html        Colores, texturas y resaltes, con CSS para copiar
+    ├── revisar.sh              Prepara la copia local con el marcador
+    └── revision/               El marcador (css + js); la copia vive aquí y no se versiona
 ```
 
 El orden de carga de los CSS importa y es el de la lista: tokens → base →
@@ -157,6 +162,32 @@ cd camena-2.0
 python3 -m http.server 8899 --bind 127.0.0.1
 # → http://127.0.0.1:8899/
 ```
+
+---
+
+## Revisar y editar el sitio tú mismo
+
+Tres herramientas de trabajo que viven en `docs/` y **nunca se publican** (el
+flujo de despliegue no copia esa carpeta):
+
+| Herramienta | Para qué sirve | Cómo se abre |
+|---|---|---|
+| `docs/revisar.sh` | **El marcador.** Copia el sitio a una carpeta local y le inyecta un modo de revisión: pasas el ratón, haces clic en lo que quieras cambiar, escribes la nota y eliges color. | `bash docs/revisar.sh` → `…/docs/revision/sitio/index.html` |
+| `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
+| `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
+
+**El flujo de revisión completo:**
+
+1. `bash docs/revisar.sh` (levanta el servidor si hace falta y avisa de la URL).
+2. Pulsar **Marcar** o la tecla `M`; hacer clic en cada cosa a cambiar; escribir
+   la nota; elegir color (oro, magenta, verde o carbón).
+3. **Descargar Marcas.md** y mandar ese archivo. Lleva, por cada marca, el
+   selector exacto, el texto visible y lo que se quiere cambiar.
+
+Las marcas se guardan en el navegador (`localStorage`) por página, así que se
+puede revisar en varios días y exportar al final. El sitio real no se toca: el
+marcador vive en una **copia** dentro de `docs/revision/sitio/` (ignorada por
+git), y la copia se regenera con `bash docs/revisar.sh --limpio`.
 
 ---
 
@@ -535,6 +566,8 @@ resultados **sin rearmar la página**.
 - [x] Eje reposicionado a **estudio de diseño y sistemas operativos**: hero con
       dos mitades, diagnósticos por costo, etapa de sistemas como protagonista,
       catálogo de servicios abierto por sistemas y tesis en «Cómo trabajamos»
+- [x] Herramientas de trabajo: marcador de revisión, laboratorio de estilos y
+      recetario de edición (todo en `docs/`, fuera del sitio publicado)
 - [x] Arquitectura de oferta en cuatro pilares de sistemas y diseño, con
       contenido y campañas en grupos aparte
 - [x] Paleta de cuatro colores (oro, magenta, verde y carbón) con roles

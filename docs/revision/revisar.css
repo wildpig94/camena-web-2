@@ -1,0 +1,258 @@
+/* ═══════════════════════════════════════════════════════════════
+   CAMENA · revisar.css
+   Estilos del modo marcador. SOLO se carga en la copia local de
+   revisión (docs/revision/sitio/), nunca en el sitio publicado.
+   Todo va con el prefijo rv- y con z-index alto: la capa de marcas
+   flota por encima de la página y no toca ningún estilo del sitio.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Capa de marcas: se estira a lo alto del documento y no intercepta el
+   ratón (los globos numerados sí, para poder editarlos). ── */
+#rv-capa {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.rv-marca {
+  position: absolute;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--rv-color), inset 0 -0.55em 0 var(--rv-color-suave);
+  background: var(--rv-color-suave);
+  mix-blend-mode: multiply;
+}
+/* El texto de dentro se lee igual: la marca es un velo, no una capa opaca */
+.rv-marca--trazo { mix-blend-mode: multiply; }
+
+.rv-globo {
+  position: absolute;
+  width: 22px; height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--rv-color);
+  color: #fff;
+  font-family: var(--mono, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 9999;
+}
+.rv-globo:hover { transform: scale(1.12); }
+
+/* ── Botón flotante para encender y apagar el marcador ── */
+#rv-boton {
+  position: fixed;
+  left: 18px; bottom: 18px;
+  z-index: 10001;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #111111;
+  color: #F7F6F3;
+  font-family: var(--texto-fuente, system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+#rv-boton[aria-pressed="true"] { background: #D6247A; }
+#rv-boton .rv-punto {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #0E9F6E;
+  box-shadow: 0 0 0 3px rgba(14, 159, 110, 0.25);
+}
+#rv-boton[aria-pressed="true"] .rv-punto { background: #fff; box-shadow: none; }
+#rv-contador {
+  font-family: var(--mono, monospace);
+  font-size: 12px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ── Modo marcador encendido: el cursor avisa ── */
+html.rv-activo, html.rv-activo * { cursor: crosshair !important; }
+html.rv-activo a, html.rv-activo button { cursor: crosshair !important; }
+
+#rv-resalte {
+  position: absolute;
+  z-index: 9997;
+  pointer-events: none;
+  border: 1px dashed #D6247A;
+  background: rgba(214, 36, 122, 0.06);
+  border-radius: 2px;
+  display: none;
+}
+#rv-etiqueta {
+  position: absolute;
+  z-index: 9999;
+  display: none;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #111111;
+  color: #F7F6F3;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ── Caja para escribir la nota, pegada al punto donde hiciste clic ── */
+#rv-nota {
+  position: absolute;
+  z-index: 10002;
+  display: none;
+  width: 320px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #FCFBF9;
+  color: #111111;
+  border: 1px solid #E3E1DB;
+  box-shadow: 0 25px 60px rgba(17, 17, 17, 0.28);
+  font-family: var(--texto-fuente, system-ui, sans-serif);
+}
+#rv-nota[data-abierta="si"] { display: block; }
+#rv-nota h4 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--mono, monospace);
+  color: #5C5C58;
+}
+#rv-nota .rv-objetivo {
+  margin: 0 0 10px;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  color: #5C5C58;
+  word-break: break-all;
+}
+#rv-nota textarea {
+  width: 100%;
+  min-height: 74px;
+  resize: vertical;
+  padding: 9px 10px;
+  border: 1px solid #E3E1DB;
+  border-radius: 5px;
+  background: #fff;
+  color: #111111;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+}
+#rv-nota textarea:focus { outline: 2px solid #A8821F; outline-offset: 1px; }
+
+.rv-fila { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.rv-colores { display: flex; gap: 6px; margin-right: auto; }
+.rv-color {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.rv-color[aria-pressed="true"] { border-color: #111111; transform: scale(1.1); }
+
+.rv-accion {
+  padding: 7px 13px;
+  border-radius: 5px;
+  border: 1px solid #E3E1DB;
+  background: #fff;
+  color: #111111;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.rv-accion--principal { background: #111111; border-color: #111111; color: #F7F6F3; }
+.rv-accion--peligro { color: #A81B5A; border-color: #F472B6; }
+.rv-ayuda { margin: 9px 0 0; font-size: 11.5px; color: #5C5C58; line-height: 1.5; }
+
+/* ── Panel lateral con la lista de marcas ── */
+#rv-panel {
+  position: fixed;
+  right: 16px; bottom: 16px;
+  z-index: 10000;
+  width: 330px;
+  max-height: 62vh;
+  display: none;
+  flex-direction: column;
+  border-radius: 10px;
+  background: #FCFBF9;
+  color: #111111;
+  border: 1px solid #E3E1DB;
+  box-shadow: 0 25px 60px rgba(17, 17, 17, 0.28);
+  font-family: var(--texto-fuente, system-ui, sans-serif);
+  overflow: hidden;
+}
+#rv-panel[data-abierto="si"] { display: flex; }
+.rv-panel__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #E3E1DB;
+}
+.rv-panel__cabecera strong { font-size: 14px; margin-right: auto; }
+.rv-panel__lista { overflow: auto; padding: 6px; margin: 0; list-style: none; }
+.rv-item {
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  gap: 8px;
+  align-items: start;
+  padding: 9px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.rv-item:hover { background: #F7F6F3; }
+.rv-item__num {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--rv-color);
+  color: #fff;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+}
+.rv-item__nota { font-size: 13px; line-height: 1.4; }
+.rv-item__sel {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--mono, monospace);
+  font-size: 10.5px;
+  color: #5C5C58;
+  word-break: break-all;
+}
+.rv-item__texto { display: block; margin-top: 3px; font-size: 12px; color: #5C5C58; font-style: italic; }
+.rv-item__borrar { border: 0; background: none; color: #A81B5A; cursor: pointer; font-size: 16px; line-height: 1; padding: 2px 4px; }
+.rv-panel__pie { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-top: 1px solid #E3E1DB; }
+.rv-vacio { padding: 18px 14px; font-size: 13px; color: #5C5C58; line-height: 1.5; }
+
+/* ── Aviso de que esto es una copia de revisión ── */
+#rv-aviso {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10003;
+  padding: 5px 12px;
+  background: #D6247A;
+  color: #fff;
+  font-family: var(--mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+body { padding-top: 22px; }
+
+@media print { #rv-boton, #rv-panel, #rv-nota, #rv-aviso, #rv-capa, #rv-resalte { display: none !important; } }

@@ -19,3 +19,7 @@ Thumbs.db
 # ─── Capturas y auditorías locales ───
 /tmp-camena/
 *.log
+
+# ─── Copia local de revisión (la genera docs/revisar.sh) ───
+docs/revision/sitio/
+docs/revision/sitio/*

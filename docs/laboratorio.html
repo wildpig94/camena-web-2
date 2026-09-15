@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laboratorio de estilos — CAMENA</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- Página de trabajo, no se publica: vive en docs/ y el flujo de
+     publicación no copia esa carpeta. -->
+<style>
+  :root {
+    --oro: #A8821F; --magenta: #D6247A; --verde: #0E9F6E;
+    --paper: #F7F6F3; --paper-2: #FCFBF9; --ink: #111111; --texto-2: #5C5C58;
+    --linea: #E3E1DB;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  header.lab {
+    padding: 28px clamp(16px, 4vw, 48px) 22px;
+    border-bottom: 1px solid var(--linea);
+    background: var(--paper-2);
+  }
+  header.lab h1 { margin: 0 0 6px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
+  header.lab p { margin: 0; max-width: 70ch; color: var(--texto-2); }
+  main { padding: 0 clamp(16px, 4vw, 48px) 80px; max-width: 1180px; }
+  section { padding: 34px 0; border-bottom: 1px solid var(--linea); }
+  section:last-child { border-bottom: 0; }
+  h2 { font-size: 21px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 + p.intro { margin: 0 0 20px; color: var(--texto-2); max-width: 78ch; }
+  .etiqueta {
+    font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--texto-2); margin: 0 0 6px;
+  }
+  .rejilla { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .panel {
+    background: var(--paper-2); border: 1px solid var(--linea);
+    border-radius: 8px; padding: 18px;
+  }
+  .campo-fila { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .campo-fila label { flex: 1; font-size: 14px; }
+  .campo-fila input[type="color"] {
+    width: 46px; height: 30px; padding: 0; border: 1px solid var(--linea);
+    border-radius: 4px; background: none; cursor: pointer;
+  }
+  .campo-fila output { font-family: var(--mono); font-size: 11.5px; color: var(--texto-2); width: 72px; text-align: right; }
+
+  /* La vista previa usa las variables del laboratorio, como el sitio real */
+  .vista {
+    --acento: var(--oro);
+    background: var(--paper);
+    border: 1px solid var(--linea);
+    border-radius: 10px;
+    padding: 26px;
+    margin-top: 6px;
+  }
+  .vista h3 { margin: 0 0 10px; font-size: clamp(26px, 4vw, 40px); line-height: 1.05; letter-spacing: -0.03em; }
+  .vista h3 span { display: block; color: var(--acento); }
+  .vista p.sub { margin: 0 0 14px; color: var(--texto-2); max-width: 46ch; }
+  .vista .promesa {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--acento); margin: 0 0 18px;
+  }
+  .vista .fila { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vista .boton {
+    padding: 12px 20px; border-radius: 4px; border: 1px solid transparent;
+    background: var(--ink); color: var(--paper); font-weight: 700; font-size: 15px;
+  }
+  .vista .boton--linea { background: none; border-color: var(--linea); color: var(--ink); }
+  .vista .precio {
+    display: flex; justify-content: space-between; padding: 9px 0;
+    border-bottom: 1px dotted var(--linea); font-size: 15px;
+  }
+  .vista .precio strong { font-family: var(--mono); color: var(--acento); font-size: 13px; }
+
+  .aviso-aa {
+    margin-top: 12px; padding: 10px 12px; border-radius: 6px;
+    font-size: 13.5px; border: 1px solid var(--linea); background: var(--paper-2);
+  }
+  .aviso-aa[data-estado="bien"] { border-color: var(--verde); background: rgba(14, 159, 110, 0.08); }
+  .aviso-aa[data-estado="mal"] { border-color: var(--magenta); background: rgba(214, 36, 122, 0.08); }
+  .aviso-aa strong { font-family: var(--mono); }
+
+  pre {
+    margin: 12px 0 0; padding: 14px; overflow: auto;
+    white-space: pre-wrap; word-break: break-word;
+    background: var(--ink); color: #F4F3F0; border-radius: 8px;
+    font-family: var(--mono); font-size: 12.5px; line-height: 1.55;
+  }
+  .copiar {
+    margin-top: 10px; padding: 8px 14px; border-radius: 5px; cursor: pointer;
+    border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+    font: inherit; font-size: 13.5px; font-weight: 700;
+  }
+  .copiar.secundario { background: none; color: var(--ink); border-color: var(--linea); }
+
+  .texturas { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .textura { border: 1px solid var(--linea); border-radius: 8px; overflow: hidden; background: var(--paper-2); }
+  .textura .muestra { height: 130px; }
+  .textura .pie { padding: 12px; }
+  .textura .pie strong { display: block; font-size: 14px; margin-bottom: 2px; }
+  .textura .pie span { font-size: 12.5px; color: var(--texto-2); }
+  .textura .copiar { margin-top: 0; font-size: 12.5px; padding: 6px 12px; }
+
+  .resaltes { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .resalte { border: 1px solid var(--linea); border-radius: 8px; padding: 18px; background: var(--paper-2); }
+  .resalte h4 { margin: 0 0 12px; font-size: 22px; letter-spacing: -0.02em; }
+  .r-marcador { box-shadow: inset 0 -0.55em 0 rgba(214, 36, 122, 0.30); }
+  .r-subrayado { text-decoration: underline; text-decoration-color: var(--magenta); text-decoration-thickness: 6px; text-underline-offset: 4px; }
+  .r-caja { display: inline-block; padding: 2px 10px; background: var(--ink); color: var(--paper); }
+  .r-degradado {
+    background-image: linear-gradient(180deg, transparent 62%, rgba(168, 130, 31, 0.35) 62%);
+  }
+  .nota { font-size: 13.5px; color: var(--texto-2); }
+  code.enlinea { font-family: var(--mono); font-size: 12.5px; background: rgba(17,17,17,0.06); padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header class="lab">
+  <h1>Laboratorio de estilos</h1>
+  <p>Aquí se juega sin miedo: nada de lo que hagas en esta página toca el sitio. Cuando algo te guste, copias el CSS y me lo pasas (o lo pegas tú). Los valores de partida son los que tiene el sitio hoy.</p>
+</header>
+
+<main>
+
+  <!-- ═══════════ 1 · COLORES ═══════════ -->
+  <section>
+    <p class="etiqueta">Uno</p>
+    <h2>Colores: los tres acentos y el fondo</h2>
+    <p class="intro">Mueve los selectores y mira el resultado. Abajo te dice si el color elegido se lee bien sobre su fondo: si sale en rojo, ese color no sirve para texto (aunque sí puede servir para un filete o un fondo).</p>
+
+    <div class="rejilla">
+      <div class="panel">
+        <div class="campo-fila"><label for="c-oro">Oro (marca, precios, botones)</label><input type="color" id="c-oro" value="#A8821F"><output id="o-oro">#A8821F</output></div>
+        <div class="campo-fila"><label for="c-magenta">Magenta (sistemas)</label><input type="color" id="c-magenta" value="#D6247A"><output id="o-magenta">#D6247A</output></div>
+        <div class="campo-fila"><label for="c-verde">Verde (estado)</label><input type="color" id="c-verde" value="#0E9F6E"><output id="o-verde">#0E9F6E</output></div>
+        <div class="campo-fila"><label for="c-paper">Fondo (papel)</label><input type="color" id="c-paper" value="#F7F6F3"><output id="o-paper">#F7F6F3</output></div>
+        <div class="campo-fila"><label for="c-ink">Texto y superficies oscuras</label><input type="color" id="c-ink" value="#111111"><output id="o-ink">#111111</output></div>
+        <div class="campo-fila"><label for="c-acento">¿Qué acento usa la vista previa?</label>
+          <select id="c-acento" style="padding:6px 8px;border-radius:5px;border:1px solid var(--linea);font:inherit;font-size:13px">
+            <option value="oro">Oro</option>
+            <option value="magenta">Magenta</option>
+            <option value="verde">Verde</option>
+          </select>
+        </div>
+        <div class="aviso-aa" id="aviso-aa" data-estado="bien"></div>
+      </div>
+
+      <div>
+        <div class="vista" id="vista">
+          <h3>Cada negocio opera distinto. <span id="vista-acento-linea">Su software también debería.</span></h3>
+          <p class="sub">Diseñamos micro-sistemas y herramientas digitales creadas exclusivamente a partir de tu forma de trabajar.</p>
+          <p class="promesa">Sin piezas sobrantes · Sin adaptaciones forzadas</p>
+          <div class="fila">
+            <span class="boton">Cotizar por WhatsApp</span>
+            <span class="boton boton--linea">Ver precios</span>
+          </div>
+          <div style="margin-top:20px">
+            <div class="precio"><span>Cotizar, cobrar y saber quién te debe</span><strong>desde $8,000</strong></div>
+            <div class="precio" style="border-bottom:0"><span>Página completa, hasta 5 secciones</span><strong>desde $6,000</strong></div>
+          </div>
+        </div>
+        <pre id="css-colores"></pre>
+        <button class="copiar" data-copiar="css-colores">Copiar este CSS</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 2 · TEXTURAS ═══════════ -->
+  <section>
+    <p class="etiqueta">Dos</p>
+    <h2>Texturas de fondo</h2>
+    <p class="intro">Todas son CSS puro: ningún archivo de imagen, ninguna petición extra y ningún peso. Se aplican a la sección que quieras con <code class="enlinea">background-image</code>.</p>
+    <div class="texturas" id="texturas"></div>
+  </section>
+
+  <!-- ═══════════ 3 · RESALTAR ═══════════ -->
+  <section>
+    <p class="etiqueta">Tres</p>
+    <h2>Resaltar un título (cuatro maneras)</h2>
+    <p class="intro">Estas son las formas que mejor envejecen. La primera es la del marcador de verdad; la segunda es la más seria; la tercera es para cuando el texto necesite peso dramático.</p>
+    <div class="resaltes" id="resaltes"></div>
+  </section>
+
+  <!-- ═══════════ 4 · CÓMO APLICARLO ═══════════ -->
+  <section>
+    <p class="etiqueta">Cuatro</p>
+    <h2>Cómo se lleva esto al sitio</h2>
+    <p class="intro">El sitio está hecho de piezas con nombre. Para cambiar una sola cosa no se toca el diseño entero: se le pone un nombre nuevo y se le da una regla.</p>
+    <pre>Paso 1 · En el HTML, dale un nombre a lo que quieres cambiar:
+
+  &lt;h2 class="encabezado__titulo titulo--resaltado"&gt;¿Qué te está costando dinero?&lt;/h2&gt;
+                                    └── esto es nuevo
+
+Paso 2 · En css/components.css, escribe la regla al final:
+
+  .titulo--resaltado {
+    box-shadow: inset 0 -0.55em 0 rgba(214, 36, 122, 0.30);
+  }
+
+Paso 3 · Recarga la página. Si no cambia nada, revisa que el nombre
+         esté igual en los dos sitios (el HTML y el CSS).</pre>
+    <button class="copiar secundario" data-copiar="pasos">Copiar los pasos</button>
+    <pre id="pasos" hidden>Paso 1 · En el HTML, dale un nombre a lo que quieres cambiar:
+  &lt;h2 class="encabezado__titulo titulo--resaltado"&gt;¿Qué te está costando dinero?&lt;/h2&gt;
+Paso 2 · En css/components.css, escribe la regla al final:
+  .titulo--resaltado { box-shadow: inset 0 -0.55em 0 rgba(214, 36, 122, 0.30); }
+Paso 3 · Recarga la página.</pre>
+
+    <p class="nota" style="margin-top:16px">Regla que conviene respetar: <strong>un elemento lleva un solo acento</strong>. Si un título ya va en magenta, no le pongas además fondo de oro. Y si cambias un color de texto, comprueba el contraste aquí arriba antes de darlo por bueno.</p>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ── El mismo cálculo de contraste que usa el verificador del repo ── */
+  function aLineal(c) { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  function luminancia(hex) {
+    var h = hex.replace("#", "");
+    return 0.2126 * aLineal(parseInt(h.substr(0, 2), 16)) +
+           0.7152 * aLineal(parseInt(h.substr(2, 2), 16)) +
+           0.0722 * aLineal(parseInt(h.substr(4, 2), 16));
+  }
+  function razon(a, b) {
+    var l1 = luminancia(a), l2 = luminancia(b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  }
+  function rgba(hex, alfa) {
+    var h = hex.replace("#", "");
+    return "rgba(" + parseInt(h.substr(0,2),16) + ", " + parseInt(h.substr(2,2),16) + ", " + parseInt(h.substr(4,2),16) + ", " + alfa + ")";
+  }
+  /* Un tono más oscuro para texto sobre claro, y uno más claro para texto
+     sobre oscuro: es la misma lógica de las tres familias del sitio. */
+  function aclarar(hex, factor) {
+    var h = hex.replace("#", "");
+    var partes = [0, 2, 4].map(function (i) {
+      var v = parseInt(h.substr(i, 2), 16);
+      v = Math.round(v + (255 - v) * factor);
+      return Math.min(255, v);
+    });
+    return "#" + partes.map(function (v) { return v.toString(16).padStart(2, "0"); }).join("");
+  }
+  function oscurecer(hex, factor) {
+    var h = hex.replace("#", "");
+    var partes = [0, 2, 4].map(function (i) {
+      var v = parseInt(h.substr(i, 2), 16);
+      return Math.max(0, Math.round(v * (1 - factor)));
+    });
+    return "#" + partes.map(function (v) { return v.toString(16).padStart(2, "0"); }).join("");
+  }
+
+  /* ── Estado y controles ─────────────────────────────────────── */
+  var ids = ["oro", "magenta", "verde", "paper", "ink"];
+  var valores = { oro: "#A8821F", magenta: "#D6247A", verde: "#0E9F6E", paper: "#F7F6F3", ink: "#111111" };
+  var acentoActivo = "oro";
+
+  function aplicar() {
+    var r = document.documentElement.style;
+    r.setProperty("--oro", valores.oro);
+    r.setProperty("--magenta", valores.magenta);
+    r.setProperty("--verde", valores.verde);
+    r.setProperty("--paper", valores.paper);
+    r.setProperty("--ink", valores.ink);
+
+    var base = valores[acentoActivo];
+    var tx = oscurecer(base, 0.42);   // texto sobre claro
+    var lt = aclarar(base, 0.42);     // texto sobre oscuro
+    r.setProperty("--acento", tx);
+
+    document.getElementById("vista").style.setProperty("--acento", tx);
+    document.getElementById("vista").style.background = valores.paper;
+
+    pintarAviso(base, tx, lt);
+    pintarCSS(base, tx, lt);
+  }
+
+  function pintarAviso(base, tx, lt) {
+    var sobrePapel = razon(tx, valores.paper);
+    var sobreTinta = razon(lt, valores.ink);
+    var graficoPapel = razon(base, valores.paper);
+    var caja = document.getElementById("aviso-aa");
+
+    var bien = sobrePapel >= 4.5 && sobreTinta >= 4.5;
+    var lineas = [
+      "Acento oscurecido para texto sobre papel: <strong>" + tx + "</strong> → " + sobrePapel.toFixed(2) + ":1 " + (sobrePapel >= 4.5 ? "✓" : "✗ (mínimo 4.5)"),
+      "Acento aclarado para texto sobre oscuro: <strong>" + lt + "</strong> → " + sobreTinta.toFixed(2) + ":1 " + (sobreTinta >= 4.5 ? "✓" : "✗ (mínimo 4.5)"),
+      "Color puro para filetes y puntos: <strong>" + base + "</strong> → " + graficoPapel.toFixed(2) + ":1 sobre papel " + (graficoPapel >= 3 ? "✓" : "✗ (mínimo 3 para gráficos)")
+    ];
+    caja.innerHTML = lineas.join("<br>");
+    caja.setAttribute("data-estado", bien ? "bien" : "mal");
+  }
+
+  function pintarCSS(base, tx, lt) {
+    var css =
+      ":root {\n" +
+      "  /* Acento: los tres tonos de la misma familia */\n" +
+      "  --" + acentoActivo + ": " + base + ";\n" +
+      "  --" + acentoActivo + "-tx: " + tx + ";   /* texto sobre claro */\n" +
+      "  --" + acentoActivo + "-lt: " + lt + ";   /* texto sobre oscuro */\n" +
+      "  --" + acentoActivo + "-tenue: " + rgba(base, 0.10) + ";\n" +
+      "  --" + acentoActivo + "-linea: " + rgba(base, 0.34) + ";\n\n" +
+      "  /* Superficies */\n" +
+      "  --paper: " + valores.paper + ";\n" +
+      "  --ink: " + valores.ink + ";\n" +
+      "}";
+    document.getElementById("css-colores").textContent = css;
+  }
+
+  ids.forEach(function (id) {
+    var input = document.getElementById("c-" + id);
+    input.addEventListener("input", function () {
+      valores[id] = input.value;
+      document.getElementById("o-" + id).textContent = input.value;
+      aplicar();
+    });
+  });
+  document.getElementById("c-acento").addEventListener("change", function () {
+    acentoActivo = this.value;
+    aplicar();
+  });
+
+  /* ── Texturas ───────────────────────────────────────────────── */
+  var TEXTURAS = [
+    {
+      nombre: "Puntos de plano",
+      nota: "Retícula de puntos: da aire técnico sin ensuciar el fondo.",
+      css: "background-image: radial-gradient(rgba(17, 17, 17, 0.10) 1px, transparent 1px);\nbackground-size: 18px 18px;",
+      muestra: "background-image: radial-gradient(rgba(17, 17, 17, 0.10) 1px, transparent 1px); background-size: 18px 18px;"
+    },
+    {
+      nombre: "Cuadrícula fina",
+      nota: "La retícula del hero, en versión suave.",
+      css: "background-image:\n  linear-gradient(to right, rgba(17, 17, 17, 0.06) 1px, transparent 1px),\n  linear-gradient(to bottom, rgba(17, 17, 17, 0.06) 1px, transparent 1px);\nbackground-size: 44px 44px;",
+      muestra: "background-image: linear-gradient(to right, rgba(17,17,17,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(17,17,17,0.06) 1px, transparent 1px); background-size: 44px 44px;"
+    },
+    {
+      nombre: "Papel con fibra",
+      nota: "Dos tramas cruzadas muy tenues: parece papel, no pantalla.",
+      css: "background-image:\n  repeating-linear-gradient(45deg, rgba(17, 17, 17, 0.035) 0 1px, transparent 1px 7px),\n  repeating-linear-gradient(-45deg, rgba(17, 17, 17, 0.03) 0 1px, transparent 1px 9px);",
+      muestra: "background-image: repeating-linear-gradient(45deg, rgba(17,17,17,0.035) 0 1px, transparent 1px 7px), repeating-linear-gradient(-45deg, rgba(17,17,17,0.03) 0 1px, transparent 1px 9px);"
+    },
+    {
+      nombre: "Grano de taller",
+      nota: "Ruido generado por el navegador (SVG en línea). Cero archivos, cero peso extra.",
+      css: "background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E\");",
+      muestra: "background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E\");"
+    },
+    {
+      nombre: "Líneas de plano",
+      nota: "Diagonales separadas, para una banda o un pie de sección.",
+      css: "background-image: repeating-linear-gradient(135deg, rgba(17, 17, 17, 0.05) 0 1px, transparent 1px 12px);",
+      muestra: "background-image: repeating-linear-gradient(135deg, rgba(17,17,17,0.05) 0 1px, transparent 1px 12px);"
+    },
+    {
+      nombre: "Trama de sello",
+      nota: "Horizontal fina, como el papel de una ficha técnica.",
+      css: "background-image: repeating-linear-gradient(0deg, rgba(17, 17, 17, 0.05) 0 1px, transparent 1px 5px);",
+      muestra: "background-image: repeating-linear-gradient(0deg, rgba(17,17,17,0.05) 0 1px, transparent 1px 5px);"
+    }
+  ];
+
+  var contTexturas = document.getElementById("texturas");
+  TEXTURAS.forEach(function (t, i) {
+    var div = document.createElement("div");
+    div.className = "textura";
+    div.innerHTML =
+      '<div class="muestra" style="' + t.muestra + ' background-color: var(--paper);"></div>' +
+      '<div class="pie"><strong>' + t.nombre + '</strong><span>' + t.nota + '</span>' +
+      '<pre style="margin-top:10px">' + t.css + '</pre>' +
+      '<button class="copiar" data-texto="' + encodeURIComponent(t.css) + '">Copiar CSS</button></div>';
+    contTexturas.appendChild(div);
+  });
+
+  /* ── Formas de resaltar ─────────────────────────────────────── */
+  var RESALTES = [
+    {
+      clase: "r-marcador",
+      nombre: "Marcador (subrayador)",
+      nota: "El efecto de rotulador sobre el texto. El color va translúcido para que la letra siga leyéndose.",
+      css: ".titulo--resaltado {\n  box-shadow: inset 0 -0.55em 0 rgba(214, 36, 122, 0.30);\n}"
+    },
+    {
+      clase: "r-subrayado",
+      nombre: "Subrayado grueso",
+      nota: "Más serio que el marcador: una línea de color por debajo, del ancho del texto.",
+      css: ".titulo--resaltado {\n  text-decoration: underline;\n  text-decoration-color: var(--magenta);\n  text-decoration-thickness: 6px;\n  text-underline-offset: 4px;\n}"
+    },
+    {
+      clase: "r-degradado",
+      nombre: "Sombra inferior",
+      nota: "El degradado corta en seco al 62 %, así que se ve como un subrayado de imprenta y no como un difuminado.",
+      css: ".titulo--resaltado {\n  background-image: linear-gradient(180deg, transparent 62%, rgba(168, 130, 31, 0.35) 62%);\n}"
+    },
+    {
+      clase: "r-caja",
+      nombre: "Caja de tinta",
+      nota: "Para una sola frase o una etiqueta: invierte el color y pesa más que todo lo que tiene alrededor.",
+      css: ".titulo--resaltado {\n  display: inline-block;\n  padding: 2px 10px;\n  background: var(--ink);\n  color: var(--paper);\n}"
+    }
+  ];
+
+  var contResaltes = document.getElementById("resaltes");
+  RESALTES.forEach(function (r) {
+    var div = document.createElement("div");
+    div.className = "resalte";
+    div.innerHTML =
+      '<h4 class="' + r.clase + '">¿Qué te está costando dinero?</h4>' +
+      '<p class="nota">' + r.nota + '</p>' +
+      '<pre>' + r.css + '</pre>' +
+      '<button class="copiar" data-texto="' + encodeURIComponent(r.css) + '">Copiar CSS</button>';
+    contResaltes.appendChild(div);
+  });
+
+  /* ── Botones de copiar ─────────────────────────────────────── */
+  document.addEventListener("click", function (ev) {
+    var boton = ev.target.closest(".copiar");
+    if (!boton) return;
+    var texto = boton.dataset.texto
+      ? decodeURIComponent(boton.dataset.texto)
+      : document.getElementById(boton.dataset.copiar).textContent;
+    copiar(texto, boton);
+  });
+
+  function copiar(texto, boton) {
+    var hecho = function () {
+      var antes = boton.textContent;
+      boton.textContent = "¡Copiado!";
+      setTimeout(function () { boton.textContent = antes; }, 1300);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(hecho, function () { respaldo(texto, hecho); });
+    } else { respaldo(texto, hecho); }
+  }
+  function respaldo(texto, hecho) {
+    var ta = document.createElement("textarea");
+    ta.value = texto; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); hecho(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  aplicar();
+})();
+</script>
+</body>
+</html>
