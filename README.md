@@ -78,6 +78,13 @@ que se puede volver a cargar en otra computadora.
 no maneja varias sucursales y no distingue usuarios: es un micro-sistema de un
 solo mostrador. Está dicho así para que nadie lo contrate esperando otra cosa.
 
+**De dónde salió lo que hace.** Antes de programarlo se levantaron los dolores
+reales de un taller de hojalatería y pintura: 13 notas de voz de la encargada,
+transcritas en esta máquina y analizadas en `docs/investigacion-taller.md`. Ese
+documento —interno, no se publica— lista cada dolor con la cita que lo prueba, su
+costo y la función que lo resuelve, y marca lo que todavía falta preguntar. Es la
+base de la siguiente versión del producto.
+
 ---
 
 **Los cuatro pilares** (grupo «Sistemas y diseño» en el catálogo):
