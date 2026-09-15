@@ -112,11 +112,29 @@ no con silencio.
 sin registro: lo que se cotizó, lo que se autorizó y lo que se prometió se pierde
 en el hilo.
 
-### D9 · Refacciones y materiales: sin respuesta
+### D9 · Lo pendiente no se anota: se dibuja
 
-La pregunta 8 (si se les ha detenido un trabajo por una refacción que se olvidó
-pedir, por quedarse sin pintura o por calcular mal el material) **no tiene audio
-en la carpeta**. Es un hueco de la investigación, no un «no pasa nada».
+> «**no hay lista de pendientes, sino lo venimos haciendo en un pizarrón** […] yo soy
+> la que tiene que modificar y todo ese rollo»
+
+Nota de voz del 15 de septiembre, contestando la repregunta sobre refacciones y
+material detenido. Dos cosas quedan claras y una se cae:
+
+- **Sí hay trabajo detenido por material**: por eso existe el pizarrón.
+- **El soporte es un pizarrón**, no una lista. Se dibuja lo que falta y se borra
+  cuando llega. No hay historial, no hay fecha, no hay quién lo pidió.
+- **Lo mantiene una sola persona.** «Yo soy la que tiene que modificar»: si ella no
+  está, el pizarrón no se actualiza y nadie más sabe qué está detenido.
+
+**Qué significa para el producto:** el módulo de pendientes no compite con un
+sistema, compite con un pizarrón — tiene que ser igual de rápido de escribir y de
+borrar, o no se usa. Y como hoy depende de una persona, el valor de verdad no es
+«tener la lista»: es que **cualquiera pueda ver qué está detenido y desde cuándo**,
+que es justo lo que el pizarrón no puede dar.
+
+**Lo que sigue sin respuesta:** el detalle de qué materiales se detienen más
+(refacciones de agencia, pintura, hojalatería) y cuántos días suele costar. Eso
+afina el tablero, pero ya no bloquea el módulo.
 
 ---
 
@@ -131,7 +149,7 @@ en la carpeta**. Es un hueco de la investigación, no un «no pasa nada».
 | 5 | Seguimiento de una sola persona | Cuando ella no está, nadie contesta | Tablero por etapas visible desde el celular |
 | 6 | Miedo a reclamar daños previos | Se dejan de mandar avances al cliente | Recepción con fotos + conformidad firmada, fechadas |
 | 7 | Fotos sueltas en carpetas | Evidencia que no se puede ligar a nada | Fotos dentro de la ficha, por etapa |
-| 8 | Refacciones (sin datos) | Trabajo detenido | Lista de pendientes que bloquean la etapa |
+| 8 | Lo detenido vive en un pizarrón que solo ella actualiza | Trabajo parado sin fecha ni historial; si ella no está, nadie sabe qué falta | Pendientes que bloquean la etapa, con fecha y visibles para todos |
 
 ---
 
@@ -150,20 +168,25 @@ en la carpeta**. Es un hueco de la investigación, no un «no pasa nada».
    y de complemento. Reemplaza el Excel por mes sin pedirle acceso a nadie.
 5. **Avisos por WhatsApp con texto armado**: cotización lista, avance con foto,
    «ya está listo». Un toque, con el mensaje ya escrito.
-6. **Refacciones pendientes**: lo que falta pedir y qué trabajo está detenido por eso.
+6. **Pendientes que bloquean la etapa**: lo que falta pedir, desde cuándo y qué
+   trabajo está detenido por eso. Tiene que escribirse tan rápido como en el
+   pizarrón —si no, se sigue usando el pizarrón— pero además queda con fecha y lo
+   ve cualquiera, no solo ella.
 7. **Pensado para el celular y para varias manos**: ella lo usa en el piso; el dueño
    y recepción tienen que ver lo mismo.
 
 ---
 
-## 5 · Antes de construirlo hay que decidir tres cosas
+## 5 · Antes de construirlo hay que decidir dos cosas
 
 1. **¿Hay lista de precios?** Si no existe, el cotizador necesita un editor de
    precios (piezas y mano de obra) con el que el dueño la arme una vez.
 2. **¿Un taller o varios?** Si el producto se va a vender a más talleres, la
    arquitectura cambia desde el principio: cada taller con sus datos, sus folios y
    sus precios, y respaldo por taller.
-3. **¿La pregunta 8 tiene audio?** Falta la respuesta sobre refacciones y material
-   detenido, y es justo la que define si hace falta el módulo de pendientes.
+3. ~~**¿La pregunta 8 tiene audio?**~~ **Resuelta** (nota del 15 de septiembre): lo
+   pendiente se lleva en un pizarrón que solo ella actualiza, así que el módulo de
+   pendientes sí hace falta. Falta solo el detalle fino de qué materiales se
+   detienen más y por cuántos días.
 
-Mientras esas tres no estén claras, construir «en forma» sería adivinar.
+Mientras las dos primeras no estén claras, construir «en forma» sería adivinar.

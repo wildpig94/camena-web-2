@@ -54,3 +54,16 @@ Documento interno: contiene palabras de una persona identificable. No publicar s
 ## p13 · 6.8s
 
 > No es mi suerte, es que fui clara en lo que estaba yo explicándote, no es suerte.
+
+## p14 · 12.8s · nota de seguimiento
+
+Llegó después, contestando la repregunta sobre refacciones y material detenido
+(la pregunta 8 de la primera ronda). Archivo original:
+`~/Descargas/WhatsApp Ptt 2026-09-15 at 2.15.38 PM.ogg`.
+
+> solo tenemos como no lista de pendientes sino se vendría haciendo pues un pizarróncito y no son pendientes o sea yo la soy la que tiene que modificar y todo ese rollo
+
+**Palabras con baja confianza** (`small` y `medium` coinciden en el sentido, no en
+la letra): entre 1.3 s y 3.6 s, donde se oye «no lista de pendientes sino». La
+frase probable es «como no hay lista de pendientes, sino lo venimos haciendo en un
+pizarrón». El resto de la nota es claro, con probabilidad arriba de 0.9.

@@ -672,7 +672,8 @@ resultados **sin rearmar la página**.
       `docs/autorizaciones.md`
 - [ ] Pedir permiso para **nombrar** al cliente del reel, y anotarlo en
       `docs/autorizaciones.md`
-- [ ] Preguntar al taller por los precios por aseguradora y por las refacciones
-      detenidas (única pregunta de la investigación sin audio)
+- [ ] Preguntar al taller por los **precios por aseguradora** (la única pregunta de
+      la primera ronda que sigue abierta; la de refacciones ya se contestó en la
+      nota del 15 de septiembre y está en `docs/investigacion-taller.md`, D9)
 - [ ] Páginas individuales por servicio (la estructura ya lo permite)
 - [ ] Contenido propio: casos de estudio, recursos y herramientas
