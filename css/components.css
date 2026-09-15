@@ -628,6 +628,39 @@ svg.ic path[d^="M12 2a10"] {
 }
 .lab-pieza--ancha .lab-pieza__visual { border-bottom: 0; border-right: 1px solid var(--borde); min-height: 20rem; }
 
+/* Capturas reales del producto: se muestran como lo que son —pantallas— con
+   marco de ventana y su pie. La imagen es 2x para pantallas densas y va con
+   ancho y alto declarados para que no descuadre la rejilla al cargar. */
+.lab-pieza__visual--capturas {
+  display: grid;
+  gap: var(--e-4);
+  place-items: stretch;
+  padding: clamp(1rem, 0.8rem + 1.4vw, 1.75rem);
+}
+.captura { margin: 0; }
+.captura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-sm);
+  background: var(--mock-0);
+}
+.captura figcaption {
+  margin-top: var(--e-2);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--texto-claro-2);
+}
+.captura__nota {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mock-tenue);
+}
+
 /* Pie de foto de la maqueta: va dentro del bloque visual, pegado a la imagen,
    porque explica qué se está viendo antes de que el lector llegue a la ficha. */
 /* Enlace de la pieza que se puede probar en la misma página */
