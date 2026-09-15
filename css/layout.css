@@ -116,7 +116,7 @@
 @media (min-width: 1141px) {
   /* En escritorio las tarjetas se abren debajo de los datos: este hueco es su
      sitio, y así no tapan ni el botón de WhatsApp ni el dato vecino. */
-  .hero { padding-bottom: 10rem; }
+  .hero { padding-bottom: 9rem; }
 }
 
 /* Retícula técnica de fondo: da contexto de estudio, muy baja presencia */
@@ -153,8 +153,13 @@
 .hero__titulo {
   margin-top: var(--e-5);
   font-size: var(--t-h1);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  /* 1.06 y no 1.02: en dos líneas de display, el interlineado apretado de más
+     hace que las líneas se toquen y la mancha se lee como un bloque sucio. */
+  line-height: 1.06;
+  letter-spacing: -0.026em;
+  /* Reparte el largo de las dos líneas cuando el navegador lo soporta; donde no,
+     el corte lo fija el <span>, así que nunca cambia el diseño. */
+  text-wrap: balance;
 }
 
 .hero__linea { display: block; }
@@ -169,10 +174,14 @@
    dice lo que NO se lleva el cliente (piezas sobrantes, adaptaciones). */
 .hero__entrada {
   margin-top: var(--e-5);
-  max-width: 58ch;
-  font-size: var(--t-guia);
-  line-height: 1.5;
+  /* Entre 54 y 60 caracteres por línea: más ancho y el ojo pierde el renglón. */
+  max-width: 56ch;
+  /* Un escalón abajo para que la proporción titular/entrada pase de 2.2 incluso
+     en teléfono, que es lo que hace que la jerarquía se lea y no se aplane. */
+  font-size: clamp(1rem, 0.94rem + 0.26vw, 1.1875rem);
+  line-height: 1.55;
   color: var(--texto-2);
+  text-wrap: pretty;
 }
 .hero__acciones {
   display: flex;
@@ -214,10 +223,17 @@
   font-size: var(--t-menudo);
   line-height: 1.5;
   color: var(--texto);
+  font-variant-numeric: tabular-nums;
 }
 /* Por el alias contextual, no por la familia: este texto vive en el hero, que
    va sobre fondo oro, y ahí el oro de siempre se queda en 4.41:1. */
-.hecho em { color: var(--acento); font-style: normal; font-weight: var(--peso-fuerte); }
+.hecho em {
+  color: var(--acento);
+  font-style: normal;
+  font-weight: var(--peso-fuerte);
+  /* Ancho fijo por cifra: los precios se alinean entre sí y no bailan. */
+  font-variant-numeric: tabular-nums;
+}
 
 /* Cada dato de la franja es un botón: al pasar el ratón, al hacer clic o al
    llegar con el teclado, se abre su tarjeta. Es el mismo contenido de la ficha,
@@ -1215,7 +1231,11 @@ a.dato__valor:hover { color: var(--acento); }
   line-height: 1.6;
   color: var(--texto-2);
 }
-.hero__precios-breve strong { color: var(--texto); font-weight: var(--peso-fuerte); }
+.hero__precios-breve strong {
+  color: var(--texto);
+  font-weight: var(--peso-fuerte);
+  font-variant-numeric: tabular-nums;
+}
 .hero__precios-breve a {
   display: inline-block;
   padding-block: 4px;

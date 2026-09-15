@@ -146,6 +146,12 @@ jobs:
           cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html publicar/
           cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
 
+          # El navegador se guarda el CSS y el JS. Sellar la huella del contenido
+          # en la URL hace que un cambio de diseño se vea al instante y que, si
+          # nada cambió, el caché se siga aprovechando. Se corre sobre la copia
+          # publicada: el repo no se toca.
+          python3 docs/versionar.py publicar
+
           # ── Candado: el código de un producto terminado no se publica ──
           # Lo que el navegador muestra, el navegador lo guarda: una página de
           # producto publicada es una página de producto copiable. El expediente

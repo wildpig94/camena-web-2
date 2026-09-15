@@ -314,6 +314,8 @@ flujo de despliegue no copia esa carpeta):
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
 | `docs/revisar-medios.mjs` | **El que ve lo deforme.** Recorre todas las páginas y compara la proporción pintada de cada imagen y video contra la del archivo; también delata cajas con alto fijo cuyo contenido no cabe. Nació del bug de los videos aplastados. | `node docs/revisar-medios.mjs` |
+| `docs/medir-hero.mjs` | **El que mide el hero.** Devuelve números en vez de opiniones: tamaño del titular, cuántas líneas usa de verdad, proporción titular/entrada, cuántos tamaños y colores distintos hay, y si el hero cabe en la primera pantalla. | `node docs/medir-hero.mjs http://127.0.0.1:8899/index.html 1440` |
+| `docs/versionar.py` | **El que rompe el caché.** Sella la huella del contenido en las URLs de CSS y JS (`css/layout.css?v=17364851`), para que un cambio se vea al instante en el celular y el caché se siga usando cuando nada cambió. Corre solo en cada publicación. | `python3 docs/versionar.py` |
 | `docs/probar-producto.mjs` | **El probador del producto.** Abre Control de Autos con Chrome y la usa como una persona: comprueba que no pida nada externo, que las fuentes propias carguen, que no se desborde, y da de alta un auto para ver que se guarde y siga ahí tras recargar. | `node docs/probar-producto.mjs` (con el servidor en 8899) |
 
 **El flujo de revisión completo:**
@@ -337,6 +339,41 @@ git), y la copia se regenera con `bash docs/revisar.sh --limpio`.
 ---
 
 ## Sistema de diseño
+
+### El hero: una frase, dos líneas, medidas
+
+El hero se reescribió con tres modelos distintos —uno de posicionamiento, uno de
+redacción y uno de diseño editorial— y la decisión final se tomó aquí, no en la
+máquina. Lo que quedó:
+
+| | Texto |
+|---|---|
+| Sello | Estudio de diseño y sistemas · Apatzingán, Michoacán |
+| Titular | **Páginas y sistemas** / **sin plantilla.** |
+| Entrada | Hacemos tu página web, tu marca y el sistema de tu negocio. Corre en tu computadora, sin renta mensual. |
+| Cierre | Somos un estudio de diseño y sistemas. Trabajamos de forma remota con negocios de cualquier parte del mundo, desde Apatzingán, Michoacán. |
+
+**Por qué así.** El párrafo anterior («Hacemos páginas web, logos y sistemas a la
+medida…») enumeraba los servicios y a la vez prometía, y eso lo dejaba en el tono
+de cualquier despacho. Ahora el titular afirma lo único que un competidor no
+puede decir —**sin plantilla**— y la entrada dice el qué y añade el hecho
+comprobable que más pesa: el sistema corre en la computadora del cliente y no se
+renta por mes. Ninguna de las dos frases usa «soluciones», «transformar»,
+«potenciar» ni «a la medida»: están en la lista negra del README.
+
+**Por qué el titular es corto.** No es gusto: es medida. La columna de texto del
+hero mide 703 px en escritorio y 288 px en un teléfono de 320 px. Con el titular
+largo («Páginas y sistemas que no caben en una plantilla») caben 51 px a 1141 px
+de ancho y 24 px a 320, así que partía en tres y cuatro líneas y hacían falta
+parches por banda. Con dos líneas de 19 y 14 caracteres cabe entero **de 320 a
+1600 px sin una sola excepción**, y por eso se pudo quitar la escala especial de
+móvil y la de la banda estrecha: una sola fórmula.
+
+**La escala, medida y no adivinada.** `--t-h1: clamp(2rem, 1.58rem + 2.41vw,
+3.75rem)` da 33 px en 320, 34.7 en 390, 43.8 en 768, 50 en 1024 y 60 en
+escritorio. Se comprueba con `docs/medir-hero.mjs`, que además vigila la
+proporción titular/entrada (3.19 en escritorio; por debajo de 2.2 la jerarquía se
+aplana) y que el hero quepa en la primera pantalla: cabe a 1440 px.
 
 ### Color
 
@@ -450,6 +487,22 @@ tiempo): es preferible perder el efecto a que un bloque se quede invisible.
 
 ---
 
+### Caché: que un cambio se vea de inmediato
+
+El navegador se guarda el CSS y el JS. Sin nada más, alguien abre la página en el
+celular después de un cambio de diseño y sigue viendo la versión vieja —o una
+mezcla de las dos— y parece que el trabajo no se hizo.
+
+Por eso las URLs de CSS y JS llevan la **huella del contenido**: `css/
+layout.css?v=17364851`. La calcula `docs/versionar.py` con SHA-256, no se escribe
+a mano, así que no hay que acordarse de subir ningún número; y solo cambia cuando
+el archivo cambia, así que cuando nada se tocó el caché se sigue aprovechando.
+
+Se sella en **cada publicación**, sobre la copia que se sube (ver el paso
+«Preparar solo lo que se publica» en `.github/workflows/publicar.yml`). A mano,
+si se quiere revisar antes: `python3 docs/versionar.py`.
+
+---
 ## Rendimiento
 
 - Sin frameworks, sin dependencias, sin build. Cuatro archivos JS pequeños.

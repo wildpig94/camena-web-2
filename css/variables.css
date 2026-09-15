@@ -98,7 +98,12 @@
   --t-guia:   clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
   --t-h3:     clamp(1.375rem, 1.22rem + 0.75vw, 1.75rem);
   --t-h2:     clamp(1.875rem, 1.4rem + 2.3vw, 3.25rem);
-  --t-h1:     clamp(2.25rem, 1.4rem + 4.2vw, 4.5rem);
+  /* Escala del titular, medida con la fuente real en 13 anchos (320 a 1600).
+     Con el titular en dos líneas cortas —«Páginas y sistemas» / «sin
+     plantilla.»— cabe entero de 320 a 1600 px sin partirse ni una vez, así que
+     no hacen falta parches por banda: 33 px en un teléfono chico, 38 en uno
+     normal, 51 en tableta y 60 en escritorio. */
+  --t-h1:     clamp(2rem, 1.58rem + 2.41vw, 3.75rem);
   --t-declara: clamp(2.25rem, 1.5rem + 4vw, 4.5rem);
   --t-cifra:  clamp(3.5rem, 2rem + 7vw, 8rem);
 
