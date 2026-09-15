@@ -154,6 +154,11 @@ camena-2.0/
 ├── producto/
 │   ├── taller.html             Producto en vivo: expediente del taller
 │   └── taller.js               Lógica del producto (estado, fotos, etapas)
+│
+├── assets/video/               Videos del sitio (720×1280, comprimidos):
+│   ├── camena-promo.mp4        Promo propio de 30 s
+│   ├── reel-cliente.mp4        Reel para cliente, con visto bueno
+│   └── *.webp                  Pósteres: no se carga nada hasta dar reproducir
 ├── como-trabajamos.html        El método completo, paso por paso
 ├── aviso-de-privacidad.html    Página legal
 ├── terminos.html               Página legal
@@ -436,11 +441,17 @@ presenta como **ejemplos de proyectos**, con las etiquetas en palabras llanas
 —`El problema · Qué hicimos · Por qué así`— y una frase ancla que educa: ninguno
 se vende tal cual, cada uno se construye desde cero.
 
-Son cinco piezas y **dos están en vivo**: el armador de paquetes que cotiza por
-WhatsApp (está en esta misma página) y el expediente del taller
-(`producto/taller.html`). Las otras tres son maquetas de interfaces hechas
-con CSS: mostrador con cobros y adeudos, recepción de servicios, y la identidad
-NORTE como contraparte de diseño.
+Son **cuatro piezas y las cuatro son trabajo real**, sin una sola maqueta de
+plantilla:
+
+1. **El cotizador de WhatsApp** de esta misma página, con captura real.
+2. **El expediente del taller** (`producto/taller.html`), en vivo y con capturas.
+3. **El promo de CAMENA** —30 s, vertical—, alojado en el sitio y reproducible.
+4. **Un reel para una clienta** (consultorio), publicado con su visto bueno.
+
+Las maquetas de interfaces hechas con CSS se retiraron a propósito: al lado de
+trabajo real, una maqueta bonita se lee como «este vende plantillas». Lo que se
+muestra tiene que poder usarse o verse completo.
 
 **Regla al añadir una pieza:** la que se pueda probar de verdad lleva su enlace y
 el chip «Está en vivo»; la que no, se marca como ejemplo propio. Nunca se
@@ -630,8 +641,13 @@ resultados **sin rearmar la página**.
 - [x] Eje reposicionado a **estudio de diseño y sistemas operativos**: hero con
       dos mitades, diagnósticos por costo, etapa de sistemas como protagonista,
       catálogo de servicios abierto por sistemas y tesis en «Cómo trabajamos»
-- [x] Producto en vivo publicado como demo (control de autos de taller), con su
-      ficha en los ejemplos y entrada en el sitemap
+- [x] Producto en vivo publicado (expediente del taller), con su ficha en los
+      ejemplos y entrada en el sitemap
+- [x] Sección de ejemplos solo con trabajo real: cotizador, producto y dos
+      videos; retiradas las maquetas de plantilla
+- [x] Precios de campañas y eventos a nivel de estudio, con el alcance explicado
+- [x] Hero en oscuro, descripción del estudio al pie y trabajo remoto en todo el
+      mundo dicho en el hero, el contacto, el FAQ y los datos estructurados
 - [x] Herramientas de trabajo: marcador de revisión, laboratorio de estilos y
       recetario de edición (todo en `docs/`, fuera del sitio publicado)
 - [x] Arquitectura de oferta en cuatro pilares de sistemas y diseño, con

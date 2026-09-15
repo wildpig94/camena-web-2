@@ -285,11 +285,11 @@ svg.ic path[d^="M12 2a10"] {
   box-shadow: 0 0 0 3px var(--verde-tenue);
   flex-shrink: 0;
 }
-/* Sobre el fondo oro del hero, el verde de estado tiene que ser el oscuro:
-   el normal se queda en 2.95:1 y el punto informa, no decora. */
+/* Con el hero en oscuro, el punto de estado usa el verde claro de ese contexto
+   (9.82:1 sobre tinta) y no el verde oscuro que servía sobre el fondo oro. */
 .hero .sello__marca {
-  background: var(--verde-tx);
-  box-shadow: 0 0 0 3px rgba(10, 107, 76, 0.14);
+  background: var(--verde-lt);
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
 }
 
 
@@ -627,6 +627,26 @@ svg.ic path[d^="M12 2a10"] {
   overflow: hidden;
 }
 .lab-pieza--ancha .lab-pieza__visual { border-bottom: 0; border-right: 1px solid var(--borde); min-height: 20rem; }
+
+/* Video dentro de una pieza: vertical, con su marco, sin cargar nada hasta que
+   alguien le da reproducir (preload="none" + póster). */
+.video-pieza { margin: 0; }
+.video-pieza video {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-sm);
+  background: var(--mock-0);
+}
+.video-pieza figcaption {
+  margin-top: var(--e-3);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--texto-claro-2);
+  text-align: center;
+}
 
 /* Capturas reales del producto: se muestran como lo que son —pantallas— con
    marco de ventana y su pie. La imagen es 2x para pantallas densas y va con

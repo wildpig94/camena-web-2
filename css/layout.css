@@ -95,11 +95,19 @@
   /* Por encima de la sección que sigue: las tarjetas de la franja de precios
      se abren hacia abajo y tienen que verse completas, no por detrás. */
   z-index: var(--z-contenido);
-  /* Fondo oro cálido: el hero deja de ser papel neutro y abre la página con
-     temperatura. El tono está medido para que el texto y el acento que van
-     encima sigan pasando AA (ver variables.css). */
-  background: var(--oro-fondo);
-  color: var(--texto);
+  /* Fondo oscuro: la página abre en tinta y el contenido de abajo va sobre
+     papel, así que el contraste entre las dos mitades es el recurso. Los
+     tokens de texto y acento se cambian aquí (no en los componentes). */
+  background: var(--ink);
+  color: var(--texto-claro);
+  --texto: var(--texto-claro);
+  --texto-2: var(--texto-claro-2);
+  --borde: var(--borde-oscuro);
+  --borde-fuerte: var(--ink-4);
+  --acento: var(--oro-lt);
+  --acento-grafico: var(--oro);
+  --acento-suave: rgba(168, 130, 31, 0.14);
+  --acento-linea: var(--oro-linea);
   padding-top: clamp(3rem, 2rem + 5vw, 6rem);
   /* El aire de abajo no es decorativo: es donde se abren las tarjetas. */
   padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 5rem);
@@ -119,10 +127,10 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(111, 85, 11, 0.09) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(111, 85, 11, 0.09) 1px, transparent 1px),
-    linear-gradient(to right, rgba(111, 85, 11, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(111, 85, 11, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(244, 243, 240, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 243, 240, 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(244, 243, 240, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 243, 240, 0.035) 1px, transparent 1px);
   background-size:
     clamp(52px, 6vw, 84px) clamp(52px, 6vw, 84px),
     clamp(52px, 6vw, 84px) clamp(52px, 6vw, 84px),
@@ -172,6 +180,18 @@
   gap: var(--e-3);
   margin-top: var(--e-7);
 }
+
+/* Quiénes somos, al pie del hero: después del golpe, la presentación. */
+.hero__somos {
+  margin-top: var(--e-6);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+  max-width: 60ch;
+  font-size: var(--t-menudo);
+  line-height: 1.6;
+  color: var(--texto-2);
+}
+.hero__somos strong { color: var(--texto); font-weight: var(--peso-fuerte); }
 
 /* Hechos del hero: datos verificables, no cifras de marketing */
 .hero__hechos {
@@ -248,7 +268,9 @@
   z-index: var(--z-contenido);
   width: min(24rem, 78vw);
   padding: var(--e-4);
-  background: var(--paper-2);
+  /* Dentro del hero oscuro, la tarjeta es una superficie elevada de la misma
+     familia: nada de un parche claro sobre el carbón. */
+  background: var(--ink-2);
   border: 1px solid var(--borde);
   border-left: 2px solid var(--acento);
   border-radius: var(--radio-sm);

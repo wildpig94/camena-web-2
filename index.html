@@ -73,7 +73,8 @@
       },
       "areaServed": [
         { "@type": "Country", "name": "México" },
-        { "@type": "AdministrativeArea", "name": "Michoacán" }
+        { "@type": "AdministrativeArea", "name": "Michoacán" },
+        { "@type": "Place", "name": "Trabajo remoto en cualquier parte del mundo" }
       ],
       "knowsLanguage": ["es-MX"],
       "openingHoursSpecification": {
@@ -119,7 +120,7 @@
         { "@type": "Question", "name": "¿Cómo voy a saber si el proyecto sirvió?", "acceptedAnswer": { "@type": "Answer", "text": "No se promete un número de ventas ni el primer lugar en buscadores: eso no depende del estudio, y quien lo garantiza vende humo. Se deja medible lo que sí depende del trabajo: visitas, de dónde llega la gente y cuántos mensajes entran." } },
         { "@type": "Question", "name": "¿Tengo que saber exactamente qué necesito?", "acceptedAnswer": { "@type": "Answer", "text": "No, y casi nadie lo sabe. El sitio permite reconocer el caso propio y ver qué lo resuelve. Si no está en la lista, se analiza desde cero." } },
         { "@type": "Question", "name": "¿Trabajan con negocios pequeños?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Se puede empezar por una pieza —un logo, una página, un video— y crecer después." } },
-        { "@type": "Question", "name": "¿Trabajan a distancia?", "acceptedAnswer": { "@type": "Answer", "text": "Sí: WhatsApp, videollamada y correo. La base está en Apatzingán, Michoacán, con servicio en todo México." } }
+        { "@type": "Question", "name": "¿Trabajan a distancia?", "acceptedAnswer": { "@type": "Answer", "text": "Sí: WhatsApp, videollamada y correo. La base está en Apatzingán, Michoacán, y el trabajo es remoto para negocios de cualquier parte del mundo." } }
       ]
     }
   ]
@@ -179,7 +180,7 @@
              no decoración. -->
         <p class="sello">
           <span class="sello__marca" aria-hidden="true"></span>
-          Páginas web, marca y sistemas para tu negocio · Apatzingán
+          Páginas web, marca y sistemas para tu negocio · Trabajo remoto en todo el mundo
         </p>
 
         <h1 class="hero__titulo" id="hero-titulo">
@@ -213,6 +214,13 @@
              detalle. Funciona al pasar el ratón, con clic y con el teclado
              (son botones), y el texto también está en el DOM para buscadores
              y lectores de pantalla. -->
+        <!-- La descripción va al pie del hero: primero el golpe, después quién
+             somos. Y el alcance remoto dicho sin rodeos. -->
+        <p class="hero__somos">
+          Somos un estudio de diseño y sistemas. Trabajamos de forma remota con negocios
+          de <strong>cualquier parte del mundo</strong>, desde Apatzingán, Michoacán.
+        </p>
+
         <dl class="hero__hechos">
           <div class="hecho">
             <dt>
@@ -395,10 +403,8 @@
         <p class="etiqueta etiqueta--claro">Ejemplos de proyectos</p>
         <h2 class="encabezado__titulo" id="lab-titulo">Así se ve un proyecto CAMENA.</h2>
         <p class="encabezado__intro">
-          Cuatro piezas hechas por nosotros, de principio a fin. No son trabajos de
-          clientes, pero sí el mismo proceso que aplicaríamos al tuyo: el problema,
-          lo que hicimos y por qué así. Dos de ellas están en vivo y se pueden usar;
-          las capturas que ves son del producto funcionando, no de un boceto.
+          Cuatro piezas hechas aquí, de principio a fin: dos se pueden usar en esta misma
+          página y dos son video. Nada de plantillas: cada una salió de un problema real.
         </p>
       </header>
 
@@ -409,114 +415,28 @@
 
       <div class="lab" data-revelar-grupo>
 
-        <article class="lab-pieza" data-revelar>
-          <div class="lab-pieza__visual" aria-hidden="true">
-            <div class="mock-mostrador">
-              <div class="mock-panel__barra"><i></i><i></i><i></i><span>mostrador / cobros</span></div>
-              <div class="mock-mostrador__cuerpo">
-                <div class="mock-cobro">
-                  <div>
-                    <span class="mock-cobro__etiqueta">Cobrado hoy</span>
-                    <strong class="mock-cobro__cifra">$ 4,850</strong>
-                  </div>
-                  <div class="mock-cobro__acciones">
-                    <span class="mock-toque mock-toque--lleno">+ Venta</span>
-                    <span class="mock-toque">Fiado</span>
-                    <span class="mock-toque">Abono</span>
-                  </div>
-                </div>
-                <div class="mock-adeudos">
-                  <p class="mock-cobro__etiqueta">Quién debe</p>
-                  <p class="mock-adeudo"><span class="mock-adeudo__quien">Doña Mari · refacción</span><span class="mock-adeudo__dias">12 días</span><span class="mock-adeudo__monto">$ 450</span></p>
-                  <p class="mock-adeudo"><span class="mock-adeudo__quien">Taller Ramírez · 3 piezas</span><span class="mock-adeudo__dias">6 días</span><span class="mock-adeudo__monto">$ 1,180</span></p>
-                  <p class="mock-adeudo"><span class="mock-adeudo__quien">Cliente mostrador · servicio</span><span class="mock-adeudo__dias">hoy</span><span class="mock-adeudo__monto">$ 320</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="lab-pieza__info">
-            <p class="lab-pieza__meta">
-              <span class="chip chip--prototipo">Ejemplo funcional</span>
-              <span class="lab-pieza__area">Sistemas</span>
-            </p>
-            <p class="visualmente-oculto">Muestra: pantalla de mostrador con el total cobrado del día, tres botones grandes —venta, fiado y abono— y una lista de quién debe, cuánto y desde cuándo.</p>
-            <h3 class="lab-pieza__titulo">El mostrador: cobros y adeudos</h3>
-            <dl class="lab-pieza__ficha">
-              <div><dt>El problema</dt><dd>El negocio recibía pagos en efectivo, transferencias sueltas y apuntaba los fiados en libretas que al final de la semana no cuadraban.</dd></div>
-              <div><dt>Qué hicimos</dt><dd>Un micro-sistema web ultrarrápido que corre localmente para registrar la venta en dos clics y llevar la cuenta exacta de quién debe.</dd></div>
-              <div><dt>Por qué así</dt><dd>Sin menús complejos ni pantallas de configuración que estorban: diseñado exclusivamente para que el tendero o el encargado no pierda tiempo tipeando.</dd></div>
-            </dl>
-          </div>
-        </article>
-
-        <article class="lab-pieza" data-revelar>
-          <div class="lab-pieza__visual" aria-hidden="true">
-            <div class="mock-panel">
-              <div class="mock-panel__barra"><i></i><i></i><i></i><span>órdenes / taller</span></div>
-              <div class="mock-panel__cuerpo">
-                <div class="mock-ordenes">
-                  <p class="mock-orden"><span><span class="mock-orden__folio">Orden 214</span><span class="mock-orden__cliente">Camioneta 3.5 t · frenos</span></span><span class="estado estado--alerta">Recibido</span></p>
-                  <p class="mock-orden"><span><span class="mock-orden__folio">Orden 215</span><span class="mock-orden__cliente">Sedán · servicio completo</span></span><span class="estado estado--espera">En taller</span></p>
-                  <p class="mock-orden"><span><span class="mock-orden__folio">Orden 216</span><span class="mock-orden__cliente">Pick-up · suspensión</span></span><span class="estado estado--ok">Listo</span></p>
-                  <p class="mock-orden"><span><span class="mock-orden__folio">Orden 217</span><span class="mock-orden__cliente">Moto · cambio de aceite</span></span><span class="estado estado--ok">Entregado</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="lab-pieza__info">
-            <p class="lab-pieza__meta">
-              <span class="chip chip--prototipo">Ejemplo funcional</span>
-              <span class="lab-pieza__area">Sistemas</span>
-            </p>
-            <p class="visualmente-oculto">Muestra: lista de órdenes de un taller. Cada renglón trae el folio, el trabajo y su estado: recibido, en taller, listo o entregado.</p>
-            <h3 class="lab-pieza__titulo">La recepción de servicios y órdenes</h3>
-            <dl class="lab-pieza__ficha">
-              <div><dt>El problema</dt><dd>Las solicitudes de servicio entraban por llamadas, notas de papel o WhatsApp, y se pasaban por alto fechas y entregas.</dd></div>
-              <div><dt>Qué hicimos</dt><dd>Una interfaz de control de órdenes con estatus visuales claros que avisa en qué etapa va cada cliente.</dd></div>
-              <div><dt>Por qué así</dt><dd>Una vista de un solo golpe de ojo para saber qué urge hoy, sin abrir carpetas ni buscar papeles en el mostrador.</dd></div>
-            </dl>
-          </div>
-        </article>
-
+        <!-- ─── EJEMPLO 1 · EL COTIZADOR (en vivo) ─── -->
         <article class="lab-pieza lab-pieza--ancha" data-revelar>
-          <div class="lab-pieza__visual" aria-hidden="true">
-            <div class="mock-cotizador">
-              <div class="mock-cotizador__panel">
-                <p class="mock-cobro__etiqueta">Lo que necesitas</p>
-                <p class="mock-opcion mock-opcion--marcada"><i></i>Página completa<em>$6,000</em></p>
-                <p class="mock-opcion mock-opcion--marcada"><i></i>Logo y colores<em>$3,000</em></p>
-                <p class="mock-opcion mock-opcion--marcada"><i></i>Cotizar y cobrar<em>$8,000</em></p>
-                <p class="mock-opcion"><i></i>Inventario<em>$7,000</em></p>
-                <p class="mock-opcion"><i></i>Tareas automáticas<em>$3,000</em></p>
-                <p class="mock-cotizador__total"><span>Suma aproximada</span><strong>$17,000</strong></p>
-              </div>
-              <div class="mock-whats">
-                <p class="mock-whats__cabecera"><span class="punto"></span>WhatsApp · CAMENA</p>
-                <p class="mock-whats__mensaje">
-                  Hola CAMENA, armé mi paquete:<br>
-                  · Página completa — $6,000<br>
-                  · Logo y colores — $3,000<br>
-                  · Cotizar y cobrar — $8,000<br>
-                  <strong>Suma aproximada: <em>$17,000</em></strong>
-                </p>
-                <p class="mock-whats__pie">Mensaje listo para revisar y enviar</p>
-              </div>
-            </div>
+          <div class="lab-pieza__visual lab-pieza__visual--capturas">
+            <figure class="captura">
+              <img src="assets/producto/cotizador.webp" width="1240" height="900" loading="lazy" decoding="async"
+                   alt="Armador de paquetes del sitio con cuatro servicios marcados —logo, página corta, tres videos y automatización— y la suma aproximada calculada abajo, más el botón para pedir la cotización por WhatsApp.">
+              <figcaption>El cotizador de esta página: se marca lo que se necesita y la suma sale sola.</figcaption>
+            </figure>
+            <p class="captura__nota">Captura real del sitio, no una maqueta.</p>
           </div>
           <div class="lab-pieza__info">
             <p class="lab-pieza__meta">
               <span class="chip chip--caso">Está en vivo</span>
               <span class="lab-pieza__area">Sistemas y web</span>
             </p>
-            <p class="visualmente-oculto">Muestra: a la izquierda, la lista de servicios con casillas marcadas y la suma; a la derecha, el mensaje de WhatsApp ya armado con el resumen y el total.</p>
             <h3 class="lab-pieza__titulo">El cotizador de WhatsApp de este mismo sitio</h3>
             <dl class="lab-pieza__ficha">
               <div><dt>El problema</dt><dd>Pedir precio por WhatsApp obliga a preguntar y responder lo mismo diez veces al día: qué servicios, cuánto sale y cuánto tarda.</dd></div>
-              <div><dt>Qué hicimos</dt><dd>El armador de paquetes de esta página: marcas lo que necesitas, suma solo y arma el mensaje con el resumen y el total, sin capturar nada dos veces.</dd></div>
-              <div><dt>Por qué así</dt><dd>Funciona sin instalar nada ni crear cuenta, y quien lo usa ve el número antes de escribir. Es el mismo criterio de los micro-sistemas aplicado a la primera conversación.</dd></div>
+              <div><dt>Qué hicimos</dt><dd>Un armador que suma solo, arma el mensaje con el resumen y el total, y lo entrega listo para revisar y enviar. Sin cuentas ni capturar nada dos veces.</dd></div>
+              <div><dt>Por qué así</dt><dd>Quien lo usa ve el número antes de escribir, y nosotros recibimos el pedido completo desde el primer mensaje. Es el mismo criterio de los micro-sistemas aplicado a la primera conversación.</dd></div>
             </dl>
-              <p class="lab-pieza__enlace"><a href="#armar">Pruébalo aquí mismo, en esta página →</a></p>
-            <p class="lab-pieza__pie">Lo que ves arriba es el armador de esta página: los precios son los publicados y el mensaje sale con lo que marques. No es una simulación.</p>
+            <p class="lab-pieza__enlace"><a href="#armar">Pruébalo abajo, en esta misma página →</a></p>
           </div>
         </article>
 
@@ -547,6 +467,59 @@
             </dl>
             <p class="lab-pieza__enlace"><a href="producto/taller.html">Ábrelo y pruébalo aquí mismo →</a></p>
             <p class="lab-pieza__pie">Se construyó después de levantar los dolores reales de un taller: 13 notas de voz transcritas y analizadas. Esta es la primera entrega; la cotización por aseguradora y la cobranza van en la siguiente.</p>
+          </div>
+        </article>
+
+        <!-- ─── EJEMPLO 2 · VIDEO DE MARCA ─── -->
+        <article class="lab-pieza" data-revelar>
+          <div class="lab-pieza__visual">
+            <figure class="video-pieza">
+              <video controls preload="none" playsinline width="720" height="1280"
+                     poster="assets/video/camena-promo.webp">
+                <source src="assets/video/camena-promo.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+              </video>
+              <figcaption>30 segundos, vertical, hecho para redes y para la visita comercial.</figcaption>
+            </figure>
+          </div>
+          <div class="lab-pieza__info">
+            <p class="lab-pieza__meta">
+              <span class="chip chip--prototipo">Pieza propia</span>
+              <span class="lab-pieza__area">Video</span>
+            </p>
+            <h3 class="lab-pieza__titulo">Promo de CAMENA: «no te encuentran»</h3>
+            <dl class="lab-pieza__ficha">
+              <div><dt>El problema</dt><dd>El negocio que no aparece en Google pierde al cliente antes de existir para él: la gente busca y encuentra a otro.</dd></div>
+              <div><dt>Qué hicimos</dt><dd>Un video vertical de 30 segundos con guion, narración, música y ritmo de reel, armado por capas para que cada versión salga sin rehacerlo.</dd></div>
+              <div><dt>Por qué así</dt><dd>Habla como se habla aquí y no como anuncio de ciudad: el gancho es el dolor real y el cierre es un caso en línea, no una promesa.</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <!-- ─── EJEMPLO 3 · VIDEO PARA CLIENTE ─── -->
+        <article class="lab-pieza" data-revelar>
+          <div class="lab-pieza__visual">
+            <figure class="video-pieza">
+              <video controls preload="none" playsinline width="720" height="1280"
+                     poster="assets/video/reel-cliente.webp">
+                <source src="assets/video/reel-cliente.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+              </video>
+              <figcaption>Reel de 30 segundos para el consultorio de una clienta.</figcaption>
+            </figure>
+          </div>
+          <div class="lab-pieza__info">
+            <p class="lab-pieza__meta">
+              <span class="chip chip--prototipo">Pieza para cliente</span>
+              <span class="lab-pieza__area">Video</span>
+            </p>
+            <h3 class="lab-pieza__titulo">Reel para un consultorio</h3>
+            <dl class="lab-pieza__ficha">
+              <div><dt>El problema</dt><dd>La consulta publicaba en redes, pero quien buscaba un especialista en su ciudad encontraba a otro: lo que faltaba no era contenido, era presencia.</dd></div>
+              <div><dt>Qué hicimos</dt><dd>Un reel de 30 segundos construido solo con lo que ya era suyo —su material, su paleta y sus datos verificados— sin fotos de banco ni estética de plantilla médica.</dd></div>
+              <div><dt>Por qué así</dt><dd>La pieza acompaña a la visita comercial y después sirve tal cual como reel o historia. Se hizo para sentirse de ella, no de un catálogo de salud.</dd></div>
+            </dl>
+            <p class="lab-pieza__pie">Se muestra con el visto bueno del cliente.</p>
           </div>
         </article>
 
@@ -884,10 +857,12 @@
         <article class="etapa etapa--ancha etapa--campanas" data-revelar>
           <div class="etapa__cabecera">
             <p class="etapa__cuando">Aparte · Proyectos especiales</p>
-            <h3 class="etapa__titulo">Campañas y proyectos especiales</h3>
+            <h3 class="etapa__titulo">Contenido para campañas y eventos</h3>
             <p class="etapa__texto">
-              Presencia constante, contenido todos los días y respuesta rápida:
-              campañas, lanzamientos y operaciones montadas de verdad.
+              Contenido para <strong>campañas políticas</strong>, publicidad para
+              <strong>eventos</strong> y <strong>video comercial con nivel de estudio</strong>:
+              presencia constante, contenido todos los días y respuesta rápida. Es el
+              servicio más exigente que damos, y por eso se cobra distinto.
             </p>
           </div>
 
@@ -896,59 +871,60 @@
             <li>
               <button class="servicios__fila" type="button" data-globo="g-marca-completa-para-la-campa-a" aria-expanded="false">
                 <span class="servicios__que">Marca completa para la campaña</span>
-                <span class="servicios__cuanto">desde $5,000</span>
+                <span class="servicios__cuanto">desde $12,000</span>
               </button>
               <span class="servicios__globo" id="g-marca-completa-para-la-campa-a" role="region" aria-label="Qué incluye: Marca completa para la campaña">Identidad propia de la campaña, sin copiar la del partido ni la del vecino.</span>
             </li>
             <li>
               <button class="servicios__fila" type="button" data-globo="g-contenido-para-redes-por-mes" aria-expanded="false">
                 <span class="servicios__que">Contenido para redes, por mes</span>
-                <span class="servicios__cuanto">desde $4,000</span>
+                <span class="servicios__cuanto">desde $9,000</span>
               </button>
               <span class="servicios__globo" id="g-contenido-para-redes-por-mes" role="region" aria-label="Qué incluye: Contenido para redes, por mes">Piezas del mes con el mensaje de la campaña.</span>
             </li>
             <li>
               <button class="servicios__fila" type="button" data-globo="g-videos-y-piezas-para-anunciar" aria-expanded="false">
-                <span class="servicios__que">Videos y piezas para anunciar</span>
-                <span class="servicios__cuanto">desde $3,500</span>
+                <span class="servicios__que">Video comercial con nivel de estudio</span>
+                <span class="servicios__cuanto">desde $18,000</span>
               </button>
-              <span class="servicios__globo" id="g-videos-y-piezas-para-anunciar" role="region" aria-label="Qué incluye: Videos y piezas para anunciar">Lo que se publica y lo que se pauta, con el mismo mensaje.</span>
+              <span class="servicios__globo" id="g-videos-y-piezas-para-anunciar" role="region" aria-label="Qué incluye: Video comercial con nivel de estudio">Guion, producción, edición, música y adaptaciones por plataforma. Es el mismo nivel de un anuncio de televisión, hecho para redes.</span>
             </li>
             <li>
               <button class="servicios__fila" type="button" data-globo="g-base-de-datos-y-control-de-simpatizantes" aria-expanded="false">
                 <span class="servicios__que">Base de datos y control de simpatizantes</span>
-                <span class="servicios__cuanto">desde $8,000</span>
+                <span class="servicios__cuanto">desde $18,000</span>
               </button>
               <span class="servicios__globo" id="g-base-de-datos-y-control-de-simpatizantes" role="region" aria-label="Qué incluye: Base de datos y control de simpatizantes">Registro ordenado y a tu nombre, con control de quién entra y quién no.</span>
             </li>
             <li>
               <button class="servicios__fila" type="button" data-globo="g-respuestas-autom-ticas-y-atenci-n-por-wh" aria-expanded="false">
                 <span class="servicios__que">Respuestas automáticas y atención por WhatsApp</span>
-                <span class="servicios__cuanto">desde $2,000</span>
+                <span class="servicios__cuanto">desde $6,000</span>
               </button>
               <span class="servicios__globo" id="g-respuestas-autom-ticas-y-atenci-n-por-wh" role="region" aria-label="Qué incluye: Respuestas automáticas y atención por WhatsApp">Contestar rápido sin perder el tono de la campaña.</span>
             </li>
             <li>
               <button class="servicios__fila" type="button" data-globo="g-p-gina-con-la-propuesta-y-el-registro" aria-expanded="false">
                 <span class="servicios__que">Página con la propuesta y el registro</span>
-                <span class="servicios__cuanto">desde $6,000</span>
+                <span class="servicios__cuanto">desde $14,000</span>
               </button>
               <span class="servicios__globo" id="g-p-gina-con-la-propuesta-y-el-registro" role="region" aria-label="Qué incluye: Página con la propuesta y el registro">Una página que explica la propuesta y recoge los datos.</span>
             </li>
             <li>
               <button class="servicios__fila" type="button" data-globo="g-campa-a-completa-por-etapas" aria-expanded="false">
                 <span class="servicios__que">Campaña completa, por etapas</span>
-                <span class="servicios__cuanto">desde $12,000</span>
+                <span class="servicios__cuanto">desde $45,000</span>
               </button>
               <span class="servicios__globo" id="g-campa-a-completa-por-etapas" role="region" aria-label="Qué incluye: Campaña completa, por etapas">Todo junto, por etapas, con revisión antes de cada arranque.</span>
             </li>
           </ul>
 
           <p class="etapa__nota">
-            Trabajamos estos proyectos <strong>solo si cumplen la normativa electoral
-            y las políticas de las plataformas donde se publica</strong>. Se revisa
-            antes de aceptar, no después. Sin cuentas falsas, bots ni publicaciones
-            engañosas.
+            Son precios de estudio, no de publicación suelta: incluyen guion, producción,
+            edición y adaptaciones por plataforma. Trabajamos estos proyectos
+            <strong>solo si cumplen la normativa electoral y las políticas de las
+            plataformas donde se publica</strong>. Se revisa antes de aceptar, no después.
+            Sin cuentas falsas, bots ni publicaciones engañosas.
           </p>
 
           <div class="etapa__pie">
@@ -1162,7 +1138,7 @@
               </summary>
               <div class="faq__respuesta">
                 <p>
-                  Sí: WhatsApp, videollamada y correo. Estamos en Apatzingán, Michoacán, y atendemos todo México. Si estás cerca, vamos a tu negocio.
+                  Sí: WhatsApp, videollamada y correo. Estamos en Apatzingán, Michoacán, y trabajamos de forma remota con negocios de cualquier parte del mundo. Si estás cerca, vamos a tu negocio.
                 </p>
               </div>
             </details>
@@ -1233,7 +1209,7 @@
             </li>
             <li class="dato">
               <span class="dato__clave">Dónde estamos</span>
-              <span class="dato__valor">Apatzingán, Michoacán · vamos a tu negocio si estás aquí</span>
+              <span class="dato__valor">Apatzingán, Michoacán · trabajo remoto en cualquier parte del mundo</span>
             </li>
           </ul>
         </div>
@@ -1334,7 +1310,7 @@
       <div class="pie__marca">
         <img class="pie__simbolo" src="assets/marca-camena.svg" alt="" width="40" height="40">
         <p class="pie__nombre">CAMENA</p>
-        <p class="pie__lema">Páginas web, marca y sistemas para tu negocio.</p>
+        <p class="pie__lema">Páginas web, marca y sistemas para tu negocio. Trabajo remoto en todo el mundo.</p>
         <p class="pie__claim">Tu idea. Nuestra solución.</p>
       </div>
 
