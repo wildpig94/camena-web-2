@@ -4,9 +4,17 @@
    todo color, tamaño y ritmo sale de aquí.
    Contraste verificado en docs/verificar-contraste.py (WCAG AA).
 
-   Paleta editorial: dos superficies neutras (hueso muy sutil y carbón
-   profundo) y UN solo acento —verde esmeralda de terminal—. Sin degradados,
-   sin tonos tierra apagados: el contraste hace todo el trabajo.
+   Paleta de taller: base de carbón y hueso, y TRES acentos con significado,
+   no decorativos. Cada acento tiene un trabajo asignado y ninguno se usa
+   «porque se ve bonito»:
+
+     · ORO      → el acento por defecto del sitio: marca, precios, CTA.
+     · MAGENTA  → el eje de sistemas: micro-sistemas, prototipos, operación.
+     · VERDE    → estado: disponibilidad, aprobado, lo que sí funciona.
+     · CARBÓN   → superficies, texto y todo lo que no es acento.
+
+   Regla: un elemento lleva un solo acento. Nunca dos en el mismo componente,
+   nunca degradados entre ellos.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
@@ -26,12 +34,31 @@
   --texto-claro:  #F4F3F0;
   --texto-claro-2:#A8A8A2;  /* 7.90:1 sobre tinta: legible a 13-14 px */
 
-  /* ── Acento: un solo verde, en tres tonos según el fondo ──── */
-  --verde:      #0E9F6E;   /* acento gráfico: pasa 3:1 en claro Y en oscuro */
-  --verde-lt:   #34D399;   /* acento de TEXTO sobre oscuro (9.82:1 sobre tinta) */
-  --verde-tx:   #0A6B4C;   /* acento de TEXTO sobre claro (6.03:1 sobre hueso) */
-  --verde-tenue: rgba(14, 159, 110, 0.10);
-  --verde-linea: rgba(14, 159, 110, 0.30);
+  /* ── Acentos: tres familias, tres tonos cada una ──────────────
+     Cada familia necesita tres tonos porque el mismo color no sirve sobre
+     papel y sobre carbón: `-tx` es para texto sobre claro, `-lt` para texto
+     sobre oscuro, y el tono base pasa 3:1 en LOS DOS fondos, así que sirve
+     para puntos, filetes y rellenos sin cambiar de token. */
+  /* Oro: acento principal */
+  --oro:          #A8821F;   /* gráfico: 3.31:1 sobre papel · 5.29:1 sobre tinta */
+  --oro-lt:       #E8C766;   /* texto sobre oscuro (11.50:1 sobre tinta) */
+  --oro-tx:       #8A6A0F;   /* texto sobre claro (4.68:1 sobre hueso) */
+  --oro-tenue:    rgba(168, 130, 31, 0.12);
+  --oro-linea:    rgba(168, 130, 31, 0.34);
+
+  /* Magenta: el eje de sistemas */
+  --magenta:      #D6247A;   /* gráfico: 4.42:1 sobre papel · 3.95:1 sobre tinta */
+  --magenta-lt:   #F472B6;   /* texto sobre oscuro (7.13:1 sobre tinta) */
+  --magenta-tx:   #A81B5A;   /* texto sobre claro (6.54:1 sobre hueso) */
+  --magenta-tenue: rgba(214, 36, 122, 0.10);
+  --magenta-linea: rgba(214, 36, 122, 0.34);
+
+  /* Verde: estado (el que informa si algo está bien o disponible) */
+  --verde:        #0E9F6E;   /* gráfico: 3.13:1 sobre papel · 5.58:1 sobre tinta */
+  --verde-lt:     #34D399;   /* texto sobre oscuro (9.82:1 sobre tinta) */
+  --verde-tx:     #0A6B4C;   /* texto sobre claro (6.03:1 sobre hueso) */
+  --verde-tenue:  rgba(14, 159, 110, 0.10);
+  --verde-linea:  rgba(14, 159, 110, 0.34);
 
   /* ── Superficies y bordes por contexto ────────────────────────
    Ojo con la distinción: `--linea` es un filete decorativo (1.2:1 basta),
@@ -39,8 +66,13 @@
   --borde:        var(--linea);
   --borde-fuerte: #6F6F69;   /* 4.68:1 sobre hueso: es un control, no un filete */
   --borde-oscuro: var(--ink-3);
-  --acento:       var(--verde-tx);
-  --acento-suave: var(--verde-tenue);
+  /* Acento contextual: los componentes leen SIEMPRE estos alias, nunca una
+     familia concreta. Así una sección puede cambiar de acento —el bloque de
+     sistemas va en magenta— sin tocar ni un componente. */
+  --acento:         var(--oro-tx);
+  --acento-grafico: var(--oro);
+  --acento-suave:   var(--oro-tenue);
+  --acento-linea:   var(--oro-linea);
 
   /* ── Tipografía ───────────────────────────────────────────── */
   --display: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -124,18 +156,39 @@
 .lab-pieza__visual {
   --borde: var(--borde-oscuro);
   --borde-fuerte: var(--ink-4);
-  --acento: var(--verde-lt);
-  --acento-suave: rgba(14, 159, 110, 0.12);
+  --acento: var(--oro-lt);
+  --acento-grafico: var(--oro);
+  --acento-suave: rgba(168, 130, 31, 0.12);
+  --acento-linea: var(--oro-linea);
   --sombra-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
   --sombra: 0 14px 40px rgba(0, 0, 0, 0.4);
   --sombra-lg: 0 26px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* El hero tiene fondo claro pero conserva sus propios acentos: el verde de
-   marca para filetes y el verde oscuro para cualquier cosa que se lea. */
+/* El hero tiene fondo claro pero conserva sus propios acentos: el oro de
+   marca para filetes y el oro oscuro para cualquier cosa que se lea. */
 .hero {
-  --acento: var(--verde-tx);
-  --acento-suave: rgba(14, 159, 110, 0.10);
+  --acento: var(--oro-tx);
+  --acento-suave: rgba(168, 130, 31, 0.10);
+}
+
+/* ── Contextos de SISTEMAS: aquí manda el magenta ─────────────────
+   El estudio se define por los sistemas, así que las piezas que los
+   representan —la banda de operación, los prototipos y la segunda línea del
+   titular— cambian de acento. Todo lo demás sigue en oro. */
+.etapa--destacada,
+#lab,
+.hero__titulo {
+  --acento: var(--magenta-tx);
+  --acento-grafico: var(--magenta);
+  --acento-suave: var(--magenta-tenue);
+  --acento-linea: var(--magenta-linea);
+}
+.etapa--destacada,
+#lab {
+  /* Sobre carbón el magenta tiene que ser el claro para leerse */
+  --acento: var(--magenta-lt);
+  --acento-suave: rgba(214, 36, 122, 0.12);
 }
 
 /* ── Paleta de las maquetas del LAB ───────────────────────────────
@@ -151,10 +204,10 @@
   --mock-2: #C6C5C1;   /* texto secundario */
   --mock-3: #9C9B97;   /* texto terciario / etiquetas */
   --mock-tenue: #8C8B87; /* micro-etiquetas de 10 px: 5.10:1 sobre --mock-1 */
-  --mock-acento: #34D399;
+  --mock-acento: #F472B6;
   --mock-azul: #7FB5C9;
   --mock-verde: #6FD79B;
   --mock-naranja: #E0A87F;
   --mock-rosa: #C9A0C9;
-  --mock-acento-linea: rgba(52, 211, 153, 0.42);
+  --mock-acento-linea: rgba(244, 114, 182, 0.42);
 }

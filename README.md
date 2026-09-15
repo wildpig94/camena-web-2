@@ -26,24 +26,29 @@ una página secundaria. El inicio no es un folleto.
 
 ## Qué es esto
 
-CAMENA dejó de ser «la agencia que hace páginas web». Es un **estudio de diseño y
-sistemas operativos para negocios locales**: hace que el negocio se vea del tamaño
-de su trabajo y que funcione sin depender de la memoria del dueño. Las dos mitades
-pesan igual —marca, página web, video y publicidad por un lado; ventas, cobros,
-inventario y automatización por el otro— y el sitio entero está ordenado para que
-eso se entienda en los primeros segundos.
+CAMENA es un **estudio de diseño y sistemas** en Apatzingán: construye
+**micro-sistemas y herramientas digitales a partir de la forma de trabajar de
+cada negocio**, y trabaja la identidad, las interfaces y el contenido que lo
+sostienen. La frase que gobierna el sitio es la del titular: *cada negocio opera
+distinto; su software también debería.*
 
-**El eje se repite en todas las secciones, y ahí está la prueba de que es el eje:**
+El eje se repite en todas las secciones, y ahí está la prueba de que es el eje:
 
 | Sección | Cómo se ve el eje |
 |---|---|
-| Hero | Titular en dos renglones —`Taller de sistemas y diseño.` / `Soluciones a tu medida.`— y **dos mitades en columnas del mismo ancho**, una por cada mitad del estudio. La segunda línea va en el acento: el contraste de color es el recurso, no la cursiva. |
-| Datos del hero | Primer dato: diseño desde $1,500. Segundo: sistemas desde $8,000. Mismo peso, mismas cifras publicadas. |
-| Índice lateral | Abre con «Sistemas a la medida» y «Automatización»; después, la parte de diseño. |
-| Diagnósticos | La sección se titula **«¿Qué te está costando dinero?»** y cada tarjeta nombra el costo (regateo, ventas que no cuadran, deudas que no se cobran). La tarjeta resaltada es la operativa, no la de diseño. |
-| Precios | La etapa 3 —sistemas desde $8,000— es la **banda protagonista**: ancho completo, única superficie oscura, sello, filete dorado, título a escala mayor y CTA directo a WhatsApp. Las etapas de diseño quedan sobre papel. El paquete de entrada sigue existiendo, pero ya no es lo que más pesa. |
-| `servicios.html` | El catálogo **abre con «Sistemas y operación»** (01 y 02) y sigue con marca, presencia y contenido. |
-| `como-trabajamos.html` | Sección propia: «Diseño y sistemas, en el mismo estudio», con las tres piezas del puente entre ambas mitades. |
+| Hero | Etiqueta de estado con punto verde, titular en dos renglones (`Cada negocio opera distinto.` / `Su software también debería.`, este último en magenta) y la tira de condiciones en mono: `Sin piezas sobrantes · Sin adaptaciones forzadas`. |
+| Índice lateral | Sin caja: lista tipográfica con filete vertical. Abre con los cuatro pilares y cierra con las dos líneas aparte. |
+| Diagnósticos | La sección se titula **«¿Qué te está costando dinero?»** y cada tarjeta nombra el costo (regateo, ventas que no cuadran, deudas que no se cobran). La tarjeta resaltada es la operativa. |
+| Precios | Tres etapas (marca · presencia · **sistemas**) y **dos líneas aparte** (producción de contenido y proyectos especiales). La etapa de sistemas es la banda protagonista, en magenta. |
+| `servicios.html` | Tres grupos separados: **sistemas y diseño** (los cuatro pilares), **contenido y producción** y **campañas y proyectos especiales**. Nada se mezcla. |
+| `como-trabajamos.html` | Abre con el manifiesto del método y sigue con los seis pasos. |
+
+**Los cuatro pilares** (grupo «Sistemas y diseño» en el catálogo):
+
+1. **Arquitectura operativa** — el análisis del flujo real antes de programar.
+2. **Micro-sistemas locales** — software propio, cerrado y del cliente, sin cuotas perpetuas.
+3. **Interfaces de alta velocidad** — web desde cero, sin plantillas pesadas.
+4. **Identidad y presencia** — la traducción visual del negocio.
 
 Tres reglas gobiernan todas las decisiones de aquí:
 
@@ -159,28 +164,33 @@ python3 -m http.server 8899 --bind 127.0.0.1
 
 ### Color
 
-Paleta editorial: **dos superficies neutras y un solo acento**. Sin degradados,
-sin tonos tierra apagados y sin un segundo color de marca compitiendo: el
-contraste hace todo el trabajo.
+Base de carbón y hueso, y **tres acentos con trabajo asignado**. Ninguno es
+decorativo: cada color significa algo y se usa solo para eso.
 
-| Token | Valor | Uso | Contraste medido |
+| Familia | Rol | Tonos | Contraste medido |
 |---|---|---|---|
-| `--ink` | `#111111` | Fondo oscuro, texto sobre claro | 17.47:1 sobre hueso |
-| `--paper` | `#F7F6F3` | Fondo claro (hueso muy sutil, no blanco clínico) | — |
-| `--verde` | `#0E9F6E` | Acento gráfico: pasa 3:1 **en los dos fondos** | 3.13:1 sobre hueso · 5.58:1 sobre tinta |
-| `--verde-lt` | `#34D399` | Acento de **texto** sobre oscuro | 9.82:1 sobre tinta |
-| `--verde-tx` | `#0A6B4C` | Acento de **texto** sobre claro | 6.03:1 sobre hueso |
+| **Oro** | Acento principal: marca, precios, CTA | `--oro` `#A8821F` · `--oro-lt` `#E8C766` · `--oro-tx` `#8A6A0F` | 3.31:1 sobre papel · 11.50:1 sobre tinta · 4.68:1 sobre hueso |
+| **Magenta** | El eje de sistemas: micro-sistemas, prototipos, operación | `--magenta` `#D6247A` · `--magenta-lt` `#F472B6` · `--magenta-tx` `#A81B5A` | 4.42:1 sobre papel · 7.13:1 sobre tinta · 6.54:1 sobre hueso |
+| **Verde** | Estado: disponibilidad, aprobado, lo que funciona | `--verde` `#0E9F6E` · `--verde-lt` `#34D399` · `--verde-tx` `#0A6B4C` | 3.13:1 sobre papel · 9.82:1 sobre tinta · 6.03:1 sobre hueso |
+| **Carbón** | Superficies, texto y todo lo que no es acento | `--ink` `#111111` · `--paper` `#F7F6F3` | 17.47:1 |
 
-El verde de marca es el único que funciona igual sobre papel y sobre carbón, así
-que sirve para el punto de estado de la etiqueta superior y para los filetes,
-sin cambiar de token. El acento se resuelve solo: los bloques oscuros redefinen
-`--acento`, así que un componente escrito una vez funciona en claro y en oscuro.
+**Reglas de convivencia** (sin ellas, tres acentos se vuelven feria):
 
-**Por qué el verde y no otro.** Verde esmeralda de terminal: es el color del
-registro del estudio —sistemas, monitoreo, estado— y no del repertorio cálido
-de agencia creativa. El acento anterior (oro sobre marrón) daba una temperatura
-cálida y artesanal, pero se leía «tienda de artesanías» antes que «taller de
-software».
+1. **Un elemento, un acento.** Nunca dos en el mismo componente.
+2. **El magenta marca el eje.** Aparece en la segunda línea del titular, en la
+   banda de sistemas de precios, en los prototipos y en los cuatro pilares del
+   catálogo. En ningún otro sitio.
+3. **El verde solo informa.** Es el punto de estado del hero y los estados de
+   las maquetas («Aprobada», «En proceso»). No se usa como color de marca.
+4. **Cero degradados.** Ni entre acentos ni dentro de uno.
+5. **Todo pasa por los alias contextuales** (`--acento`, `--acento-grafico`,
+   `--acento-suave`, `--acento-linea`), nunca por una familia concreta: así una
+   sección cambia de acento —la de sistemas— sin tocar ni un componente.
+
+Cada familia tiene tres tonos porque el mismo color no sirve sobre papel y
+sobre carbón: `-tx` para texto sobre claro, `-lt` para texto sobre oscuro, y el
+tono base pasa 3:1 **en los dos fondos**, así que sirve para puntos, filetes y
+rellenos sin cambiar de token.
 
 ### Tipografía
 
@@ -307,24 +317,30 @@ inventar nada.
 
 ### Cómo se agrupa la oferta
 
-El inicio agrupa la oferta por **etapa del negocio**, porque «hacemos muchas
-cosas» no dice qué contratar:
+El inicio agrupa la oferta en **tres etapas del negocio** y **dos líneas
+aparte**, porque «hacemos muchas cosas» no dice qué contratar —y porque video,
+audio, publicidad y campañas no son una etapa del camino: se contratan cuando
+hacen falta.
 
-| Etapa | Para quién | Qué entra | Tratamiento |
+| Bloque | Para quién | Qué entra | Tratamiento |
 |---|---|---|---|
 | 1 · Marca | Todavía no tiene logo ni colores | Logo · identidad · hoja de uso · papelería · etiquetas | Tarjeta sobre papel |
-| 2 · Presencia | Ya tiene marca y no lo encuentran | Páginas · catálogos · ficha de Google · video · audio · campañas | Tarjeta sobre papel |
-| **3 · Operación** | **Ya vende y la información vive en cuadernos** | **Sistemas a la medida · ventas · cobros · inventario · citas · tableros · automatización** | **Banda a todo el ancho, superficie oscura, sello, título grande y CTA a WhatsApp** |
-| 4 · Campañas | Necesita presencia constante | Marca de campaña · contenido por mes · piezas · base de datos | Banda a todo el ancho, sobre papel |
+| 2 · Presencia | Ya tiene marca y no lo encuentran | Páginas · catálogos · ficha de Google | Tarjeta sobre papel |
+| **3 · Sistemas** | **Ya vende y la información vive en cuadernos** | **Cotizar y cobrar · clientes y ventas · inventario · citas · tablero · automatización** | **Banda a todo el ancho, carbón, acento magenta, sello y CTA a WhatsApp** |
+| Aparte · Producción | Ya hay algo que mostrar | Video · audio · publicidad · publicaciones del mes | Tarjeta sobre papel |
+| Aparte · Proyectos especiales | Presencia constante y campañas | Marca de campaña · contenido por mes · base de datos · campaña completa | Tarjeta sobre papel |
 
-**Regla de la banda oscura:** es exclusiva de la etapa de sistemas. Cuando dos
-etapas la compartían, las dos pesaban igual y ninguna destacaba. Si algún día se
-añade otra etapa, va sobre papel.
+**Regla de la banda oscura:** es exclusiva de la etapa de sistemas, y es la única
+que lleva acento magenta en esa sección. Cuando dos etapas compartían la
+superficie oscura, las dos pesaban igual y ninguna destacaba.
 
-`servicios.html` usa el mismo material en cuatro grupos, **en otro orden**: abre
-con *Sistemas y operación* (disciplinas 01 y 02), y sigue con *Marca*, *Presencia
-en internet* y *Contenido y publicidad*. El catálogo abre por donde está el
-trabajo de mayor valor y el que menos se parece a «agencia de páginas web».
+`servicios.html` presenta el mismo material en **tres grupos separados**:
+
+1. **Sistemas y diseño** — los cuatro pilares (disciplinas 01 a 04), con acento
+   magenta en su número y en el signo de abrir.
+2. **Contenido y producción** — video, audio y publicidad (05 a 07).
+3. **Campañas y proyectos especiales** — su propia disciplina (08), con la
+   advertencia de normativa electoral dentro y no mezclada con el resto.
 
 ### Los tres casos de estudio del LAB
 
@@ -519,6 +535,10 @@ resultados **sin rearmar la página**.
 - [x] Eje reposicionado a **estudio de diseño y sistemas operativos**: hero con
       dos mitades, diagnósticos por costo, etapa de sistemas como protagonista,
       catálogo de servicios abierto por sistemas y tesis en «Cómo trabajamos»
+- [x] Arquitectura de oferta en cuatro pilares de sistemas y diseño, con
+      contenido y campañas en grupos aparte
+- [x] Paleta de cuatro colores (oro, magenta, verde y carbón) con roles
+      asignados y alias contextuales; el magenta marca el eje de sistemas
 - [x] Rediseño editorial: paleta neutra con un solo acento verde, tipografía
       geométrica auto-hospedada (Jakarta Sans + JetBrains Mono, 88 KB), índice
       del hero sin caja, etiqueta de estado con punto verde, filetes punteados,

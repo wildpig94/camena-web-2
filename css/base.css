@@ -147,7 +147,7 @@ main a:not([class]):hover,
   left: var(--e-3);
   z-index: var(--z-saltar);
   padding: var(--e-3) var(--e-5);
-  background: var(--verde);
+  background: var(--oro);
   color: var(--ink);
   font-size: var(--t-menudo);
   font-weight: var(--peso-fuerte);
@@ -171,7 +171,7 @@ main a:not([class]):hover,
 
 /* ── Selección ───────────────────────────────────────────────── */
 ::selection {
-  background: var(--verde);
+  background: var(--oro);
   color: var(--ink);
 }
 

@@ -53,7 +53,7 @@
     color: var(--texto-claro);
   }
   .js .nav__enlace::after { display: none; }
-  .js .nav__enlace.is-actual { color: var(--verde-lt); }
+  .js .nav__enlace.is-actual { color: var(--oro-lt); }
 
   .js .nav__contacto {
     flex-direction: column;
@@ -208,10 +208,6 @@
 /* ═══ ≤ 720 px · móvil de trabajo ═══ */
 @media (max-width: 720px) {
 
-  /* Las dos mitades del hero se apilan: en un teléfono, dos columnas de 170 px
-     dejan renglones de tres palabras. El rótulo mantiene el par visible. */
-  .hero__entrada { grid-template-columns: minmax(0, 1fr); gap: var(--e-4); }
-
   /* Enlaces de acción dentro de un párrafo: se tocan con el dedo, así que
      llevan altura de objetivo táctil sin romper el flujo del texto.
      Vive aquí y no en 560px porque en tablet el dedo también toca. */
@@ -315,22 +311,9 @@
 
   .marca__nombre { font-size: 1.0625rem; letter-spacing: 0.18em; }
 
-  .hero__mitad { font-size: 1rem; }
-
-  /* En un teléfono, el rótulo de cada mitad pasa a ir en línea: dos renglones
-     menos de rótulo son el botón de WhatsApp dentro de la primera pantalla. */
-  .hero__mitad-rotulo {
-    display: inline;
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-  .hero__mitad-rotulo::after { content: " · "; }
-
   /* Aire comprimido en el hero: la primera pantalla tiene que terminar en el
      botón, no en el párrafo. */
   .hero__entrada { margin-top: var(--e-4); }
-  .hero__texto { margin-top: var(--e-4); }
   .hero__acciones { margin-top: var(--e-6); }
 
   .sello {

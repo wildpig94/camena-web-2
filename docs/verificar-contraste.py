@@ -33,8 +33,14 @@ C = {
     "ink-4":         "#757570",
     "texto-claro":   "#F4F3F0",
     "texto-claro-2": "#A8A8A2",
-    # Acento único: verde esmeralda, en tres tonos según el fondo
-    "verde":         "#0E9F6E",
+    # Tres familias de acento, con su trabajo asignado
+    "oro":           "#A8821F",   # acento principal: marca, precios, CTA
+    "oro-lt":        "#E8C766",
+    "oro-tx":        "#8A6A0F",
+    "magenta":       "#D6247A",   # eje de sistemas
+    "magenta-lt":    "#F472B6",
+    "magenta-tx":    "#A81B5A",
+    "verde":         "#0E9F6E",   # estado
     "verde-lt":      "#34D399",
     "verde-tx":      "#0A6B4C",
 }
@@ -64,7 +70,14 @@ P = [
     ("ink-4",         "ink",     3.0, "borde de control sobre tinta"),
     ("ink-4",         "ink-2",   3.0, "borde de control sobre superficie"),
     # ── Filetes decorativos de 1 px: no comunican información ──
-    ("verde",           "paper",   3.0, "punto de estado y acento gráfico sobre hueso"),
+    # ── Las otras dos familias de acento, con el mismo rasero ──
+    ("magenta-tx",     "paper",   4.5, "acento de sistemas sobre hueso"),
+    ("magenta-tx",     "paper-2", 4.5, "acento de sistemas sobre tarjeta"),
+    ("magenta-lt",     "ink",     4.5, "acento de sistemas sobre tinta"),
+    ("magenta-lt",     "ink-2",   4.5, "acento de sistemas sobre superficie"),
+    ("magenta",        "ink",     3.0, "gráfico de sistemas sobre tinta"),
+    ("magenta",        "paper",   3.0, "gráfico de sistemas sobre hueso"),
+    ("verde",          "paper",   3.0, "punto de estado y acento gráfico sobre hueso"),
     ("linea",         "paper",   1.2, "línea divisoria sobre hueso"),
     ("ink-3",         "ink",     1.2, "línea divisoria sobre tinta"),
 ]
