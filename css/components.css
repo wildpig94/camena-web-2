@@ -594,6 +594,16 @@ svg.ic path[d^="M12 2a10"] {
 }
 .lab-pieza--ancha .lab-pieza__visual { border-bottom: 0; border-right: 1px solid var(--borde); min-height: 20rem; }
 
+/* Pie de foto de la maqueta: va dentro del bloque visual, pegado a la imagen,
+   porque explica qué se está viendo antes de que el lector llegue a la ficha. */
+.lab-pieza__pie {
+  margin-top: var(--e-4);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--texto-claro-2);
+  max-width: 46ch;
+}
+
 .lab-pieza__info { padding: clamp(1.25rem, 1rem + 1.2vw, 1.875rem); }
 
 .lab-pieza__meta {

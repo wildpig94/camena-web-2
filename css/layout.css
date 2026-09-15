@@ -140,20 +140,11 @@
    dice lo que NO se lleva el cliente (piezas sobrantes, adaptaciones). */
 .hero__entrada {
   margin-top: var(--e-5);
-  max-width: 54ch;
+  max-width: 58ch;
   font-size: var(--t-guia);
   line-height: 1.5;
   color: var(--texto-2);
 }
-.hero__promesa {
-  margin-top: var(--e-4);
-  font-family: var(--mono);
-  font-size: var(--t-micro);
-  letter-spacing: var(--tracking-etiqueta);
-  text-transform: uppercase;
-  color: var(--acento);
-}
-
 .hero__acciones {
   display: flex;
   flex-wrap: wrap;
