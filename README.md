@@ -18,7 +18,7 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 | `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres prototipos, armador de paquete, preguntas y contacto |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
-| `demo/control-autos.html` | **Producto en vivo**: control de entradas y salidas de un taller de autos |
+| `producto/taller.html` | **Producto en vivo**: expediente del taller (recepción con evidencia, etapas y refacciones) |
 
 **Regla al añadir contenido:** si algo explica pero no ayuda a decidir, va en
 una página secundaria. El inicio no es un folleto.
@@ -46,7 +46,7 @@ El eje se repite en todas las secciones, y ahí está la prueba de que es el eje
 
 ### El producto en vivo: control de autos
 
-`demo/control-autos.html` no es una maqueta: es un micro-sistema completo que
+`producto/taller.html` no es una maqueta: es un producto completo que
 cualquiera puede abrir y usar, y está enlazado desde los ejemplos del inicio con
 un «ábrelo y pruébalo». Sirve para lo mismo que el armador de paquetes: demostrar
 sin inventar nada.
@@ -151,8 +151,9 @@ que quedó es esta, y aplica a cualquier texto nuevo:
 camena-2.0/
 ├── index.html                  Página principal (7 secciones)
 ├── servicios.html              Catálogo completo, con precios
-├── demo/
-│   └── control-autos.html      Producto en vivo (micro-sistema de taller)
+├── producto/
+│   ├── taller.html             Producto en vivo: expediente del taller
+│   └── taller.js               Lógica del producto (estado, fotos, etapas)
 ├── como-trabajamos.html        El método completo, paso por paso
 ├── aviso-de-privacidad.html    Página legal
 ├── terminos.html               Página legal
@@ -436,8 +437,8 @@ presenta como **ejemplos de proyectos**, con las etiquetas en palabras llanas
 se vende tal cual, cada uno se construye desde cero.
 
 Son cinco piezas y **dos están en vivo**: el armador de paquetes que cotiza por
-WhatsApp (está en esta misma página) y el control de autos de taller
-(`demo/control-autos.html`). Las otras tres son maquetas de interfaces hechas
+WhatsApp (está en esta misma página) y el expediente del taller
+(`producto/taller.html`). Las otras tres son maquetas de interfaces hechas
 con CSS: mostrador con cobros y adeudos, recepción de servicios, y la identidad
 NORTE como contraparte de diseño.
 

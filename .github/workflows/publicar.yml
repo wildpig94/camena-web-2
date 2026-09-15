@@ -40,32 +40,27 @@ jobs:
       - name: Verificar que existan todos los archivos referenciados
         run: |
           echo "── Referencias locales ──"
+          # Cada HTML se revisa contra SU carpeta: así funcionan igual las rutas
+          # de la raíz y las de una subcarpeta como producto/ o demo/.
           fallos=0
-          # Extrae src/href locales de los HTML y comprueba que el archivo exista
-          grep -ohE '(src|href)="[^"#][^"]*"' *.html demo/*.html \
-            | sed -E 's/.*="([^"]*)".*/\1/' \
-            | grep -vE '^(https?:|mailto:|tel:|//|#)' \
-            | sort -u > /tmp/refs.txt
-          # La demo vive en /demo, así que sus rutas relativas se resuelven ahí
-          while read -r ref; do
-            case "$ref" in
-              ../*) set -- "${ref#../}" "$ref" ;;
-              *) set -- "$ref" "$ref" ;;
-            esac
-            ref="$1"; original="$2"
-            # Un enlace puede traer fragmento o parámetros: index.html#empezar,
-            # estilos.css?v=2. Se comprueba el archivo, no la cadena completa.
-            limpio="${ref%%#*}"
-            limpio="${limpio%%\?*}"
-            # Un ancla suelta (#seccion) apunta a la misma página: no es un archivo
-            [ -z "$limpio" ] && continue
-            if [ ! -e "$limpio" ]; then
-              echo "  ✗ falta: $limpio (referenciado como $original)"
-              fallos=$((fallos + 1))
-            else
-              echo "  ✓ $limpio"
-            fi
-          done < /tmp/refs.txt
+          for archivo in *.html */[a-z]*.html; do
+            [ -e "$archivo" ] || continue
+            dir="$(dirname "$archivo")"
+            grep -ohE '(src|href)="[^"#][^"]*"' "$archivo" \
+              | sed -E 's/.*="([^"]*)".*/\1/' \
+              | grep -vE '^(https?:|mailto:|tel:|//|#)' \
+              | sort -u > /tmp/refs.txt
+            while read -r ref; do
+              # Un enlace puede traer fragmento o parámetros: se comprueba el archivo
+              limpio="${ref%%#*}"
+              limpio="${limpio%%\?*}"
+              [ -z "$limpio" ] && continue
+              if [ ! -e "$dir/$limpio" ]; then
+                echo "  ✗ falta: $dir/$limpio (referenciado como $ref en $archivo)"
+                fallos=$((fallos + 1))
+              fi
+            done < /tmp/refs.txt
+          done
           if [ "$fallos" -gt 0 ]; then
             echo "✗ $fallos referencia(s) rota(s). No se publica."
             exit 1
@@ -147,7 +142,7 @@ jobs:
           # forman parte del sitio y no tienen por qué quedar accesibles en la
           # web. Se publica únicamente lo que el navegador necesita.
           mkdir -p publicar
-          cp -r assets css js demo publicar/
+          cp -r assets css js producto publicar/
           cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html publicar/
           cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
           echo "── Contenido que se publica ──"
