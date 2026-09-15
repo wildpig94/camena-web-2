@@ -740,3 +740,21 @@ resultados **sin rearmar la página**.
       nota del 15 de septiembre y está en `docs/investigacion-taller.md`, D9)
 - [ ] Páginas individuales por servicio (la estructura ya lo permite)
 - [ ] Contenido propio: casos de estudio, recursos y herramientas
+
+---
+
+## Identidad de los commits
+
+Los commits de este repo van firmados como **`CAMENA <camenalabs@proton.me>`**,
+no con el nombre de una persona. La identidad está puesta en la config **local**
+del repo (`.git/config`), no en la global, así que no afecta a otros proyectos:
+
+```bash
+git config --local user.name  "CAMENA"
+git config --local user.email "camenalabs@proton.me"
+```
+
+El historial se reescribió una vez para dejar de firmarlo con un nombre
+personal. Si algún día se vuelve a clonar el repo, **hay que volver a poner esa
+config local** antes de hacer commits, o los nuevos saldrán con el nombre del
+sistema. Se comprueba con `git log -1 --format='%an <%ae>'`.
