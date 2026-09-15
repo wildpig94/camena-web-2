@@ -448,6 +448,9 @@ plantilla:
 2. **El expediente del taller** (`producto/taller.html`), en vivo y con capturas.
 3. **El promo de CAMENA** —30 s, vertical—, alojado en el sitio y reproducible.
 4. **Un reel para una clienta** (consultorio), publicado con su visto bueno.
+   La autorización está confirmada por el dueño del estudio y queda registrada
+   en `docs/autorizaciones.md`. Mientras no haya permiso explícito para
+   nombrarla, la pieza se queda sin nombre y sin logotipo.
 
 Las maquetas de interfaces hechas con CSS se retiraron a propósito: al lado de
 trabajo real, una maqueta bonita se lee como «este vende plantillas». Lo que se
@@ -614,7 +617,9 @@ cierres antes de desplegar, y falla si algo no cuadra.
 Al mantener este sitio, no agregues:
 
 - Clientes, logotipos de empresas, testimonios o casos de éxito sin autorización
-  y sin que el trabajo exista.
+  y sin que el trabajo exista. Cada permiso se anota en
+  `docs/autorizaciones.md`: autorizar que se publique un video no es autorizar
+  que se nombre al cliente.
 - Cifras de resultados, años de experiencia, premios o certificaciones.
 - Fotos de personas que no forman parte del estudio.
 - Métricas o resultados de proyectos que no se hayan medido.
@@ -662,6 +667,12 @@ resultados **sin rearmar la página**.
       Graph y en los datos estructurados, y es lo más genérico que queda del
       sitio. Si se cambia, hay que cambiarlo en los tres sitios a la vez
 - [ ] Conectar `camena.mx` y reemplazar la URL de GitHub Pages (ver arriba)
-- [ ] Sumar proyectos reales al LAB cuando haya autorización
+- [x] Sumar proyectos reales a los ejemplos cuando haya autorización: cuatro
+      piezas reales, con el reel de la clienta autorizado y registrado en
+      `docs/autorizaciones.md`
+- [ ] Pedir permiso para **nombrar** al cliente del reel, y anotarlo en
+      `docs/autorizaciones.md`
+- [ ] Preguntar al taller por los precios por aseguradora y por las refacciones
+      detenidas (única pregunta de la investigación sin audio)
 - [ ] Páginas individuales por servicio (la estructura ya lo permite)
 - [ ] Contenido propio: casos de estudio, recursos y herramientas
