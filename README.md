@@ -144,6 +144,7 @@ camena-2.0/
     ├── laboratorio.html        Colores, texturas y resaltes, con CSS para copiar
     ├── revisar.sh              Prepara la copia local con el marcador
     ├── aplicar.mjs             Pasa los cambios del marcador al sitio real
+    ├── capturar-revision.mjs   Capturas de una revisión, con dibujos y notas
     └── revision/               El marcador (css + js); la copia vive aquí y no se versiona
 ```
 
@@ -173,19 +174,20 @@ flujo de despliegue no copia esa carpeta):
 
 | Herramienta | Para qué sirve | Cómo se abre |
 |---|---|---|
-| `docs/revisar.sh` | **El marcador.** Copia el sitio a una carpeta local y le inyecta el modo de revisión: se marca un bloque, o una palabra o frase seleccionada, y en la misma caja se escribe la nota **y el texto nuevo** —que se aplica en la copia al instante, así que se ve la versión final mientras se revisa. | `bash docs/revisar.sh` → `…/docs/revision/sitio/index.html` |
-| `docs/aplicar.mjs` | **El aplicador.** Toma el JSON del marcador y lleva los cambios de texto a los HTML reales, con simulación previa y sin tocar nada si el texto original no aparece exactamente una vez. Las notas quedan en `Revision-pendientes.md`. | `node docs/aplicar.mjs Revision-CAMENA.json [--escribir]` |
+| `docs/revisar.sh` | **El lápiz.** Copia el sitio a una carpeta local y le inyecta el modo de revisión: se **dibuja encima de la página** con el ratón (encerrar una palabra, subrayar, una flecha) y al soltar se abre sola la ventana para escribir la instrucción. Con «Texto» se escribe el texto nuevo y se ve aplicado al instante. | `bash docs/revisar.sh` → `…/docs/revision/sitio/index.html` |
+| `docs/aplicar.mjs` | **El aplicador.** Toma el JSON del marcador y lleva los cambios de texto a los HTML reales, con simulación previa y sin tocar nada si el texto original no aparece exactamente una vez. Las notas y los dibujos quedan en `Revision-pendientes.md`. | `node docs/aplicar.mjs Revision-CAMENA.json [--escribir]` |
+| `docs/capturar-revision.mjs` | **El visor.** Abre la copia con una revisión cargada y saca una captura por página con los dibujos y las notas encima: sirve para revisar el trabajo sin abrir el navegador. | `node docs/capturar-revision.mjs Revision-CAMENA.json` |
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
 
 **El flujo de revisión completo:**
 
 1. `bash docs/revisar.sh` (levanta el servidor si hace falta y avisa de la URL).
-2. Pulsar **Marcar** o la tecla `M`. Para cambiar una palabra o frase,
-   seleccionarla con el ratón y escribir el texto nuevo en «Cómo debe quedar»:
-   el cambio se aplica en la copia y se ve con un ✎ verde. Para solo comentar,
-   hacer clic en el bloque y escribir la nota (magenta = cambio, oro = revisar,
-   verde = está bien así, carbón = duda).
+2. Pulsar **Lápiz** (tecla `L`) y dibujar encima de la página: encerrar una
+   palabra, subrayar una frase, hacer una flecha. Al soltar el ratón se abre
+   sola la ventana: escribir la instrucción y elegir color (magenta = cambio,
+   oro = revisar, verde = está bien así, carbón = duda). Con **Texto** (tecla
+   `T`) se escribe el texto nuevo de un bloque y se ve aplicado con un ✎ verde.
 3. **Descargar revisión** (`Revision-CAMENA.md`, para leer) y **JSON para
    aplicar** (`Revision-CAMENA.json`, para llevar los cambios al sitio).
 4. `node docs/aplicar.mjs Revision-CAMENA.json` para simular y

@@ -48,38 +48,7 @@
 .rv-globo:hover { transform: scale(1.12); }
 
 /* ── Botón flotante para encender y apagar el marcador ── */
-#rv-boton {
-  position: fixed;
-  left: 18px; bottom: 18px;
-  z-index: 10001;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border: 0;
-  border-radius: 6px;
-  background: #111111;
-  color: #F7F6F3;
-  font-family: var(--texto-fuente, system-ui, sans-serif);
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-}
-#rv-boton[aria-pressed="true"] { background: #D6247A; }
-#rv-boton .rv-punto {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: #0E9F6E;
-  box-shadow: 0 0 0 3px rgba(14, 159, 110, 0.25);
-}
-#rv-boton[aria-pressed="true"] .rv-punto { background: #fff; box-shadow: none; }
-#rv-contador {
-  font-family: var(--mono, monospace);
-  font-size: 12px;
-  padding: 1px 7px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.16);
-}
+
 
 /* ── Modo marcador encendido: el cursor avisa ── */
 html.rv-activo, html.rv-activo * { cursor: crosshair !important; }
@@ -274,23 +243,7 @@ html.rv-activo a, html.rv-activo button { cursor: crosshair !important; }
   color: #0A6B4C;
 }
 
-/* Botón secundario «Ver revisión» */
-#rv-ver {
-  position: fixed;
-  left: 18px; bottom: 64px;
-  z-index: 10001;
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: 1px solid #E3E1DB;
-  background: #FCFBF9;
-  color: #111111;
-  font-family: var(--texto-fuente, system-ui, sans-serif);
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.18);
-}
-#rv-ver:hover { border-color: #111111; }
+
 
 /* ── Aviso de que esto es una copia de revisión ── */
 #rv-aviso {
@@ -308,3 +261,82 @@ html.rv-activo a, html.rv-activo button { cursor: crosshair !important; }
 body { padding-top: 22px; }
 
 @media print { #rv-boton, #rv-panel, #rv-nota, #rv-aviso, #rv-capa, #rv-resalte { display: none !important; } }
+
+/* ═══════════ LÁPIZ: se dibuja encima de la página ═══════════
+   El lienzo cubre todo el documento. Solo recibe el ratón cuando el lápiz
+   está encendido; el resto del tiempo deja pasar los clics a la página. */
+#rv-lienzo {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 9996;
+  pointer-events: none;
+}
+html.rv-lapiz #rv-lienzo { pointer-events: auto; }
+html.rv-lapiz, html.rv-lapiz * { cursor: crosshair !important; }
+html.rv-lapiz #rv-barra, html.rv-lapiz #rv-barra * { cursor: pointer !important; }
+
+/* ═══════════ BARRA DE HERRAMIENTAS ═══════════ */
+#rv-barra {
+  position: fixed;
+  left: 50%; bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #111111;
+  color: #F7F6F3;
+  font-family: var(--texto-fuente, system-ui, sans-serif);
+  font-size: 13.5px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+}
+#rv-barra button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 13px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.10);
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+#rv-barra button:hover { background: rgba(255, 255, 255, 0.18); }
+#rv-barra button[aria-pressed="true"] { background: #D6247A; border-color: #F472B6; }
+#rv-barra .rv-ico {
+  display: inline-grid;
+  place-items: center;
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 12px;
+}
+#rv-barra .rv-sep { width: 1px; height: 22px; background: rgba(255, 255, 255, 0.18); }
+#rv-barra .rv-barra__colores { display: flex; gap: 5px; }
+.rv-color--barra { width: 20px; height: 20px; border-width: 2px; }
+.rv-color--barra[aria-pressed="true"] { border-color: #fff; transform: scale(1.12); }
+#rv-contador {
+  font-family: var(--mono, monospace);
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Atajos que se añaden a la instrucción con un clic */
+.rv-atajos { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0 4px; }
+.rv-atajo {
+  padding: 4px 9px;
+  border-radius: 12px;
+  border: 1px solid #E3E1DB;
+  background: #fff;
+  color: #5C5C58;
+  font: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+.rv-atajo:hover { border-color: #A8821F; color: #8A6A0F; }

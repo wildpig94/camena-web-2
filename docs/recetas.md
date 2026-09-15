@@ -172,20 +172,21 @@ horizontales, cero errores de consola y un solo `h1` por página.
 ## 5 · Cómo revisar el sitio tú mismo
 
 1. **Prepara la copia:** `bash docs/revisar.sh` (te dice la dirección para abrir).
-2. **Enciende el marcador:** botón **Marcar** o la tecla `M`.
-3. **Para cambiar una palabra o una frase:** selecciónala con el ratón (o doble
-   clic en una palabra) y haz clic. En **«Cómo debe quedar»** escribes el texto
-   nuevo; al guardar, el cambio se aplica en la copia al instante. Así vas
-   viendo la versión final mientras revisas.
+2. **Dibuja encima de la página:** pulsa **Lápiz** (o la tecla `L`) y con el
+   ratón encierra una palabra, subraya una frase o haz una flecha.
+3. **Al soltar el ratón se abre sola la ventana.** Escribe ahí tu instrucción
+   como se te ocurra —«cambia esta palabra por Clientes», «este título en
+   magenta», «quítalo», «más grande»— y elige color. Hay botones de atajo
+   («más grande», «en oro») que añaden el texto a la instrucción con un clic.
+4. **Para cambiar un texto y verlo aplicado:** con **Texto** (tecla `T`) haz
+   clic en el bloque o selecciona la frase y escribe el texto nuevo. Se aplica
+   en la copia al instante, marcado con un ✎ verde.
 
    ```
    Antes:   Sin adaptaciones forzadas
    Después: Sin forzar nada        ← se ve aplicado, en verde con ✎
    ```
 
-4. **Para solo comentar algo:** haz clic en un bloque sin seleccionar nada y
-   escribe la nota. Color: **magenta** (cambio), **oro** (revisar), **verde**
-   (está bien así) o **carbón** (duda).
 5. **Al terminar:** en el panel, **Descargar revisión** (Markdown para leer) y
    **JSON para aplicar** (el archivo que lleva los cambios al sitio real).
 
@@ -205,7 +206,18 @@ bash docs/auditar.sh http://127.0.0.1:8899/index.html 1440 1000 despues
 
 El aplicador es cuidadoso a propósito: **si el texto original aparece cero
 veces o más de una, no toca nada** y lo apunta en `Revision-pendientes.md` para
-revisarlo a mano. Las notas también van a ese archivo, ordenadas por página.
+revisarlo a mano. Las notas y los dibujos también van a ese archivo, ordenados
+por página, con el selector exacto de lo que señalaste.
+
+### Ver la revisión como quedó (captura)
+
+```bash
+node docs/capturar-revision.mjs Revision-CAMENA.json
+# → /tmp/camena-revision/index-revision.png (una imagen por página)
+```
+
+Sirve para que la revisión se pueda mirar sin abrir el navegador: los círculos,
+las flechas y las notas salen tal como los dejaste.
 
 > Nada de esto se publica: todo lo de `docs/` queda fuera del despliegue. El
 > sitio solo cambia cuando el aplicador corre con `--escribir` (o cuando yo

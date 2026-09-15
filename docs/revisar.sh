@@ -73,23 +73,23 @@ cat <<FIN
 
    http://127.0.0.1:$PUERTO/docs/revision/sitio/index.html
 
- Cómo se revisa:
-   · Pulsa «Marcar» (o la tecla M).
-   · CAMBIAR UNA PALABRA O FRASE: selecciónala con el ratón (o doble clic
-     en ella) y haz clic. En «Cómo debe quedar» escribes el texto nuevo:
-     el cambio se aplica en esta copia al instante, así que ves la versión
-     final mientras revisas.
-   · SOLO COMENTAR: haz clic en un bloque sin seleccionar nada y escribe
-     la nota. Elige color: magenta (cambio), oro (revisar), verde (está
-     bien así) o carbón (duda).
+ Se revisa dibujando encima de la página:
+
+   · Pulsa «Lápiz» (o la tecla L) y dibuja con el ratón: encierra una
+     palabra, subraya una frase, haz una flecha.
+   · Al soltar el ratón se abre sola la ventana: escribe ahí tu instrucción
+     tal como se te ocurra («cambia esta palabra por Clientes», «este título
+     en magenta», «más grande») y elige color con los círculos.
+   · Con «Texto» (tecla T) puedes escribir el texto nuevo de un bloque: se
+     aplica en la copia al instante y lo ves con un ✎ verde.
    · «Descargar revisión» baja Revision-CAMENA.md (para leer) y «JSON para
-     aplicar» baja el archivo que aplica los cambios al sitio real:
+     aplicar» baja el archivo que lleva los cambios al sitio real:
 
         node docs/aplicar.mjs Revision-CAMENA.json              (simula)
         node docs/aplicar.mjs Revision-CAMENA.json --escribir   (aplica)
 
-   · Las marcas se quedan guardadas en el navegador por página, así que
-     puedes revisar en varios días y exportar al final.
+   · Las marcas quedan guardadas en el navegador por página: puedes revisar
+     en varios días y exportar al final.
 
  Nada de esto se publica: docs/ no entra en el despliegue.
 ────────────────────────────────────────────────────────────
