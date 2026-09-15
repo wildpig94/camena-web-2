@@ -634,6 +634,10 @@ svg.ic path[d^="M12 2a10"] {
 .video-pieza video {
   display: block;
   width: 100%;
+  /* Sin esto el video se queda con el height="1280" del HTML y se estira: a
+     320 px de ancho medía 1280 px de alto, o sea aplastado. El alto tiene que
+     salir de la proporción del archivo (720×1280), no del atributo. */
+  height: auto;
   max-width: 20rem;
   margin: 0 auto;
   border: 1px solid var(--ink-4);

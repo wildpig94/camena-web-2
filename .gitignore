@@ -28,3 +28,6 @@ docs/revision/sitio/*
 Revision-CAMENA.md
 Revision-CAMENA.json
 Revision-pendientes.md
+
+# ─── Capturas de revisión (se quedan en local, no se versionan) ───
+docs/capturas-movil/

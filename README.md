@@ -52,7 +52,7 @@ Hay **dos** páginas de producto, y no son la misma cosa ni se muestran igual:
 |---|---|---|
 | Qué es | El **expediente del taller**, reconstruido desde los dolores reales | La app original de **Control de Autos**, tal como la usaba el taller |
 | Diseño | El sistema de diseño del sitio (`css/variables.css`) | Propio: fondo oscuro, Oswald + IBM Plex Sans |
-| Se muestra | En los ejemplos del inicio, con «ábrelo y pruébalo» | **No.** Se comparte por enlace con quien la va a usar |
+| Se muestra | En los ejemplos del inicio, con capturas reales y **sin enlace para abrirlo** | **No.** Se comparte por enlace con quien la va a usar |
 | Archivos | `taller.html` + `taller.js` | Un solo archivo, sin dependencias |
 | Guarda en | `camena:taller:estado` (+ fotos en IndexedDB) | `taller_autos_v1` y `taller_aseguradoras_v1` |
 
@@ -62,10 +62,22 @@ firmada, ni control de refacciones detenidas; eso vive en la primera.
 
 #### Expediente del taller (`producto/taller.html`)
 
-`producto/taller.html` no es una maqueta: es un producto completo que
-cualquiera puede abrir y usar, y está enlazado desde los ejemplos del inicio con
-un «ábrelo y pruébalo». Sirve para lo mismo que el armador de paquetes: demostrar
-sin inventar nada.
+`producto/taller.html` no es una maqueta: es un producto completo y funcional.
+En los ejemplos del inicio **se muestra con capturas reales, sin enlace para
+abrirlo**, y esa decisión es a propósito: el código de una página publicada se
+puede descargar entero desde el navegador, así que si el sistema se puede
+probar, se puede copiar. El producto se entrega al cliente que lo contrata, no
+se regala en la vitrina.
+
+**Qué se enseña en su lugar.** Dos capturas reales del sistema funcionando
+—el tablero por etapas y el expediente de un auto— con la etiqueta
+«Sistema propio». Eso muestra el trabajo sin entregar el archivo.
+
+> ⚠️ **Regla al mantener esto:** ninguna página de producto terminado se enlaza
+> desde el sitio. Lo que se enseña es la captura y el video; el sistema se
+> entrega aparte. `Control de Autos` es la excepción porque es la herramienta
+> que el taller ya usaba y su enlace es de trabajo, no de vitrina — y aun así
+> conviene recordar que su código también es descargable.
 
 **Qué hace.** Registra la entrada de un auto (descripción, color, placa,
 aseguradora, folio y notas), cuenta los días que lleva dentro, marca la salida y
@@ -293,6 +305,7 @@ flujo de despliegue no copia esa carpeta):
 | `docs/capturar-revision.mjs` | **El visor.** Abre la copia con una revisión cargada y saca una captura por página con los dibujos y las notas encima: sirve para revisar el trabajo sin abrir el navegador. | `node docs/capturar-revision.mjs Revision-CAMENA.json` |
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
+| `docs/revisar-medios.mjs` | **El que ve lo deforme.** Recorre todas las páginas y compara la proporción pintada de cada imagen y video contra la del archivo; también delata cajas con alto fijo cuyo contenido no cabe. Nació del bug de los videos aplastados. | `node docs/revisar-medios.mjs` |
 | `docs/probar-producto.mjs` | **El probador del producto.** Abre Control de Autos con Chrome y la usa como una persona: comprueba que no pida nada externo, que las fuentes propias carguen, que no se desborde, y da de alta un auto para ver que se guarde y siga ahí tras recargar. | `node docs/probar-producto.mjs` (con el servidor en 8899) |
 
 **El flujo de revisión completo:**
@@ -508,7 +521,8 @@ Son **cuatro piezas y las cuatro son trabajo real**, sin una sola maqueta de
 plantilla:
 
 1. **El cotizador de WhatsApp** de esta misma página, con captura real.
-2. **El expediente del taller** (`producto/taller.html`), en vivo y con capturas.
+2. **El expediente del taller**, con capturas reales del sistema funcionando.
+   Su página no se enlaza: el código de una página publicada se descarga entero.
 3. **El promo de CAMENA** —30 s, vertical—, alojado en el sitio y reproducible.
 4. **Un reel para una clienta** (consultorio), publicado con su visto bueno.
    La autorización está confirmada por el dueño del estudio y queda registrada
@@ -519,9 +533,16 @@ Las maquetas de interfaces hechas con CSS se retiraron a propósito: al lado de
 trabajo real, una maqueta bonita se lee como «este vende plantillas». Lo que se
 muestra tiene que poder usarse o verse completo.
 
-**Regla al añadir una pieza:** la que se pueda probar de verdad lleva su enlace y
-el chip «Está en vivo»; la que no, se marca como ejemplo propio. Nunca se
-presenta una maqueta como si fuera un producto funcionando.
+**Regla al añadir una pieza:** el chip dice lo que la pieza es, no lo que
+gustaría que fuera. «Está en vivo» solo se usa si hay algo que la persona pueda
+usar ahí mismo —hoy, únicamente el cotizador de esta página—; el resto se marca
+por lo que es: «Sistema propio» o «Pieza para cliente». Y nunca se presenta una
+maqueta como si fuera un producto funcionando.
+
+**Lo que sí se enlaza y lo que no.** Un enlace para probar un sistema es un
+enlace para copiarlo: todo lo que el navegador muestra, el navegador lo puede
+guardar. Por eso el producto terminado se enseña en capturas y se entrega al
+cliente que lo contrata.
 
 ### Precios: dónde se cambian
 
@@ -637,7 +658,18 @@ no carga o no hay `h1`, el informe lo dice en lugar de reventar.
 
 ### Lo que esta verificación NO detectaba (y ya sí)
 
-Estas tres comprobaciones faltaban y por eso entraron fallos reales:
+Estas comprobaciones faltaban y por eso entraron fallos reales:
+
+0. **Medios deformados.** La auditoría medía desbordes, contraste y tamaño de
+   los controles, pero no miraba si una imagen o un video quedó **estirado**.
+   Por ahí se fue a producción el peor bug que ha tenido el sitio: los dos
+   videos verticales se pintaban de **320×1280** —aplastados— porque
+   `img, svg, video, canvas` tenían `max-width: 100%` sin `height: auto`, así
+   que el video conservaba el `height="1280"` del HTML. En el celular cada uno
+   ocupaba 1280 px de alto y estiraba la página casi mil quinientos píxeles de
+   más. Nada se desbordaba, así que ninguna comprobación lo veía: **solo se veía
+   mal**. Lo cubre `docs/revisar-medios.mjs`, que compara la proporción pintada
+   contra la del archivo en todas las páginas y a varios anchos.
 
 1. **HTML incompleto.** Un corte accidental puede dejar la página
    «funcionando» pero mutilada: sin formulario, sin cierres. Se comprobó en
