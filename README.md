@@ -232,7 +232,6 @@ camena-2.0/
 │                               sitemap: se comparte con quien la va a usar.
 │
 ├── assets/video/               Videos del sitio (720×1280, comprimidos):
-│   ├── camena-promo.mp4        Promo propio de 30 s
 │   ├── reel-cliente.mp4        Reel para cliente, con visto bueno
 │   └── *.webp                  Pósteres: no se carga nada hasta dar reproducir
 ├── como-trabajamos.html        El método completo, paso por paso
@@ -526,17 +525,23 @@ presenta como **ejemplos de proyectos**, con las etiquetas en palabras llanas
 —`El problema · Qué hicimos · Por qué así`— y una frase ancla que educa: ninguno
 se vende tal cual, cada uno se construye desde cero.
 
-Son **cuatro piezas y las cuatro son trabajo real**, sin una sola maqueta de
+Son **tres piezas y las tres son trabajo real**, sin una sola maqueta de
 plantilla:
 
 1. **El cotizador de WhatsApp** de esta misma página, con captura real.
 2. **El expediente del taller**, con capturas reales del sistema funcionando.
    Su página no se enlaza: el código de una página publicada se descarga entero.
-3. **El promo de CAMENA** —30 s, vertical—, alojado en el sitio y reproducible.
-4. **Un reel para una clienta** (consultorio), publicado con su visto bueno.
+3. **Un reel para una clienta** (consultorio), publicado con su visto bueno.
    La autorización está confirmada por el dueño del estudio y queda registrada
    en `docs/autorizaciones.md`. Mientras no haya permiso explícito para
    nombrarla, la pieza se queda sin nombre y sin logotipo.
+
+> **El promo propio salió del aire.** Estaba publicado —30 s, vertical, con
+> narración— y se retiró porque la voz no quedó: se va a rehacer. El archivo
+> vive en `~/camena-video/promo/` (`camena-promo.mp4` + su póster), fuera del
+> repo, esperando la nueva versión. Cuando esté, se vuelve a comprimir igual que
+> el reel (720×1280, H.264 CRF 26, faststart, `preload="none"` con póster) y se
+> agrega su pieza a los ejemplos.
 
 Las maquetas de interfaces hechas con CSS se retiraron a propósito: al lado de
 trabajo real, una maqueta bonita se lee como «este vende plantillas». Lo que se
@@ -667,9 +672,22 @@ no carga o no hay `h1`, el informe lo dice en lugar de reventar.
 
 ### Lo que esta verificación NO detectaba (y ya sí)
 
-Estas comprobaciones faltaban y por eso entraron fallos reales:
+Estas 5 comprobaciones faltaban y por eso entraron fallos reales:
 
-0. **Medios deformados.** La auditoría medía desbordes, contraste y tamaño de
+1. **Cajas que se pintan encima de la siguiente.** En móvil los globos de precio
+   dejan de flotar y entran en el flujo. Dos cosas se rompían ahí sin que nada
+   se desbordara: el globo es un `<span>`, y al quitarle `position: absolute`
+   volvía a ser un elemento **en línea**, donde el relleno vertical no cuenta
+   para la altura —así que su borde y su fondo se pintaban 12 px encima del
+   renglón siguiente, descuadrando las casillas de la lista—; y oculto seguía
+   ocupando lugar, porque `visibility: hidden` conserva la caja: la lista de
+   precios de campañas medía **919 px cuando debía medir 462**, con un hueco
+   invisible del alto del globo después de cada renglón. Se arregla con
+   `display: none` / `display: block` (el clic lo decide `interacciones.js`) y
+   dejando el `:hover` solo para punteros finos, porque en una pantalla táctil
+   el `:hover` se queda pegado después del toque y el globo no se cierra.
+
+2. **Medios deformados.** La auditoría medía desbordes, contraste y tamaño de
    los controles, pero no miraba si una imagen o un video quedó **estirado**.
    Por ahí se fue a producción el peor bug que ha tenido el sitio: los dos
    videos verticales se pintaban de **320×1280** —aplastados— porque
@@ -680,15 +698,15 @@ Estas comprobaciones faltaban y por eso entraron fallos reales:
    mal**. Lo cubre `docs/revisar-medios.mjs`, que compara la proporción pintada
    contra la del archivo en todas las páginas y a varios anchos.
 
-1. **HTML incompleto.** Un corte accidental puede dejar la página
+3. **HTML incompleto.** Un corte accidental puede dejar la página
    «funcionando» pero mutilada: sin formulario, sin cierres. Se comprobó en
    producción y estuvo horas publicado. Ahora el flujo de publicación cuenta
    etiquetas y campos antes de desplegar.
-2. **Contraste de controles.** La auditoría medía texto, no bordes. Un botón
+4. **Contraste de controles.** La auditoría medía texto, no bordes. Un botón
    de contorno con borde a 1.31:1 no se percibe como botón, y no aparecía en
    ningún informe. `docs/movil.mjs` ahora revisa bordes de controles sin fondo
    propio y exige 3:1.
-3. **Paleta desincronizada.** `docs/verificar-contraste.py` medía los colores
+5. **Paleta desincronizada.** `docs/verificar-contraste.py` medía los colores
    anteriores y pasaba en verde. Ahora el script compara sus valores con
    `css/variables.css` y avisa si no coinciden.
 

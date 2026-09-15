@@ -130,21 +130,38 @@
   .hero__precios-breve { display: block; }
 
   /* Los globos de precio también dejan de flotar: en una columna taparían el
-     renglón siguiente. Entran en el flujo y empujan el contenido. */
+     renglón siguiente. Entran en el flujo y empujan el contenido.
+     Aquí había dos fallas que descuadraban las casillas de la lista de precios:
+     · El globo es un <span>. Al quitarle position: absolute hay que devolverle
+       display: block, porque vuelve a ser un elemento en línea y en línea el
+       relleno vertical no cuenta para la altura: la caja se pintaba 12 px
+       encima del renglón siguiente, con su borde y su fondo.
+     · Oculto no puede ocupar lugar. Con visibility: hidden la caja seguía
+       midiendo 79 px, así que cada renglón arrastraba un hueco invisible y la
+       lista medía el doble de lo que debía (919 px en vez de 462).
+     Ahora se muestra solo cuando el botón lo abre: el clic lo maneja
+     interacciones.js, que es la única fuente de verdad. El :hover queda
+     únicamente para aparatos con ratón, donde sí existe. */
   .servicios__globo {
     position: static;
+    display: none;
     margin: 0 0 var(--e-3);
     box-shadow: none;
   }
+  .servicios__globo[data-abierto="si"] { display: block; }
 
   /* Las tarjetas de la franja de precios dejan de flotar: en una columna
-     taparían el dato de abajo. Entran en el flujo y empujan el contenido. */
+     taparían el dato de abajo. Entran en el flujo y empujan el contenido.
+     Mismo caso que arriba: ocultas no deben ocupar lugar, o cada tarjeta
+     arrastra un hueco invisible del alto de su globo. */
   .hecho__globo {
     position: static;
+    display: none;
     width: auto;
     margin-top: var(--e-3);
     box-shadow: none;
   }
+  .hecho__globo[data-abierto="si"] { display: block; }
 
   /* Las cuatro etapas y el armador pasan a una columna */
   .etapas,
@@ -535,4 +552,19 @@ html:not(.js) .caso { animation: none; }
   html:not(.js) .nav__contacto { flex-direction: row; margin-left: auto; }
   html:not(.js) .menu-boton { display: none; }
   html:not(.js) .disciplina__cuerpo[hidden] { display: block; }
+}
+
+/* ═══════════════ GLOBOS DE PRECIO CON RATÓN ═══════════════
+   Hasta 1140 px los globos entran en el flujo y se abren con el clic (lo
+   maneja interacciones.js). El :hover solo se activa donde de verdad existe un
+   puntero fino: en una pantalla táctil el :hover se queda «pegado» después del
+   toque, y entonces el globo no se cierra aunque el botón diga que está
+   cerrado. Es el mismo motivo por el que el toque y el ratón se separan. */
+@media (max-width: 1140px) and (hover: hover) and (pointer: fine) {
+  .servicios li:hover .servicios__globo,
+  .servicios li:focus-within .servicios__globo,
+  .hecho:hover .hecho__globo,
+  .hecho:focus-within .hecho__globo {
+    display: block;
+  }
 }
