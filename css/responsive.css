@@ -74,6 +74,15 @@
   /* Cuando el panel de precios deja de estar al lado, aparece la línea. */
   .hero__precios-breve { display: block; }
 
+  /* Las tarjetas de la franja de precios dejan de flotar: en una columna
+     taparían el dato de abajo. Entran en el flujo y empujan el contenido. */
+  .hecho__globo {
+    position: static;
+    width: auto;
+    margin-top: var(--e-3);
+    box-shadow: none;
+  }
+
   /* Las cuatro etapas y el armador pasan a una columna */
   .etapas,
   .armar { grid-template-columns: minmax(0, 1fr); }
@@ -321,6 +330,15 @@
     letter-spacing: 0.06em;
     padding: 6px 12px 6px 9px;
   }
+
+  /* Maquetas de los ejemplos: en un teléfono chico, la fila de total más
+     botones y los renglones de adeudos no caben en el ancho del bloque. */
+  .mock-cobro { flex-direction: column; align-items: stretch; gap: 10px; }
+  .mock-cobro__acciones { flex-wrap: wrap; }
+  .mock-adeudo { flex-wrap: wrap; row-gap: 2px; }
+  .mock-adeudo__quien { flex: 1 1 100%; }
+  .mock-orden { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .mock-orden .estado { justify-self: start; }
 
   .panel { padding: var(--e-4); }
   .panel__cabecera { flex-direction: column; gap: 2px; align-items: flex-start; }

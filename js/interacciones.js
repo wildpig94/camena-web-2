@@ -93,7 +93,43 @@
     claseActiva: "is-activo"
   });
 
-  /* ── 3 · Cadena del ecosistema ────────────────────────────── */
+  /* ── 3 · Tarjetas de la franja de precios ───────────────────
+     Cada dato del hero abre su detalle. Con ratón ya se abre al pasar por
+     encima (eso lo hace el CSS); aquí se resuelve el clic y el teclado, que es
+     lo que necesitan el dedo y quien navega sin ratón. */
+  var hechos = Array.prototype.slice.call(document.querySelectorAll(".hecho__boton"));
+
+  function cerrarHechos(excepto) {
+    hechos.forEach(function (boton) {
+      if (boton === excepto) return;
+      boton.setAttribute("aria-expanded", "false");
+      var globo = document.getElementById(boton.getAttribute("aria-controls"));
+      if (globo) globo.removeAttribute("data-abierto");
+    });
+  }
+
+  hechos.forEach(function (boton) {
+    var globo = document.getElementById(boton.getAttribute("aria-controls"));
+    if (!globo) return;
+
+    boton.addEventListener("click", function () {
+      var abierto = boton.getAttribute("aria-expanded") === "true";
+      cerrarHechos(boton);
+      boton.setAttribute("aria-expanded", abierto ? "false" : "true");
+      if (abierto) globo.removeAttribute("data-abierto");
+      else globo.setAttribute("data-abierto", "si");
+    });
+  });
+
+  document.addEventListener("keydown", function (evento) {
+    if (evento.key === "Escape") cerrarHechos(null);
+  });
+
+  document.addEventListener("click", function (evento) {
+    if (!evento.target.closest || !evento.target.closest(".hecho")) cerrarHechos(null);
+  });
+
+  /* ── 4 · Cadena del ecosistema ────────────────────────────── */
   var cadena = document.getElementById("cadena");
   if (cadena) {
     var eslabones = Array.prototype.slice.call(cadena.querySelectorAll(".eslabon"));

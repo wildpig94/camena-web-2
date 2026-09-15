@@ -92,11 +92,20 @@
 /* ═══════════════ HERO ═══════════════ */
 .hero {
   position: relative;
+  /* Por encima de la sección que sigue: las tarjetas de la franja de precios
+     se abren hacia abajo y tienen que verse completas, no por detrás. */
+  z-index: var(--z-contenido);
   background: var(--paper);
   color: var(--texto);
   padding-top: clamp(3rem, 2rem + 5vw, 6rem);
+  /* El aire de abajo no es decorativo: es donde se abren las tarjetas. */
   padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 5rem);
-  overflow: hidden;
+}
+
+@media (min-width: 1141px) {
+  /* En escritorio las tarjetas se abren debajo de los datos: este hueco es su
+     sitio, y así no tapan ni el botón de WhatsApp ni el dato vecino. */
+  .hero { padding-bottom: 10rem; }
 }
 
 /* Retícula técnica de fondo: da contexto de estudio, muy baja presencia */
@@ -175,6 +184,83 @@
   color: var(--texto);
 }
 .hecho em { color: var(--oro-tx); font-style: normal; font-weight: var(--peso-fuerte); }
+
+/* Cada dato de la franja es un botón: al pasar el ratón, al hacer clic o al
+   llegar con el teclado, se abre su tarjeta. Es el mismo contenido de la ficha,
+   contado con el detalle que un dueño de negocio necesita antes de preguntar. */
+.hecho { position: relative; }
+
+.hecho__boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* Relleno propio: el rótulo es un botón y se toca con el dedo, así que no
+     puede quedarse por debajo del objetivo táctil mínimo de 24 px. */
+  padding: 5px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--texto-2);
+  cursor: pointer;
+  border-bottom: 1px dotted var(--borde);
+  transition: color var(--dur-rapida) var(--curva), border-color var(--dur-rapida) var(--curva);
+}
+.hecho__boton:hover,
+.hecho__boton[aria-expanded="true"] { color: var(--acento); border-bottom-color: var(--acento); }
+
+/* El signo: un más que se vuelve menos, sin dibujos ni iconos de más */
+.hecho__signo { position: relative; width: 8px; height: 8px; flex-shrink: 0; }
+.hecho__signo::before,
+.hecho__signo::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1px;
+  background: currentColor;
+}
+.hecho__signo::after { transform: rotate(90deg); transition: transform var(--dur-rapida) var(--curva); }
+.hecho__boton[aria-expanded="true"] .hecho__signo::after,
+.hecho:hover .hecho__signo::after { transform: rotate(0deg); }
+
+.hecho__globo {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 14px);
+  z-index: var(--z-contenido);
+  width: min(24rem, 78vw);
+  padding: var(--e-4);
+  background: var(--paper-2);
+  border: 1px solid var(--borde);
+  border-left: 2px solid var(--acento);
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--texto-2);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--dur-rapida) var(--curva), transform var(--dur-rapida) var(--curva);
+}
+/* La visibilidad se controla con CSS (visibility oculta también a lectores de
+   pantalla, así que no hace falta el atributo hidden) */
+.hecho:hover .hecho__globo,
+.hecho:focus-within .hecho__globo,
+.hecho__globo[data-abierto="si"] {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+.hecho__globo p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hecho__globo { transition: none; transform: none; }
+}
 
 
 /* ═══════════════ ÍNDICE DEL HERO ═══════════════

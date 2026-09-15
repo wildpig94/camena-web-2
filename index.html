@@ -209,18 +209,52 @@
           <a class="boton boton--linea boton--lg" href="#paquetes">Ver precios</a>
         </div>
 
+        <!-- Franja de precios interactiva: cada dato abre una tarjeta con el
+             detalle. Funciona al pasar el ratón, con clic y con el teclado
+             (son botones), y el texto también está en el DOM para buscadores
+             y lectores de pantalla. -->
         <dl class="hero__hechos">
           <div class="hecho">
-            <dt>Páginas y marca</dt>
+            <dt>
+              <button class="hecho__boton" type="button" aria-expanded="false" aria-controls="hecho-paginas">
+                Páginas y marca<span class="hecho__signo" aria-hidden="true"></span>
+              </button>
+            </dt>
             <dd>Desde <em>$1,500</em>, a la vista</dd>
+            <div class="hecho__globo" id="hecho-paginas" role="region" aria-label="Detalle de páginas y marca">
+              <p>Sitio web ultraligero de una o varias páginas, optimizado para celulares,
+              conectado directo a tu WhatsApp y con identidad visual básica (logotipo,
+              tipografía y paleta de colores) para que tu negocio luzca formal desde el
+              primer día.</p>
+            </div>
           </div>
+
           <div class="hecho">
-            <dt>Sistema para tu negocio</dt>
+            <dt>
+              <button class="hecho__boton" type="button" aria-expanded="false" aria-controls="hecho-sistema">
+                Sistema para tu negocio<span class="hecho__signo" aria-hidden="true"></span>
+              </button>
+            </dt>
             <dd>Desde <em>$8,000</em>, por etapas</dd>
+            <div class="hecho__globo" id="hecho-sistema" role="region" aria-label="Detalle del sistema a la medida">
+              <p>Desarrollo a la medida para resolver tu operación diaria (cobros, notas,
+              inventario o adeudos). Se diseña analizando cómo trabajas tú, sin funciones
+              que no usarás y sin depender de plataformas rentadas.</p>
+            </div>
           </div>
+
           <div class="hecho">
-            <dt>Quién te atiende</dt>
-            <dd>Hablas con quien hace el trabajo, <em>sin intermediarios</em></dd>
+            <dt>
+              <button class="hecho__boton" type="button" aria-expanded="false" aria-controls="hecho-quien">
+                Quién te atiende<span class="hecho__signo" aria-hidden="true"></span>
+              </button>
+            </dt>
+            <dd>Hablas con quien lo hace, <em>sin intermediarios</em></dd>
+            <div class="hecho__globo" id="hecho-quien" role="region" aria-label="Quién atiende tu proyecto">
+              <p>Quien analiza tu operación es quien diseña, quien programa y quien te
+              entrega. No hay ejecutivo de cuenta ni conmutador: es el mismo estudio de
+              principio a fin, y eso se nota en que nada se pierde en el camino.</p>
+            </div>
           </div>
         </dl>
       </div>
@@ -361,7 +395,7 @@
         <p class="etiqueta etiqueta--claro">Ejemplos de proyectos</p>
         <h2 class="encabezado__titulo" id="lab-titulo">Así se ve un proyecto CAMENA.</h2>
         <p class="encabezado__intro">
-          Tres piezas hechas por nosotros, de principio a fin. No son trabajos de
+          Cuatro piezas hechas por nosotros, de principio a fin. No son trabajos de
           clientes, pero sí el mismo proceso que aplicaríamos al tuyo: el problema,
           lo que hicimos y por qué así.
         </p>
@@ -374,11 +408,121 @@
 
       <div class="lab" data-revelar-grupo>
 
-        <!-- Concepto: identidad -->
+        <article class="lab-pieza" data-revelar>
+          <div class="lab-pieza__visual" aria-hidden="true">
+            <div class="mock-mostrador">
+              <div class="mock-panel__barra"><i></i><i></i><i></i><span>mostrador / cobros</span></div>
+              <div class="mock-mostrador__cuerpo">
+                <div class="mock-cobro">
+                  <div>
+                    <span class="mock-cobro__etiqueta">Cobrado hoy</span>
+                    <strong class="mock-cobro__cifra">$ 4,850</strong>
+                  </div>
+                  <div class="mock-cobro__acciones">
+                    <span class="mock-toque mock-toque--lleno">+ Venta</span>
+                    <span class="mock-toque">Fiado</span>
+                    <span class="mock-toque">Abono</span>
+                  </div>
+                </div>
+                <div class="mock-adeudos">
+                  <p class="mock-cobro__etiqueta">Quién debe</p>
+                  <p class="mock-adeudo"><span class="mock-adeudo__quien">Doña Mari · refacción</span><span class="mock-adeudo__dias">12 días</span><span class="mock-adeudo__monto">$ 450</span></p>
+                  <p class="mock-adeudo"><span class="mock-adeudo__quien">Taller Ramírez · 3 piezas</span><span class="mock-adeudo__dias">6 días</span><span class="mock-adeudo__monto">$ 1,180</span></p>
+                  <p class="mock-adeudo"><span class="mock-adeudo__quien">Cliente mostrador · servicio</span><span class="mock-adeudo__dias">hoy</span><span class="mock-adeudo__monto">$ 320</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lab-pieza__info">
+            <p class="lab-pieza__meta">
+              <span class="chip chip--prototipo">Ejemplo funcional</span>
+              <span class="lab-pieza__area">Sistemas</span>
+            </p>
+            <p class="visualmente-oculto">Muestra: pantalla de mostrador con el total cobrado del día, tres botones grandes —venta, fiado y abono— y una lista de quién debe, cuánto y desde cuándo.</p>
+            <h3 class="lab-pieza__titulo">El mostrador: cobros y adeudos</h3>
+            <dl class="lab-pieza__ficha">
+              <div><dt>El problema</dt><dd>El negocio recibía pagos en efectivo, transferencias sueltas y apuntaba los fiados en libretas que al final de la semana no cuadraban.</dd></div>
+              <div><dt>Qué hicimos</dt><dd>Un micro-sistema web ultrarrápido que corre localmente para registrar la venta en dos clics y llevar la cuenta exacta de quién debe.</dd></div>
+              <div><dt>Por qué así</dt><dd>Sin menús complejos ni pantallas de configuración que estorban: diseñado exclusivamente para que el tendero o el encargado no pierda tiempo tipeando.</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="lab-pieza" data-revelar>
+          <div class="lab-pieza__visual" aria-hidden="true">
+            <div class="mock-panel">
+              <div class="mock-panel__barra"><i></i><i></i><i></i><span>órdenes / taller</span></div>
+              <div class="mock-panel__cuerpo">
+                <div class="mock-ordenes">
+                  <p class="mock-orden"><span><span class="mock-orden__folio">Orden 214</span><span class="mock-orden__cliente">Camioneta 3.5 t · frenos</span></span><span class="estado estado--alerta">Recibido</span></p>
+                  <p class="mock-orden"><span><span class="mock-orden__folio">Orden 215</span><span class="mock-orden__cliente">Sedán · servicio completo</span></span><span class="estado estado--espera">En taller</span></p>
+                  <p class="mock-orden"><span><span class="mock-orden__folio">Orden 216</span><span class="mock-orden__cliente">Pick-up · suspensión</span></span><span class="estado estado--ok">Listo</span></p>
+                  <p class="mock-orden"><span><span class="mock-orden__folio">Orden 217</span><span class="mock-orden__cliente">Moto · cambio de aceite</span></span><span class="estado estado--ok">Entregado</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lab-pieza__info">
+            <p class="lab-pieza__meta">
+              <span class="chip chip--prototipo">Ejemplo funcional</span>
+              <span class="lab-pieza__area">Sistemas</span>
+            </p>
+            <p class="visualmente-oculto">Muestra: lista de órdenes de un taller. Cada renglón trae el folio, el trabajo y su estado: recibido, en taller, listo o entregado.</p>
+            <h3 class="lab-pieza__titulo">La recepción de servicios y órdenes</h3>
+            <dl class="lab-pieza__ficha">
+              <div><dt>El problema</dt><dd>Las solicitudes de servicio entraban por llamadas, notas de papel o WhatsApp, y se pasaban por alto fechas y entregas.</dd></div>
+              <div><dt>Qué hicimos</dt><dd>Una interfaz de control de órdenes con estatus visuales claros que avisa en qué etapa va cada cliente.</dd></div>
+              <div><dt>Por qué así</dt><dd>Una vista de un solo golpe de ojo para saber qué urge hoy, sin abrir carpetas ni buscar papeles en el mostrador.</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="lab-pieza lab-pieza--ancha" data-revelar>
+          <div class="lab-pieza__visual" aria-hidden="true">
+            <div class="mock-cotizador">
+              <div class="mock-cotizador__panel">
+                <p class="mock-cobro__etiqueta">Lo que necesitas</p>
+                <p class="mock-opcion mock-opcion--marcada"><i></i>Página completa<em>$6,000</em></p>
+                <p class="mock-opcion mock-opcion--marcada"><i></i>Logo y colores<em>$3,000</em></p>
+                <p class="mock-opcion mock-opcion--marcada"><i></i>Cotizar y cobrar<em>$8,000</em></p>
+                <p class="mock-opcion"><i></i>Inventario<em>$7,000</em></p>
+                <p class="mock-opcion"><i></i>Tareas automáticas<em>$3,000</em></p>
+                <p class="mock-cotizador__total"><span>Suma aproximada</span><strong>$17,000</strong></p>
+              </div>
+              <div class="mock-whats">
+                <p class="mock-whats__cabecera"><span class="punto"></span>WhatsApp · CAMENA</p>
+                <p class="mock-whats__mensaje">
+                  Hola CAMENA, armé mi paquete:<br>
+                  · Página completa — $6,000<br>
+                  · Logo y colores — $3,000<br>
+                  · Cotizar y cobrar — $8,000<br>
+                  <strong>Suma aproximada: <em>$17,000</em></strong>
+                </p>
+                <p class="mock-whats__pie">Mensaje listo para revisar y enviar</p>
+              </div>
+            </div>
+          </div>
+          <div class="lab-pieza__info">
+            <p class="lab-pieza__meta">
+              <span class="chip chip--caso">Está en vivo</span>
+              <span class="lab-pieza__area">Sistemas y web</span>
+            </p>
+            <p class="visualmente-oculto">Muestra: a la izquierda, la lista de servicios con casillas marcadas y la suma; a la derecha, el mensaje de WhatsApp ya armado con el resumen y el total.</p>
+            <h3 class="lab-pieza__titulo">El cotizador de WhatsApp de este mismo sitio</h3>
+            <dl class="lab-pieza__ficha">
+              <div><dt>El problema</dt><dd>Pedir precio por WhatsApp obliga a preguntar y responder lo mismo diez veces al día: qué servicios, cuánto sale y cuánto tarda.</dd></div>
+              <div><dt>Qué hicimos</dt><dd>El armador de paquetes de esta página: marcas lo que necesitas, suma solo y arma el mensaje con el resumen y el total, sin capturar nada dos veces.</dd></div>
+              <div><dt>Por qué así</dt><dd>Funciona sin instalar nada ni crear cuenta, y quien lo usa ve el número antes de escribir. Es el mismo criterio de los micro-sistemas aplicado a la primera conversación.</dd></div>
+            </dl>
+              <p class="lab-pieza__enlace"><a href="#armar">Pruébalo aquí mismo, en esta página →</a></p>
+            <p class="lab-pieza__pie">Lo que ves arriba es el armador de esta página: los precios son los publicados y el mensaje sale con lo que marques. No es una simulación.</p>
+          </div>
+        </article>
+
         <article class="lab-pieza lab-pieza--ancha" data-revelar>
           <div class="lab-pieza__visual" aria-hidden="true">
             <div class="mock-identidad">
-              <p class="mock-identidad__aviso">Prototipo propio</p>
+              <p class="mock-identidad__aviso">Ejemplo propio</p>
               <span class="mock-identidad__simbolo"></span>
               <span class="mock-identidad__nombre">NORTE</span>
               <span class="mock-identidad__giro">café de origen</span>
@@ -398,78 +542,6 @@
               <div><dt>El problema</dt><dd>Las cafeterías de especialidad se ven idénticas: madera, rústico y letra a mano.</dd></div>
               <div><dt>Qué hicimos</dt><dd>Un sistema de marca de precisión: símbolo geométrico, tipografía espaciada y paleta de cuatro tintas.</dd></div>
               <div><dt>Por qué así</dt><dd>Geometría en lugar del cliché rústico. Se ve artesanal sin parecer hecho a mano.</dd></div>
-            </dl>
-          </div>
-        </article>
-
-        <!-- Prototipo: tablero de operación -->
-        <article class="lab-pieza lab-pieza--visual" data-revelar>
-          <div class="lab-pieza__visual" aria-hidden="true">
-            <div class="mock-panel">
-              <div class="mock-panel__barra"><i></i><i></i><i></i><span>panel / operación</span></div>
-              <p class="mock-panel__aviso">Ejemplo · datos inventados, de ningún cliente</p>
-              <div class="mock-panel__cuerpo">
-                <div class="mock-panel__kpis">
-                  <div class="mock-kpi"><span>Ventas del mes</span><strong>$ XX,XXX</strong><em class="alza">+XX%</em></div>
-                  <div class="mock-kpi"><span>Pendientes</span><strong>XX</strong><em class="baja">X vencidos</em></div>
-                  <div class="mock-kpi"><span>Clientes activos</span><strong>XX</strong><em>X nuevos</em></div>
-                </div>
-                <div class="mock-grafica">
-                  <span style="--h:38%"></span><span style="--h:52%"></span><span style="--h:44%"></span>
-                  <span style="--h:71%"></span><span style="--h:63%"></span><span style="--h:88%"></span>
-                  <span style="--h:76%"></span><span style="--h:96%"></span>
-                </div>
-                <div class="mock-tabla">
-                  <p><span>Cotización #248</span><span class="estado estado--ok">Aprobada</span></p>
-                  <p><span>Pedido #249</span><span class="estado estado--espera">En proceso</span></p>
-                  <p><span>Cliente Nuevo · 12 piezas</span><span class="estado estado--alerta">Sin anticipo</span></p>
-                </div>
-              </div>
-            </div>
-            <!-- Pie de foto pegado a la imagen: quien mira la maqueta primero
-                 necesita saber que no es un programa que se descarga. -->
-            <p class="lab-pieza__pie">
-              Ejemplo de panel para un negocio con varios empleados. No es un programa
-              que se descarga: se construye distinto para cada negocio.
-            </p>
-          </div>
-          <div class="lab-pieza__info">
-            <p class="lab-pieza__meta">
-              <span class="chip chip--prototipo">Ejemplo funcional</span>
-              <span class="lab-pieza__area">Sistemas</span>
-            </p>
-            <p class="visualmente-oculto">Muestra: interfaz oscura con tres indicadores —ventas del mes, pendientes y clientes activos—, una gráfica de barras y una tabla con cotizaciones y su estado.</p>
-            <h3 class="lab-pieza__titulo">Panel de operación para negocio mediano</h3>
-            <dl class="lab-pieza__ficha">
-              <div><dt>El problema</dt><dd>El dueño no sabe cómo va el mes sin abrir cuatro archivos y preguntarle a dos personas.</dd></div>
-              <div><dt>Qué hicimos</dt><dd>Una sola pantalla con ventas, pendientes, vencidos y alertas por estado.</dd></div>
-              <div><dt>Por qué así</dt><dd>Primero se define qué necesita ver el dueño al abrir; después se dibuja la interfaz. Nunca al revés.</dd></div>
-            </dl>
-          </div>
-        </article>
-
-        <!-- Prototipo: asistente -->
-        <article class="lab-pieza" data-revelar>
-          <div class="lab-pieza__visual" aria-hidden="true">
-            <div class="mock-chat">
-              <div class="mock-chat__cabecera"><span class="punto"></span> Asistente de cotizaciones</div>
-              <p class="mock-chat__entrada">“Necesito la cotización de 40 piezas para el viernes.”</p>
-              <p class="mock-chat__salida">Listo. Generé la cotización con el precio de lista vigente y la envié a tu correo para revisión.</p>
-              <p class="mock-chat__entrada">“Súmale urgencia de entrega.”</p>
-              <p class="mock-chat__salida">Actualizada: recargo por urgencia aplicado. Total $ XX,XXX.</p>
-            </div>
-          </div>
-          <div class="lab-pieza__info">
-            <p class="lab-pieza__meta">
-              <span class="chip chip--prototipo">Ejemplo funcional</span>
-              <span class="lab-pieza__area">Automatización</span>
-            </p>
-            <p class="visualmente-oculto">Muestra: una conversación con un asistente. La persona pide una cotización de 40 piezas; el asistente responde que la generó y la envió a revisión.</p>
-            <h3 class="lab-pieza__titulo">Asistente interno para generar cotizaciones</h3>
-            <dl class="lab-pieza__ficha">
-              <div><dt>El problema</dt><dd>Una cotización toma media hora de copiar precios y calcular recargos a mano.</dd></div>
-              <div><dt>Qué hicimos</dt><dd>Un asistente que interpreta el pedido en lenguaje normal, consulta la lista de precios vigente y arma el documento.</dd></div>
-              <div><dt>Por qué así</dt><dd>El asistente propone y la persona aprueba antes de enviar. El control no se delega.</dd></div>
             </dl>
           </div>
         </article>
@@ -581,6 +653,15 @@
               tiempo ni reclamar. Aquí se captura una vez y el sistema hace el resto:
               ventas, cobros, inventario y avisos.
             </p>
+
+            <!-- La caja que justifica el precio: el dueño que usa libreta tiene
+                 que reconocer su mostrador aquí antes de leer la cifra. -->
+            <div class="etapa__caja">
+              <p class="etapa__caja-titulo">¿Por qué seguir operando en papel si el desorden te cuesta más?</p>
+              <p>Un cuaderno no te avisa quién te debe, se pierde, no calcula totales
+              solo y se deteriora. Un sistema a la medida pone orden exacto en tu
+              mostrador por una sola inversión, sin mensualidades que te ahoguen.</p>
+            </div>
           </div>
 
           <div class="etapa__cuerpo">
@@ -610,6 +691,27 @@
               </a>
               <a class="etapa__armador" href="#armar">O arma tu paquete pieza por pieza</a>
             </div>
+          </div>
+
+          <!-- Para quién es: tres mostradores concretos. Va a todo el ancho de la
+               banda para que se lea como una lista de casos y no como letra chica. -->
+          <div class="etapa__giros">
+            <p class="etapa__giros-titulo">¿Para qué tipo de negocios es?</p>
+            <ul class="etapa__giros-lista">
+              <li>
+                <strong>Refaccionarias y ferreterías</strong>
+                Para dejar de adivinar qué piezas hay y quién dejó fiado.
+              </li>
+              <li>
+                <strong>Talleres y estudios de servicio</strong>
+                Para registrar entradas, presupuestos y entregas sin enredos.
+              </li>
+              <li>
+                <strong>Clínicas y consultorios</strong>
+                Para llevar el control de citas, expedientes rápidos y cobros del día,
+                sin depender de software pesado de suscripción.
+              </li>
+            </ul>
           </div>
         </article>
 

@@ -596,6 +596,20 @@ svg.ic path[d^="M12 2a10"] {
 
 /* Pie de foto de la maqueta: va dentro del bloque visual, pegado a la imagen,
    porque explica qué se está viendo antes de que el lector llegue a la ficha. */
+/* Enlace de la pieza que se puede probar en la misma página */
+.lab-pieza__enlace {
+  margin-top: var(--e-4);
+  font-size: 0.875rem;
+}
+.lab-pieza__enlace a {
+  display: inline-block;
+  padding-block: 5px;
+  color: var(--acento);
+  font-weight: var(--peso-medio);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .lab-pieza__pie {
   margin-top: var(--e-4);
   font-size: 0.8125rem;
@@ -869,6 +883,179 @@ svg.ic path[d^="M12 2a10"] {
 .estado--ok { background: rgba(111, 184, 138, 0.14); color: var(--mock-verde); }
 .estado--espera { background: rgba(127, 181, 201, 0.14); color: var(--mock-azul); }
 .estado--alerta { background: rgba(224, 168, 127, 0.14); color: var(--mock-naranja); }
+
+/* ═══════════ MAQUETAS DE LOS EJEMPLOS ═══════════
+   Tres interfaces dibujadas con CSS, como el resto del laboratorio: sin
+   imágenes, sin peticiones extra. Todas usan la escala de carbón de las
+   maquetas (--mock-*), calculada para que cualquier texto pase AA aunque sea
+   de 10 px, y los colores con significado (recibido, listo, entregado) son
+   estados, no decoración. */
+
+/* ── El mostrador: la venta en dos toques y la cuenta de quién debe ── */
+.mock-mostrador {
+  width: 100%;
+  background: var(--mock-0);
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-sm);
+  overflow: hidden;
+}
+.mock-mostrador__cuerpo { padding: 14px; display: grid; gap: 12px; }
+
+.mock-cobro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--mock-1);
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-sm);
+}
+.mock-cobro__etiqueta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mock-tenue);
+}
+.mock-cobro__cifra {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--mock-texto);
+  line-height: 1.1;
+}
+.mock-cobro__acciones { display: flex; gap: 6px; }
+.mock-toque {
+  padding: 6px 10px;
+  border: 1px solid var(--mock-acento-linea);
+  border-radius: var(--radio-control);
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  color: var(--mock-acento);
+}
+.mock-toque--lleno { background: var(--mock-acento); border-color: var(--mock-acento); color: var(--mock-0); }
+
+.mock-adeudos { display: grid; gap: 6px; }
+.mock-adeudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 10px;
+  background: var(--mock-1);
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-sm);
+  font-size: 0.6875rem;
+  color: var(--mock-2);
+}
+.mock-adeudo__quien { color: var(--mock-texto); }
+.mock-adeudo__dias { font-family: var(--mono); font-size: 0.625rem; color: var(--mock-naranja); }
+.mock-adeudo__monto { font-family: var(--mono); font-size: 0.6875rem; color: var(--mock-verde); }
+
+/* ── Órdenes de servicio: cada trabajo en su etapa ── */
+.mock-ordenes { display: grid; gap: 6px; }
+.mock-orden {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: var(--mock-1);
+  border: 1px solid var(--ink-4);
+  border-left: 2px solid var(--mock-acento);
+  border-radius: var(--radio-sm);
+  font-size: 0.6875rem;
+  color: var(--mock-2);
+}
+.mock-orden__folio { font-family: var(--mono); font-size: 0.625rem; color: var(--mock-tenue); }
+.mock-orden__cliente { display: block; margin-top: 2px; color: var(--mock-texto); }
+
+/* ── El cotizador: se marca lo que se necesita y sale el mensaje ── */
+.mock-cotizador {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  gap: 12px;
+}
+.mock-cotizador__panel {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 12px;
+  background: var(--mock-1);
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-sm);
+}
+.mock-opcion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.6875rem;
+  color: var(--mock-2);
+}
+.mock-opcion i {
+  width: 13px; height: 13px;
+  flex-shrink: 0;
+  border: 1px solid var(--ink-4);
+  border-radius: 3px;
+}
+.mock-opcion--marcada i {
+  background: var(--mock-acento);
+  border-color: var(--mock-acento);
+  box-shadow: inset 0 0 0 2px var(--mock-1);
+}
+.mock-opcion em { margin-left: auto; font-family: var(--mono); font-style: normal; font-size: 0.625rem; color: var(--mock-3); }
+.mock-opcion--marcada em { color: var(--mock-acento); }
+.mock-cotizador__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--ink-4);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--mock-tenue);
+}
+.mock-cotizador__total strong { font-family: var(--display); font-size: 1.0625rem; color: var(--mock-acento); }
+
+.mock-whats {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 12px;
+  background: var(--mock-0);
+  border: 1px solid var(--ink-4);
+  border-radius: var(--radio-sm);
+}
+.mock-whats__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink-4);
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  color: var(--mock-tenue);
+}
+.mock-whats__cabecera .punto { width: 7px; height: 7px; border-radius: 50%; background: var(--mock-verde); }
+.mock-whats__mensaje {
+  padding: 10px 12px;
+  background: var(--mock-1);
+  border-radius: var(--radio-sm) var(--radio-sm) var(--radio-sm) 2px;
+  font-size: 0.6875rem;
+  line-height: 1.55;
+  color: var(--mock-2);
+}
+.mock-whats__mensaje strong { color: var(--mock-texto); }
+.mock-whats__mensaje em { font-style: normal; color: var(--mock-acento); }
+.mock-whats__pie { font-family: var(--mono); font-size: 0.625rem; color: var(--mock-tenue); text-align: right; }
+
+@media (max-width: 720px) {
+  .mock-cotizador { grid-template-columns: minmax(0, 1fr); }
+}
 
 .mock-chat {
   width: 100%;
@@ -1573,6 +1760,61 @@ svg.ic path[d^="M12 2a10"] {
   .etapa--destacada .etapa__texto { font-size: 1rem; max-width: 46ch; }
   /* La lista arranca al ras del título, sin el aire de tarjeta suelta */
   .etapa--ancha .servicios { margin-top: 0; }
+}
+
+/* Caja que justifica la inversión: en la banda oscura, un fondo apenas más
+   claro y un filete de acento. Sin ella, la cifra de $8,000 llega sin contexto. */
+.etapa__caja {
+  margin-top: var(--e-5);
+  padding: var(--e-4) var(--e-5);
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 2px solid var(--acento-grafico);
+  border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--texto-2);
+}
+.etapa__caja-titulo {
+  margin-bottom: var(--e-2);
+  font-weight: var(--peso-fuerte);
+  color: var(--texto);
+}
+.etapa__caja p { margin: 0; }
+.etapa__caja p + p { margin-top: var(--e-3); }
+
+/* Para quién es: tres casos concretos, a todo el ancho de la banda */
+.etapa__giros {
+  grid-column: 1 / -1;
+  margin-top: var(--e-5);
+  padding-top: var(--e-5);
+  border-top: 1px dashed var(--borde);
+}
+.etapa__giros-titulo {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--acento);
+}
+.etapa__giros-lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-4);
+  margin-top: var(--e-4);
+}
+.etapa__giros-lista li {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--texto-2);
+}
+.etapa__giros-lista strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--texto);
+}
+
+@media (max-width: 900px) {
+  .etapa__giros-lista { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* Enlace secundario de la etapa protagonista: el armador sigue ahí, pero
