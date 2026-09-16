@@ -197,10 +197,11 @@
   --sombra-lg: 0 26px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* El hero va sobre fondo oro con textura de cuadrícula. Sobre ese fondo el
-   acento normal (#8A6A0F) se queda en 4.41:1: no pasa. El contexto baja al
-   oro fuerte (#6F550B, 6.14:1) y los filetes se tiñen para seguir viéndose. */
-.hero {
+/* Ojo: esta regla es del hero CLARO y ya no aplica —el hero es tinta desde que
+   se cambió el fondo—, pero se deja escrita para que nadie la reviva por
+   error. El contexto real del hero se declara en css/layout.css, en la regla
+   .hero, que carga después y por eso manda: ahí el acento es el oro claro. */
+.hero-sobre-oro-ya-no-existe {
   --acento: var(--oro-fuerte);
   --acento-grafico: var(--oro-fuerte);
   --acento-suave: rgba(111, 85, 11, 0.10);
@@ -221,8 +222,15 @@
   --acento-linea: var(--magenta-linea);
 }
 .etapa--destacada,
-#lab {
-  /* Sobre carbón el magenta tiene que ser el claro para leerse */
+#lab,
+/* El titular del hero faltaba aquí, y es un descuido con consecuencias: cuando
+   el hero pasó de fondo oro a fondo tinta se corrigió el magenta para las
+   secciones oscuras, pero no para el titular, que se quedó con el magenta
+   oscuro (#A81B5A) pensado para fondo claro. Sobre tinta eso da 2.67:1: la
+   segunda línea del titular —la que dice de qué va el estudio— era casi
+   ilegible, y ninguna auditoría lo veía porque el color vive en un <span>.
+   Sobre carbón, el magenta tiene que ser el claro. */
+.hero__titulo {
   --acento: var(--magenta-lt);
   --acento-suave: rgba(214, 36, 122, 0.12);
 }

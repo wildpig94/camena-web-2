@@ -174,8 +174,13 @@ const informe = await evaluar(`(() => {
      Comparar elementos en línea produce falsos positivos: un <strong> que se
      parte en dos renglones tiene una caja envolvente que se solapa con la del
      que viene, aunque el texto nunca se pise. */
+  /* La lista incluye los elementos EN LÍNEA a propósito. Antes solo miraba
+     bloques (p, h1, h2, h3, li…), así que cualquier <span> que cambiara su
+     color se le escapaba: por ese hueco se fue a producción la segunda línea
+     del titular del hero a 2.67:1, casi ilegible, con la auditoría en verde.
+     La regla es simple: si tiene texto, se mide. */
   const textos = Array.prototype.filter.call(
-    document.querySelectorAll("p,h1,h2,h3,li,dt,dd,blockquote,summary"),
+    document.querySelectorAll("p,h1,h2,h3,h4,li,dt,dd,blockquote,summary,span,a,button,label,figcaption,strong,em,small,cite,th,td,caption,legend,time,abbr"),
     (el) => {
       if (el.textContent.trim().length < 2) return false;
       if (!visible(el)) return false;

@@ -172,7 +172,7 @@
 /* La segunda línea se distingue por color, no por inclinación: en una
    geométrica la cursiva falsa se nota, y el contraste editorial es más
    serio que el énfasis tipográfico. Sobre claro, el verde oscuro. */
-.hero__linea--oro { color: var(--acento); }
+.hero__linea--acento { color: var(--acento); }
 
 /* Subtítulo del hero: la promesa en una frase, y debajo la tira de
    condiciones en mono chica. Es una ficha técnica, no un párrafo de relleno:

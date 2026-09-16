@@ -766,9 +766,26 @@ no carga o no hay `h1`, el informe lo dice en lugar de reventar.
 
 ### Lo que esta verificación NO detectaba (y ya sí)
 
-Estas 5 comprobaciones faltaban y por eso entraron fallos reales:
+Estas 6 comprobaciones faltaban y por eso entraron fallos reales:
 
-1. **Cajas que se pintan encima de la siguiente.** En móvil los globos de precio
+1. **Contraste del texto en elementos en línea.** La auditoría recorría
+   bloques (`p, h1, h2, h3, li, dt, dd, blockquote, summary`) y **no miraba los
+   `<span>`**. Por ese hueco pasó lo que más vergüenza da de todo este proyecto:
+   la segunda línea del titular del hero se pintaba a **2.67:1** —magenta oscuro
+   sobre tinta, casi ilegible— y la auditoría decía «0 fallos» una y otra vez.
+   El color vivía en un `<span class="hero__linea--acento">`, así que el
+   medidor nunca lo vio. Lo encontró una revisión externa leyendo el CSS, no una
+   medición mía. Ahora la selección incluye los elementos en línea y la regla es
+   simple: **si tiene texto, se mide**.
+
+   La causa del bug, para que no se repita: el bloque de contextos de sistemas
+   de `variables.css` daba magenta oscuro a `.etapa--destacada`, `#lab` y
+   `.hero__titulo`. Cuando el hero pasó de fondo oro a fondo tinta se corrigió
+   el magenta para las secciones oscuras… y el titular se quedó fuera de la
+   corrección. Lo que era una decisión de color para fondo claro se volvió un
+   texto ilegible sobre carbón.
+
+2. **Cajas que se pintan encima de la siguiente.** En móvil los globos de precio
    dejan de flotar y entran en el flujo. Dos cosas se rompían ahí sin que nada
    se desbordara: el globo es un `<span>`, y al quitarle `position: absolute`
    volvía a ser un elemento **en línea**, donde el relleno vertical no cuenta
@@ -781,7 +798,7 @@ Estas 5 comprobaciones faltaban y por eso entraron fallos reales:
    dejando el `:hover` solo para punteros finos, porque en una pantalla táctil
    el `:hover` se queda pegado después del toque y el globo no se cierra.
 
-2. **Medios deformados.** La auditoría medía desbordes, contraste y tamaño de
+3. **Medios deformados.** La auditoría medía desbordes, contraste y tamaño de
    los controles, pero no miraba si una imagen o un video quedó **estirado**.
    Por ahí se fue a producción el peor bug que ha tenido el sitio: los dos
    videos verticales se pintaban de **320×1280** —aplastados— porque
@@ -792,15 +809,15 @@ Estas 5 comprobaciones faltaban y por eso entraron fallos reales:
    mal**. Lo cubre `docs/revisar-medios.mjs`, que compara la proporción pintada
    contra la del archivo en todas las páginas y a varios anchos.
 
-3. **HTML incompleto.** Un corte accidental puede dejar la página
+4. **HTML incompleto.** Un corte accidental puede dejar la página
    «funcionando» pero mutilada: sin formulario, sin cierres. Se comprobó en
    producción y estuvo horas publicado. Ahora el flujo de publicación cuenta
    etiquetas y campos antes de desplegar.
-4. **Contraste de controles.** La auditoría medía texto, no bordes. Un botón
+5. **Contraste de controles.** La auditoría medía texto, no bordes. Un botón
    de contorno con borde a 1.31:1 no se percibe como botón, y no aparecía en
    ningún informe. `docs/movil.mjs` ahora revisa bordes de controles sin fondo
    propio y exige 3:1.
-5. **Paleta desincronizada.** `docs/verificar-contraste.py` medía los colores
+6. **Paleta desincronizada.** `docs/verificar-contraste.py` medía los colores
    anteriores y pasaba en verde. Ahora el script compara sus valores con
    `css/variables.css` y avisa si no coinciden.
 
