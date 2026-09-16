@@ -560,8 +560,8 @@ html:not(.js) .caso { animation: none; }
    toque, y entonces el globo no se cierra aunque el botón diga que está
    cerrado. Es el mismo motivo por el que el toque y el ratón se separan. */
 @media (max-width: 1140px) and (hover: hover) and (pointer: fine) {
-  .servicios li:hover .servicios__globo,
-  .servicios li:focus-within .servicios__globo,
+  .tarifa__fila:hover .servicios__globo,
+  .tarifa__fila:focus-within .servicios__globo,
   .hecho:hover .hecho__globo,
   .hecho:focus-within .hecho__globo {
     display: block;

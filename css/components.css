@@ -1696,7 +1696,7 @@ svg.ic path[d^="M12 2a10"] {
 .encabezado__intro a,
 .volver a,
 .cierre-seccion a,
-.servicios ~ p a {
+.tarifa ~ p a {
   display: inline-block;
   padding-block: 7px;
 }
@@ -1904,11 +1904,101 @@ svg.ic path[d^="M12 2a10"] {
   }
   .etapa--destacada .etapa__texto { font-size: var(--t-cuerpo); max-width: 46ch; }
   /* La lista arranca al ras del título, sin el aire de tarjeta suelta */
-  .etapa--ancha .servicios { margin-top: 0; }
+  .etapa--ancha .tarifa { margin-top: 0; }
 }
 
 /* El globo dentro de la banda oscura: fondo de la misma familia del carbón */
-.etapa--destacada .servicios__globo { background: var(--ink-2); }
+.etapa--destacada /* ═══════════════ TABLA DE PRECIOS ═══════════════
+   Antes era una lista de renglones sueltos; ahora es una tabla de verdad
+   —table, thead, th scope, td— porque los precios SON datos tabulares: lo que
+   se compara es el nombre contra la cifra, en columnas. Eso arregla algo que
+   la lista no podía: los precios quedan alineados entre sí y se comparan de un
+   vistazo, sin leer.
+
+   Nada de cebra, ni cajas, ni fondo de color, ni banda en el encabezado: eso
+   es lo que hace que una tabla de precios parezca plantilla. Se sostiene con
+   filetes de un píxel, aire y cifras monoespaciadas de ancho fijo. */
+.tarifa {
+  width: 100%;
+  margin-top: var(--e-5);
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* Encabezado: rótulo de ficha técnica, no barra de tabla. */
+.tarifa thead th {
+  padding: 0 0 var(--e-3);
+  border-bottom: 1px solid var(--borde);
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+.tarifa thead th:last-child { text-align: right; }
+
+.tarifa__fila { border-bottom: 1px dotted var(--borde); }
+.tarifa__fila:last-child { border-bottom: 0; }
+.tarifa__fila:hover .tarifa__nombre { color: var(--acento); }
+
+.tarifa__que { position: relative; padding: 0; font-weight: var(--peso-normal); }
+
+/* El renglón entero se toca: el botón ocupa su celda y lleva el signo. */
+.tarifa__boton {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--e-3);
+  width: 100%;
+  padding: var(--e-3) var(--e-3) var(--e-3) 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.tarifa__nombre {
+  font-size: var(--t-cuerpo);
+  line-height: 1.4;
+  color: var(--texto);
+}
+
+/* El signo: sin esto nadie sabe que el renglón se abre. Se dibuja con dos
+   barras de 1.5 px; al abrir queda solo la horizontal, que es un menos. Nada
+   de texto: un «+» de verdad lo leerían en voz alta los lectores de pantalla,
+   y el estado ya lo dice aria-expanded. */
+.tarifa__signo {
+  width: 13px;
+  height: 13px;
+  color: var(--texto-2);
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-size: 13px 1.5px, 1.5px 13px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: background-size var(--dur-rapida) var(--curva), color var(--dur-rapida) var(--curva);
+}
+.tarifa__boton:hover .tarifa__signo,
+.tarifa__boton[aria-expanded="true"] .tarifa__signo { color: var(--acento); }
+.tarifa__boton[aria-expanded="true"] .tarifa__signo { background-size: 13px 1.5px, 0 0; }
+
+.tarifa__precio {
+  padding: var(--e-3) 0;
+  font-family: var(--mono);
+  font-size: var(--t-menudo);
+  font-weight: var(--peso-fuerte);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  color: var(--acento);
+  width: 1%;   /* la columna se encoge al contenido: no le roba ancho al nombre */
+}
+
+.servicios__globo { background: var(--ink-2); }
 
 /* Caja que justifica la inversión: en la banda oscura, un fondo apenas más
    claro y un filete de acento. Sin ella, la cifra de $8,000 llega sin contexto. */
@@ -2003,64 +2093,6 @@ svg.ic path[d^="M12 2a10"] {
   max-width: 42ch;
 }
 
-/* Lista de servicios con precio: lo que la gente viene a buscar */
-.servicios {
-  margin-top: var(--e-5);
-  padding-top: var(--e-4);
-  border-top: 1px solid var(--borde);
-  flex: 1;
-}
-
-.servicios li {
-  position: relative;
-  border-bottom: 1px dotted var(--borde);
-}
-.servicios li:last-child { border-bottom: 0; }
-
-/* Cada renglón de precio es un botón: al pasar el ratón, al hacer clic o al
-   llegar con el teclado se abre su globo explicando qué incluye esa opción.
-   Así la lista deja de ser una lista y pasa a ser la ficha de cada cosa. */
-.servicios__fila {
-  display: grid;
-  /* Tres columnas: nombre, precio y el signo. El signo se dibuja con CSS, así
-     que no hace falta tocar los 28 renglones del HTML. */
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: center;
-  gap: var(--e-3);
-  width: 100%;
-  padding: var(--e-3) 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-/* El signo: sin esto, nadie sabe que el renglón se puede tocar. Se dibuja con
-   dos barras de 1.5 px —una horizontal y una vertical— y al abrir se queda solo
-   la horizontal, que es un menos. Nada de texto: un «+» de verdad lo leerían en
-   voz alta los lectores de pantalla, y el estado ya lo dice aria-expanded. */
-.servicios__fila::after {
-  content: "";
-  width: 13px;
-  height: 13px;
-  justify-self: end;
-  color: var(--texto-2);
-  background-image:
-    linear-gradient(currentColor, currentColor),
-    linear-gradient(currentColor, currentColor);
-  background-size: 13px 1.5px, 1.5px 13px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  transition: background-size var(--dur-rapida) var(--curva), color var(--dur-rapida) var(--curva);
-}
-.servicios__fila:hover::after,
-.servicios__fila[aria-expanded="true"]::after { color: var(--acento); }
-.servicios__fila[aria-expanded="true"]::after { background-size: 13px 1.5px, 0 0; }
-.servicios__fila:hover .servicios__que,
-.servicios__fila[aria-expanded="true"] .servicios__que { color: var(--acento); }
-
 .servicios__globo {
   position: absolute;
   top: calc(100% + 6px);
@@ -2084,8 +2116,8 @@ svg.ic path[d^="M12 2a10"] {
 }
 .servicios__globo strong { color: var(--texto); }
 
-.servicios li:hover .servicios__globo,
-.servicios li:focus-within .servicios__globo,
+.tarifa__fila:hover .servicios__globo,
+.tarifa__fila:focus-within .servicios__globo,
 .servicios__globo[data-abierto="si"] {
   visibility: visible;
   opacity: 1;
