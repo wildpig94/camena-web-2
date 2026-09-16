@@ -341,11 +341,14 @@
 
 .panel__titulo {
   font-family: var(--mono);
-  font-size: var(--t-micro);
+  /* Antes era una etiqueta de 12 px en gris; ahora es el encabezado del panel:
+     un escalón de los grandes y en oro (el alias, que aquí dentro del hero
+     resuelve al oro claro). Sin mayúsculas ni tracking de etiqueta: a este
+     tamaño, espaciado y en caja alta se leería como grito. */
+  font-size: var(--t-n5);
   font-weight: var(--peso-medio);
-  letter-spacing: var(--tracking-etiqueta);
-  text-transform: uppercase;
-  color: var(--texto-2);
+  letter-spacing: 0.01em;
+  color: var(--acento);
 }
 
 .panel__pie {
