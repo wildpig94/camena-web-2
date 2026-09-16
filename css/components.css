@@ -2022,8 +2022,10 @@ svg.ic path[d^="M12 2a10"] {
    Así la lista deja de ser una lista y pasa a ser la ficha de cada cosa. */
 .servicios__fila {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
+  /* Tres columnas: nombre, precio y el signo. El signo se dibuja con CSS, así
+     que no hace falta tocar los 28 renglones del HTML. */
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
   gap: var(--e-3);
   width: 100%;
   padding: var(--e-3) 0;
@@ -2034,6 +2036,28 @@ svg.ic path[d^="M12 2a10"] {
   text-align: left;
   cursor: pointer;
 }
+
+/* El signo: sin esto, nadie sabe que el renglón se puede tocar. Se dibuja con
+   dos barras de 1.5 px —una horizontal y una vertical— y al abrir se queda solo
+   la horizontal, que es un menos. Nada de texto: un «+» de verdad lo leerían en
+   voz alta los lectores de pantalla, y el estado ya lo dice aria-expanded. */
+.servicios__fila::after {
+  content: "";
+  width: 13px;
+  height: 13px;
+  justify-self: end;
+  color: var(--texto-2);
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-size: 13px 1.5px, 1.5px 13px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: background-size var(--dur-rapida) var(--curva), color var(--dur-rapida) var(--curva);
+}
+.servicios__fila:hover::after,
+.servicios__fila[aria-expanded="true"]::after { color: var(--acento); }
+.servicios__fila[aria-expanded="true"]::after { background-size: 13px 1.5px, 0 0; }
 .servicios__fila:hover .servicios__que,
 .servicios__fila[aria-expanded="true"] .servicios__que { color: var(--acento); }
 
