@@ -90,22 +90,34 @@
   --texto-fuente: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
-  /* Escala fluida. El h1 ronda 4× el cuerpo en escritorio: con una geométrica
-     ancha, más cuerpo que eso deja de ser titular y pasa a ser cartel. */
-  --t-micro:  clamp(0.6875rem, 0.66rem + 0.14vw, 0.75rem);
-  --t-menudo: clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
-  --t-cuerpo: clamp(1rem, 0.97rem + 0.16vw, 1.125rem);
-  --t-guia:   clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
-  --t-h3:     clamp(1.375rem, 1.22rem + 0.75vw, 1.75rem);
-  --t-h2:     clamp(1.875rem, 1.4rem + 2.3vw, 3.25rem);
-  /* Escala del titular, medida con la fuente real en 13 anchos (320 a 1600).
-     Con el titular en dos líneas cortas —«Páginas y sistemas» / «sin
-     plantilla.»— cabe entero de 320 a 1600 px sin partirse ni una vez, así que
-     no hacen falta parches por banda: 33 px en un teléfono chico, 38 en uno
-     normal, 51 en tableta y 60 en escritorio. */
-  --t-h1:     clamp(2rem, 1.58rem + 2.41vw, 3.75rem);
-  --t-declara: clamp(2.25rem, 1.5rem + 4vw, 4.5rem);
-  --t-cifra:  clamp(3.5rem, 2rem + 7vw, 8rem);
+  /* ── La escalera: nueve escalones y ni uno más ────────────────────────
+     Antes cada título traía su propia fórmula —treinta clamp distintos para
+     el mismo nivel de jerarquía— y la página acababa con 21 tamaños de letra
+     distintos: eso es lo que la hacía verse improvisada, aunque cada sección
+     por separado estuviera bien. Ahora hay nueve escalones y todo cae en uno.
+
+     Las cifras entre paréntesis son lo que mide cada escalón en un escritorio
+     de 1440 px. Para comprobarlo: `node docs/medir-escala.mjs`.
+
+     Regla al agregar algo: si hace falta un tamaño que no está aquí, el error
+     no es que falte el tamaño, es que la pieza está mal clasificada. */
+  --t-n1:     clamp(2rem, 1.58rem + 2.41vw, 3.75rem);       /*  33 →  60  titular */
+  --t-n2:     clamp(1.875rem, 1.4rem + 2.3vw, 3.25rem);     /*  30 →  52  sección */
+  --t-n3:     clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);      /*  28 →  44  bloque */
+  --t-n4:     clamp(1.5rem, 1.25rem + 1vw, 2rem);           /*  24 →  32  dentro del bloque */
+  --t-n5:     clamp(1.25rem, 1.1rem + 0.75vw, 1.625rem);    /*  20 →  26  nombre de pieza */
+  --t-guia:   clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);      /*  17 →  20  entrada */
+  --t-cuerpo: clamp(1rem, 0.96rem + 0.14vw, 1.0625rem);     /*  16 →  17  texto */
+  --t-menudo: clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem); /*  13 →  14  letra chica */
+  --t-micro:  clamp(0.6875rem, 0.66rem + 0.14vw, 0.75rem);  /*  11 →  12  etiquetas */
+  /* Dos momentos de display, deliberados: la frase que se declara sola y la
+     cifra gigante que funciona como textura, no como texto. */
+  --t-declara: clamp(2.25rem, 1.5rem + 4vw, 4.5rem);        /*  36 →  72 */
+  --t-cifra:  clamp(3.5rem, 2rem + 7vw, 8rem);              /*  56 → 128 */
+
+  /* Ojo: --t-n1 es la escala del titular del hero, medida con la fuente real
+     en 16 anchos (320 a 1600). Con el titular en dos líneas cortas cabe entero
+     sin partirse ni una vez, y por eso no hay parches por banda. */
 
   --peso-normal: 400;
   --peso-medio:  500;

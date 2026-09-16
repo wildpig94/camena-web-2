@@ -33,7 +33,7 @@ svg.ic path[d^="M12 2a10"] {
   border: 1px solid transparent;
   border-radius: var(--radio-control);
   font-family: var(--texto-fuente);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   font-weight: var(--peso-fuerte);
   line-height: 1.2;
   letter-spacing: 0.01em;
@@ -53,8 +53,8 @@ svg.ic path[d^="M12 2a10"] {
 }
 .boton:hover .ic--flecha { transform: translateX(4px); }
 
-.boton--sm { padding: 0.5625rem 1.125rem; font-size: 0.875rem; }
-.boton--lg { padding: 1.0625rem 1.875rem; font-size: 1rem; }
+.boton--sm { padding: 0.5625rem 1.125rem; font-size: var(--t-menudo); }
+.boton--lg { padding: 1.0625rem 1.875rem; font-size: var(--t-cuerpo); }
 .boton--ancho { width: 100%; }
 
 /* Sólido: papel sobre tinta y tinta sobre papel, siempre con contraste alto */
@@ -144,7 +144,7 @@ svg.ic path[d^="M12 2a10"] {
 .marca:hover .marca__simbolo { transform: rotate(-8deg) scale(1.06); }
 .marca__nombre {
   font-family: var(--display);
-  font-size: 1.25rem;
+  font-size: var(--t-guia);
   font-weight: var(--peso-fuerte);
   letter-spacing: 0.24em;
   color: var(--texto-claro);
@@ -176,7 +176,7 @@ svg.ic path[d^="M12 2a10"] {
      superficie táctil de sobra. */
   padding: 6px 8px;
   border-radius: var(--radio-control);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   color: var(--texto-claro-2);
   transition: color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
   white-space: nowrap;
@@ -221,7 +221,7 @@ svg.ic path[d^="M12 2a10"] {
   align-items: center;
   gap: var(--e-2);
   padding: var(--e-2) var(--e-3);
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   color: var(--texto-claro-2);
   border-radius: var(--radio-control);
   transition: color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
@@ -327,7 +327,7 @@ svg.ic path[d^="M12 2a10"] {
 
 .disciplina__num {
   font-family: var(--mono);
-  font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1.125rem);
+  font-size: var(--t-cuerpo);
   color: var(--texto-2);
   align-self: center;
   transition: color var(--dur-rapida) var(--curva);
@@ -335,7 +335,7 @@ svg.ic path[d^="M12 2a10"] {
 
 .disciplina__titulo {
   font-family: var(--display);
-  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.875rem);
+  font-size: var(--t-n4);
   text-wrap: balance;
   font-weight: var(--peso-fuerte);
   line-height: 1.1;
@@ -343,7 +343,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 
 .disciplina__lema {
-  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  font-size: var(--t-cuerpo);
   color: var(--texto-2);
   line-height: 1.45;
   text-wrap: pretty;
@@ -422,7 +422,7 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--paper);
   border-left: 2px solid var(--acento-grafico);
   border-radius: var(--radio-sm);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   line-height: 1.6;
   color: var(--texto-2);
 }
@@ -440,7 +440,7 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--paper);
   border: 1px solid var(--borde);
   border-radius: var(--radio-sm);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   line-height: 1.5;
   color: var(--texto-2);
   transition: border-color var(--dur-rapida) var(--curva), color var(--dur-rapida) var(--curva);
@@ -494,7 +494,7 @@ svg.ic path[d^="M12 2a10"] {
 .situacion__texto {
   display: block;
   font-family: var(--display);
-  font-size: clamp(0.9375rem, 0.9rem + 0.3vw, 1.125rem);
+  font-size: var(--t-cuerpo);
   font-weight: var(--peso-normal);
   line-height: 1.35;
   color: var(--texto-2);
@@ -532,7 +532,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .caso__titulo {
   margin-top: var(--e-3);
-  font-size: clamp(1.375rem, 1.15rem + 1.1vw, 2rem);
+  font-size: var(--t-n4);
   letter-spacing: -0.02em;
 }
 .caso__texto {
@@ -550,7 +550,7 @@ svg.ic path[d^="M12 2a10"] {
   border-top: 1px solid var(--borde);
   border-bottom: 1px solid var(--borde);
   font-family: var(--display);
-  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.25rem);
+  font-size: var(--t-guia);
   font-weight: var(--peso-fuerte);
 }
 .caso__clave {
@@ -568,7 +568,7 @@ svg.ic path[d^="M12 2a10"] {
 .caso__lista li {
   position: relative;
   padding-left: var(--e-5);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   color: var(--texto-2);
   line-height: 1.55;
 }
@@ -589,7 +589,7 @@ svg.ic path[d^="M12 2a10"] {
   background: rgba(168, 130, 31, 0.07);
   border-left: 2px solid var(--acento-grafico);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.6;
   color: var(--texto-claro-2);
 }
@@ -646,7 +646,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .video-pieza figcaption {
   margin-top: var(--e-3);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   line-height: 1.5;
   color: var(--texto-claro-2);
   text-align: center;
@@ -672,7 +672,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .captura figcaption {
   margin-top: var(--e-2);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   line-height: 1.5;
   color: var(--texto-claro-2);
 }
@@ -682,7 +682,7 @@ svg.ic path[d^="M12 2a10"] {
   font-size: var(--t-micro);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--mock-tenue);
+  color: var(--texto-claro-2);
 }
 
 /* Pie de foto de la maqueta: va dentro del bloque visual, pegado a la imagen,
@@ -690,7 +690,7 @@ svg.ic path[d^="M12 2a10"] {
 /* Enlace de la pieza que se puede probar en la misma página */
 .lab-pieza__enlace {
   margin-top: var(--e-4);
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
 }
 .lab-pieza__enlace a {
   display: inline-block;
@@ -703,7 +703,7 @@ svg.ic path[d^="M12 2a10"] {
 
 .lab-pieza__pie {
   margin-top: var(--e-4);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   line-height: 1.55;
   color: var(--texto-claro-2);
   max-width: 46ch;
@@ -736,19 +736,19 @@ svg.ic path[d^="M12 2a10"] {
   border: 1px solid currentColor;
 }
 .chip--concepto { color: var(--acento); }
-.chip--prototipo { color: var(--mock-azul); }
-.chip--experimento { color: var(--mock-rosa); }
+.chip--prototipo { color: var(--texto-claro-2); }
+.chip--experimento { color: var(--magenta-lt); }
 /* Etiquetas previstas para cuando existan proyectos publicables */
-.chip--proyecto { color: var(--mock-verde); }
-.chip--caso { color: var(--mock-naranja); }
+.chip--proyecto { color: var(--verde-lt); }
+.chip--caso { color: var(--oro-lt); }
 
 .lab-pieza__titulo {
-  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  font-size: var(--t-n5);
   letter-spacing: -0.015em;
 }
 .lab-pieza__texto {
   margin-top: var(--e-3);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.62;
   color: var(--texto-claro-2);
 }
@@ -777,7 +777,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 .lab__cierre-texto {
   max-width: 62ch;
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   color: var(--texto-claro-2);
 }
 .lab__cierre .boton { justify-self: start; }
@@ -806,7 +806,7 @@ svg.ic path[d^="M12 2a10"] {
   padding-top: 0.25em;
 }
 .lab-pieza__ficha dd {
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.55;
   color: var(--texto-claro-2);
 }
@@ -967,13 +967,13 @@ svg.ic path[d^="M12 2a10"] {
 .estado {
   padding: 2px 8px;
   border-radius: var(--radio-control);
-  font-size: 0.625rem;
+  font-size: var(--t-micro);
   font-family: var(--mono);
   letter-spacing: 0.04em;
 }
-.estado--ok { background: rgba(111, 184, 138, 0.14); color: var(--mock-verde); }
-.estado--espera { background: rgba(127, 181, 201, 0.14); color: var(--mock-azul); }
-.estado--alerta { background: rgba(224, 168, 127, 0.14); color: var(--mock-naranja); }
+.estado--ok { background: var(--verde-tenue); color: var(--verde-lt); }
+.estado--espera { background: var(--oro-tenue); color: var(--oro-lt); }
+.estado--alerta { background: var(--magenta-tenue); color: var(--magenta-lt); }
 
 /* ═══════════ MAQUETAS DE LOS EJEMPLOS ═══════════
    Tres interfaces dibujadas con CSS, como el resto del laboratorio: sin
@@ -1283,13 +1283,13 @@ svg.ic path[d^="M12 2a10"] {
   padding: 9px 11px;
   border-radius: var(--radio-sm);
   border: 1px solid var(--ink-4);
-  font-size: 0.6875rem;
+  font-size: var(--t-micro);
   color: var(--mock-3);
   margin-left: calc(var(--i) * 10px);
 }
 .bloque span {
   font-family: var(--mono);
-  font-size: 0.625rem;
+  font-size: var(--t-micro);
   color: var(--mock-tenue);
 }
 .bloque--lleno { background: var(--mock-1); color: var(--mock-2); }
@@ -1316,7 +1316,7 @@ svg.ic path[d^="M12 2a10"] {
   border: 1px dashed rgba(168, 130, 31, 0.45);
   border-radius: var(--radio-sm);
   font-family: var(--mono);
-  font-size: 0.625rem;
+  font-size: var(--t-micro);
   letter-spacing: 0.08em;
   color: var(--oro-lt);
 }
@@ -1337,7 +1337,7 @@ svg.ic path[d^="M12 2a10"] {
 .paquete__precio {
   margin-top: var(--e-3);
   font-family: var(--mono);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   letter-spacing: var(--tracking-mono);
   color: var(--texto-2);
 }
@@ -1388,7 +1388,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 
 .paquete__nombre {
-  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  font-size: var(--t-n5);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   font-weight: var(--peso-medio);
@@ -1407,7 +1407,7 @@ svg.ic path[d^="M12 2a10"] {
 
 .paquete__para {
   margin-top: var(--e-3);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.5;
   color: var(--texto-2);
   min-height: 3em;
@@ -1424,7 +1424,7 @@ svg.ic path[d^="M12 2a10"] {
 .paquete__incluye li {
   position: relative;
   padding-left: var(--e-5);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.5;
   color: var(--texto);
 }
@@ -1440,7 +1440,7 @@ svg.ic path[d^="M12 2a10"] {
   margin-top: var(--e-5);
   padding-top: var(--e-4);
   border-top: 1px dashed var(--borde-fuerte);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   line-height: 1.5;
   color: var(--texto-2);
 }
@@ -1478,7 +1478,7 @@ svg.ic path[d^="M12 2a10"] {
 .faq__respuesta--mas { padding-bottom: var(--e-5); }
 
 .faq__pregunta--anidada {
-  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  font-size: var(--t-guia);
   padding-block: var(--e-4);
 }
 
@@ -1499,7 +1499,7 @@ svg.ic path[d^="M12 2a10"] {
   cursor: pointer;
   list-style: none;
   font-family: var(--display);
-  font-size: clamp(1.0625rem, 1rem + 0.5vw, 1.375rem);
+  font-size: var(--t-guia);
   font-weight: var(--peso-fuerte);
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -1548,7 +1548,7 @@ svg.ic path[d^="M12 2a10"] {
   box-shadow: var(--sombra-sm);
 }
 .formulario__titulo {
-  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  font-size: var(--t-n5);
   margin-bottom: var(--e-5);
   padding-bottom: var(--e-4);
   border-bottom: 1px solid var(--borde);
@@ -1572,7 +1572,7 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--paper-2);
   border: 1px solid var(--borde-fuerte);
   border-radius: var(--radio-sm);
-  font-size: 1rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.5;
   transition: border-color var(--dur-rapida) var(--curva), box-shadow var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
 }
@@ -1597,7 +1597,7 @@ svg.ic path[d^="M12 2a10"] {
 .campo.is-error .campo__control { border-color: #A63A2A; box-shadow: 0 0 0 3px rgba(166, 58, 42, 0.14); }
 .campo__error {
   margin-top: var(--e-2);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   color: #A63A2A;
 }
 
@@ -1607,14 +1607,14 @@ svg.ic path[d^="M12 2a10"] {
   background: rgba(168, 130, 31, 0.1);
   border-left: 2px solid var(--acento-grafico);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   line-height: 1.5;
   color: var(--texto);
 }
 
 .formulario__ayuda {
   margin-top: var(--e-3);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   line-height: 1.55;
   color: var(--texto-2);
 }
@@ -1629,12 +1629,12 @@ svg.ic path[d^="M12 2a10"] {
 }
 .enviado__titulo {
   font-family: var(--display);
-  font-size: 1.0625rem;
+  font-size: var(--t-cuerpo);
   font-weight: var(--peso-fuerte);
 }
 .enviado__texto {
   margin: var(--e-2) 0 var(--e-4);
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   color: var(--texto-2);
 }
 
@@ -1735,7 +1735,7 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--paper);
   border: 1px solid var(--ink-4);
   border-radius: var(--radio-control);
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   font-weight: var(--peso-medio);
   box-shadow: 0 12px 32px rgba(17, 17, 17, 0.22);
   opacity: 1;
@@ -1899,10 +1899,10 @@ svg.ic path[d^="M12 2a10"] {
     align-items: start;
   }
   .etapa--destacada .etapa__titulo {
-    font-size: clamp(1.875rem, 1.3rem + 2.1vw, 3rem);
+    font-size: var(--t-n2);
     max-width: 24ch;
   }
-  .etapa--destacada .etapa__texto { font-size: 1rem; max-width: 46ch; }
+  .etapa--destacada .etapa__texto { font-size: var(--t-cuerpo); max-width: 46ch; }
   /* La lista arranca al ras del título, sin el aire de tarjeta suelta */
   .etapa--ancha .servicios { margin-top: 0; }
 }
@@ -1918,7 +1918,7 @@ svg.ic path[d^="M12 2a10"] {
   background: rgba(255, 255, 255, 0.04);
   border-left: 2px solid var(--acento-grafico);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   line-height: 1.6;
   color: var(--texto-2);
 }
@@ -1951,7 +1951,7 @@ svg.ic path[d^="M12 2a10"] {
   margin-top: var(--e-4);
 }
 .etapa__giros-lista li {
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   line-height: 1.55;
   color: var(--texto-2);
 }
@@ -1971,7 +1971,7 @@ svg.ic path[d^="M12 2a10"] {
 .etapa__armador {
   display: inline-block;
   padding-block: 6px;
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   color: var(--texto-2);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -1990,14 +1990,14 @@ svg.ic path[d^="M12 2a10"] {
 
 .etapa__titulo {
   margin-top: var(--e-3);
-  font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
+  font-size: var(--t-n4);
   letter-spacing: -0.02em;
   max-width: 22ch;
 }
 
 .etapa__texto {
   margin-top: var(--e-3);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.55;
   color: var(--texto-2);
   max-width: 42ch;
@@ -2049,7 +2049,7 @@ svg.ic path[d^="M12 2a10"] {
   border-left: 2px solid var(--acento);
   border-radius: var(--radio-sm);
   box-shadow: var(--sombra);
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   line-height: 1.55;
   font-weight: var(--peso-normal);
   color: var(--texto-2);
@@ -2073,14 +2073,14 @@ svg.ic path[d^="M12 2a10"] {
 }
 
 .servicios__que {
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.4;
   color: var(--texto);
 }
 
 .servicios__cuanto {
   font-family: var(--mono);
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   white-space: nowrap;
   color: var(--acento);
   font-weight: var(--peso-fuerte);
@@ -2092,7 +2092,7 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--acento-suave);
   border-left: 2px solid var(--acento-grafico);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   line-height: 1.55;
   color: var(--texto-2);
 }
@@ -2106,7 +2106,7 @@ svg.ic path[d^="M12 2a10"] {
   gap: var(--e-3);
   justify-items: start;
 }
-.etapa__paquete { font-size: 0.875rem; color: var(--texto-2); }
+.etapa__paquete { font-size: var(--t-menudo); color: var(--texto-2); }
 
 /* ── Armador de paquete ─────────────────────────────────────── */
 .armar {
@@ -2126,12 +2126,12 @@ svg.ic path[d^="M12 2a10"] {
 }
 
 .armar__titulo {
-  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  font-size: var(--t-n4);
   letter-spacing: -0.02em;
 }
 .armar__intro {
   margin-top: var(--e-4);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.6;
   color: var(--texto-2);
   max-width: 40ch;
@@ -2140,7 +2140,7 @@ svg.ic path[d^="M12 2a10"] {
   margin-top: var(--e-5);
   padding-top: var(--e-4);
   border-top: 1px solid var(--borde);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   color: var(--texto-2);
 }
 .armar__ayuda a { color: var(--oro-lt); font-weight: var(--peso-medio); }
@@ -2230,7 +2230,7 @@ svg.ic path[d^="M12 2a10"] {
   gap: 2px var(--e-3);
   min-width: 0;
   flex: 1 1 auto;
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.35;
   color: var(--texto-claro);
 }
@@ -2239,7 +2239,7 @@ svg.ic path[d^="M12 2a10"] {
 .opcion em {
   font-family: var(--mono);
   font-style: normal;
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   color: var(--texto-2);
   white-space: nowrap;
 }
@@ -2263,18 +2263,18 @@ svg.ic path[d^="M12 2a10"] {
 }
 .armar__total-cifra {
   font-family: var(--display);
-  font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  font-size: var(--t-n3);
   color: var(--oro-lt);
   font-weight: var(--peso-fuerte);
 }
 .armar__total-nota {
   flex: 1 1 100%;
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   color: var(--texto-2);
 }
 
 .armar__aviso {
-  font-size: 0.8125rem;
+  font-size: var(--t-menudo);
   line-height: 1.5;
   color: var(--texto-2);
 }
@@ -2311,7 +2311,7 @@ svg.ic path[d^="M12 2a10"] {
 }
 
 .caso-tarjeta__problema {
-  font-size: clamp(1.125rem, 1rem + 0.7vw, 1.375rem);
+  font-size: var(--t-guia);
   line-height: 1.25;
   letter-spacing: -0.015em;
   text-wrap: balance;
@@ -2335,7 +2335,7 @@ svg.ic path[d^="M12 2a10"] {
 .caso-tarjeta__puntos li {
   position: relative;
   padding-left: var(--e-5);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.5;
   color: var(--texto-2);
 }
@@ -2351,7 +2351,7 @@ svg.ic path[d^="M12 2a10"] {
   margin-top: var(--e-5);
   padding-top: var(--e-4);
   border-top: 1px solid var(--borde);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   font-weight: var(--peso-medio);
   color: var(--acento);
   text-decoration: none;

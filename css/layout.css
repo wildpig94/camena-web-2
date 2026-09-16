@@ -43,7 +43,7 @@
 /* Título de una página secundaria: es el h1 del documento —Google y los
    lectores de pantalla necesitan uno por página— pero no debe gritar como el
    del hero. Se queda en la escala de h2, que es la que tenía cuando era un h2. */
-.encabezado__titulo--pagina { font-size: var(--t-h2); }
+.encabezado__titulo--pagina { font-size: var(--t-n2); }
 
 .encabezado__intro {
   margin-top: var(--e-5);
@@ -152,7 +152,7 @@
 
 .hero__titulo {
   margin-top: var(--e-5);
-  font-size: var(--t-h1);
+  font-size: var(--t-n1);
   /* 1.06 y no 1.02: en dos líneas de display, el interlineado apretado de más
      hace que las líneas se toquen y la mancha se lee como un bloque sucio. */
   line-height: 1.06;
@@ -178,7 +178,7 @@
   max-width: 56ch;
   /* Un escalón abajo para que la proporción titular/entrada pase de 2.2 incluso
      en teléfono, que es lo que hace que la jerarquía se lea y no se aplane. */
-  font-size: clamp(1rem, 0.94rem + 0.26vw, 1.1875rem);
+  font-size: var(--t-guia);
   line-height: 1.55;
   color: var(--texto-2);
   text-wrap: pretty;
@@ -291,7 +291,7 @@
   border-left: 2px solid var(--acento);
   border-radius: var(--radio-sm);
   box-shadow: var(--sombra);
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   line-height: 1.55;
   color: var(--texto-2);
   visibility: hidden;
@@ -375,7 +375,7 @@
 
 .destacado {
   font-family: var(--display);
-  font-size: clamp(1.1875rem, 1.05rem + 0.7vw, 1.5rem);
+  font-size: var(--t-n5);
   font-weight: var(--peso-normal);
   line-height: 1.5;
   letter-spacing: -0.01em;
@@ -399,7 +399,7 @@
 
 .dimension__titulo {
   margin-top: var(--e-4);
-  font-size: clamp(1.5rem, 1.25rem + 1vw, 2.125rem);
+  font-size: var(--t-n4);
 }
 
 .dimension__campos {
@@ -413,7 +413,7 @@
 .dimension__texto {
   margin-top: var(--e-4);
   color: var(--texto-claro-2);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.62;
   max-width: 34ch;
 }
@@ -442,7 +442,7 @@
 }
 
 .detras__titulo {
-  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  font-size: var(--t-n2);
   letter-spacing: -0.025em;
   margin-bottom: var(--e-6);
 }
@@ -467,11 +467,11 @@
 }
 .principio__clave {
   font-family: var(--display);
-  font-size: 1.125rem;
+  font-size: var(--t-cuerpo);
   font-weight: var(--peso-fuerte);
 }
 .principio__texto {
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   color: var(--texto-2);
 }
 
@@ -509,10 +509,10 @@
   color: var(--texto-claro-2);
   padding-top: 0.25em;
 }
-.ficha__lista dd { font-size: 0.9375rem; color: var(--texto-claro); }
+.ficha__lista dd { font-size: var(--t-cuerpo); color: var(--texto-claro); }
 .ficha__nota {
   margin-top: var(--e-4);
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   line-height: 1.6;
   color: var(--texto-claro-2);
 }
@@ -537,7 +537,7 @@
 }
 .franja-local__texto {
   font-family: var(--display);
-  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2rem);
+  font-size: var(--t-n4);
   font-style: italic;
   color: var(--acento);
   text-wrap: balance;
@@ -545,7 +545,7 @@
 .franja-local__resto {
   grid-column: 2;
   max-width: 52ch;
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   color: var(--texto-2);
 }
 
@@ -567,14 +567,14 @@
 .paso__nombre {
   grid-area: nombre;
   font-family: var(--display);
-  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  font-size: var(--t-n5);
   font-weight: var(--peso-fuerte);
   letter-spacing: -0.015em;
   line-height: 1.15;
 }
 .paso__pregunta {
   grid-area: pregunta;
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   line-height: 1.45;
   color: var(--texto-2);
 }
@@ -603,7 +603,7 @@
 }
 .detalle__titulo {
   margin-top: var(--e-3);
-  font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.5rem);
+  font-size: var(--t-n3);
 }
 .detalle__texto {
   margin-top: var(--e-4);
@@ -614,7 +614,7 @@
   margin-top: var(--e-5);
   padding-top: var(--e-4);
   border-top: 1px dashed var(--borde-fuerte);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
 }
 .detalle__salida span {
   display: block;
@@ -671,7 +671,7 @@
 
 .eslabon__nombre {
   font-family: var(--display);
-  font-size: clamp(1rem, 0.92rem + 0.4vw, 1.25rem);
+  font-size: var(--t-guia);
   font-weight: var(--peso-fuerte);
   line-height: 1.15;
   color: var(--texto-claro-2);
@@ -681,7 +681,7 @@
 .eslabon__boton:hover .eslabon__nombre { color: var(--texto-claro); }
 
 .eslabon__dato {
-  font-size: 0.75rem;
+  font-size: var(--t-micro);
   line-height: 1.4;
   color: var(--texto-claro-2);
   opacity: 0.72;
@@ -728,14 +728,14 @@
   --borde: var(--borde-oscuro);
 }
 .precio__titulo {
-  font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  font-size: var(--t-n3);
   margin-bottom: var(--e-5);
 }
 .precio__texto p { color: var(--texto-claro-2); max-width: 62ch; }
 .precio__texto p + p { margin-top: var(--e-4); }
 .precio__texto strong { color: var(--texto-claro); }
 .precio__acciones { display: grid; gap: var(--e-3); justify-items: start; }
-.precio__nota { font-size: 0.8125rem; color: var(--texto-claro-2); }
+.precio__nota { font-size: var(--t-menudo); color: var(--texto-claro-2); }
 
 
 /* ═══════════════ CAMENA CUSTOM ═══════════════ */
@@ -769,7 +769,7 @@
 .custom__etiqueta { justify-content: flex-start; }
 
 .custom__titulo {
-  font-size: clamp(2.25rem, 1.4rem + 4.6vw, 5rem);
+  font-size: var(--t-declara);
   line-height: 1.02;
   letter-spacing: -0.03em;
   max-width: 20ch;
@@ -812,7 +812,7 @@
 
 .llamada__titulo {
   margin-top: var(--e-4);
-  font-size: clamp(2.25rem, 1.4rem + 4.4vw, 5rem);
+  font-size: var(--t-declara);
   line-height: 1.04;
   letter-spacing: -0.03em;
 }
@@ -838,7 +838,7 @@
 
 .llamada__pie {
   margin-top: var(--e-5);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   color: var(--texto-claro-2);
 }
 .llamada__pie a { color: var(--oro-lt); }
@@ -853,7 +853,7 @@
 }
 
 .contacto__titulo {
-  font-size: clamp(1.875rem, 1.4rem + 2.2vw, 3rem);
+  font-size: var(--t-n2);
   letter-spacing: -0.025em;
 }
 
@@ -883,7 +883,7 @@
   color: var(--texto-2);
   min-width: 9rem;
 }
-.dato__valor { font-size: 1.0625rem; color: var(--texto); }
+.dato__valor { font-size: var(--t-cuerpo); color: var(--texto); }
 a.dato__valor:hover { color: var(--acento); }
 
 
@@ -905,7 +905,7 @@ a.dato__valor:hover { color: var(--acento); }
 .pie__simbolo { margin-bottom: var(--e-4); }
 .pie__nombre {
   font-family: var(--display);
-  font-size: 1.5rem;
+  font-size: var(--t-n5);
   font-weight: var(--peso-fuerte);
   letter-spacing: 0.22em;
 }
@@ -918,7 +918,7 @@ a.dato__valor:hover { color: var(--acento); }
   margin-top: var(--e-4);
   font-family: var(--display);
   font-style: italic;
-  font-size: 1.125rem;
+  font-size: var(--t-cuerpo);
   color: var(--oro-lt);
 }
 
@@ -933,7 +933,7 @@ a.dato__valor:hover { color: var(--acento); }
 }
 .pie__lista > li + li { margin-top: var(--e-2); }
 .pie__lista a,
-.pie__lista span { font-size: 0.9375rem; color: var(--texto-claro); }
+.pie__lista span { font-size: var(--t-cuerpo); color: var(--texto-claro); }
 .pie__lista a:hover { color: var(--oro-lt); }
 /* …salvo el enlace destacado: ver la nota de especificidad más abajo. */
 .pie__lista a.pie__destacado:hover { color: var(--ink); }
@@ -955,7 +955,7 @@ a.dato__valor:hover { color: var(--acento); }
   color: var(--ink);
   border-radius: var(--radio-control);
   font-weight: var(--peso-fuerte);
-  font-size: 0.875rem;
+  font-size: var(--t-menudo);
   transition: transform var(--dur-rapida) var(--curva), box-shadow var(--dur-rapida) var(--curva),
               background var(--dur-rapida) var(--curva);
 }
@@ -1027,7 +1027,7 @@ a.dato__valor:hover { color: var(--acento); }
   color: var(--texto-2);
 }
 .legal__volver:hover { color: var(--acento); }
-.legal h1 { font-size: clamp(2rem, 1.5rem + 2.6vw, 3.25rem); }
+.legal h1 { font-size: var(--t-n2); }
 .legal__fecha {
   margin-top: var(--e-4);
   padding-bottom: var(--e-5);
@@ -1039,7 +1039,7 @@ a.dato__valor:hover { color: var(--acento); }
   color: var(--texto-2);
 }
 .legal h2 {
-  font-size: clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem);
+  font-size: var(--t-n5);
   margin-top: var(--e-8);
   margin-bottom: var(--e-3);
 }
@@ -1069,7 +1069,7 @@ a.dato__valor:hover { color: var(--acento); }
   border: 1px solid var(--borde);
   border-left: 3px solid var(--oro);
   border-radius: var(--radio-sm);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
 }
 
 /* ── Mapa de la oferta: tres grupos antes del detalle ─────────
@@ -1100,13 +1100,13 @@ a.dato__valor:hover { color: var(--acento); }
 
 .grupo__titulo {
   margin-top: var(--e-2);
-  font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+  font-size: var(--t-n5);
   letter-spacing: -0.015em;
 }
 
 .grupo__resumen {
   margin-top: var(--e-2);
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.5;
   color: var(--texto-2);
 }
@@ -1159,7 +1159,7 @@ a.dato__valor:hover { color: var(--acento); }
 .flujo__nota {
   margin-top: var(--e-5);
   max-width: 62ch;
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   color: var(--texto-2);
 }
 
@@ -1169,7 +1169,7 @@ a.dato__valor:hover { color: var(--acento); }
    que reconstruye un argumento ya explicado en Servicios. */
 .enunciado__texto {
   font-family: var(--display);
-  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.75rem);
+  font-size: var(--t-n3);
   font-weight: var(--peso-fuerte);
   line-height: 1.12;
   letter-spacing: -0.025em;
@@ -1227,7 +1227,7 @@ a.dato__valor:hover { color: var(--acento); }
   padding-top: var(--e-5);
   border-top: 1px solid var(--borde);
   max-width: 46ch;
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   line-height: 1.6;
   color: var(--texto-2);
 }
@@ -1252,7 +1252,7 @@ a.dato__valor:hover { color: var(--acento); }
 .volver a {
   display: inline-block;
   padding-block: 8px;
-  font-size: 0.9375rem;
+  font-size: var(--t-cuerpo);
   font-weight: var(--peso-medio);
   color: var(--acento);
 }
@@ -1304,7 +1304,7 @@ a.dato__valor:hover { color: var(--acento); }
 .hero__panel .panel__lista a {
   display: inline-block;
   padding: 5px 0;
-  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  font-size: var(--t-guia);
   font-weight: var(--peso-medio);
   letter-spacing: -0.01em;
   color: var(--texto);

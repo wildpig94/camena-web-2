@@ -314,6 +314,7 @@ flujo de despliegue no copia esa carpeta):
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
 | `docs/revisar-medios.mjs` | **El que ve lo deforme.** Recorre todas las páginas y compara la proporción pintada de cada imagen y video contra la del archivo; también delata cajas con alto fijo cuyo contenido no cabe. Nació del bug de los videos aplastados. | `node docs/revisar-medios.mjs` |
+| `docs/medir-escala.mjs` | **El que cuenta los escalones.** Dice cuántos tamaños y colores de texto distintos se ven de verdad en una página. Nació de un número incómodo: teníamos 21 tamaños donde una referencia usa 8 o 10. | `node docs/medir-escala.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/medir-hero.mjs` | **El que mide el hero.** Devuelve números en vez de opiniones: tamaño del titular, cuántas líneas usa de verdad, proporción titular/entrada, cuántos tamaños y colores distintos hay, y si el hero cabe en la primera pantalla. | `node docs/medir-hero.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/versionar.py` | **El que rompe el caché.** Sella la huella del contenido en las URLs de CSS y JS (`css/layout.css?v=17364851`), para que un cambio se vea al instante en el celular y el caché se siga usando cuando nada cambió. Corre solo en cada publicación. | `python3 docs/versionar.py` |
 | `docs/probar-producto.mjs` | **El probador del producto.** Abre Control de Autos con Chrome y la usa como una persona: comprueba que no pida nada externo, que las fuentes propias carguen, que no se desborde, y da de alta un auto para ver que se guarde y siga ahí tras recargar. | `node docs/probar-producto.mjs` (con el servidor en 8899) |
@@ -417,8 +418,38 @@ rellenos sin cambiar de token.
 - La segunda línea del titular se distingue por **color, no por cursiva**: en una
   geométrica la cursiva falsa se nota, y el contraste editorial es más serio.
 
-El `h1` ronda 4× el tamaño del cuerpo en escritorio, con escala fluida (`clamp`)
-para que no haya saltos entre anchos.
+**La escalera son nueve escalones y ni uno más.** Está en `css/variables.css`
+como `--t-n1` … `--t-n5`, `--t-guia`, `--t-cuerpo`, `--t-menudo` y `--t-micro`,
+más dos momentos de display (`--t-declara` y `--t-cifra`). Lo que mide cada uno
+en un escritorio de 1440 px:
+
+| Token | Mide | Para qué |
+|---|---|---|
+| `--t-n1` | 60 px | El titular de la página |
+| `--t-n2` | 52 px | Título de sección |
+| `--t-n3` | 44 px | Título de bloque |
+| `--t-n4` | 32 px | Título dentro de un bloque |
+| `--t-n5` | 26 px | Nombre de pieza |
+| `--t-guia` | 20 px | Párrafo de entrada |
+| `--t-cuerpo` | 17 px | Texto corriente |
+| `--t-menudo` | 14 px | Letra chica, pies de foto |
+| `--t-micro` | 12 px | Etiquetas y rótulos |
+
+**Por qué importa el número de escalones.** Antes cada título traía su propia
+fórmula —treinta `clamp` distintos para el mismo nivel de jerarquía— y la página
+acababa con **21 tamaños de letra distintos**. Eso es lo que la hacía verse
+improvisada aunque cada sección por separado estuviera bien: una referencia como
+Stripe usa 8 o 10 en toda la página. Se consolidó a **10**, y los colores de
+texto de **15 a 12**, moviendo las etiquetas y los estados fuera de la paleta de
+las maquetas (usaban `--mock-*` en interfaz de verdad, que era el error de
+fondo). Se comprueba con `node docs/medir-escala.mjs`.
+
+**Las maquetas quedan fuera de la escalera a propósito.** Las ilustraciones
+`.mock-*` son dibujos de interfaz y tienen su propia microescala, como cualquier
+ilustración; forzarlas a la escalera del texto las deformaría.
+
+**Regla al agregar algo:** si hace falta un tamaño que no está en la tabla, el
+error no es que falte el tamaño, es que la pieza está mal clasificada.
 
 ### Detalles de taller (craftsmanship digital)
 
