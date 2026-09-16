@@ -145,8 +145,13 @@
   position: relative;
   z-index: var(--z-contenido);
   display: grid;
-  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
-  gap: clamp(2.5rem, 1rem + 4vw, 5rem);
+  /* La columna de texto manda: con la proporción anterior medía 703 px y el
+     titular, que son dos frases completas, no cabía en dos líneas ni a 52 px.
+     Con esta mide 812 px y entra hasta 58. El panel de precios baja de 449 a
+     366 px y sigue sin apretarse: se comprobó que su contenido no se desborda
+     ni se parte en ningún ancho de 1141 a 1600. */
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.72fr);
+  gap: clamp(2rem, 1rem + 2.4vw, 3rem);
   align-items: start;
 }
 
@@ -353,7 +358,13 @@
   color: var(--texto-2);
 }
 .panel__pie strong { color: var(--texto); }
-.panel__pie a { color: var(--acento); text-decoration: underline; text-underline-offset: 3px; }
+.panel__pie a {
+  color: var(--acento);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  /* Dos palabras: no se parten entre renglones. */
+  white-space: nowrap;
+}
 
 
 /* ═══════════════ 02 · DECLARACIÓN ═══════════════ */

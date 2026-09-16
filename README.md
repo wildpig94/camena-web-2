@@ -350,9 +350,19 @@ máquina. Lo que quedó:
 | | Texto |
 |---|---|
 | Sello | Estudio de diseño y sistemas · Apatzingán, Michoacán |
-| Titular | **Páginas y sistemas** / **sin plantilla.** |
-| Entrada | Hacemos tu página web, tu marca y el sistema de tu negocio. Corre en tu computadora, sin renta mensual. |
+| Titular | **Cada negocio opera distinto.** / **Su software también debería.** |
+| Entrada | Software y páginas hechos para tu negocio, sin renta mensual. |
 | Cierre | Somos un estudio de diseño y sistemas. Trabajamos de forma remota con negocios de cualquier parte del mundo, desde Apatzingán, Michoacán. |
+
+**El titular son dos frases completas, y eso manda sobre todo lo demás.** Se
+probó con una versión corta —«Páginas y sistemas / sin plantilla.»— que cabía en
+dos líneas a cualquier tamaño; el dueño la rechazó por sonar a eslogan y pidió
+volver al eje de software. Dos frases completas ocupan más: por eso la columna
+de texto del hero se ensanchó (la rejilla pasa de `1.22fr / 0.78fr` a
+`1.6fr / 0.72fr` y el hueco de 80 a 48 px, así que la columna mide 812 px en vez
+de 703) y el titular bajó de 60 a 58 px. Con eso entra en **dos líneas de 561 a
+1600 px**; por debajo, en teléfono, los `<span>` se vuelven `inline` y el texto
+fluye en tres líneas en vez de partirse en cuatro.
 
 **Por qué así.** El párrafo anterior («Hacemos páginas web, logos y sistemas a la
 medida…») enumeraba los servicios y a la vez prometía, y eso lo dejaba en el tono
@@ -362,19 +372,19 @@ comprobable que más pesa: el sistema corre en la computadora del cliente y no s
 renta por mes. Ninguna de las dos frases usa «soluciones», «transformar»,
 «potenciar» ni «a la medida»: están en la lista negra del README.
 
-**Por qué el titular es corto.** No es gusto: es medida. La columna de texto del
-hero mide 703 px en escritorio y 288 px en un teléfono de 320 px. Con el titular
-largo («Páginas y sistemas que no caben en una plantilla») caben 51 px a 1141 px
-de ancho y 24 px a 320, así que partía en tres y cuatro líneas y hacían falta
-parches por banda. Con dos líneas de 19 y 14 caracteres cabe entero **de 320 a
-1600 px sin una sola excepción**, y por eso se pudo quitar la escala especial de
-móvil y la de la banda estrecha: una sola fórmula.
-
-**La escala, medida y no adivinada.** `--t-h1: clamp(2rem, 1.58rem + 2.41vw,
-3.75rem)` da 33 px en 320, 34.7 en 390, 43.8 en 768, 50 en 1024 y 60 en
+**La escala, medida y no adivinada.** `--t-n1: clamp(2rem, 1.52rem + 2.34vw,
+3.625rem)` da 32 px en 320, 33.4 en 390, 42.3 en 768, 48.3 en 1024 y 58 en
 escritorio. Se comprueba con `docs/medir-hero.mjs`, que además vigila la
-proporción titular/entrada (3.19 en escritorio; por debajo de 2.2 la jerarquía se
-aplana) y que el hero quepa en la primera pantalla: cabe a 1440 px.
+proporción titular/entrada (2.9 en escritorio) y que el hero quepa en la primera
+pantalla: cabe a 1440 px (838 px de alto con ventana de 900).
+
+**Un detalle que se aprende una vez y no se olvida:** en teléfono el titular
+fluye porque `.js .hero__linea` de `animaciones.css` declara `display: block`
+para la entrada por líneas, y con dos clases le gana a un `.hero__linea` a secas.
+La regla de móvil tiene que empatar la especificidad (`.js .hero__linea`) para
+que mande. El precio de que el titular fluya es que el `transform` de la
+animación no se aplica en un elemento en línea: en teléfono la entrada por líneas
+queda en un fundido.
 
 ### Color
 

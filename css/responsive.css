@@ -567,3 +567,21 @@ html:not(.js) .caso { animation: none; }
     display: block;
   }
 }
+
+/* ═══ ≤ 560 px · el titular fluye ═══
+   «Cada negocio opera distinto. / Su software también debería.» son dos frases
+   completas. Con cada una en su propio renglón, en un teléfono se parten en
+   cuatro líneas. Dejándolas fluir como un solo texto, el navegador reparte el
+   conjunto en tres, que es lo que mide la pantalla. El color sigue marcando la
+   segunda frase: solo cambia dónde puede cortar el navegador. */
+@media (max-width: 560px) {
+  /* El selector lleva .js a propósito: animaciones.css declara
+     `.js .hero__linea { display: block }` para la entrada por líneas, y con dos
+     clases le gana a un `.hero__linea` a secas. Aquí se empata la
+     especificidad y, como esta hoja carga después, manda esta. */
+  .js .hero__linea,
+  .hero__linea { display: inline; }
+  /* En un elemento en línea el transform no se aplica, así que la entrada por
+     líneas se queda en un fundido. Es el precio de que el titular quepa. */
+  .js .hero__linea { transform: none; }
+}

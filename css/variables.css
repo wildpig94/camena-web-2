@@ -101,7 +101,11 @@
 
      Regla al agregar algo: si hace falta un tamaño que no está aquí, el error
      no es que falte el tamaño, es que la pieza está mal clasificada. */
-  --t-n1:     clamp(2rem, 1.58rem + 2.41vw, 3.75rem);       /*  33 →  60  titular */
+  /* Titular: dos frases completas. Medido con la fuente real y la columna ya
+     ensanchada, cabe en dos líneas hasta 59.5 px a 1440, 55.8 a 1290 y 51.2 a
+     1141. La escala se ajusta a eso: 58 px en escritorio y 51 en la banda
+     estrecha, sin un solo parche. */
+  --t-n1:     clamp(2rem, 1.52rem + 2.34vw, 3.625rem);      /*  32 →  58  titular */
   --t-n2:     clamp(1.875rem, 1.4rem + 2.3vw, 3.25rem);     /*  30 →  52  sección */
   --t-n3:     clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);      /*  28 →  44  bloque */
   --t-n4:     clamp(1.5rem, 1.25rem + 1vw, 2rem);           /*  24 →  32  dentro del bloque */
