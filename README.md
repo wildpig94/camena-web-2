@@ -434,6 +434,22 @@ sobre carbón: `-tx` para texto sobre claro, `-lt` para texto sobre oscuro, y el
 tono base pasa 3:1 **en los dos fondos**, así que sirve para puntos, filetes y
 rellenos sin cambiar de token.
 
+### El acento en las zonas oscuras
+
+El sitio tiene tres zonas oscuras —el hero, la banda de sistemas y los
+prototipos— y ahí el acento **no** es el oro del resto de la página. Hasta ahora
+era magenta; hoy es **verde claro** (`--verde-lt`, 9.82:1 sobre tinta), porque el
+dueño pidió cambiar el texto rosa por verde.
+
+El cambio se hizo sobre el acento entero y no solo sobre la letra: si el texto va
+en verde y los filetes se quedan rosas, la zona se lee descuadrada. Así que en
+esos tres contextos cambian las cuatro variables del acento (`--acento`,
+`--acento-grafico`, `--acento-suave`, `--acento-linea`) y el magenta deja de
+usarse como acento de texto.
+
+El verde claro es **solo para superficie oscura**: sobre papel no se usa, porque
+no pasa contraste. Sobre claro el acento es el oro oscuro, como en el resto.
+
 ### Tipografía
 
 - **Titulares y texto:** Plus Jakarta Sans, auto-hospedada, variable (2 archivos,
@@ -500,14 +516,19 @@ Cualquier elemento con `data-rotador` y frases separadas por `|` en
 4. **El diseño no salta.** Antes de empezar se reserva el alto de la frase más
    larga. El bloque de negocios queda fijo en 60 px mientras el texto va y viene.
 
-**Lo que costó:** la segunda línea del titular pasó de 26 a 33 caracteres, así que
-el titular ya no cabe en dos líneas en la columna del hero: son **tres**. Se midió
-que para volver a dos habría que bajarlo a 50 px (de 58) en escritorio y a 20 px
-en tableta, o sea que la disyuntiva era un titular chico o tres líneas. Se
-eligieron tres líneas porque el alto reservado evita el salto, y el contenido
-visible del hero (titular, remate y botones) sigue cabiendo en la primera
-pantalla. Para cambiar las frases: `data-frases` en `index.html`, conservando el
-número de frases.
+**Dos líneas, y una corrección.** Cuando entró el rotador reporté que el titular
+había pasado a tres líneas y que para volver a dos habría que bajarlo a 50 px.
+Era falso: la medición contaba el alto reservado del rotador **y** el bloque
+oculto para lectores de pantalla, que también devuelve rectángulos. Medido bien
+—solo renglones visibles, sin el alto reservado— el titular siempre estuvo en dos
+líneas.
+
+Aun así la escala se bajó de 58 a 54 px en escritorio, a pedido del dueño: con
+la frase del rotador más larga, 58 px quedaba al filo. Ahora caben las tres
+frases en dos renglones en los trece anchos probados (de 320 a 1600) y con aire
+de sobra. **La lección para la próxima medición: aislar el texto que se mide.**
+Contar rectángulos de un contenedor que además tiene un `min-height` reservado y
+un elemento oculto da un número que no significa nada.
 
 ### Detalles de taller (craftsmanship digital)
 
