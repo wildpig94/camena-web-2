@@ -31,10 +31,16 @@ con un fundido, alternando varias frases.
   de después la solución (acento).
 - La primera frase **va escrita en el HTML**, no la pone el script.
 
-**Reglas que no se rompen:** sin JavaScript se ve la primera frase; con
-`prefers-reduced-motion` se queda quieta; lo animado va `aria-hidden` con una
-versión quieta en `.visualmente-oculto`; y el alto se reserva con la frase más
-larga para que nada de abajo se mueva.
+**Reglas que no se rompen:** sin JavaScript se ve la primera frase; lo animado va
+`aria-hidden` con una versión quieta en `.visualmente-oculto`; y el alto se
+reserva con la frase más larga para que nada de abajo se mueva.
+
+**Con `prefers-reduced-motion` el texto SIGUE alternando, pero sin movimiento:**
+la frase se sustituye de golpe cada siete segundos, sin tecleo, sin fundido y sin
+cursor. Antes se congelaba en la primera frase y eso se veía roto: Android trae
+esa preferencia activada por omisión en muchos equipos (la escala de animación en
+cero), así que medio mundo veía un texto fijo. Lo que hay que evitar es el
+movimiento, no el cambio de información. **No lo vuelvas a congelar.**
 
 ---
 

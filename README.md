@@ -506,9 +506,12 @@ Cualquier elemento con `data-rotador` y frases separadas por `|` en
 
 1. **Sin JavaScript se ve.** La primera frase está escrita en el HTML, no la pone
    el script. Comprobado cargando la página con el JavaScript desactivado.
-2. **Quien pide calma, la tiene.** Con `prefers-reduced-motion: reduce` el
-   rotador se queda quieto en la primera frase y el cursor queda invisible
-   (medido: duración de animación 0.01 ms, una repetición, opacidad 0).
+2. **Quien pide calma, la tiene — pero el texto sigue alternando.** Con
+   `prefers-reduced-motion: reduce` no hay tecleo, ni fundido, ni cursor: la
+   frase se sustituye de golpe cada siete segundos. Congelarla del todo fue un
+   error: Android trae esa preferencia activada por omisión en muchos equipos (la
+   escala de animación en cero), así que el texto se veía fijo en media Android.
+   Lo que se evita es el movimiento, no la información.
 3. **Los lectores de pantalla no oyen el tecleo.** Lo que se anima va
    `aria-hidden`; al lado hay un `.visualmente-oculto` con todo el contenido de
    una vez, y el titular del hero tiene una frase quieta que cubre las tres

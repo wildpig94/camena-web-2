@@ -113,7 +113,24 @@
     el.classList.add("rotador--activo");
     reservarAlto(el, frases);
 
-    if (CALMA && CALMA.matches) return;   /* se queda quieto en la primera */
+    /* ── Quien pide calma, no quien pide que no pase nada ──────────────
+       Antes, con prefers-reduced-motion el rotador se quedaba congelado en la
+       primera frase. El problema: Android trae esa preferencia activada por
+       omisión en muchos equipos (la escala de animación en cero), así que el
+       texto se veía roto —fijo— en lugar de tranquilo. Lo que hay que evitar es
+       el MOVIMIENTO, no el cambio de información: aquí la frase se sustituye de
+       golpe, sin tecleo ni fundido y cada siete segundos, y el cursor no
+       parpadea. Sin desplazamiento, sin transición, sin parpadeo: calma. */
+    if (CALMA && CALMA.matches) {
+      var quieto = Math.max(0, frases.indexOf(inicial));
+      var pasarQuieto = function () {
+        quieto = (quieto + 1) % frases.length;
+        pintarPartes(salida, frases[quieto]);
+      };
+      pintarPartes(salida, frases[quieto]);
+      setInterval(pasarQuieto, 7000);
+      return;
+    }
 
     /* ── Modo fundido ── */
     if (el.getAttribute('data-modo') === 'fundido') {
