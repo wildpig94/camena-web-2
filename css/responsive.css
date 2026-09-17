@@ -585,3 +585,11 @@ html:not(.js) .caso { animation: none; }
      líneas se queda en un fundido. Es el precio de que el titular quepa. */
   .js .hero__linea { transform: none; }
 }
+
+/* ═══ ≤ 360 px · el bloque de negocios baja un escalón ═══
+   A 24 px en una pantalla de 320, la frase más larga se va a siete renglones y
+   el bloque se come media pantalla. Baja al escalón de pieza (20 px) y vuelve a
+   cinco. Medido: 7 renglones y 222 px antes, 5 renglones y ~140 px después. */
+@media (max-width: 360px) {
+  .giros__rotador { font-size: var(--t-n5); }
+}

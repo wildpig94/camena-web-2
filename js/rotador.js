@@ -33,9 +33,20 @@
   /* Ritmo: una frase de 70 letras tarda unos tres segundos en escribirse, se
      queda dos y medio y se borra rápido. Si se escribe más despacio se siente
      lento; si se borra despacio, se siente roto. */
-  var MS_LETRA = 42;
-  var MS_ESCRITA = 2400;
-  var MS_BORRADO = 22;
+  var MS_LETRA = 32;
+  var MS_ESCRITA = 2200;
+  var MS_BORRADO = 16;
+
+  /* Modo fundido, para frases largas: escribir 130 letras una por una se siente
+     eterno por más rápido que se escriba. Aquí la frase entera aparece y
+     desaparece de golpe, con un fundido corto. */
+  var MS_FUNDIDO_SALE = 180;
+  var MS_FUNDIDO_ENTRA = 260;
+  var MS_QUIETA = 2800;
+
+  /* El separador «//» parte la frase en dos: lo de antes es el problema y lo de
+     después la solución. Se pintan de distinto color. */
+  var SEPARADOR = '//';
   var pausado = false;
 
   function frasesDe(el) {
@@ -43,6 +54,20 @@
       .split("|")
       .map(function (f) { return f.trim(); })
       .filter(Boolean);
+  }
+
+  function pintarPartes(destino, frase) {
+    var trozos = frase.split(SEPARADOR);
+    destino.textContent = '';
+    if (trozos.length < 2) { destino.textContent = frase.trim(); return; }
+    var pregunta = document.createElement('span');
+    pregunta.className = 'rotador__pregunta';
+    pregunta.textContent = trozos[0].trim() + ' ';
+    var respuesta = document.createElement('span');
+    respuesta.className = 'rotador__respuesta';
+    respuesta.textContent = trozos.slice(1).join(SEPARADOR).trim();
+    destino.appendChild(pregunta);
+    destino.appendChild(respuesta);
   }
 
   function crearCursor() {
@@ -54,7 +79,9 @@
 
   /* Reserva el alto de la frase más larga para que nada de abajo se mueva. */
   function reservarAlto(el, frases) {
-    var masLarga = frases.reduce(function (a, b) { return b.length > a.length ? b : a; }, "");
+    /* Se mide el texto sin el separador: «//» no se ve, pero suma caracteres. */
+    var limpias = frases.map(function (f) { return f.split(SEPARADOR).join(' ').replace(/\s+/g, ' '); });
+    var masLarga = limpias.reduce(function (a, b) { return b.length > a.length ? b : a; }, "");
     var copia = window.getComputedStyle(el);
     var medidor = document.createElement("span");
     medidor.setAttribute("aria-hidden", "true");
@@ -85,6 +112,29 @@
     reservarAlto(el, frases);
 
     if (CALMA && CALMA.matches) return;   /* se queda quieto en la primera */
+
+    /* ── Modo fundido ── */
+    if (el.getAttribute('data-modo') === 'fundido') {
+      var i = Math.max(0, frases.indexOf(inicial));
+      el.classList.add('rotador--fundido');
+      var cambiar = function () {
+        if (pausado) return;
+        el.classList.add('rotador--saliendo');
+        setTimeout(function () {
+          if (pausado) return;
+          i = (i + 1) % frases.length;
+          pintarPartes(salida, frases[i]);
+          reservarAlto(el, frases);
+          el.classList.remove('rotador--saliendo');
+          el.classList.add('rotador--entrando');
+          setTimeout(function () { el.classList.remove('rotador--entrando'); }, MS_FUNDIDO_ENTRA);
+          setTimeout(cambiar, MS_QUIETA);
+        }, MS_FUNDIDO_SALE);
+      };
+      pintarPartes(salida, frases[i]);   /* desde el arranque, en dos colores */
+      setTimeout(cambiar, MS_QUIETA);
+      return;
+    }
 
     var indice = Math.max(0, frases.indexOf(inicial));
     var posicion = inicial.length;

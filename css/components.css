@@ -2439,12 +2439,41 @@ svg.ic path[d^="M12 2a10"] {
   text-align: center;
 }
 .giros__rotador {
-  max-width: 46rem;
   margin: var(--e-5) auto 0;
-  font-size: var(--t-guia);
-  line-height: 1.5;
   color: var(--texto);
-  /* La medida más larga es de 130 caracteres: con este ancho caben en tres o
-     cuatro renglones y el bloque no se estira de más al escribir. */
   text-wrap: pretty;
+}
+
+/* ── El bloque de negocios: frase grande, en dos colores y con fundido ──
+   Eran frases de 130 letras escritas una por una: se sentía eterno, por más
+   rápido que se escribiera. Ahora la frase entera entra y sale con un fundido
+   corto, y va partida en dos: la pregunta que describe el problema, en gris, y
+   lo que hace falta para resolverlo, en el acento de la zona. La letra sube un
+   escalón: de la entrada (20 px) al escalón de bloque (32 px en escritorio,
+   24 en teléfono). */
+.giros__rotador {
+  max-width: 52rem;
+  font-size: var(--t-n4);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+}
+.giros__rotador .rotador__pregunta {
+  color: var(--texto-2);
+  font-weight: var(--peso-medio);
+}
+.giros__rotador .rotador__respuesta {
+  color: var(--acento);
+  font-weight: var(--peso-fuerte);
+}
+
+/* El fundido: corto y sin desplazamiento. Nada de la frase saliendo por un lado
+   y entrando por el otro: eso se siente barato y marea. */
+.rotador--fundido .rotador__texto {
+  transition: opacity 180ms var(--curva), filter 180ms var(--curva);
+}
+.rotador--saliendo .rotador__texto { opacity: 0; }
+.rotador--entrando .rotador__texto { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rotador--fundido .rotador__texto { transition: none; }
 }
