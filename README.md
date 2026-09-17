@@ -18,6 +18,8 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 | `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres prototipos, armador de paquete, preguntas y contacto |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
+| `aviso-de-privacidad.html` · `terminos.html` | Lo legal |
+| `404.html` | La página de dirección equivocada. Va **autocontenida** (sin `css/` ni `js/` del sitio) porque GitHub Pages la sirve en cualquier ruta rota, y ahí los enlaces relativos se resolverían contra esa carpeta. Sus enlaces y fuentes usan ruta absoluta, que es correcta ya con dominio propio |
 
 **Los productos terminados no viven aquí.** `Control de Autos` y el expediente del
 taller están en `~/productos-camena/`, fuera del repositorio, y el sitio solo los
@@ -325,6 +327,7 @@ flujo de despliegue no copia esa carpeta):
 | `docs/revisar.sh` | **El lápiz.** Copia el sitio a una carpeta local y le inyecta el modo de revisión: se **dibuja encima de la página** con el ratón (encerrar una palabra, subrayar, una flecha) y al soltar se abre sola la ventana para escribir la instrucción. Con «Texto» se escribe el texto nuevo y se ve aplicado al instante. | `bash docs/revisar.sh` → `…/docs/revision/sitio/index.html` |
 | `docs/aplicar.mjs` | **El aplicador.** Toma el JSON del marcador y lleva los cambios de texto a los HTML reales, con simulación previa y sin tocar nada si el texto original no aparece exactamente una vez. Las notas y los dibujos quedan en `Revision-pendientes.md`. | `node docs/aplicar.mjs Revision-CAMENA.json [--escribir]` |
 | `docs/capturar-revision.mjs` | **El visor.** Abre la copia con una revisión cargada y saca una captura por página con los dibujos y las notas encima: sirve para revisar el trabajo sin abrir el navegador. | `node docs/capturar-revision.mjs Revision-CAMENA.json` |
+| `docs/cambiar-dominio.sh` | **El de la mudanza.** Pasa el sitio de `github.io` al dominio propio: cambia las 22 apariciones de la dirección vieja repartidas en 7 archivos (canonical, `og:url`, `twitter:image`, datos estructurados, sitemap, robots), crea el `CNAME` y comprueba que no quede ni una. Sin `--aplicar` solo muestra qué haría. | `bash docs/cambiar-dominio.sh camena.mx [--aplicar]` |
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
 | `docs/revisar-medios.mjs` | **El que ve lo deforme.** Recorre todas las páginas y compara la proporción pintada de cada imagen y video contra la del archivo; también delata cajas con alto fijo cuyo contenido no cabe. Nació del bug de los videos aplastados. | `node docs/revisar-medios.mjs` |
@@ -683,9 +686,16 @@ cliente que lo contrata.
 **⚠️ Los precios viven en el HTML, nunca en JavaScript.** Aparecen dos veces y
 hay que mover los dos sitios a la vez:
 
-1. La lista visible de cada etapa:
+1. La tabla visible de cada etapa (desde el commit de precios en tablas, los
+   renglones son filas de tabla, no elementos de lista; el nombre lleva dentro un
+   botón que abre el detalle):
    ```html
-   <li><span class="servicios__que">Programa para cotizar y cobrar</span><span class="servicios__cuanto">desde $8,000</span></li>
+   <tr class="tarifa__fila">
+     <th scope="row" class="tarifa__que">
+       <button class="tarifa__boton" type="button" data-globo="…" aria-expanded="false">…</button>
+     </th>
+     <td class="tarifa__precio">desde $9,600</td>
+   </tr>
    ```
 2. La casilla equivalente del armador de paquete, que además suma el total:
    ```html
@@ -697,9 +707,11 @@ precios de partida, no cerrados: el valor real se confirma por escrito.
 
 **Coherencia obligatoria de las cifras.** Hay dos precios de entrada y aparecen
 en cinco sitios: hero (línea de precios y datos), índice lateral, etapas, armador y
-la primera respuesta del FAQ, además de los datos estructurados. Hoy son **$1,500
-el diseño y $8,000 los sistemas**. Estuvieron desincronizados —el FAQ decía
-$3,500— y eso rompe la confianza justo en la pregunta que más se hace.
+la primera respuesta del FAQ, además de los datos estructurados. Hoy son **$1,800
+el diseño y $9,600 los sistemas**. Estuvieron desincronizados —el FAQ decía
+$3,500— y eso rompe la confianza justo en la pregunta que más se hace. Comprobado
+el 16 de septiembre: cero apariciones de las cifras viejas en las tres páginas
+públicas, y las 28 filas de las cinco tablas dicen lo mismo.
 
 ### Sobre el formulario
 
@@ -954,3 +966,36 @@ El historial se reescribió una vez para dejar de firmarlo con un nombre
 personal. Si algún día se vuelve a clonar el repo, **hay que volver a poner esa
 config local** antes de hacer commits, o los nuevos saldrán con el nombre del
 sistema. Se comprueba con `git log -1 --format='%an <%ae>'`.
+
+---
+
+## El dominio propio
+
+El sitio vive hoy en `https://wildpig94.github.io/camena-web-2/`. La mudanza a un
+dominio propio **no se hace a mano**: la dirección vieja aparece 22 veces en 7
+archivos —canonical, `og:url`, `twitter:image`, datos estructurados, sitemap y
+robots— y cambiarla a medias deja al buscador y a las previsualizaciones de
+WhatsApp apuntando al sitio viejo.
+
+```bash
+bash docs/cambiar-dominio.sh camena.mx              # muestra qué cambiaría
+bash docs/cambiar-dominio.sh camena.mx --aplicar    # lo hace y crea el CNAME
+```
+
+Después: DNS en el registrador (cuatro registros `A` a `185.199.108-111.153` y un
+`CNAME` para `www` hacia `wildpig94.github.io`), el dominio en Settings → Pages, y
+«Enforce HTTPS». Si el DNS lo lleva Cloudflare, los registros van en **DNS only**
+(nube gris): el proxy naranja estorba al certificado de GitHub Pages.
+
+**Dos candados en el flujo de publicación**, porque los dos errores caros ya
+pasaron una vez:
+
+1. **Lista blanca de páginas.** Si aparece una página que no sea del sitio en una
+   carpeta que se copia, la publicación **falla** en vez de regalarla en silencio.
+   (Nació de que el sistema del taller se publicaba por una excepción en la lista.)
+2. **Mudanza completa.** Con `CNAME` presente, si queda una sola aparición de
+   `wildpig94.github.io` en lo que se publica, la publicación **falla** y dice el
+   comando para arreglarlo.
+
+Se comprueban con la simulación local antes de subir: los pasos del flujo corren
+igual en la terminal (`docs/auditar.sh`, y el candado se replica a mano).

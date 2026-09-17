@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esta página no existe — CAMENA</title>
+<!-- Página 404. GitHub Pages la sirve en cualquier dirección que no exista, así
+     que va AUTOCONTENIDA: nada de css/ ni js/ del sitio, porque una ruta rota
+     como /algo/mal resuelve los enlaces relativos contra /algo/ y se vería sin
+     estilo. Las fuentes y los enlaces van con ruta absoluta, que es correcta una
+     vez que el sitio vive en su propio dominio. -->
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="/assets/favicon.ico">
+<style>
+  @font-face{font-family:"Plus Jakarta Sans";src:url("/assets/fonts/jakarta-normal-latin.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap}
+  @font-face{font-family:"JetBrains Mono";src:url("/assets/fonts/jetbrains-mono-latin.woff2") format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
+
+  :root{
+    --ink:#111111; --ink-2:#181818; --ink-3:#2B2B2B;
+    --paper:#F7F6F3;
+    --texto-claro:#F4F3F0; --texto-claro-2:#A8A8A2;
+    --oro:#A8821F; --oro-lt:#E8C766;
+    --magenta-lt:#F472B6;
+    --fuente: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --t-guia: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    --t-menudo: clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
+    --t-micro: clamp(0.6875rem, 0.66rem + 0.14vw, 0.75rem);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--ink); color:var(--texto-claro); font-family:var(--fuente);
+    min-height:100vh; display:grid; grid-template-rows:auto 1fr auto;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .marca{display:flex; align-items:center; gap:.7rem; padding:clamp(1.25rem,4vw,2rem) clamp(1.25rem,5vw,3rem); text-decoration:none; color:var(--texto-claro)}
+  .marca svg{width:30px;height:30px;flex:none}
+  .marca span{font-weight:700; letter-spacing:.22em; font-size:.9rem}
+  main{
+    display:grid; align-content:center; gap:1.5rem;
+    padding:clamp(1.5rem,6vw,4rem) clamp(1.25rem,5vw,3rem);
+    max-width:46rem;
+  }
+  .cifra{
+    font-family:var(--mono); font-size:clamp(3.5rem,14vw,7rem); font-weight:700;
+    line-height:.85; letter-spacing:-.04em; margin:0;
+    background:linear-gradient(135deg,var(--oro-lt),var(--oro));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .etiqueta{
+    font-family:var(--mono); font-size:var(--t-micro); letter-spacing:.16em;
+    text-transform:uppercase; color:var(--oro-lt); margin:0;
+  }
+  h1{font-size:clamp(1.6rem,1.1rem+2.4vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0}
+  p{margin:0; color:var(--texto-claro-2); font-size:var(--t-guia); max-width:52ch}
+  .enlaces{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.5rem}
+  .boton{
+    display:inline-flex; align-items:center; min-height:48px; padding:0 1.15rem;
+    border:1px solid var(--ink-3); border-radius:999px; text-decoration:none;
+    color:var(--texto-claro); font-size:var(--t-menudo); font-weight:600;
+  }
+  .boton:hover{border-color:var(--oro); color:var(--oro-lt)}
+  .boton--solido{background:var(--oro-lt); border-color:var(--oro-lt); color:#1A1503}
+  .boton--solido:hover{background:#F1D588; color:#1A1503}
+  footer{
+    padding:clamp(1.25rem,4vw,2rem) clamp(1.25rem,5vw,3rem);
+    border-top:1px solid var(--ink-3);
+    font-size:var(--t-menudo); color:var(--texto-claro-2);
+  }
+  footer a{color:var(--texto-claro-2); text-decoration:none; border-bottom:1px solid var(--ink-3)}
+  footer a:hover{color:var(--oro-lt)}
+</style>
+</head>
+<body>
+
+<a class="marca" href="/">
+  <svg viewBox="0 0 40 40" role="img" aria-label="CAMENA">
+    <defs>
+      <linearGradient id="cmn" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E5BC55"></stop>
+        <stop offset="1" stop-color="#C9962B"></stop>
+      </linearGradient>
+    </defs>
+    <g fill="none" stroke="url(#cmn)" stroke-width="2.7" stroke-linecap="round">
+      <path d="M32.21 15.55A13 13 0 1 0 32.24 24.45"></path>
+    </g>
+    <circle cx="20" cy="20" r="3.5" fill="url(#cmn)"></circle>
+  </svg>
+  <span>CAMENA</span>
+</a>
+
+<main>
+  <p class="etiqueta">Error 404</p>
+  <p class="cifra" aria-hidden="true">404</p>
+  <h1>Esta página no existe.</h1>
+  <p>
+    Puede que la dirección esté mal escrita o que la página se haya movido.
+    No es un error tuyo: el enlace que seguiste ya no lleva a ningún lado.
+    Esto sí está en pie:
+  </p>
+  <nav class="enlaces" aria-label="Páginas del sitio">
+    <a class="boton boton--solido" href="/">Ir al inicio</a>
+    <a class="boton" href="/servicios.html">Ver precios y servicios</a>
+    <a class="boton" href="/como-trabajamos.html">Cómo trabajamos</a>
+  </nav>
+  <nav class="enlaces" aria-label="Contacto">
+    <a class="boton" href="https://wa.me/524435794642?text=Hola%20CAMENA%2C%20llegu%C3%A9%20a%20una%20p%C3%A1gina%20que%20no%20existe%20y%20quiero%20preguntarles%20algo.">Escribir por WhatsApp</a>
+  </nav>
+</main>
+
+<footer>
+  CAMENA · Estudio de diseño y sistemas, Apatzingán, Michoacán.
+  ¿Buscabas algo y no lo encontraste? <a href="/">Empieza por el inicio</a> o escríbenos por WhatsApp.
+</footer>
+
+</body>
+</html>

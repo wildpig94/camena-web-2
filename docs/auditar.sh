@@ -173,7 +173,10 @@ function esperarReal(ms) {
      pasa desapercibida. */
   var esperados = /index\.html$|\/$/.test(location.pathname) ? {
     ".etapa": 4,
-    ".servicios li": 26,
+    /* Los precios dejaron de ser listas y son tablas (commit de precios 20%
+       arriba). El selector viejo —.servicios li— se quedó aquí y reportaba un
+       faltante que no existía: 0 de 26. Hoy son 28 renglones en cinco tablas. */
+    ".tarifa tbody tr": 28,
     ".opcion input": 16,
     ".flujo li": 6,
     ".flujo__enlace": 1,

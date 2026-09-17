@@ -119,7 +119,7 @@ jobs:
 
       - name: Verificar que existan las páginas enlazadas
         run: |
-          for pagina in index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html; do
+          for pagina in index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html 404.html; do
             if [ -f "$pagina" ]; then echo "  ✓ $pagina"; else echo "  ✗ falta $pagina"; exit 1; fi
           done
 
@@ -143,7 +143,7 @@ jobs:
           # web. Se publica únicamente lo que el navegador necesita.
           mkdir -p publicar
           cp -r assets css js publicar/
-          cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html publicar/
+          cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html 404.html publicar/
           cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
 
           # El navegador se guarda el CSS y el JS. Sellar la huella del contenido
@@ -159,7 +159,7 @@ jobs:
           # público, el código tampoco vive aquí: está en ~/productos-camena/.
           # Este paso frena la publicación si algún día alguien deja caer una
           # página de producto en una carpeta que sí se copia.
-          permitidas="index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html"
+          permitidas="index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html 404.html"
           sobrantes=""
           for f in $(find publicar -name "*.html" | sed 's|^publicar/||'); do
             case " $permitidas " in
@@ -175,6 +175,25 @@ jobs:
             exit 1
           fi
           echo "✓ Se publican solo las páginas del sitio: ninguna de producto."
+
+          # ── Candado: si ya hay dominio propio, no puede quedar rastro del viejo ──
+          # Cambiar de dirección a medias es peor que no cambiarla: el buscador y
+          # las previsualizaciones al compartir por WhatsApp seguirían apuntando a
+          # github.io. Cuando exista el archivo CNAME, la publicación se frena si
+          # queda una sola aparición de la dirección anterior.
+          if [ -f CNAME ]; then
+            dominio="$(tr -d '[:space:]' < CNAME)"
+            viejas=$(grep -rl "wildpig94.github.io" publicar 2>/dev/null | wc -l)
+            if [ "$viejas" -gt 0 ]; then
+              echo "✗ Hay $viejas archivo(s) que todavía apuntan a wildpig94.github.io:"
+              grep -rl "wildpig94.github.io" publicar 2>/dev/null | sed 's|^|    |'
+              echo "  Corrige con: bash docs/cambiar-dominio.sh $dominio --aplicar"
+              exit 1
+            fi
+            echo "✓ CNAME: $dominio · ninguna referencia a la dirección anterior."
+          else
+            echo "· Sin CNAME todavía: el sitio sigue en github.io (nada que comprobar)."
+          fi
 
           echo "── Contenido que se publica ──"
           find publicar -type f | sort | sed 's|^|  |'
