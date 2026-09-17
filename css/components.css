@@ -2612,3 +2612,50 @@ svg.ic path[d^="M12 2a10"] {
   .flotante--arriba { padding: 0.8125rem; }
   .flotante--arriba .flotante__texto { display: none; }
 }
+
+/* ═══════════════ EL CASO DE CADA PROYECTO, PLEGADO ═══════════════
+   La ficha —el problema, lo que hicimos y por qué— ocupaba tanto como las
+   capturas y competía con ellas. Ahora va plegada: de entrada se ven las
+   capturas y el nombre del proyecto, y quien quiera el razonamiento lo abre.
+   Se hace con <details>, así que funciona sin JavaScript, se abre con teclado y
+   los lectores de pantalla lo anuncian como lo que es. */
+.lab-pieza__caso { margin-top: var(--e-4); }
+
+.lab-pieza__abrir {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-2) 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: var(--t-menudo);
+  color: var(--acento);
+  letter-spacing: 0.02em;
+}
+.lab-pieza__abrir::-webkit-details-marker { display: none; }
+.lab-pieza__abrir:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* El signo es el mismo recurso que en las tablas de precio: dos barras de 1.5 px
+   que forman un más y se quedan en un menos al abrir. Dibujado, no escrito: un
+   «+» de verdad lo leerían en voz alta los lectores de pantalla. */
+.lab-pieza__signo {
+  width: 12px; height: 12px;
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-size: 12px 1.5px, 1.5px 12px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: background-size var(--dur-rapida) var(--curva);
+}
+.lab-pieza__caso[open] .lab-pieza__signo { background-size: 12px 1.5px, 0 0; }
+
+/* Al abrir, la ficha entra con el mismo aparecer suave del resto del sitio. */
+.lab-pieza__caso[open] .lab-pieza__ficha,
+.lab-pieza__caso[open] .lab-pieza__pie { animation: aparecer var(--dur-lenta) var(--curva-salida) both; }
+.lab-pieza__caso .lab-pieza__ficha { margin-top: var(--e-3); }
+@media (prefers-reduced-motion: reduce) {
+  .lab-pieza__caso[open] .lab-pieza__ficha,
+  .lab-pieza__caso[open] .lab-pieza__pie { animation: none; }
+}
