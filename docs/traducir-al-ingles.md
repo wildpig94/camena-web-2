@@ -1,5 +1,11 @@
 # Traducir el sitio al inglés (instructivo para Claude Code)
 
+> **EN PAUSA (17 de septiembre).** El sitio todavía no está en su versión final:
+> el dueño lo siente al 85 %. Traducir ahora significa traducir dos veces, porque
+> cada cambio de texto en español habría que repetirlo en inglés. Este documento
+> es el **plan listo para ejecutar** cuando la página esté cerrada y lista para el
+> dominio propio. Hasta entonces, no se empieza.
+
 Documento de traspaso **actualizado**. El dueño hará este trabajo con Claude
 Code; aquí está todo lo que hace falta para que salga bien y **sin romper el
 formato**.
