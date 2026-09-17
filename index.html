@@ -44,7 +44,7 @@
 <link rel="stylesheet" href="css/variables.css?v=51830dcf">
 <link rel="stylesheet" href="css/base.css?v=5cffbd2b">
 <link rel="stylesheet" href="css/layout.css?v=55157b90">
-<link rel="stylesheet" href="css/components.css?v=c10e5eb6">
+<link rel="stylesheet" href="css/components.css?v=e9e640d2">
 <link rel="stylesheet" href="css/animaciones.css?v=4b3dd91a">
 <link rel="stylesheet" href="css/responsive.css?v=150ce035">
 
@@ -116,7 +116,7 @@
       "mainEntity": [
         { "@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": { "@type": "Answer", "text": "El diseño arranca en $1,800 MXN y los sistemas en $9,600 MXN. Sube según el tamaño del proyecto y se confirma por escrito antes de empezar. Nada se cobra sin la aprobación del cliente." } },
         { "@type": "Question", "name": "¿Cómo se paga?", "acceptedAnswer": { "@type": "Answer", "text": "Con anticipo y saldo contra entrega. En proyectos largos, el trabajo se divide por etapas y cada una se libera conforme se cubre. Los servicios contratados a nombre del cliente (dominio, hospedaje, licencias, publicidad) los paga directo, sin recargos." } },
-        { "@type": "Question", "name": "¿Cuánto tardan en entregarlo?", "acceptedAnswer": { "@type": "Answer", "text": "El trabajo se cuenta en días, no en meses. Una pieza —un logo, una página de una pantalla, un video— sale en una semana: tres días de trabajo, uno de revisión contigo y dos de ajustes finales. Una página completa con su marca toma dos semanas. Un sistema a la medida se acuerda por entregas, porque depende de lo que tenga que hacer; la primera sale en la semana en que tengamos todo lo que necesitamos de ti. Lo único que alarga un trabajo es que falten datos o fotos, así que lo primero que hacemos es la lista de lo que hace falta." } },
+        { "@type": "Question", "name": "¿Cuánto tardan en entregarlo?", "acceptedAnswer": { "@type": "Answer", "text": "El trabajo se cuenta en días, no en meses. Una pieza —un logo, una página de una pantalla, un video— sale en una semana: tres días de trabajo, uno de revisión contigo y dos de ajustes finales. Una página completa con su marca toma dos semanas. Un sistema a la medida se acuerda por entregas, porque depende de lo que tenga que hacer; la primera entrega sale en una o dos semanas, contando desde que tenemos todo lo que necesitamos de ti. Lo único que alarga un trabajo es que falten datos o fotos, así que lo primero que hacemos es la lista de lo que hace falta." } },
         { "@type": "Question", "name": "¿Puedo contratar solo una cosa, o tengo que llevarme todo?", "acceptedAnswer": { "@type": "Answer", "text": "Se puede contratar solo el logo, solo la página o solo el video. Nada obliga al paquete completo." } },
         { "@type": "Question", "name": "¿Y después de la entrega, qué pasa?", "acceptedAnswer": { "@type": "Answer", "text": "Si algo no funciona como se acordó, se corrige sin costo dentro del plazo de la propuesta. El código, los archivos, el dominio y los accesos quedan a nombre del cliente." } },
         { "@type": "Question", "name": "¿Cómo voy a saber si el proyecto sirvió?", "acceptedAnswer": { "@type": "Answer", "text": "No se promete un número de ventas ni el primer lugar en buscadores: eso no depende del estudio, y quien lo garantiza vende humo. Se deja medible lo que sí depende del trabajo: visitas, de dónde llega la gente y cuántos mensajes entran." } },
@@ -632,7 +632,17 @@
                   <span class="tarifa__nombre">Cotizar, cobrar y saber quién te debe</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-cotizar-cobrar-y-saber-qui-n-te-debe" role="region" aria-label="Qué incluye: Cotizar, cobrar y saber quién te debe">Del presupuesto al pago: cada cotización, cada abono y quién sigue debiendo. <strong>Es tuyo: no se renta ni se paga por mes.</strong></span>
+                <div class="servicios__globo" id="g-cotizar-cobrar-y-saber-qui-n-te-debe" role="region" aria-label="Qué incluye: Cotizar, cobrar y saber quién te debe">
+                <p class="servicios__resumen">Del presupuesto al pago: cada cotización, cada abono y quién sigue debiendo.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Captura de cotizaciones con folio y fecha automáticos</li>
+                  <li>Registro de abonos parciales y saldo restante por cliente</li>
+                  <li>Lista de adeudos ordenada por antigüedad</li>
+                  <li>Funciona en celular o computadora, sin instalar nada</li>
+                </ul>
+                <p class="servicios__nota"><strong>Es tuyo: no se renta ni se paga por mes.</strong></p>
+              </div>
               </th>
               <td class="tarifa__precio">desde $9,600</td>
             </tr>
@@ -642,7 +652,16 @@
                   <span class="tarifa__nombre">Tus clientes y tus ventas en un solo lugar</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-tus-clientes-y-tus-ventas-en-un-solo-lug" role="region" aria-label="Qué incluye: Tus clientes y tus ventas en un solo lugar">El historial de cada cliente y lo que te compró, sin cuadernos ni hojas sueltas.</span>
+                <div class="servicios__globo" id="g-tus-clientes-y-tus-ventas-en-un-solo-lug" role="region" aria-label="Qué incluye: Tus clientes y tus ventas en un solo lugar">
+                <p class="servicios__resumen">El historial de cada cliente y lo que te compró, sin cuadernos ni hojas sueltas.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Ficha por cliente con historial completo de compras</li>
+                  <li>Búsqueda rápida por nombre o teléfono</li>
+                  <li>Registro de quién compra más y con qué frecuencia</li>
+                  <li>Respaldo automático de tu información</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $9,600</td>
             </tr>
@@ -652,7 +671,16 @@
                   <span class="tarifa__nombre">Inventario con lo que te queda al día</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-inventario-con-lo-que-te-queda-al-d-a" role="region" aria-label="Qué incluye: Inventario con lo que te queda al día">Entradas y salidas al momento: sabes qué hay y qué hace falta reponer.</span>
+                <div class="servicios__globo" id="g-inventario-con-lo-que-te-queda-al-d-a" role="region" aria-label="Qué incluye: Inventario con lo que te queda al día">
+                <p class="servicios__resumen">Entradas y salidas al momento: sabes qué hay y qué hace falta reponer.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Registro de entradas y salidas por producto</li>
+                  <li>Aviso automático cuando algo está por acabarse</li>
+                  <li>Existencia real, sin conteo manual</li>
+                  <li>Historial de movimientos por fecha</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $8,400</td>
             </tr>
@@ -662,7 +690,16 @@
                   <span class="tarifa__nombre">Citas, reservaciones o pedidos en línea</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-citas-reservaciones-o-pedidos-en-l-nea" role="region" aria-label="Qué incluye: Citas, reservaciones o pedidos en línea">Tu agenda o tus pedidos, con avisos para que no se te pierda ninguno.</span>
+                <div class="servicios__globo" id="g-citas-reservaciones-o-pedidos-en-l-nea" role="region" aria-label="Qué incluye: Citas, reservaciones o pedidos en línea">
+                <p class="servicios__resumen">Tu agenda o tus pedidos, con avisos para que no se te pierda ninguno.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Calendario o lista de pedidos con hora y cliente</li>
+                  <li>Recordatorio automático antes de la cita o entrega</li>
+                  <li>Vista del día, la semana o el mes</li>
+                  <li>Evita que dos citas caigan en el mismo horario</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $7,200</td>
             </tr>
@@ -672,7 +709,16 @@
                   <span class="tarifa__nombre">Tablero para ver cómo va el mes</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-tablero-para-ver-c-mo-va-el-mes" role="region" aria-label="Qué incluye: Tablero para ver cómo va el mes">Una pantalla con lo que vendiste, lo que te deben y lo que está por vencerse.</span>
+                <div class="servicios__globo" id="g-tablero-para-ver-c-mo-va-el-mes" role="region" aria-label="Qué incluye: Tablero para ver cómo va el mes">
+                <p class="servicios__resumen">Una pantalla con lo que vendiste, lo que te deben y lo que está por vencerse.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Resumen de ventas del día, semana y mes</li>
+                  <li>Total de lo cobrado contra lo pendiente por cobrar</li>
+                  <li>Gráfica simple de cómo va el negocio</li>
+                  <li>Se actualiza solo, sin capturar nada extra</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $4,800</td>
             </tr>
@@ -682,7 +728,16 @@
                   <span class="tarifa__nombre">Que las tareas repetidas se hagan solas</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-que-las-tareas-repetidas-se-hagan-solas" role="region" aria-label="Qué incluye: Que las tareas repetidas se hagan solas">Copiar datos, mandar el mismo mensaje, armar reportes: se hacen solos.</span>
+                <div class="servicios__globo" id="g-que-las-tareas-repetidas-se-hagan-solas" role="region" aria-label="Qué incluye: Que las tareas repetidas se hagan solas">
+                <p class="servicios__resumen">Copiar datos, mandar el mismo mensaje, armar reportes: se hacen solos.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Automatización de una tarea repetitiva que definas</li>
+                  <li>Por ejemplo: armar el reporte semanal, mandar un recordatorio o copiar datos entre hojas</li>
+                  <li>Se activa solo, sin que tú lo actives cada vez</li>
+                  <li>Ahorra el tiempo que hoy pierdes haciéndolo a mano</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $3,600</td>
             </tr>
@@ -692,7 +747,16 @@
                   <span class="tarifa__nombre">Respuestas automáticas y avisos por WhatsApp</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-respuestas-autom-ticas-y-avisos-por-what" role="region" aria-label="Qué incluye: Respuestas automáticas y avisos por WhatsApp">Contesta lo de siempre y avisa lo que urge, sin estar pegado al teléfono.</span>
+                <div class="servicios__globo" id="g-respuestas-autom-ticas-y-avisos-por-what" role="region" aria-label="Qué incluye: Respuestas automáticas y avisos por WhatsApp">
+                <p class="servicios__resumen">Contesta lo de siempre y avisa lo que urge, sin estar pegado al teléfono.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Respuesta automática a preguntas frecuentes</li>
+                  <li>Aviso inmediato cuando llega algo urgente</li>
+                  <li>Configurado en tu propio número de WhatsApp Business</li>
+                  <li>Tú decides qué se contesta solo y qué no</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $2,400</td>
             </tr>
@@ -702,7 +766,16 @@
                   <span class="tarifa__nombre">Sistema completo para toda la operación</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-sistema-completo-para-toda-la-operaci-n" role="region" aria-label="Qué incluye: Sistema completo para toda la operación">Todo lo anterior, hecho para tu forma de trabajar y entregado por etapas.</span>
+                <div class="servicios__globo" id="g-sistema-completo-para-toda-la-operaci-n" role="region" aria-label="Qué incluye: Sistema completo para toda la operación">
+                <p class="servicios__resumen">Todo lo anterior, hecho para tu forma de trabajar y entregado por etapas.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Las piezas de arriba que tu negocio realmente necesita, combinadas</li>
+                  <li>Un solo sistema, no varias aplicaciones sueltas</li>
+                  <li>Entrega por etapas: cada una se aprueba antes de seguir</li>
+                  <li>Capacitación para que tú y tu equipo lo usen sin depender de nosotros</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $18,000</td>
             </tr>
@@ -710,8 +783,9 @@
           </table>
 
             <p class="etapa__nota">
-              Nada aquí es genérico: se construye para tu forma de trabajar. Se entrega
-              por etapas y cada una se aprueba antes de seguir.
+              Nada aquí es genérico: se construye para tu forma de trabajar. La primera
+              entrega sale en una o dos semanas y cada etapa siguiente se aprueba antes
+              de seguir.
               <strong>El sistema queda a tu nombre: no se renta ni se paga por mes.</strong>
             </p>
 
@@ -1176,7 +1250,7 @@
               El trabajo se cuenta en días, no en meses.
               Una pieza —un logo, una página de una pantalla, un video— sale en una semana: tres días de trabajo, uno de revisión contigo y dos de ajustes finales.
               Una página completa con su marca toma dos semanas.
-              Un sistema a la medida se acuerda por entregas, porque depende de lo que tenga que hacer; la primera sale en la semana en que tengamos todo lo que necesitamos de ti.
+              Un sistema a la medida se acuerda por entregas, porque depende de lo que tenga que hacer; la primera entrega sale en una o dos semanas, contando desde que tenemos todo lo que necesitamos de ti.
               Lo único que alarga un trabajo es que falten datos o fotos, así que lo primero que hacemos es la lista de lo que hace falta.
             </p>
           </div>

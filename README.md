@@ -779,11 +779,37 @@ hay que mover los dos sitios a la vez:
    ```
 2. La casilla equivalente del armador de paquete, que además suma el total:
    ```html
-   <label class="opcion"><input type="checkbox" name="sistema" value="Programa para cotizar y cobrar" data-precio="8000">…</label>
+   <label class="opcion"><input type="checkbox" name="sistema" value="Cotizar y cobrar" data-precio="9600">…</label>
    ```
 
 Así se ven aunque el visitante no cargue el script y las indexa el buscador. Son
 precios de partida, no cerrados: el valor real se confirma por escrito.
+
+**La ficha del renglón.** Una cifra sola («desde $9,600») dice cuánto y no dice
+qué, y el dueño que compara precios se queda sin con qué comparar. Cada renglón
+de la banda de sistemas abre una ficha con tres partes:
+
+```html
+<div class="servicios__globo" id="g-…" role="region" aria-label="Qué incluye: …">
+  <p class="servicios__resumen">Del presupuesto al pago: …</p>   <!-- qué es -->
+  <p class="servicios__etiqueta">Incluye</p>                      <!-- rótulo -->
+  <ul class="servicios__incluye"><li>…</li>…</ul>                 <!-- qué trae -->
+  <p class="servicios__nota"><strong>Es tuyo: …</strong></p>      <!-- si toca -->
+</div>
+```
+
+Reglas de esta ficha, aprendidas a golpes:
+
+- **Cosas, no promesas.** Cuatro puntos concretos y técnicos. «Lista de adeudos
+  ordenada por antigüedad» se puede construir; «más ventas» no se puede firmar.
+- **El globo es un `div`, no un `span`.** Una lista dentro de un `span` no es
+  HTML válido. Se cambiaron los ocho al agregarles el «Incluye».
+- **Los últimos cinco renglones abren hacia arriba** (`nth-last-child(-n+5)`).
+  Hacia abajo, una ficha de cuatro puntos mide 250 px y tapaba la nota y los
+  botones del pie. Medido, no supuesto: antes del ajuste, cinco de las ocho
+  fichas pisaban el pie de la banda.
+- En móvil la ficha entra en el flujo (`position: static`) y empuja el
+  contenido: mide 461 px y el renglón crece a 534, sin desbordar nada.
 
 **Coherencia obligatoria de las cifras.** Hay dos precios de entrada y aparecen
 en cinco sitios: hero (línea de precios y datos), índice lateral, etapas, armador y
@@ -944,6 +970,18 @@ Estas 6 comprobaciones faltaban y por eso entraron fallos reales:
    `css/variables.css`, falla nombrando la diferencia («aquí #FF0000, en el
    sitio #D0614F») y rechaza cualquier par que use un color ausente de la
    paleta, en lugar de caerse. Comprobado metiendo un color falso a propósito.
+
+7. **Una columna de la rejilla vacía.** Ninguna comprobación mira si el espacio
+   se está usando: se mide lo que desborda, no lo que falta. En la banda de
+   sistemas, de 1226 px de ancho, la tabla de precios ocupaba 506 en la columna
+   izquierda y **720 px de la derecha quedaban en blanco**, porque el bloque
+   animado de negocios va a todo lo ancho y, al colocarse solo en la rejilla,
+   empujaba los precios a la fila siguiente. La regla que quería decir «el
+   problema a la izquierda, los entregables y el precio a la derecha» llevaba
+   quién sabe cuánto tiempo sin decirse. Lo vio el dueño mirando la página, no
+   un script. Se arregla con `grid-column` y `grid-row` explícitos: cuando una
+   rejilla tiene una pieza que ocupa todo el ancho, **las demás hay que
+   colocarlas a mano**.
 
 Y una cuarta, de método: **las animaciones de entrada falsean las mediciones.**
 Un elemento sin revelar lleva `translateY(22px)` y el detector de solapes lo ve

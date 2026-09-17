@@ -1905,6 +1905,14 @@ svg.ic path[d^="M12 2a10"] {
   .etapa--destacada .etapa__texto { font-size: var(--t-cuerpo); max-width: 46ch; }
   /* La lista arranca al ras del título, sin el aire de tarjeta suelta */
   .etapa--ancha .tarifa { margin-top: 0; }
+
+  /* La columna derecha, ocupada de verdad. El bloque animado de negocios va a
+     todo lo ancho y, al colocarse solo, empujaba los precios a la fila
+     siguiente: la tabla quedaba en la columna izquierda y los 720 px de la
+     derecha se quedaban vacíos en una banda de 1226. La rejilla quería decir
+     «el problema a la izquierda, los entregables y el precio a la derecha», y
+     no lo estaba diciendo. Ahora se le dice dónde va. */
+  .etapa--ancha .etapa__cuerpo { grid-column: 2; grid-row: 1; }
 }
 
 /* El globo dentro de la banda oscura: fondo de la misma familia del carbón */
@@ -2102,6 +2110,54 @@ svg.ic path[d^="M12 2a10"] {
   transition: opacity var(--dur-rapida) var(--curva), transform var(--dur-rapida) var(--curva);
 }
 .servicios__globo strong { color: var(--texto); }
+
+/* ── La ficha del renglón: qué es y qué incluye ──────────────────
+   La cifra de la derecha («desde $9,600») no se sostenía sola: decía cuánto y
+   no decía qué. Aquí va lo que se construye, en cosas concretas y no en
+   promesas. Es la respuesta a «¿y por eso cuánto?», en el mismo renglón. */
+.servicios__globo p { margin: 0; }
+.servicios__globo p + p { margin-top: var(--e-3); }
+.servicios__resumen { color: var(--texto); }
+.servicios__etiqueta {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--acento);
+}
+.servicios__incluye {
+  display: grid;
+  gap: var(--e-2);
+  margin: var(--e-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.servicios__incluye li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+.servicios__incluye li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 8px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--acento);
+}
+.servicios__nota { color: var(--texto-2); }
+
+/* Los últimos renglones abren la ficha hacia arriba. Hacia abajo, una ficha de
+   cuatro puntos mide 250 px y, medido, del quinto renglón en adelante tapaba la
+   nota y los botones del pie de la banda (del cuarto en adelante). Hacia arriba tapa
+   renglones de la
+   misma lista, que es lo que ya hacía un globo de una línea. */
+.etapa--destacada .tarifa__fila:nth-last-child(-n+5) .servicios__globo {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
 
 .tarifa__fila:hover .servicios__globo,
 .tarifa__fila:focus-within .servicios__globo,
