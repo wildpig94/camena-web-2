@@ -15,6 +15,8 @@ un token allá y no aquí, el verificador pasa en verde midiendo colores que el
 sitio ya no usa. Eso ya ocurrió una vez y dejó entrar dos fallos reales: el
 acento claro sobre hueso (1.63:1) y el borde de los botones de contorno.
 """
+import os
+import re
 import sys
 
 # ── Paleta vigente (debe espejar css/variables.css) ─────────────
@@ -39,6 +41,9 @@ C = {
     "oro-tx":        "#8A6A0F",
     "rojo":          "#B23A2E",   # línea fija del titular del hero
     "rojo-lt":       "#D0614F",
+    "magenta":       "#D6247A",   # acento del eje de sistemas
+    "magenta-lt":    "#F472B6",
+    "magenta-tx":    "#A81B5A",
     # Fondos con color y sus acentos
     "oro-fondo":       "#F5EFDF",
     "oro-fondo-suave": "#F4EEE0",
@@ -103,6 +108,32 @@ P = [
 ]
 
 
+def tokens_del_css():
+    """Lee los tokens de color de css/variables.css, para no medir colores muertos."""
+    raiz = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ruta = os.path.join(raiz, "css", "variables.css")
+    with open(ruta, encoding="utf-8") as f:
+        texto = f.read()
+    return {m.group(1): m.group(2).upper()
+            for m in re.finditer(r"--([a-z0-9-]+)\s*:\s*(#[0-9A-Fa-f]{3,8})", texto)}
+
+
+def revisar_paleta():
+    """La paleta de aquí contra la del sitio. Devuelve la lista de problemas."""
+    tokens = tokens_del_css()
+    problemas = []
+    for nombre, hexa in sorted(C.items()):
+        if nombre not in tokens:
+            problemas.append(f"«{nombre}» no existe como token en css/variables.css")
+        elif tokens[nombre] != hexa.upper():
+            problemas.append(f"«{nombre}»: aquí {hexa.upper()}, en el sitio {tokens[nombre]}")
+    for fg, bg, _, desc in P:
+        for nombre in (fg, bg):
+            if nombre not in C:
+                problemas.append(f"el par «{desc}» usa «{nombre}», que no está en la paleta")
+    return problemas
+
+
 def srgb(v):
     v /= 255
     return v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4
@@ -122,6 +153,14 @@ def ratio(a, b):
 
 def main():
     fallos = []
+    problemas = revisar_paleta()
+    if problemas:
+        print("✗ La paleta de este archivo ya no espeja css/variables.css:\n")
+        for p in problemas:
+            print(f"   · {p}")
+        print("\n  Un verificador desincronizado pasa en verde midiendo colores que el")
+        print("  sitio ya no usa. Arréglalo antes de creerle al resto del informe.\n")
+        return 1
     print(f"{'frente':15} {'fondo':9} {'ratio':>8} {'mín':>5}  ok   descripción")
     print("─" * 84)
     for fg, bg, minimo, desc in P:

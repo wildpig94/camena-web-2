@@ -462,6 +462,19 @@ usarse como acento de texto.
 El verde claro es **solo para superficie oscura**: sobre papel no se usa, porque
 no pasa contraste. Sobre claro el acento es el oro oscuro, como en el resto.
 
+### Jerarquía: nada se destaca sin motivo
+
+Las seis tarjetas del diagnóstico son seis problemas del **mismo valor**: ninguna
+va destacada. La primera iba en oscuro y eso sugería «empieza por aquí» sin que
+nada lo dijera — una jerarquía inventada por el diseño, no por el contenido. Las
+seis comparten peso: mismo borde, mismo tamaño de letra y el mismo tinte claro
+(seis tintes distintos, todos del mismo valor de luz, que dan variedad sin
+jerarquía). El acento aparece **al pasar el cursor**, que es donde sí comunica
+algo: «esta es la que estás a punto de abrir».
+
+La regla general: si algo se ve más importante que lo demás, tiene que haber una
+razón escrita en el contenido. Si no la hay, se iguala.
+
 ### Tipografía
 
 - **Titulares y texto:** Plus Jakarta Sans, auto-hospedada, variable (2 archivos,
@@ -923,8 +936,14 @@ Estas 6 comprobaciones faltaban y por eso entraron fallos reales:
    ningún informe. `docs/movil.mjs` ahora revisa bordes de controles sin fondo
    propio y exige 3:1.
 6. **Paleta desincronizada.** `docs/verificar-contraste.py` medía los colores
-   anteriores y pasaba en verde. Ahora el script compara sus valores con
-   `css/variables.css` y avisa si no coinciden.
+   anteriores y pasaba en verde. Y había algo peor, encontrado al revisar esto:
+   si un par nombraba un token que la lista de colores no tenía —el magenta se
+   quedó fuera cuando se agregó el rojo— el script **moría con un `KeyError` a
+   media tabla**. Un guardián que revienta no avisa de nada: deja de proteger y
+   nadie se entera. Ahora el script compara **token por token** contra
+   `css/variables.css`, falla nombrando la diferencia («aquí #FF0000, en el
+   sitio #D0614F») y rechaza cualquier par que use un color ausente de la
+   paleta, en lugar de caerse. Comprobado metiendo un color falso a propósito.
 
 Y una cuarta, de método: **las animaciones de entrada falsean las mediciones.**
 Un elemento sin revelar lleva `translateY(22px)` y el detector de solapes lo ve

@@ -2341,17 +2341,7 @@ svg.ic path[d^="M12 2a10"] {
   border-radius: var(--radio);
   transition: border-color var(--dur) var(--curva), transform var(--dur) var(--curva);
 }
-.caso-tarjeta:hover { border-color: var(--borde-fuerte); transform: translateY(-2px); }
-
-.caso-tarjeta--abierta {
-  background: var(--ink);
-  color: var(--texto-claro);
-  border-color: var(--ink);
-  --texto: var(--texto-claro);
-  --texto-2: var(--texto-claro-2);
-  --borde: var(--borde-oscuro);
-  --acento: var(--oro-lt);
-}
+.caso-tarjeta:hover { border-color: var(--acento); transform: translateY(-2px); }
 
 .caso-tarjeta__problema {
   font-size: var(--t-guia);
@@ -2483,17 +2473,14 @@ svg.ic path[d^="M12 2a10"] {
    se puede recorrer con la vista. Y al pasar el ratón, la tarjeta se agranda un
    poco —después de un segundo, no de golpe— para que el texto se lea cómodo
    sin salir de la página. */
-/* Sobre estos tintes el oro normal (#8A6A0F) se queda en 4.41:1 y no pasa:
-   medido. El contexto baja al oro fuerte, que es exactamente lo que el sitio ya
-   hace en la franja del hero sobre fondo oro. La tarjeta destacada no entra:
-   esa va en oscuro y su acento es otro. */
-.caso-tarjeta:not(.caso-tarjeta--abierta) { --acento: var(--oro-fuerte); }
+/* Las seis tarjetas son seis diagnósticos del mismo valor: ninguna va destacada.
+   Antes la primera iba en oscuro y eso sugería una jerarquía que no existe.
+   Sobre estos tintes el oro normal (#8A6A0F) se queda en 4.41:1 y no pasa:
+   medido. El contexto baja al oro fuerte, que es lo que el sitio ya hace en la
+   franja del hero sobre fondo oro. */
+.caso-tarjeta { --acento: var(--oro-fuerte); }
 
 .caso-tarjeta--t1 { background: var(--tinte-1); }
-/* La primera tarjeta es la destacada y va en oscuro a propósito: si se le pone
-   un tinte claro, su texto claro se queda sobre fondo claro y desaparece
-   (medido: 1.03:1). Conserva su tono oscuro, con un sesgo verde. */
-.caso-tarjeta--abierta { background: var(--tinte-0); }
 .caso-tarjeta--t2 { background: var(--tinte-2); }
 .caso-tarjeta--t3 { background: var(--tinte-3); }
 .caso-tarjeta--t4 { background: var(--tinte-4); }

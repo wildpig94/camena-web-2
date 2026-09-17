@@ -268,7 +268,8 @@
      como siete bloques iguales. Todos están por encima de L* 94: el texto de
      tinta encima da más de 15:1, así que el tono es ambiente, no información.
      Ninguno se usa para texto ni para filetes. */
-  --tinte-0: #141C18;   /* carbón con tinte verde: la tarjeta destacada */
+  --tinte-0: #141C18;   /* carbón con tinte verde: sin uso desde que las seis
+                           tarjetas del diagnóstico pesan igual */
   --tinte-1: #F7F6F3;   /* papel */
   --tinte-2: #F5EFDF;   /* oro */
   --tinte-3: #EFF4F0;   /* verde */
