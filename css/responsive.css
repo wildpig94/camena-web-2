@@ -593,3 +593,15 @@ html:not(.js) .caso { animation: none; }
 @media (max-width: 360px) {
   .giros__rotador { font-size: var(--t-n5); }
 }
+
+/* ═══ ≤ 560 px · las tablas de precio se aprietan ═══
+   En un teléfono las cinco tablas sumaban 2,312 px de alto y la página se hacía
+   interminable. El relleno de cada renglón baja de 12 a 8 px y el precio se pega
+   al borde: se ganan unos 250 px sin que nada se vea apretado, porque el aire
+   que importa —el de entre renglones— sigue ahí. */
+@media (max-width: 560px) {
+  .tarifa { margin-top: var(--e-4); }
+  .tarifa__boton { padding: 0.5rem 0.5rem 0.5rem 0; }
+  .tarifa__precio { padding: 0.5rem 0; }
+  .tarifa thead th { padding-bottom: 0.5rem; }
+}

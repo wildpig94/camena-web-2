@@ -15,7 +15,7 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 
 | Página | Para qué sirve |
 |---|---|
-| `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres prototipos, armador de paquete, preguntas y contacto |
+| `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres ejemplos, armador de paquete, preguntas y contacto. El proceso no está aquí: vive completo en `como-trabajamos.html` y solo se ve si alguien lo elige en el menú |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
 | `aviso-de-privacidad.html` · `terminos.html` | Lo legal |
@@ -239,7 +239,7 @@ que quedó es esta, y aplica a cualquier texto nuevo:
 
 ```
 camena-2.0/
-├── index.html                  Página principal (7 secciones)
+├── index.html                  Página principal (6 secciones)
 ├── servicios.html              Catálogo completo, con precios
 │
 ├── assets/mostrador/           Capturas de Mostrador para la sección de
