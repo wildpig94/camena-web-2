@@ -50,7 +50,6 @@
   /* El separador «//» parte la frase en dos: lo de antes es el problema y lo de
      después la solución. Se pintan de distinto color. */
   var SEPARADOR = '//';
-  var pausado = false;
 
   function frasesDe(el) {
     return (el.getAttribute("data-frases") || "")
@@ -121,11 +120,9 @@
       var i = Math.max(0, frases.indexOf(inicial));
       el.classList.add('rotador--fundido');
       var cambiar = function () {
-        if (pausado) return;
-        el.classList.add('rotador--saliendo');
+          el.classList.add('rotador--saliendo');
         setTimeout(function () {
-          if (pausado) return;
-          i = (i + 1) % frases.length;
+              i = (i + 1) % frases.length;
           pintarPartes(salida, frases[i]);
           reservarAlto(el, frases);
           el.classList.remove('rotador--saliendo');
@@ -144,14 +141,19 @@
     var borrando = false;
 
     function paso() {
-      if (pausado) return;
       var frase = frases[indice];
       if (!borrando) {
         posicion += 1;
         salida.textContent = frase.slice(0, posicion);
         if (posicion >= frase.length) {
           borrando = true;
-          setTimeout(paso, MS_ESCRITA);
+          /* A propósito NO se pausa cuando la pestaña pasa a segundo plano. Antes
+       había un manejador de visibilidad que ponía una bandera compartida y
+       cortaba la cadena de temporizadores: si el teléfono bloqueaba la pantalla
+       o alguien cambiaba de app, la frase se quedaba pegada para siempre y no
+       volvía a alternar. El navegador ya frena los temporizadores solo cuando no
+       hay foco, así que la pausa no hacía falta y sí rompía. */
+    setTimeout(paso, MS_ESCRITA);
           return;
         }
         setTimeout(paso, MS_LETRA);
@@ -168,17 +170,13 @@
       }
     }
 
-    /* Con la pestaña en segundo plano se detiene: no tiene sentido gastar
-       batería escribiendo para nadie. Al volver, sigue donde iba. */
-    document.addEventListener("visibilitychange", function () {
-      if (document.hidden) {
-        pausado = true;
-      } else if (pausado) {
-        pausado = false;
-        paso();
-      }
-    });
 
+    /* A propósito NO se pausa cuando la pestaña pasa a segundo plano. Antes
+       había un manejador de visibilidad que ponía una bandera compartida y
+       cortaba la cadena de temporizadores: si el teléfono bloqueaba la pantalla
+       o alguien cambiaba de app, la frase se quedaba pegada para siempre y no
+       volvía a alternar. El navegador ya frena los temporizadores solo cuando no
+       hay foco, así que la pausa no hacía falta y sí rompía. */
     setTimeout(paso, MS_ESCRITA);
   });
 })();

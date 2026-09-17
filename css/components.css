@@ -2595,3 +2595,20 @@ svg.ic path[d^="M12 2a10"] {
   cursor: pointer;
 }
 .visor__cerrar:hover { border-color: var(--verde-lt); color: var(--verde-lt); }
+
+/* ═══════════════ VOLVER ARRIBA ═══════════════
+   La página es larga: junto al botón de WhatsApp hay uno para volver al inicio.
+   Va encima del de WhatsApp —mismo ancho, misma familia— y en teléfono se queda
+   en el icono, como el otro. */
+.flotante--arriba {
+  bottom: calc(clamp(0.875rem, 0.6rem + 1vw, 1.75rem) + 52px + 0.5rem);
+  background: var(--paper-2);
+  color: var(--ink);
+  border-color: var(--borde-fuerte);
+}
+.flotante--arriba:hover { background: var(--paper); color: var(--ink); }
+.flotante--arriba .flotante__icono { width: 18px; height: 18px; }
+@media (max-width: 560px) {
+  .flotante--arriba { padding: 0.8125rem; }
+  .flotante--arriba .flotante__texto { display: none; }
+}
