@@ -37,16 +37,15 @@ C = {
     "oro":           "#A8821F",   # acento principal: marca, precios, CTA
     "oro-lt":        "#E8C766",
     "oro-tx":        "#8A6A0F",
-    "magenta":       "#D6247A",   # eje de sistemas
-    "magenta-lt":    "#F472B6",
-    "magenta-tx":    "#A81B5A",
+    "rojo":          "#B23A2E",   # línea fija del titular del hero
+    "rojo-lt":       "#D0614F",
     # Fondos con color y sus acentos
     "oro-fondo":       "#F5EFDF",
     "oro-fondo-suave": "#F4EEE0",
     "oro-fuerte":      "#6F550B",
     "verde-fondo":     "#EFF4F0",
     "verde":         "#0E9F6E",   # estado
-    "verde-lt":      "#34D399",
+    "verde-lt":      "#A9C46C",
     "verde-tx":      "#0A6B4C",
 }
 
@@ -64,6 +63,10 @@ P = [
     ("texto-claro",   "ink-2",   4.5, "texto claro sobre superficie"),
     ("texto-claro-2", "ink",     4.5, "texto atenuado sobre tinta"),
     ("texto-claro-2", "ink-2",   4.5, "texto atenuado sobre superficie"),
+    ("rojo-lt",         "ink",     4.5, "línea fija del titular sobre tinta"),
+    ("rojo",            "paper",   4.5, "rojo de texto sobre hueso"),
+    ("rojo",            "paper-2", 4.5, "rojo de texto sobre tarjeta"),
+    ("rojo",            "ink",     3.0, "rojo gráfico sobre tinta"),
     ("verde-lt",        "ink",     4.5, "acento de texto sobre tinta"),
     ("verde-lt",        "ink-2",   4.5, "acento de texto sobre superficie"),
     # ── Gráficos ──

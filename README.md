@@ -434,6 +434,18 @@ sobre carbón: `-tx` para texto sobre claro, `-lt` para texto sobre oscuro, y el
 tono base pasa 3:1 **en los dos fondos**, así que sirve para puntos, filetes y
 rellenos sin cambiar de token.
 
+### El rojo: un acento con un solo trabajo
+
+El rojo ladrillo (`--rojo #B23A2E` y su aclarado `--rojo-lt #D0614F`) existe para
+**una sola cosa**: la primera línea del titular del hero, la que no cambia nunca,
+mientras la segunda alterna en pistache. Dos tonos, como el resto de la paleta: el
+aclarado para la tinta (4.95:1) y el apagado para superficie clara (5.49:1), porque
+sobre carbón el ladrillo puro se queda en 3.18:1.
+
+**No es un color de estado ni de alerta**: si algún día se usa para avisar de algo,
+habrá que darle otro tono, porque este ya tiene su trabajo. Los pares están en
+`docs/verificar-contraste.py`, que es lo que impide que entre un color sin medir.
+
 ### El acento en las zonas oscuras
 
 El sitio tiene tres zonas oscuras —el hero, la banda de sistemas y los

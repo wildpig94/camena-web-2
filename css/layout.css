@@ -178,6 +178,11 @@
 
 .hero__linea { display: block; }
 
+/* La primera línea del titular no cambia nunca, y va en rojo ladrillo; la
+   segunda alterna en pistache. El rojo es el tono aclarado, porque sobre la
+   tinta el ladrillo puro se queda en 3.18:1. Medido: 4.95:1. */
+.hero__titulo .hero__linea:first-child { color: var(--rojo-lt); }
+
 /* La segunda línea se distingue por color, no por inclinación: en una
    geométrica la cursiva falsa se nota, y el contraste editorial es más
    serio que el énfasis tipográfico. Sobre claro, el verde oscuro. */

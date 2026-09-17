@@ -41,6 +41,16 @@
      para puntos, filetes y rellenos sin cambiar de token. */
   /* Oro: acento principal */
   --oro:          #A8821F;   /* gráfico: 3.31:1 sobre papel · 5.29:1 sobre tinta */
+  /* ── Rojo ladrillo: la línea fija del titular del hero ────────────
+     Entra como acento de UN solo trabajo: la primera línea del titular, la que
+     no cambia nunca, mientras la segunda alterna en pistache. Dos tonos, como
+     el resto de la paleta: el apagado para superficie clara y el aclarado para
+     la tinta, porque sobre carbón el ladrillo puro se queda en 3.18:1 y no
+     alcanza ni para texto grande con holgura. */
+  --rojo:         #B23A2E;
+  --rojo-lt:      #D0614F;
+  --rojo-tenue:   rgba(178, 58, 46, 0.10);
+  --rojo-linea:   rgba(178, 58, 46, 0.34);
   --oro-lt:       #E8C766;   /* texto sobre oscuro (11.50:1 sobre tinta) */
   --oro-tx:       #8A6A0F;   /* texto sobre claro (4.68:1 sobre hueso) */
   --oro-tenue:    rgba(168, 130, 31, 0.12);
