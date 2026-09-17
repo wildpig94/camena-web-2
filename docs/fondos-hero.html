@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muestrario de fondos para el hero · CAMENA</title>
+<!-- Página interna de trabajo: no se publica (todo docs/ queda fuera del sitio).
+     Sirve para elegir el fondo del hero mirándolo, no leyéndolo. Cada opción se
+     dibuja con CSS puro sobre el mismo color de tinta del hero real, y lleva su
+     nombre, su idea y el código para copiar si se elige. -->
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+<style>
+  body { background: var(--paper); padding: clamp(1rem, 3vw, 3rem); }
+
+  .muestrario__cabecera { max-width: 60rem; margin-bottom: var(--e-7); }
+  .muestrario__titulo { font-size: var(--t-n3); letter-spacing: -0.02em; }
+  .muestrario__intro { margin-top: var(--e-3); color: var(--texto-2); max-width: 62ch; }
+
+  .opciones { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); }
+
+  .opcion { border: 1px solid var(--borde-fuerte); border-radius: var(--radio); overflow: hidden; }
+  .opcion__cabecera {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--e-3);
+    padding: var(--e-4) var(--e-5); background: var(--paper-2);
+    border-bottom: 1px solid var(--borde);
+  }
+  .opcion__letra {
+    font-family: var(--mono); font-size: var(--t-micro); letter-spacing: var(--tracking-etiqueta);
+    text-transform: uppercase; color: var(--acento);
+  }
+  .opcion__nombre { font-size: var(--t-n5); font-weight: var(--peso-fuerte); }
+  .opcion__idea { flex: 1 1 22rem; color: var(--texto-2); font-size: var(--t-menudo); }
+
+  /* ── La muestra: un hero de verdad, con su texto encima ── */
+  .muestra {
+    position: relative;
+    background: var(--ink);
+    color: var(--texto-claro);
+    --texto: var(--texto-claro);
+    --texto-2: var(--texto-claro-2);
+    --acento: var(--verde-lt);
+    padding: clamp(2rem, 4vw, 4rem) clamp(1.25rem, 4vw, 3.5rem);
+    min-height: 22rem;
+    overflow: hidden;
+  }
+  .muestra__interior { position: relative; z-index: 1; max-width: 40rem; }
+  .muestra__sello {
+    font-family: var(--mono); font-size: var(--t-micro); letter-spacing: var(--tracking-etiqueta);
+    text-transform: uppercase; color: var(--texto-2);
+  }
+  .muestra__titular { margin-top: var(--e-4); font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3rem); line-height: 1.06; letter-spacing: -0.026em; }
+  .muestra__titular em { display: block; font-style: normal; color: var(--acento); }
+  .muestra__texto { margin-top: var(--e-4); font-size: var(--t-guia); color: var(--texto-2); }
+  .fondo { position: absolute; inset: 0; }
+
+  /* A · Anillos concéntricos (el actual) */
+  .fondo--anillos {
+    background-image:
+      radial-gradient(circle at center, transparent 0 12px, rgba(244,243,240,.085) 12px 13.5px, transparent 13.5px),
+      radial-gradient(circle at center, transparent 0 3px, rgba(244,243,240,.05) 3px 4px, transparent 4px);
+    background-size: clamp(52px,6vw,84px) clamp(52px,6vw,84px), clamp(13px,1.5vw,21px) clamp(13px,1.5vw,21px);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,.9), rgba(0,0,0,.35));
+  }
+
+  /* B · Trama diagonal: papel de plano técnico */
+  .fondo--diagonal {
+    background-image: repeating-linear-gradient(45deg,
+      rgba(244,243,240,.055) 0 1px, transparent 1px 14px);
+  }
+
+  /* C · Retícula de puntos: orden suizo, muy discreta */
+  .fondo--puntos {
+    background-image: radial-gradient(circle at center, rgba(244,243,240,.10) 0 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+
+  /* D · Ondas desde una esquina: el anillo con centro fuera de cuadro */
+  .fondo--ondas {
+    background-image: repeating-radial-gradient(circle at -10% 120%,
+      transparent 0 34px, rgba(244,243,240,.075) 34px 35.5px, transparent 35.5px);
+  }
+
+  /* E · Retícula isométrica: triángulos */
+  .fondo--isometrica {
+    background-image:
+      repeating-linear-gradient(60deg, rgba(244,243,240,.05) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(-60deg, rgba(244,243,240,.05) 0 1px, transparent 1px 34px);
+  }
+
+  /* F · Sin patrón: un halo de luz detrás del titular */
+  .fondo--halo {
+    background-image: radial-gradient(ellipse 70% 55% at 22% 38%,
+      rgba(169,196,108,.13), transparent 70%);
+  }
+
+  .opcion__codigo {
+    margin: 0; padding: var(--e-4) var(--e-5); background: var(--ink-2); color: var(--texto-claro-2);
+    font-family: var(--mono); font-size: 0.75rem; line-height: 1.7; overflow-x: auto;
+  }
+  .opcion__codigo b { color: var(--verde-lt); font-weight: var(--peso-normal); }
+</style>
+</head>
+<body>
+<main class="muestrario">
+  <header class="muestrario__cabecera">
+    <p class="etiqueta">Interno · no se publica</p>
+    <h1 class="muestrario__titulo">Fondos para el hero</h1>
+    <p class="muestrario__intro">
+      Cinco opciones además de la que está puesta. Todas se dibujan con CSS: cero
+      imágenes, cero peticiones, cero peso. El texto es el real del hero para que se
+      juzgue con lo que va encima, no en abstracto. Dime la letra y la cambio.
+    </p>
+  </header>
+
+  <div class="opciones">
+
+    <article class="opcion">
+      <div class="opcion__cabecera">
+        <span class="opcion__letra">A · la que está puesta</span>
+        <span class="opcion__nombre">Anillos concéntricos</span>
+        <span class="opcion__idea">Dos familias de anillos, una grande y tenue y otra chica. Se lee como instrumento de medición. Es la actual.</span>
+      </div>
+      <div class="muestra">
+        <div class="fondo fondo--anillos" aria-hidden="true"></div>
+        <div class="muestra__interior">
+          <p class="muestra__sello">Estudio de diseño y sistemas · Apatzingán, Michoacán</p>
+          <h2 class="muestra__titular">Cada negocio opera distinto.<em>Su software también debería serlo.</em></h2>
+          <p class="muestra__texto">Páginas, marca y sistema. El sistema es tuyo, sin renta mensual.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="opcion">
+      <div class="opcion__cabecera">
+        <span class="opcion__letra">B</span>
+        <span class="opcion__nombre">Trama diagonal</span>
+        <span class="opcion__idea">Líneas a 45 grados, como el papel de plano técnico. Es la más «de oficio» y la más barata de dibujar.</span>
+      </div>
+      <div class="muestra">
+        <div class="fondo fondo--diagonal" aria-hidden="true"></div>
+        <div class="muestra__interior">
+          <p class="muestra__sello">Estudio de diseño y sistemas · Apatzingán, Michoacán</p>
+          <h2 class="muestra__titular">Cada negocio opera distinto.<em>Su software también debería serlo.</em></h2>
+          <p class="muestra__texto">Páginas, marca y sistema. El sistema es tuyo, sin renta mensual.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="opcion">
+      <div class="opcion__cabecera">
+        <span class="opcion__letra">C</span>
+        <span class="opcion__nombre">Retícula de puntos</span>
+        <span class="opcion__idea">Puntos en cuadrícula, muy chicos. El orden suizo: no se ve el patrón, se siente el orden. La más discreta de todas.</span>
+      </div>
+      <div class="muestra">
+        <div class="fondo fondo--puntos" aria-hidden="true"></div>
+        <div class="muestra__interior">
+          <p class="muestra__sello">Estudio de diseño y sistemas · Apatzingán, Michoacán</p>
+          <h2 class="muestra__titular">Cada negocio opera distinto.<em>Su software también debería serlo.</em></h2>
+          <p class="muestra__texto">Páginas, marca y sistema. El sistema es tuyo, sin renta mensual.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="opcion">
+      <div class="opcion__cabecera">
+        <span class="opcion__letra">D</span>
+        <span class="opcion__nombre">Ondas desde una esquina</span>
+        <span class="opcion__idea">El anillo con su centro fuera de cuadro: ondas que crecen desde abajo a la izquierda. Es lo más toroidal de las cinco, porque hay un origen.</span>
+      </div>
+      <div class="muestra">
+        <div class="fondo fondo--ondas" aria-hidden="true"></div>
+        <div class="muestra__interior">
+          <p class="muestra__sello">Estudio de diseño y sistemas · Apatzingán, Michoacán</p>
+          <h2 class="muestra__titular">Cada negocio opera distinto.<em>Su software también debería serlo.</em></h2>
+          <p class="muestra__texto">Páginas, marca y sistema. El sistema es tuyo, sin renta mensual.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="opcion">
+      <div class="opcion__cabecera">
+        <span class="opcion__letra">E</span>
+        <span class="opcion__nombre">Retícula isométrica</span>
+        <span class="opcion__idea">Triángulos a 60 grados. Da profundidad sin mover nada: parece una superficie, no un fondo. La más «de ingeniería».</span>
+      </div>
+      <div class="muestra">
+        <div class="fondo fondo--isometrica" aria-hidden="true"></div>
+        <div class="muestra__interior">
+          <p class="muestra__sello">Estudio de diseño y sistemas · Apatzingán, Michoacán</p>
+          <h2 class="muestra__titular">Cada negocio opera distinto.<em>Su software también debería serlo.</em></h2>
+          <p class="muestra__texto">Páginas, marca y sistema. El sistema es tuyo, sin renta mensual.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="opcion">
+      <div class="opcion__cabecera">
+        <span class="opcion__letra">F</span>
+        <span class="opcion__nombre">Sin patrón: un halo de luz</span>
+        <span class="opcion__idea">Nada dibujado: una luz verde pistache detrás del titular, como si algo iluminara desde atrás. El hero más limpio posible.</span>
+      </div>
+      <div class="muestra">
+        <div class="fondo fondo--halo" aria-hidden="true"></div>
+        <div class="muestra__interior">
+          <p class="muestra__sello">Estudio de diseño y sistemas · Apatzingán, Michoacán</p>
+          <h2 class="muestra__titular">Cada negocio opera distinto.<em>Su software también debería serlo.</em></h2>
+          <p class="muestra__texto">Páginas, marca y sistema. El sistema es tuyo, sin renta mensual.</p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <p class="opcion__codigo" style="margin-top: var(--e-6); border-radius: var(--radio);">
+    Para cambiar el fondo del hero de verdad, en <b>css/layout.css</b> está la regla
+    <b>.hero__rejilla</b>: se sustituye su <b>background-image</b> por el de la opción elegida.
+    Nada más cambia: ni el texto, ni las medidas, ni el resto del sitio.
+  </p>
+</main>
+</body>
+</html>
