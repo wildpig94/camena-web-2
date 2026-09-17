@@ -42,7 +42,10 @@
      desaparece de golpe, con un fundido corto. */
   var MS_FUNDIDO_SALE = 180;
   var MS_FUNDIDO_ENTRA = 260;
-  var MS_QUIETA = 2800;
+  /* Cuánto se queda cada frase antes de cambiar. Subido dos segundos a pedido
+     del dueño: 2.8 s se sentía atropellado para frases de 130 letras, que piden
+     su tiempo de lectura. */
+  var MS_QUIETA = 4800;
 
   /* El separador «//» parte la frase en dos: lo de antes es el problema y lo de
      después la solución. Se pintan de distinto color. */
