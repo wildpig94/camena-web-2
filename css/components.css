@@ -2034,25 +2034,12 @@ svg.ic path[d^="M12 2a10"] {
   text-transform: uppercase;
   color: var(--acento);
 }
-.etapa__giros-lista {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--e-4);
-  margin-top: var(--e-4);
-}
-.etapa__giros-lista li {
-  font-size: var(--t-menudo);
-  line-height: 1.55;
-  color: var(--texto-2);
-}
-.etapa__giros-lista strong {
-  display: block;
-  margin-bottom: 2px;
-  color: var(--texto);
-}
+
+
+
 
 @media (max-width: 900px) {
-  .etapa__giros-lista { grid-template-columns: minmax(0, 1fr); }
+  
 }
 
 /* Enlace secundario de la etapa protagonista: el armador sigue ahí, pero
@@ -2413,3 +2400,51 @@ svg.ic path[d^="M12 2a10"] {
   text-decoration: none;
 }
 .caso-tarjeta__accion:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ═══════════════ TEXTO QUE SE ESCRIBE SOLO ═══════════════
+   El rotador no trae caja propia: se adapta a donde vive, porque en el titular
+   del hero es una línea de display y en el bloque de negocios es un párrafo.
+   Lo único que sí trae es el cursor: una barra del ancho de un pelo que parpadea
+   solo mientras se escribe. Nada de fondo, ni caja, ni borde. */
+.rotador { position: relative; }
+
+.rotador__cursor {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.86em;
+  margin-left: 0.08em;
+  vertical-align: -0.06em;
+  background: currentColor;
+  opacity: 0;
+}
+
+/* El cursor solo parpadea cuando el rotador está trabajando: si alguien pidió
+   calma, o si el script no cargó, no hay cursor parpadeando para nadie. */
+.rotador--activo .rotador__cursor { animation: parpadeo 1.05s steps(1, end) infinite; }
+
+@keyframes parpadeo {
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotador__cursor { animation: none; opacity: 0; }
+}
+
+/* ── El bloque de negocios: de lista a declaración ──
+   Antes eran tres renglones con negrita; ahora es un bloque centrado donde el
+   texto va cambiando. Se centra a propósito: es el único momento del recorrido
+   donde la página le habla directo al dueño y le hace una pregunta. */
+.etapa__giros--dinamico {
+  text-align: center;
+}
+.giros__rotador {
+  max-width: 46rem;
+  margin: var(--e-5) auto 0;
+  font-size: var(--t-guia);
+  line-height: 1.5;
+  color: var(--texto);
+  /* La medida más larga es de 130 caracteres: con este ancho caben en tres o
+     cuatro renglones y el bloque no se estira de más al escribir. */
+  text-wrap: pretty;
+}

@@ -329,6 +329,7 @@ flujo de despliegue no copia esa carpeta):
 | `docs/capturar-revision.mjs` | **El visor.** Abre la copia con una revisión cargada y saca una captura por página con los dibujos y las notas encima: sirve para revisar el trabajo sin abrir el navegador. | `node docs/capturar-revision.mjs Revision-CAMENA.json` |
 | `docs/cambiar-dominio.sh` | **El de la mudanza.** Pasa el sitio de `github.io` al dominio propio: cambia las 22 apariciones de la dirección vieja repartidas en 7 archivos (canonical, `og:url`, `twitter:image`, datos estructurados, sitemap, robots), crea el `CNAME` y comprueba que no quede ni una. Sin `--aplicar` solo muestra qué haría. | `bash docs/cambiar-dominio.sh camena.mx [--aplicar]` |
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
+| `docs/traducir-al-ingles.md` | **El traspaso de la traducción.** Todo lo que hay que saber para hacer la versión en inglés sin romper el formato: qué se traduce y qué no (clases, anclas, `data-*`, la estructura de las tablas), glosario de oficio, la voz en inglés, cómo publicarla y cómo comprobarla. | abrir el archivo |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
 | `docs/revisar-medios.mjs` | **El que ve lo deforme.** Recorre todas las páginas y compara la proporción pintada de cada imagen y video contra la del archivo; también delata cajas con alto fijo cuyo contenido no cabe. Nació del bug de los videos aplastados. | `node docs/revisar-medios.mjs` |
 | `docs/medir-escala.mjs` | **El que cuenta los escalones.** Dice cuántos tamaños y colores de texto distintos se ven de verdad en una página. Nació de un número incómodo: teníamos 21 tamaños donde una referencia usa 8 o 10. | `node docs/medir-escala.mjs http://127.0.0.1:8899/index.html 1440` |
@@ -477,6 +478,36 @@ ilustración; forzarlas a la escalera del texto las deformaría.
 
 **Regla al agregar algo:** si hace falta un tamaño que no está en la tabla, el
 error no es que falte el tamaño, es que la pieza está mal clasificada.
+
+### Texto que se escribe solo (el rotador)
+
+Dos lugares de la página tienen texto que se escribe y se borra en ciclo: la
+segunda línea del titular del hero y el bloque de negocios de la etapa de
+sistemas. Los maneja `js/rotador.js`, con JavaScript nativo y sin bibliotecas.
+
+Cualquier elemento con `data-rotador` y frases separadas por `|` en
+`data-frases` entra solo. Cuatro reglas que no se negocian:
+
+1. **Sin JavaScript se ve.** La primera frase está escrita en el HTML, no la pone
+   el script. Comprobado cargando la página con el JavaScript desactivado.
+2. **Quien pide calma, la tiene.** Con `prefers-reduced-motion: reduce` el
+   rotador se queda quieto en la primera frase y el cursor queda invisible
+   (medido: duración de animación 0.01 ms, una repetición, opacidad 0).
+3. **Los lectores de pantalla no oyen el tecleo.** Lo que se anima va
+   `aria-hidden`; al lado hay un `.visualmente-oculto` con todo el contenido de
+   una vez, y el titular del hero tiene una frase quieta que cubre las tres
+   variantes.
+4. **El diseño no salta.** Antes de empezar se reserva el alto de la frase más
+   larga. El bloque de negocios queda fijo en 60 px mientras el texto va y viene.
+
+**Lo que costó:** la segunda línea del titular pasó de 26 a 33 caracteres, así que
+el titular ya no cabe en dos líneas en la columna del hero: son **tres**. Se midió
+que para volver a dos habría que bajarlo a 50 px (de 58) en escritorio y a 20 px
+en tableta, o sea que la disyuntiva era un titular chico o tres líneas. Se
+eligieron tres líneas porque el alto reservado evita el salto, y el contenido
+visible del hero (titular, remate y botones) sigue cabiendo en la primera
+pantalla. Para cambiar las frases: `data-frases` en `index.html`, conservando el
+número de frases.
 
 ### Detalles de taller (craftsmanship digital)
 
