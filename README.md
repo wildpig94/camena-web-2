@@ -18,7 +18,10 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 | `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres prototipos, armador de paquete, preguntas y contacto |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
-| `producto/control-de-autos.html` | La herramienta del taller, publicada sin marca ni nombre para compartirla por enlace |
+
+**Los productos terminados no viven aquí.** `Control de Autos` y el expediente del
+taller están en `~/productos-camena/`, fuera del repositorio, y el sitio solo los
+enseña con capturas. El motivo está en «Los dos productos».
 
 **Regla al añadir contenido:** si algo explica pero no ayuda a decidir, va en
 una página secundaria. El inicio no es un folleto.
@@ -46,30 +49,37 @@ El eje se repite en todas las secciones, y ahí está la prueba de que es el eje
 
 ### Los dos productos
 
-Hay **dos** productos, y no son la misma cosa ni se muestran igual. Uno de ellos
-**ya no vive en este repo**: su código se movió fuera, a `~/productos-camena/`,
-para que no se pueda leer ni copiar desde GitHub.
+Hay **dos** productos, y **ninguno de los dos vive en este repo**: su código está
+en `~/productos-camena/`, para que no se pueda leer ni copiar desde GitHub. El
+sitio no los publica ni los deja probar: los enseña **solo con capturas de uso
+real**, que es lo que le da valor a la pieza.
 
-| | Expediente del taller | `producto/control-de-autos.html` |
+| | Expediente del taller | Control de Autos |
 |---|---|---|
 | Qué es | El **expediente del taller**, reconstruido desde los dolores reales | La app original de **Control de Autos**, tal como la usaba el taller |
 | Diseño | El sistema de diseño del sitio (`css/variables.css`) | Propio: fondo oscuro, Oswald + IBM Plex Sans |
-| Se muestra | En los ejemplos del inicio, con capturas reales y **sin enlace para abrirlo** | **No.** Se comparte por enlace con quien la va a usar |
-| Archivos | `taller.html` + `taller.js`, **fuera del repo** | Un solo archivo, sin dependencias |
+| Se muestra | En los ejemplos del inicio, con capturas reales y **sin enlace para abrirlo** | Igual: capturas reales, **sin enlace** |
+| Archivos | `~/productos-camena/taller/` (`taller.html` + `taller.js`) | `~/productos-camena/control-de-autos/control-de-autos.html` |
 | Guarda en | `camena:taller:estado` (+ fotos en IndexedDB) | `taller_autos_v1` y `taller_aseguradoras_v1` |
 
 Ninguno de los dos es una maqueta: los dos se abren y se usan. Y ninguno se
 presenta como lo que no es — Control de Autos no tiene fotos por etapa, ni
 conformidad firmada, ni refacciones detenidas; eso vive en el expediente.
 
-**Dónde vive el código y por qué.** El expediente está en
-`~/productos-camena/taller/` (`taller.html` + `taller.js`), fuera del repo. Se
-saca de aquí por una razón concreta: este repositorio es **público**, así que
-cualquier archivo que entre queda legible para todo el mundo, aunque la página
-no se publique. Publicar sin enlazar no protege nada; sacarlo del repo, sí.
-El despliegue además lleva un candado: si alguien vuelve a dejar un archivo de
-producto en `producto/`, la publicación **falla** en vez de regalarlo en
-silencio (ver el paso «Preparar solo lo que se publica»).
+**Dónde vive el código y por qué.** Los dos productos están fuera del repo. Se
+sacaron por una razón concreta: este repositorio es **público**, así que cualquier
+archivo que entre queda legible para todo el mundo, aunque la página no se
+publique. Publicar sin enlazar no protege nada; sacarlo del repo, sí.
+El despliegue además lleva un candado: si alguien vuelve a dejar una página de
+producto en una carpeta que sí se copia, la publicación **falla** en vez de
+regalarla en silencio (ver el paso «Preparar solo lo que se publica»).
+
+> ⚠️ **Hasta el 17 de septiembre de 2026, Control de Autos se publicaba** en
+> `producto/control-de-autos.html` como enlace de trabajo para el taller. Se
+> retiró: el sistema ya no se publica, no se enlaza y no se puede probar desde el
+> sitio — se enseña con las capturas del tablero y del historial. Queda en la
+> historia de git, así que quien mire los commits anteriores todavía puede
+> encontrarlo.
 
 #### Expediente del taller (fuera del repo, en `~/productos-camena/taller/`)
 
@@ -84,11 +94,11 @@ se regala en la vitrina.
 —el tablero por etapas y el expediente de un auto— con la etiqueta
 «Sistema propio». Eso muestra el trabajo sin entregar el archivo.
 
-> ⚠️ **Regla al mantener esto:** ninguna página de producto terminado se enlaza
-> desde el sitio. Lo que se enseña es la captura y el video; el sistema se
-> entrega aparte. `Control de Autos` es la excepción porque es la herramienta
-> que el taller ya usaba y su enlace es de trabajo, no de vitrina — y aun así
-> conviene recordar que su código también es descargable.
+> ⚠️ **Regla al mantener esto:** ninguna página de producto terminado se publica
+> ni se enlaza desde el sitio, y tampoco se deja en el repositorio, que es
+> público. Lo que se enseña es la captura y el video; el sistema se entrega
+> aparte, al cliente que lo contrata. Si alguna vez hace falta enseñar más,
+> se enseña otra captura —nunca algo que se pueda abrir.
 
 **Qué hace.** Registra la entrada de un auto (descripción, color, placa,
 aseguradora, folio y notas), cuenta los días que lleva dentro, marca la salida y
@@ -124,10 +134,14 @@ documento —interno, no se publica— lista cada dolor con la cita que lo prueb
 costo y la función que lo resuelve, y marca lo que todavía falta preguntar. Es la
 base de la siguiente versión del producto.
 
-#### Control de Autos (`producto/control-de-autos.html`)
+#### Control de Autos (`~/productos-camena/control-de-autos/`, fuera del repo)
 
-Es la app que el taller ya conocía, publicada tal cual para poder pasarla por
-enlace —el encargado la abre desde el celular sin instalar nada—. Registra la
+Es la app que el taller ya conocía. **Ya no se publica ni se comparte por
+enlace**: vive fuera del repositorio y el sitio solo la enseña con dos capturas.
+Antes se publicaba en `producto/control-de-autos.html` para que el encargado la
+abriera desde el celular sin instalar nada, pero eso dejaba el sistema completo
+descargable para cualquiera —y el repositorio es público—, así que se retiró.
+Registra la
 entrada de un auto (descripción, color, placa, aseguradora, folio, notas), cuenta
 los días que lleva en piso, marca la salida, lo manda al historial, filtra por
 aseguradora, deja ajustar la lista de aseguradoras y descarga un respaldo en JSON.
@@ -225,12 +239,12 @@ que quedó es esta, y aplica a cualquier texto nuevo:
 camena-2.0/
 ├── index.html                  Página principal (7 secciones)
 ├── servicios.html              Catálogo completo, con precios
-├── producto/
-│   └── control-de-autos.html   Control de Autos: app de una sola página, con
-│                               su propio enlace para el taller. Sin marca y sin
-│                               nombre. No se enlaza desde el sitio ni entra al
-│                               sitemap: se comparte con quien la va a usar.
 │
+├── assets/mostrador/           Capturas de Mostrador para la sección de
+│                               ejemplos: el sistema funcionando, sin demo
+├── assets/producto/            Capturas de Control de Autos (tablero e
+│                               historial). El código del producto no está aquí:
+│                               vive fuera del repo, en ~/productos-camena/
 ├── assets/video/               Videos del sitio (720×1280, comprimidos):
 │   ├── reel-cliente.mp4        Reel para cliente, con visto bueno
 │   └── *.webp                  Pósteres: no se carga nada hasta dar reproducir
@@ -612,7 +626,7 @@ superficie oscura, las dos pesaban igual y ninguna destacaba.
 3. **Campañas y proyectos especiales** — su propia disciplina (08), con la
    advertencia de normativa electoral dentro y no mezclada con el resto.
 
-### Los cinco ejemplos de proyectos
+### Los tres ejemplos de proyectos
 
 La sección se llamaba «laboratorio» y sonaba a borrador de aficionado. Ahora se
 presenta como **ejemplos de proyectos**, con las etiquetas en palabras llanas
@@ -622,13 +636,23 @@ se vende tal cual, cada uno se construye desde cero.
 Son **tres piezas y las tres son trabajo real**, sin una sola maqueta de
 plantilla:
 
-1. **El cotizador de WhatsApp** de esta misma página, con captura real.
+1. **Mostrador**, el cotizador y cobrador de mostrador: con capturas del sistema
+   funcionando y sin enlace, porque el código de una página publicada se descarga
+   entero. Es la pieza que enseña el sistema que se vende como «programa para
+   cotizar y cobrar», y va marcada `Sistema propio` porque todavía no lo opera
+   ningún negocio.
 2. **El expediente del taller**, con capturas reales del sistema funcionando.
-   Su página no se enlaza: el código de una página publicada se descarga entero.
+   Su página no se enlaza, por la misma razón.
 3. **Un reel para una clienta** (consultorio), publicado con su visto bueno.
    La autorización está confirmada por el dueño del estudio y queda registrada
    en `docs/autorizaciones.md`. Mientras no haya permiso explícito para
    nombrarla, la pieza se queda sin nombre y sin logotipo.
+
+> **La pieza del cotizador de esta misma página salió de los ejemplos.** Se
+> retiró al entrar Mostrador: eran dos cotizadores en la misma sección y el
+> armador de esta página ya se ve y se usa más abajo, sin necesidad de
+> presentarlo como pieza. Su captura quedó sin uso en
+> `assets/producto/cotizador.webp`.
 
 > **El promo propio salió del aire.** Estaba publicado —30 s, vertical, con
 > narración— y se retiró porque la voz no quedó: se va a rehacer. El archivo
@@ -642,10 +666,12 @@ trabajo real, una maqueta bonita se lee como «este vende plantillas». Lo que s
 muestra tiene que poder usarse o verse completo.
 
 **Regla al añadir una pieza:** el chip dice lo que la pieza es, no lo que
-gustaría que fuera. «Está en vivo» solo se usa si hay algo que la persona pueda
-usar ahí mismo —hoy, únicamente el cotizador de esta página—; el resto se marca
-por lo que es: «Sistema propio» o «Pieza para cliente». Y nunca se presenta una
-maqueta como si fuera un producto funcionando.
+gustaría que fuera. «Está en vivo» se reserva para cuando hay algo que la persona
+pueda usar en ese momento; hoy **ninguna pieza lo lleva**, porque los dos
+sistemas se enseñan en capturas y el armador de esta página, que sí se puede
+usar, se retiró de los ejemplos. El resto se marca por lo que es: «Sistema
+propio» o «Pieza para cliente». Y nunca se presenta una maqueta como si fuera un
+producto funcionando.
 
 **Lo que sí se enlaza y lo que no.** Un enlace para probar un sistema es un
 enlace para copiarlo: todo lo que el navegador muestra, el navegador lo puede

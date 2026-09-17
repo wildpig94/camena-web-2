@@ -142,7 +142,7 @@ jobs:
           # forman parte del sitio y no tienen por qué quedar accesibles en la
           # web. Se publica únicamente lo que el navegador necesita.
           mkdir -p publicar
-          cp -r assets css js producto publicar/
+          cp -r assets css js publicar/
           cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html publicar/
           cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
 
@@ -152,27 +152,29 @@ jobs:
           # publicada: el repo no se toca.
           python3 docs/versionar.py publicar
 
-          # ── Candado: el código de un producto terminado no se publica ──
-          # Lo que el navegador muestra, el navegador lo guarda: una página de
-          # producto publicada es una página de producto copiable. El expediente
-          # del taller vive fuera de este repo (ver README) y no se enlaza ni se
-          # publica. Si algún día alguien lo deja caer en producto/, este paso
-          # frena la publicación en vez de regalarlo en silencio.
-          permitidos="producto/control-de-autos.html"
+          # ── Candado: al sitio solo llegan capturas, nunca un sistema ──
+          # Decisión del 17 de septiembre: ningún producto se publica ni se puede
+          # probar. Los sistemas se enseñan con capturas de uso real —lo que les
+          # da valor— y nada que se pueda abrir y copiar. Como el repositorio es
+          # público, el código tampoco vive aquí: está en ~/productos-camena/.
+          # Este paso frena la publicación si algún día alguien deja caer una
+          # página de producto en una carpeta que sí se copia.
+          permitidas="index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html"
           sobrantes=""
-          for f in $(find publicar/producto -type f 2>/dev/null | sed 's|^publicar/||'); do
-            case " $permitidos " in
+          for f in $(find publicar -name "*.html" | sed 's|^publicar/||'); do
+            case " $permitidas " in
               *" $f "*) ;;
               *) sobrantes="$sobrantes $f" ;;
             esac
           done
           if [ -n "$sobrantes" ]; then
-            echo "✗ Hay archivos de producto que no deben publicarse:$sobrantes"
-            echo "  Muévelos fuera del repo (ver «Los dos productos» en el README)"
-            echo "  o agrégalos a la lista de permitidos si la decisión cambió."
+            echo "✗ Hay páginas que no deben publicarse:$sobrantes"
+            echo "  El sitio muestra los sistemas con capturas: nada que se pueda probar."
+            echo "  Mueve el archivo fuera del repo (ver «Los dos productos» en el README)"
+            echo "  o agrégalo a la lista de permitidas si la decisión cambió."
             exit 1
           fi
-          echo "✓ Ningún producto terminado fuera de la lista permitida."
+          echo "✓ Se publican solo las páginas del sitio: ninguna de producto."
 
           echo "── Contenido que se publica ──"
           find publicar -type f | sort | sed 's|^|  |'
