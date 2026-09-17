@@ -21,7 +21,10 @@ verdad**, con su propio `lang="en"`, que no necesite traductor.
   vive completa en `como-trabajamos.html`.
 - `servicios.html`, `como-trabajamos.html`, `aviso-de-privacidad.html`,
   `terminos.html`
-- `producto/control-de-autos.html` — tiene su propio CSS dentro del archivo
+- `404.html` — la página de error. Se traduce igual que las demás.
+- **Ojo:** ya **no** hay páginas dentro de `producto/`. La de Control de Autos
+  salió del repo (los sistemas se enseñan solo con capturas), así que no hay nada
+  que traducir ahí.
 - **`js/contacto.js`** — ver la sección «El texto que arman los scripts», abajo.
   Sin esto, la página en inglés tendrá mensajes en español.
 
