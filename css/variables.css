@@ -253,4 +253,17 @@
   --mock-naranja: #E0A87F;
   --mock-rosa: #C9A0C9;
   --mock-acento-linea: rgba(244, 114, 182, 0.42);
+  /* ── Tonos suaves para las tarjetas de diagnóstico ────────────────
+     Siete fondos muy claros, uno por tarjeta, para que la rejilla no se lea
+     como siete bloques iguales. Todos están por encima de L* 94: el texto de
+     tinta encima da más de 15:1, así que el tono es ambiente, no información.
+     Ninguno se usa para texto ni para filetes. */
+  --tinte-0: #141C18;   /* carbón con tinte verde: la tarjeta destacada */
+  --tinte-1: #F7F6F3;   /* papel */
+  --tinte-2: #F5EFDF;   /* oro */
+  --tinte-3: #EFF4F0;   /* verde */
+  --tinte-4: #F6F1E7;   /* arena */
+  --tinte-5: #EEF2F5;   /* niebla */
+  --tinte-6: #F7F0EC;   /* arcilla */
+  --tinte-7: #F1F3EC;   /* salvia */
 }
