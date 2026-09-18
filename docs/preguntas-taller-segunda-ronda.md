@@ -116,8 +116,12 @@ una llamada—, ¿qué usas más y por qué?
 su código, ¿cuánto pasa? ¿Cuántas veces al día?
 **A4** ¿Qué es lo que más se atora: el nombre de la pieza, el código, el precio, o
 saber si le queda a ese modelo?
-**A5** ¿Tienes usuario para entrar al programa de alguna aseguradora? ¿Qué puedes
-ver y qué no? ¿Quién más tiene usuario?
+**A5** ~~¿Tienes usuario del programa de alguna aseguradora?~~ **Contestada:** sí,
+cada aseguradora le da acceso a las piezas para los presupuestos; **no** a los
+croquis, que solo se ven mientras el coche está en reparación. Además: **para la
+aseguradora basta el nombre de la pieza**, el número de parte no es requisito; el
+taller trabaja **con todas las marcas**; y el **VIN se lee en el parabrisas o en el
+motor**, así que se captura al recibir el carro.
 **A6** Cuéntame la última vez que pidieron una pieza equivocada: ¿qué pasó, cuánto
 se perdió y quién lo pagó?
 **A7** ¿Qué hace que tengas que mandar un complemento? ¿Qué información se necesita
