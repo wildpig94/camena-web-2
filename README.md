@@ -189,12 +189,33 @@ igual. Ahora la carpeta se instala en el aparato como cualquier app:
 
 Todo eso se comprueba con `node docs/probar-instalable.mjs`.
 
-**Dónde se publica: todavía no.** El 18 de septiembre el dueño decidió dejarla
-lista y sin publicar, sabiendo lo que cuesta cada camino. La app está probada
-*sirviendo desde la ruta del sitio* (`/control-de-autos/`), así que publicarla es
-copiar la carpeta y ajustar dos pasos del despliegue; el detalle está en
-`docs/pendientes.md`, en la decisión 23. **Mientras no se decida, el taller no
-puede usar el cotizador**, porque la app no tiene dónde abrirse.
+**Dónde vive: Cloudflare, con puerta (18 de septiembre).** Se decidió no
+publicarla en la página de GitHub —ahí el sistema queda descargable para cualquiera
+que pase por el repositorio público, y su código entra a la historia de git para
+siempre— y llevarla a **Cloudflare Pages con una Access policy por correo**: https
+para que el teléfono la instale, y una puerta para que solo entre quien se
+autorice. El procedimiento completo está en `docs/publicar-en-cloudflare.md`, y
+`docs/publicar-cloudflare.sh` hace el trabajo: comprueba que la app esté sana
+—incluida la prueba de «sin internet»—, la publica y verifica que la dirección
+responda.
+
+Dos cosas que se ajustaron pensando en esa puerta:
+
+- **El service worker solo guarda respuestas buenas.** Con Access por delante,
+  cuando la sesión vence lo que llega es la pantalla de entrar: guardarla la
+  dejaría pegada para siempre y la app se vería rota. Ahora, si la respuesta no es
+  buena, se sirve la copia local y la app sigue funcionando sin internet aunque la
+  sesión haya vencido.
+- **El icono de la pestaña es el icono de la app**, no el favicon del estudio: es
+  la herramienta de un cliente, no un anuncio de CAMENA.
+
+**La versión base para otro taller** vive en `~/productos-camena/plantillas/control-de-autos-base/`:
+la misma app **sin el nombre de ningún taller**, con las tres cosas que se cambian
+—nombre, aseguradoras con su factor y color de acento— juntas y marcadas al
+principio del archivo, más un `LEEME.md` con el checklist. Probada como app: se
+instala y funciona sin internet igual que la del taller. Publicarla sin ponerle el
+nombre de un taller real hace que el script lo frene: es la diferencia entre
+entregar un sistema y entregar una plantilla.
 
 **En qué etapa quedó, y qué le falta.** Es **el primero de los nueve problemas que
 el taller contó** en `docs/investigacion-taller.md`: el registro de entrada (D1),
@@ -398,6 +419,7 @@ flujo de despliegue no copia esa carpeta):
 | `docs/medir-hero.mjs` | **El que mide el hero.** Devuelve números en vez de opiniones: tamaño del titular, cuántas líneas usa de verdad, proporción titular/entrada, cuántos tamaños y colores distintos hay, y si el hero cabe en la primera pantalla. | `node docs/medir-hero.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/medir-fichas.mjs` | **El que abre lo que está cerrado.** Abre las 28 fichas de precio una por una y mide tres cosas que la auditoría general no puede ver: si alguna tapa la nota o los botones de su banda, si se sale de su tarjeta y **el contraste de cada texto contra su fondo real**. Nació de un texto a 1.07:1 que vivió escondido detrás de un `display: none`. | `node docs/medir-fichas.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/versionar.py` | **El que rompe el caché.** Sella la huella del contenido en las URLs de CSS y JS (`css/layout.css?v=17364851`), para que un cambio se vea al instante en el celular y el caché se siga usando cuando nada cambió. Corre solo en cada publicación. | `python3 docs/versionar.py` |
+| `docs/publicar-cloudflare.sh` | **El que publica la app del taller.** Comprueba que la carpeta esté completa y que lleve el nombre de un taller de verdad (y no de la plantilla), corre las dos pruebas sirviendo la app como se sirve en internet, publica en Cloudflare Pages y verifica que la dirección responda. Con `--solo-probar` hace todo menos publicar. | `bash docs/publicar-cloudflare.sh --solo-probar` |
 | `docs/probar-instalable.mjs` | **El que pregunta si ya es un programa.** Pide al navegador sus propias cuentas: que el manifiesto no tenga errores, que Chrome la considere instalable, que el service worker quede activo —y lo que de verdad importa— que **sin internet abra, cargue sus fuentes y deje capturar**. Nació al convertir la app del taller en programa instalable. | `node docs/probar-instalable.mjs` |
 | `docs/probar-producto.mjs` | **El probador del producto.** Abre Control de Autos con Chrome y la usa como una persona: comprueba que no pida nada externo, que las fuentes propias carguen, que no se desborde, y da de alta un auto para ver que se guarde y siga ahí tras recargar. | `node docs/probar-producto.mjs` (con el servidor en 8899) |
 
