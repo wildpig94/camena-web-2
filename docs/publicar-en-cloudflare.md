@@ -122,3 +122,43 @@ Y lo que hay que verificar a mano, en una ventana privada:
 - **No publicar sin Access** si el sistema no debe poder descargarse.
 - **No publicar la versión base** (`plantillas/control-de-autos-base/`) con el
   nombre de otro taller, ni al revés: cada taller con su proyecto y su puerta.
+
+---
+
+## Cómo cerrarla (sin Access, ahora mismo)
+
+Si en algún momento hay que dejar de servir la app —porque se publicó sin puerta,
+porque hay que corregir algo, o porque se va a mudar de dominio—, esto la cierra
+en un minuto y deja constancia en la propia dirección:
+
+```bash
+npx wrangler pages deploy ~/productos-camena/cerrado --project-name=control-autos-maranatha --commit-dirty=true
+```
+
+`~/productos-camena/cerrado/` no es una página en blanco: trae el aviso de que el
+sistema es privado, **un `sw.js` que se desinstala solo y borra el caché** —para
+que un aparato que ya lo tenía instalado se limpie solo—, un manifiesto neutro y
+copias en las rutas que usaba la app (`control-de-autos.html`, `sw.js`,
+`manifest.webmanifest`).
+
+**Por qué hay que reemplazar las rutas, y no basta con subir otra página.**
+Cloudflare guarda los archivos de cada despliegue en su caché de borde, y al
+publicar encima **los archivos que desaparecen siguen respondiendo** hasta que
+esa copia caduca: comprobado, `sw.js` seguía sirviendo el de la app 47 minutos
+después. Si sólo se sube un `index.html` nuevo, el sistema sigue descargable por
+sus rutas viejas. Con las rutas reemplazadas, cada una responde al archivo de
+cierre.
+
+Y para que no quede nada en el almacén del proyecto:
+
+```bash
+# Lista los despliegues y borra los de la app (los que no sean de cierre)
+curl -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+  "https://api.cloudflare.com/client/v4/accounts/$CUENTA/pages/projects/control-autos-maranatha/deployments" 
+curl -X DELETE -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+  "https://api.cloudflare.com/client/v4/accounts/$CUENTA/pages/projects/control-autos-maranatha/deployments/$ID"
+```
+
+Lo que puede quedar unos días es lo que estaba en caché y **no es el sistema**:
+los dos archivos de fuentes y los iconos. Nada de lógica, ni un dato, ni el
+nombre del taller.
