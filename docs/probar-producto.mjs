@@ -7,16 +7,16 @@
    página pide sus fuentes y su favicon en ../assets/:
 
      cd ~/productos-camena && python3 -m http.server 8900 --bind 127.0.0.1
-     node docs/probar-producto.mjs http://127.0.0.1:8900/control-de-autos/control-de-autos.html
+     node docs/probar-producto.mjs http://127.0.0.1:8900/control-de-autos/index.html
 
-   La ruta anterior (producto/control-de-autos.html, dentro del sitio) ya no
+   La ruta anterior (control-de-autos/index.html, dentro del sitio) ya no
    existe: se retiró del repositorio público para no regalar el sistema. */
 import { spawn } from "node:child_process";
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const PAGINA = process.argv[2] || "http://127.0.0.1:8900/control-de-autos/control-de-autos.html";
+const PAGINA = process.argv[2] || "http://127.0.0.1:8900/control-de-autos/index.html";
 const ANCHO = Number(process.argv[3] || 390);
 /* El origen se saca de la URL que se pide: así sirve igual contra el servidor
    local y contra el sitio publicado, sin marcar lo propio como externo. */

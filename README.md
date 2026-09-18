@@ -61,7 +61,7 @@ real**, que es lo que le da valor a la pieza.
 | Qué es | El **expediente del taller**, reconstruido desde los dolores reales | La app original de **Control de Autos**, tal como la usaba el taller |
 | Diseño | El sistema de diseño del sitio (`css/variables.css`) | Propio: fondo oscuro, Oswald + IBM Plex Sans |
 | Se muestra | En los ejemplos del inicio, con capturas reales y **sin enlace para abrirlo** | Igual: capturas reales, **sin enlace** |
-| Archivos | `~/productos-camena/taller/` (`taller.html` + `taller.js`) | `~/productos-camena/control-de-autos/control-de-autos.html` |
+| Archivos | `~/productos-camena/taller/` (`taller.html` + `taller.js`) | `~/productos-camena/control-de-autos/index.html` |
 | Guarda en | `camena:taller:estado` (+ fotos en IndexedDB) | `taller_autos_v1` y `taller_aseguradoras_v1` |
 
 Ninguno de los dos es una maqueta: los dos se abren y se usan. Y ninguno se
@@ -77,7 +77,7 @@ producto en una carpeta que sí se copia, la publicación **falla** en vez de
 regalarla en silencio (ver el paso «Preparar solo lo que se publica»).
 
 > ⚠️ **Hasta el 17 de septiembre de 2026, Control de Autos se publicaba** en
-> `producto/control-de-autos.html` como enlace de trabajo para el taller. Se
+> `producto/index.html` como enlace de trabajo para el taller. Se
 > retiró: el sistema ya no se publica, no se enlaza y no se puede probar desde el
 > sitio — se enseña con las capturas del tablero y del historial. Queda en la
 > historia de git, así que quien mire los commits anteriores todavía puede
@@ -140,7 +140,7 @@ base de la siguiente versión del producto.
 
 Es la app que el taller ya conocía, más el cotizador que se le sumó el 18 de
 septiembre. **Ya no se publica ni se comparte por enlace**: vive fuera del repositorio y el sitio solo la enseña con dos capturas.
-Antes se publicaba en `producto/control-de-autos.html` para que el encargado la
+Antes se publicaba en `producto/index.html` para que el encargado la
 abriera desde el celular sin instalar nada, pero eso dejaba el sistema completo
 descargable para cualquiera —y el repositorio es público—, así que se retiró.
 Registra la

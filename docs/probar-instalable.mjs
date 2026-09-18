@@ -26,7 +26,7 @@ import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const URL = process.argv[2] || "http://127.0.0.1:8900/control-de-autos/control-de-autos.html";
+const URL = process.argv[2] || "http://127.0.0.1:8900/control-de-autos/index.html";
 const CHROME = "/home/alexis/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome";
 const PERFIL = mkdtempSync(join(tmpdir(), "camena-instalable-"));
 

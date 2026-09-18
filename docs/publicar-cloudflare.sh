@@ -25,7 +25,7 @@ solo_probar=0
 
 echo "── 1 · ¿Está completa la carpeta? ─────────────────────────────"
 faltan=""
-for f in control-de-autos.html manifest.webmanifest sw.js icon-192.png icon-512.png icon-maskable-512.png assets/fonts/oswald-latin.woff2 assets/fonts/ibm-plex-sans-latin.woff2; do
+for f in index.html manifest.webmanifest sw.js icon-192.png icon-512.png icon-maskable-512.png assets/fonts/oswald-latin.woff2 assets/fonts/ibm-plex-sans-latin.woff2; do
   [ -f "$APP/$f" ] || faltan="$faltan $f"
 done
 if [ -n "$faltan" ]; then
@@ -37,7 +37,7 @@ echo "  ✓ La carpeta se basta a sí misma ($(find "$APP" -type f | wc -l) arch
 
 echo
 echo "── 2 · ¿Lleva el nombre de un taller de verdad? ───────────────"
-nombre="$(grep -o "TALLER = { nombre: '[^']*'" "$APP/control-de-autos.html" | sed "s/.*'\(.*\)'/\1/")"
+nombre="$(grep -o "TALLER = { nombre: '[^']*'" "$APP/index.html" | sed "s/.*'\(.*\)'/\1/")"
 echo "  Taller en el encabezado: «$nombre»"
 case "$nombre" in
   "Nombre del taller"|"")
@@ -51,7 +51,7 @@ echo
 echo "── 3 · Las pruebas, sirviendo la app como se sirve en internet ─"
 ( cd "$(dirname "$APP")" && python3 -m http.server "$PUERTO" --bind 127.0.0.1 >/dev/null 2>&1 & echo $! >/tmp/publicar-servidor.pid )
 sleep 2
-URL_LOCAL="http://127.0.0.1:$PUERTO/$(basename "$APP")/control-de-autos.html"
+URL_LOCAL="http://127.0.0.1:$PUERTO/$(basename "$APP")/index.html"
 trap 'kill "$(cat /tmp/publicar-servidor.pid)" 2>/dev/null || true; rm -f /tmp/publicar-servidor.pid' EXIT
 
 node "$AQUI/docs/probar-producto.mjs" "$URL_LOCAL" 390 844 >/tmp/publicar-producto.json

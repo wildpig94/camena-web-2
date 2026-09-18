@@ -19,7 +19,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const BASE = process.argv[2] || "http://127.0.0.1:8899";
-const PAGINAS = (process.argv[3] || "index.html,servicios.html,como-trabajamos.html,producto/control-de-autos.html,aviso-de-privacidad.html,terminos.html").split(",");
+const PAGINAS = (process.argv[3] || "index.html,servicios.html,como-trabajamos.html,aviso-de-privacidad.html,terminos.html").split(",");
 const ANCHO = Number(process.argv[4] || 390);
 const CHROME = "/home/alexis/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome";
 const PERFIL = mkdtempSync(join(tmpdir(), "camena-medios-"));
