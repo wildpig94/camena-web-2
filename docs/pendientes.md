@@ -100,3 +100,30 @@ service worker activo, y sin internet abre, carga sus fuentes y deja capturar.
 
 Lo que **no** hay que decidir: si el sistema del taller (el expediente) también se
 vuelve instalable. Eso es otro producto y se decide cuando ese llegue a su turno.
+
+## G · El dominio de CAMENA (18 de septiembre)
+
+**Dato verificado, no supuesto:** `camena.mx` **está disponible**. Se preguntó al
+registro de NIC México, que es la fuente que manda (no un revendedor):
+`=camena.mx` por whois responde `Disponible/Available`. También está libre
+`camena.com.mx`. Ninguno tiene DNS, así que nadie los está usando.
+
+**Cloudflare lo resuelve completo**, y el `.mx` es la buena noticia: Cloudflare
+Registrar lo **acaba de sumar** a su lista (aparece como «recently added TLD: mx,
+com.mx, org.mx» en sus políticas de TLD), así que se puede registrar ahí mismo, a
+precio de costo y sin sobreprecio: alrededor de **USD 30.70 al año** (registro,
+renovación y transferencia al mismo precio), contra 38–59 en otros registradores.
+
+Con el dominio en Cloudflare, lo demás sale gratis y en una sola cuenta:
+
+| Qué | Cómo |
+|---|---|
+| **El sitio del estudio** en `camena.mx` | DNS apuntando a GitHub Pages (donde ya vive) y el dominio propio en el repositorio. `docs/cambiar-dominio.sh camena.mx --aplicar` cambia las 22 apariciones de la dirección vieja y crea el `CNAME` |
+| **La app del taller** en `taller.camena.mx` | Dominio propio del proyecto de Pages (lo agrega solo, porque la zona es del mismo dueño) + **Access** encima |
+| **Correo del estudio**: `hola@camena.mx` | **Email Routing**, gratis: reenvía a tu Gmail. Da confianza en la página de contacto sin pagar buzón |
+| **HTTPS, caché y protección** | Certificado automático y proxy de Cloudflare |
+
+**Lo que hace falta de tu lado:** comprar el dominio (necesita tu tarjeta; nadie más
+puede hacerlo) y crear un **token de API** con permisos de Access, DNS y Pages para
+que yo configure y verifique el resto. Los pasos exactos están en
+`docs/configurar-puerta.py` (los imprime si se corre sin token).
