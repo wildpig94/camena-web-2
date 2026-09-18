@@ -165,6 +165,26 @@ quiere volver a firmar, se agrega un renglón al pie; hoy no lo lleva a propósi
 - **No se enlaza desde el sitio y no entra al sitemap.** Es una herramienta, no
   una página de venta: se comparte con quien la va a usar, no se anuncia.
 
+**En qué etapa quedó, y qué le falta.** Es **el primero de los nueve problemas que
+el taller contó** en `docs/investigacion-taller.md`: el registro de entrada (D1),
+que era el más grave porque de él cuelga todo lo demás. Lo que hace hoy está
+completo y probado —`node docs/probar-producto.mjs` contra la copia archivada:
+registra, guarda, sigue ahí después de recargar y no pide nada a ningún tercero—:
+
+| Hecho | Falta |
+|---|---|
+| Ficha de recepción: descripción, color, placas, folio del siniestro, aseguradora, fecha de entrada, notas | **El cliente**: hoy el auto no tiene dueño con teléfono, y sin eso no hay a quién avisarle nada |
+| Días en piso, contados solos, con etiqueta de demorado | **Fotos por siniestro** (D2): el taller ya las toma, pero viven sueltas en carpetas |
+| Salida al historial con fecha, y reingreso si vuelve | **Cobranza** (D4 y D5): facturado, pagado y pendiente por siniestro; hoy es un Excel por mes |
+| Catálogo de aseguradoras editable | **Lista de precios y cotización** (D3): el precio hoy es una persona, no una tabla |
+| Respaldo en un archivo: se descarga y se vuelve a cargar | **Respaldo automático**: hoy hay que acordarse de bajarlo |
+| Instrucciones dentro de la propia app, desplegables | **Avisos al cliente** (D6 y D7) y **WhatsApp** (D8): nada sale de la máquina |
+| Un solo archivo HTML, sin dependencias, corre en la computadora del taller | **Pendientes tipo pizarrón** (D9), y **más de una persona a la vez** |
+
+Lo que lo tiene detenido no es código: es **el dato que falta**. El precio por
+aseguradora (D3) es la única pregunta de la primera ronda que sigue sin
+respuesta, y sin esa tabla el cotizador no se puede construir sin inventarlo.
+
 **Lo que NO es.** No tiene fotos por etapa, ni conformidad firmada, ni refacciones
 detenidas: eso es el expediente. Los datos viven en el navegador de cada
 computadora (claves `taller_autos_v1` y `taller_aseguradoras_v1`), así que no se
@@ -1080,8 +1100,10 @@ resultados **sin rearmar la página**.
 - [x] Eje reposicionado a **estudio de diseño y sistemas operativos**: hero con
       dos mitades, diagnósticos por costo, etapa de sistemas como protagonista,
       catálogo de servicios abierto por sistemas y tesis en «Cómo trabajamos»
-- [x] Producto en vivo publicado (expediente del taller), con su ficha en los
-      ejemplos y entrada en el sitemap
+- [x] Sistemas enseñados **solo con capturas**, con su ficha en los ejemplos y
+      **fuera del repositorio**: el expediente del taller y Control de Autos viven
+      en `~/productos-camena/`, y la publicación frena si un archivo de producto
+      terminado entra a una carpeta que sí se copia
 - [x] Sección de ejemplos solo con trabajo real: cotizador, producto y dos
       videos; retiradas las maquetas de plantilla
 - [x] Precios de campañas y eventos a nivel de estudio, con el alcance explicado
