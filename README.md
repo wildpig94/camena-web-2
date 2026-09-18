@@ -165,6 +165,31 @@ quiere volver a firmar, se agrega un renglón al pie; hoy no lo lleva a propósi
 - **No se enlaza desde el sitio y no entra al sitemap.** Es una herramienta, no
   una página de venta: se comparte con quien la va a usar, no se anuncia.
 
+**La memoria de refacciones (18 de septiembre).** El taller dijo dónde busca las
+piezas —proveedores por WhatsApp, MercadoLibre, plataformas de las aseguradoras para
+el precio oficial, y los diagramas que le mandan los proveedores— y con eso se
+construyó lo que faltaba: **que el sistema se acuerde**.
+
+- **Cada pieza capturada queda guardada** con su **código, marca, proveedor y
+  modelo del carro**, y cuántas veces se ha usado.
+- **Autocompletado**: al escribir el nombre de una pieza ya usada, se llenan solos
+  el código, la marca, el proveedor, el costo y la casilla de IVA. Es el ahorro de
+  verdad: deja de buscarse dos veces lo mismo.
+- **Pestaña «Refacciones»** con buscador por pieza, código, marca, proveedor o
+  carro; cada resultado trae sus botones para **MercadoLibre** y **Google**, con la
+  consulta ya escrita (pieza + carro + código).
+- **Costo con IVA y más IVA.** Los proveedores cotizan «+ IVA» buena parte del
+  tiempo y el factor de la aseguradora se aplica sobre el costo real: sin esto el
+  precio salía 16% abajo. Comprobado: $1,300 + IVA al 175% = **$2,639**.
+- La memoria **se va en el respaldo**, y un respaldo viejo —sin refacciones— no
+  borra lo que ya hay en el aparato.
+
+Lo que **no** se hizo, a propósito: consultar MercadoLibre desde dentro con su API.
+Comprobado que `api.mercadolibre.com/sites/MLM/search` responde 403 sin
+credenciales, exige registrar una aplicación y manejar tokens que caducan cada seis
+horas, y sus términos no permiten mostrar sus publicaciones en una app de terceros.
+El enlace directo hace el mismo trabajo sin depender de nadie.
+
 **Ya es un programa instalable, no un archivo suelto (18 de septiembre).** Un
 archivo dentro de la carpeta de Descargas no es un lugar donde vivir: el navegador
 puede borrar sus datos cuando le falte espacio y en el teléfono ni siquiera abre

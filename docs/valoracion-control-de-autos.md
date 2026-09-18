@@ -116,7 +116,12 @@ ocho.
 18. **`docs/configurar-puerta.py`** — pone Cloudflare Access (equipo, política
     reutilizable con los correos autorizados, aplicación del dominio) y **verifica
     desde fuera** que una petición sin sesión acabe en la pantalla de entrar.
-19. **La versión base para otro taller** (`~/productos-camena/plantillas/control-de-autos-base/`):
+19. **La memoria de refacciones** con código, marca, proveedor, costo con IVA,
+    autocompletado, buscador propio y botones de búsqueda (MercadoLibre y Google)
+    con la consulta ya escrita. Nació de lo que el taller contestó: busca en
+    MercadoLibre, en proveedores taiwaneses y en las plataformas de las
+    aseguradoras, pero **no tiene los diagramas** de las piezas.
+20. **La versión base para otro taller** (`~/productos-camena/plantillas/control-de-autos-base/`):
     la misma app sin el nombre de nadie, con las tres cosas que se cambian marcadas
     al principio del archivo y un `LEEME.md`. Probada como app.
 
@@ -135,7 +140,7 @@ En orden de lo que más duele, con lo que necesita cada uno:
 | 5 | **Respaldo que no dependa de la memoria** | Recordatorio más insistente y, si el taller quiere, respaldo cifrado a su propia nube | Chico |
 | 6 | **Pendientes tipo pizarrón** | Una lista rápida de material detenido, con fecha y quién lo pidió | Mediano |
 | 7 | **Más de una persona a la vez** | Deja de ser un archivo local: necesita servidor y cuentas. Es el cambio más grande de todos | Grande |
-| 8 | **Catálogo de refacciones con costo** | Que el taller lo arme una vez; después el costo se elige, no se teclea | Mediano |
+| 8 | ~~Catálogo de refacciones con costo~~ **Hecho en parte (18 sep):** la memoria guarda cada pieza con código, marca, proveedor y costo, con autocompletado y buscador, y botones de búsqueda con la consulta escrita. **Falta** el catálogo de refacciones *ajeno* (imposible: son datos con derechos) y **guardar los diagramas por modelo** e indexarlos | Los diagramas, con muestras reales | Mediano |
 | 9 | **Precio de particular** | Un campo de precio manual por carro cuando no hay aseguradora | Chico |
 
 **Lo que no es un pendiente sino una condición:** el respaldo. Mientras los datos
