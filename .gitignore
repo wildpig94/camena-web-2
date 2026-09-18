@@ -31,3 +31,7 @@ Revision-pendientes.md
 
 # ─── Capturas de revisión (se quedan en local, no se versionan) ───
 docs/capturas-movil/
+
+# Caché de wrangler al publicar la app del taller: es de esta máquina, no del
+# repositorio. Guarda el id de la cuenta y el nombre del proyecto.
+.wrangler/
