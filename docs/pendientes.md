@@ -79,9 +79,24 @@ Falta darle casa, y eso no lo decide el diseño.
 
 | # | Qué falta decidir | Por qué importa |
 |---|---|---|
-| 22 | **¿Qué teléfono usa la encargada?** | En Android la instalación es un botón; en iPhone son tres toques y, si se queda solo en Safari sin instalar, Apple puede borrar los datos por falta de uso |
-| 23 | **¿Dónde vive la app?** Tres caminos: (a) **Cloudflare con acceso por correo** —gratis, https y puerta, pero estrena dominio; (b) **el mismo dominio de GitHub, en otra carpeta** —lo más simple y lo único que conserva los datos que ya tenga el teléfono, aunque queda público para quien tenga el enlace; (c) **un APK** —el programa de verdad, sin servidor ni internet, a cambio de una cadena de compilación, firma y reinstalar en cada cambio | De esto depende que los datos que ya existan lleguen o no a la versión nueva |
-| 24 | **¿Hay datos capturados con el enlace viejo?** | Los datos viven **pegados al dominio**, no al archivo: si la app se muda de dominio, lo que ella haya capturado se queda atrás. Si la respuesta es sí, hay que volver a publicar esa página un rato —en el mismo dominio— para que descargue su respaldo antes de mudarse |
+| 22 | ~~¿Qué teléfono usa la encargada?~~ **Resuelto (18 de septiembre): Android.** La instalación es un botón y el almacenamiento permanente ya se pide, así que no aplica el borrado por desuso de Safari | — |
+| 23 | **¿Dónde vive la app?** **Decisión del 18 de septiembre: se queda lista y sin publicar; se decide después.** El dueño eligió la misma página de GitHub (`wildpig94.github.io/camena-web-2/control-de-autos/`), sabiendo que ahí el sistema queda público y que su código entraría a la historia de git para siempre —el repositorio es público—, y prefirió no publicar todavía. Las tres rutas siguen sobre la mesa: (a) esa carpeta, asumiendo que es pública; (b) **Cloudflare con acceso por correo**, gratis y con puerta, estrenando dominio; (c) **un APK**, sin servidor ni internet | **Mientras no se decida, el taller no puede usar el cotizador**: la app no tiene dónde abrirse. Es lo único que el módulo nuevo necesita para llegar al taller |
+| 24 | ~~¿Hay datos capturados con el enlace viejo?~~ **Resuelto (18 de septiembre): no, todavía no había datos.** Así que no hay nada que rescatar y la app se estrena limpia, en el dominio que sea | — |
+
+**Cómo se publica, cuando se decida** (para que no haya que pensarlo de nuevo):
+
+1. Copiar la carpeta `~/productos-camena/control-de-autos/` al repositorio del sitio
+   (ya es autocontenida: lleva sus fuentes, sus iconos y su manifiesto).
+2. En `.github/workflows/publicar.yml`, agregarla al paso que copia
+   (`cp -r control-de-autos publicar/`) y sumar sus páginas a la lista `permitidas`
+   del candado, que hoy solo deja pasar las seis páginas del sitio.
+3. Cambiar el comentario del candado para que diga por qué la decisión cambió. Ese
+   candado nació el 17 de septiembre para que ningún sistema terminado quedara
+   descargable; si se publica, hay que dejar escrito que fue a propósito.
+
+Comprobado el 18 de septiembre sirviendo la app desde la ruta del sitio
+(`http://127.0.0.1:8899/control-de-autos/`): instalable sin objeciones de Chrome,
+service worker activo, y sin internet abre, carga sus fuentes y deja capturar.
 
 Lo que **no** hay que decidir: si el sistema del taller (el expediente) también se
 vuelve instalable. Eso es otro producto y se decide cuando ese llegue a su turno.

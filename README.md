@@ -189,6 +189,13 @@ igual. Ahora la carpeta se instala en el aparato como cualquier app:
 
 Todo eso se comprueba con `node docs/probar-instalable.mjs`.
 
+**Dónde se publica: todavía no.** El 18 de septiembre el dueño decidió dejarla
+lista y sin publicar, sabiendo lo que cuesta cada camino. La app está probada
+*sirviendo desde la ruta del sitio* (`/control-de-autos/`), así que publicarla es
+copiar la carpeta y ajustar dos pasos del despliegue; el detalle está en
+`docs/pendientes.md`, en la decisión 23. **Mientras no se decida, el taller no
+puede usar el cotizador**, porque la app no tiene dónde abrirse.
+
 **En qué etapa quedó, y qué le falta.** Es **el primero de los nueve problemas que
 el taller contó** en `docs/investigacion-taller.md`: el registro de entrada (D1),
 que era el más grave porque de él cuelga todo lo demás. Lo que hace hoy está
