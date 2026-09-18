@@ -165,6 +165,30 @@ quiere volver a firmar, se agrega un renglón al pie; hoy no lo lleva a propósi
 - **No se enlaza desde el sitio y no entra al sitemap.** Es una herramienta, no
   una página de venta: se comparte con quien la va a usar, no se anuncia.
 
+**Ya es un programa instalable, no un archivo suelto (18 de septiembre).** Un
+archivo dentro de la carpeta de Descargas no es un lugar donde vivir: el navegador
+puede borrar sus datos cuando le falte espacio y en el teléfono ni siquiera abre
+igual. Ahora la carpeta se instala en el aparato como cualquier app:
+
+- **Manifiesto e iconos propios** (`manifest.webmanifest`, tres PNG dibujados con
+  un SVG capturado con Chrome: 192, 512 y el recortable de Android). El nombre en
+  la pantalla de inicio es «Control de autos».
+- **Service worker**: abre **sin internet** y sigue trabajando. La app se pide a la
+  red primero y, si no hay, se usa lo guardado; las fuentes y los iconos salen de
+  lo guardado. Comprobado con la red cortada: abre, carga sus fuentes y deja
+  capturar un auto.
+- **Almacenamiento permanente** (`navigator.storage.persist()`): el navegador ya no
+  puede tirar los datos por falta de espacio.
+- **El pie dice cuándo fue el último respaldo** —«Último respaldo: hace 9 días»— y
+  avisa en ámbar cuando pasan siete. Es la única red de seguridad mientras los
+  datos vivan en el aparato.
+- **La carpeta se puede copiar entera**: las fuentes y el favicon viven dentro de
+  `control-de-autos/assets/`, ya no se piden a la carpeta de arriba.
+- **El botón de instalar** aparece cuando el aparato lo permite; en iPhone la
+  instalación es manual (Compartir → Añadir a pantalla de inicio).
+
+Todo eso se comprueba con `node docs/probar-instalable.mjs`.
+
 **En qué etapa quedó, y qué le falta.** Es **el primero de los nueve problemas que
 el taller contó** en `docs/investigacion-taller.md`: el registro de entrada (D1),
 que era el más grave porque de él cuelga todo lo demás. Lo que hace hoy está
@@ -367,6 +391,7 @@ flujo de despliegue no copia esa carpeta):
 | `docs/medir-hero.mjs` | **El que mide el hero.** Devuelve números en vez de opiniones: tamaño del titular, cuántas líneas usa de verdad, proporción titular/entrada, cuántos tamaños y colores distintos hay, y si el hero cabe en la primera pantalla. | `node docs/medir-hero.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/medir-fichas.mjs` | **El que abre lo que está cerrado.** Abre las 28 fichas de precio una por una y mide tres cosas que la auditoría general no puede ver: si alguna tapa la nota o los botones de su banda, si se sale de su tarjeta y **el contraste de cada texto contra su fondo real**. Nació de un texto a 1.07:1 que vivió escondido detrás de un `display: none`. | `node docs/medir-fichas.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/versionar.py` | **El que rompe el caché.** Sella la huella del contenido en las URLs de CSS y JS (`css/layout.css?v=17364851`), para que un cambio se vea al instante en el celular y el caché se siga usando cuando nada cambió. Corre solo en cada publicación. | `python3 docs/versionar.py` |
+| `docs/probar-instalable.mjs` | **El que pregunta si ya es un programa.** Pide al navegador sus propias cuentas: que el manifiesto no tenga errores, que Chrome la considere instalable, que el service worker quede activo —y lo que de verdad importa— que **sin internet abra, cargue sus fuentes y deje capturar**. Nació al convertir la app del taller en programa instalable. | `node docs/probar-instalable.mjs` |
 | `docs/probar-producto.mjs` | **El probador del producto.** Abre Control de Autos con Chrome y la usa como una persona: comprueba que no pida nada externo, que las fuentes propias carguen, que no se desborde, y da de alta un auto para ver que se guarde y siga ahí tras recargar. | `node docs/probar-producto.mjs` (con el servidor en 8899) |
 
 **El flujo de revisión completo:**
