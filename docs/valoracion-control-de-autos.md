@@ -121,7 +121,14 @@ ocho.
     con la consulta ya escrita. Nació de lo que el taller contestó: busca en
     MercadoLibre, en proveedores taiwaneses y en las plataformas de las
     aseguradoras, pero **no tiene los diagramas** de las piezas.
-20. **La versión base para otro taller** (`~/productos-camena/plantillas/control-de-autos-base/`):
+20. **El VIN del carro** y **el IVA en dos estados** («ya incluye» / «es + IVA»),
+    con la lista de refacciones diciéndolo con todas sus letras. Salió de las
+    capturas: el mismo día, el catálogo de agencia cotiza con IVA incluido y el
+    proveedor más IVA.
+21. **La memoria arranca sembrada** con 19 refacciones reales de esas capturas
+    (Honda de agencia y Durán Autopartes), con precio y fecha. Solo siembra cuando
+    la memoria está vacía, y la versión base para otro taller no la lleva.
+22. **La versión base para otro taller** (`~/productos-camena/plantillas/control-de-autos-base/`):
     la misma app sin el nombre de nadie, con las tres cosas que se cambian marcadas
     al principio del archivo y un `LEEME.md`. Probada como app.
 

@@ -183,6 +183,20 @@ construyó lo que faltaba: **que el sistema se acuerde**.
   precio salía 16% abajo. Comprobado: $1,300 + IVA al 175% = **$2,639**.
 - La memoria **se va en el respaldo**, y un respaldo viejo —sin refacciones— no
   borra lo que ya hay en el aparato.
+- **Arranca sembrada con 19 refacciones reales** sacadas de las capturas que mandó
+  el taller el 18 de septiembre (catálogo oficial de Honda y cotizaciones de Durán
+  Autopartes), cada una con su precio y su fecha. Se cargan **una sola vez**, solo
+  si la memoria está vacía: no fijan precios, dan el primer resultado de búsqueda.
+  La versión base para otro taller lleva la siembra vacía.
+- **El VIN del carro** (opcional, 17 caracteres): los catálogos de agencia y los
+  portales de las aseguradoras buscan por VIN, y guardarlo evita elegir mal el año.
+  Se guarda en mayúsculas y sin espacios, se ve como etiqueta en la tarjeta y sale
+  en la cotización.
+- **El IVA en dos estados**, no una casilla: «ya incluye IVA» y «es + IVA». El
+  mismo taller, el mismo día, recibe las dos cosas: el catálogo de agencia trae el
+  IVA incluido y el proveedor cotiza más IVA. La lista de refacciones lo dice con
+  todas sus letras, y cuando hay piezas + IVA el total avisa que se calcula sobre
+  el costo ya con IVA.
 
 Lo que **no** se hizo, a propósito: consultar MercadoLibre desde dentro con su API.
 Comprobado que `api.mercadolibre.com/sites/MLM/search` responde 403 sin
