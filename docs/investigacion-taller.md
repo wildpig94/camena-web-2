@@ -190,3 +190,42 @@ afina el tablero, pero ya no bloquea el módulo.
    detienen más y por cuántos días.
 
 Mientras las dos primeras no estén claras, construir «en forma» sería adivinar.
+
+---
+
+## 6 · Lo que el dueño del estudio confirmó (18 de septiembre)
+
+Tres datos que llegaron por WhatsApp y que cambian lo que se puede construir.
+Van aquí, con sus palabras, porque este documento es la única fuente de lo que el
+taller dijo de verdad.
+
+**1 · El nombre del taller: Taller Maranatha.** Es el nombre comercial. Ante el
+SAT está como **Servicio Automotrices del Valle**. El segundo es el que sirve
+para una factura o un recibo; el primero es el que va en el letrero y con el que
+la gente lo busca.
+
+**2 · El precio de aseguradoras: 175%, y cada aseguradora trae el suyo.**
+Respuesta del taller a la pregunta de D3, que era la única de la primera ronda que
+seguía abierta. Confirmado con el dueño del estudio el 18 de septiembre: **es un
+factor sobre el costo de la refacción** —175%— y **no es el mismo para todas**: cada
+aseguradora tiene su porcentaje.
+
+Eso decide el cotizador: el taller teclea el **costo** de la pieza y el sistema
+saca el precio con el factor de esa aseguradora. Nada de tarifas por hora ni de
+precios fijos por pieza.
+
+**Lo que queda abierto de este tema:** el **costo de cada pieza tampoco está en
+una lista**; hoy alguien lo busca y lo teclea. Un catálogo de refacciones con sus
+costos ahorraría ese paso, pero necesita que el taller lo arme una vez.
+
+**3 · El nombre del taller en el sistema, y no en el sitio.** El encabezado del
+programa dice **Taller Maranatha** y la cotización que se copia sale con ese
+nombre; ante el SAT el taller está como **Servicio Automotrices del Valle**. El
+sitio sigue diciendo «un taller de hojalatería y pintura», sin nombre y sin
+logotipo: nombrar a un cliente es otra autorización y no se pidió.
+
+**Ojo con el nombre en el sitio.** Que el dueño del estudio sepa cómo se llama el
+taller no es lo mismo que el taller haya autorizado aparecer nombrado. La ficha
+del ejemplo hoy dice «un taller de hojalatería y pintura», sin nombre y sin
+logotipo, y así se queda hasta que haya un sí explícito anotado en
+`docs/autorizaciones.md` — la misma regla que se aplicó con el reel de la clienta.

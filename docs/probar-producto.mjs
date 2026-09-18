@@ -109,7 +109,10 @@ const evaluar = async (expr) => {
   const r = await enviar("Runtime.evaluate", {
     expression: expr, returnByValue: true, awaitPromise: true,
   });
-  if (r.exceptionDetails) throw new Error(r.exceptionDetails.text);
+  if (r.exceptionDetails) {
+    const d = r.exceptionDetails;
+    throw new Error((d.exception && d.exception.description) || d.text);
+  }
   return r.result.value;
 };
 
@@ -158,15 +161,118 @@ informe.alta = await evaluar(`(() => {
   return r;
 })()`);
 
+/* El cotizador: piezas por cambiar y el factor de la aseguradora. El taller
+   confirmó 175% sobre el costo de la refacción, y que cada aseguradora trae el
+   suyo. Aquí se comprueba la cuenta, que el total siga al factor y que el renglón
+   quede guardado. */
+informe.cotizador = await evaluar(`(() => {
+  const r = {};
+  window.appActions.openAddModal();
+  const f = document.getElementById('car-form');
+  if (!f) { r.error = 'no abrió el formulario'; return r; }
+  f.querySelector('[name=descripcion]').value = 'Auto con piezas';
+  f.querySelector('[name=placa]').value = 'PIE-175';
+  const sel = f.querySelector('[name=aseguradora]');
+  const conFactor = [...sel.options].find(o => o.value);
+  r.aseguradora = conFactor ? conFactor.value : null;
+  sel.value = r.aseguradora; sel.dispatchEvent(new Event('change'));
+
+  window.__addPieza(); window.__addPieza();
+  const filas = [...document.querySelectorAll('#piezas .pieza-row')];
+  r.renglones = filas.length;
+  filas[0].querySelector('.pieza-nombre').value = 'Puerta trasera';
+  filas[0].querySelector('.pieza-costo').value = '1000';
+  filas[0].querySelector('.pieza-costo').dispatchEvent(new Event('input'));
+  filas[1].querySelector('.pieza-nombre').value = 'Pintura';
+  filas[1].querySelector('.pieza-costo').value = '500';
+  filas[1].querySelector('.pieza-costo').dispatchEvent(new Event('input'));
+
+  r.preciosPorPieza = [...document.querySelectorAll('.pieza-precio')].map(e => e.textContent);
+  r.totalEnElFormulario = document.getElementById('piezas-total').textContent;
+
+  /* Particular: sin aseguradora no hay factor y el precio lo pone el dueño. */
+  sel.value = ''; sel.dispatchEvent(new Event('change'));
+  r.avisoDeParticular = document.getElementById('piezas-total').textContent;
+  sel.value = r.aseguradora; sel.dispatchEvent(new Event('change'));
+
+  f.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+  const guardado = JSON.parse(localStorage.getItem('taller_autos_v1') || '[]');
+  const nuevo = guardado.find(c => c.descripcion === 'Auto con piezas') || {};
+  r.piezasGuardadas = (nuevo.piezas || []).length;
+  const tarjeta = [...document.querySelectorAll('.car-card')]
+    .find(c => c.textContent.includes('Auto con piezas'));
+  r.enLaTarjeta = tarjeta ? (tarjeta.querySelector('.car-piezas') || {}).textContent : null;
+  return r;
+})()`);
+
+/* El factor se puede cambiar por aseguradora, y el precio lo sigue. */
+informe.factorEditable = await evaluar(`(async () => {
+  const r = {};
+  window.appActions.openSettingsModal();
+  const inp = document.querySelector('.insurer-factor input');
+  if (!inp) { r.error = 'no hay campo de factor'; return r; }
+  r.antes = inp.value;
+  const tarjeta = () => [...document.querySelectorAll('.car-card')].find(c => c.textContent.includes('Auto con piezas')) || null;
+  r.totalCon175 = (tarjeta().querySelector('.car-piezas b') || {}).textContent || null;
+  inp.value = '200'; inp.dispatchEvent(new Event('change'));
+  r.guardado = JSON.parse(localStorage.getItem('taller_aseguradoras_v1') || '[]')[0];
+  window.appActions.closeModal();
+  r.totalCon200 = (tarjeta().querySelector('.car-piezas b') || {}).textContent || null;
+  /* La cotización que se manda: se copia y el aviso aparece. */
+  const btn = [...document.querySelectorAll('.car-actions .btn')]
+    .find(b => b.textContent.includes('cotización'));
+  r.hayBotonDeCotizacion = !!btn;
+  if (btn) {
+    btn.click();
+    await new Promise(res => setTimeout(res, 400));
+    const aviso = document.querySelector('.toast');
+    r.aviso = aviso ? aviso.textContent.trim() : null;
+    /* Sin https no hay portapapeles. Cuando falla, el texto tiene que aparecer de
+       todos modos —ya seleccionado— para poder copiarlo a mano. */
+    const caja = document.querySelector('.cotizacion-texto');
+        r.respaldoSinPortapapeles = caja ? { traeElEncabezado: caja.value.indexOf('Piezas por cambiar') >= 0, empieza: caja.value.slice(0, 90) } : null;
+    const cerrar = document.getElementById('cotizacion-cerrar');
+    if (cerrar) cerrar.click();
+  }
+  return r;
+})()`);
+
 /* ¿Se acuerda después de recargar? */
 await enviar("Page.reload");
 await esperar(1800);
 informe.persistencia = await evaluar(`({
   guardado: JSON.parse(localStorage.getItem('taller_autos_v1') || '[]').length,
   enPantalla: document.body.innerText.includes('Prueba automatizada'),
+  piezasEnPantalla: JSON.parse(localStorage.getItem('taller_autos_v1') || '[]')
+    .map(c => (c.piezas || []).length).reduce((a, b) => a + b, 0),
   externosTrasRecarga: performance.getEntriesByType('resource')
     .map(r => r.name).filter(u => !u.startsWith('${ORIGEN}'))
 })`);
+
+/* Datos de la versión anterior: aseguradoras como texto y autos sin piezas.
+   Tienen que seguir abriendo, sin un error en la consola. */
+await evaluar(`(() => {
+  localStorage.setItem('taller_aseguradoras_v1', JSON.stringify(['GNP', 'Qualitas']));
+  localStorage.setItem('taller_autos_v1', JSON.stringify([{
+    id: 'viejo1', estado: 'en_taller', fechaSalida: null, descripcion: 'Auto de antes',
+    color: 'Rojo', placa: 'OLD-1', aseguradora: 'GNP', folio: 'F-9',
+    fechaEntrada: '2026-09-01', notas: ''
+  }]));
+  return 1;
+})()`);
+await enviar("Page.reload");
+await esperar(1500);
+informe.migracion = await evaluar(`(() => {
+  window.appActions.openSettingsModal();
+  return {
+    abre: document.querySelectorAll('h1').length,
+    elAutoViejoSigue: document.body.innerText.includes('Auto de antes'),
+    aseguradorasMigradas: [...document.querySelectorAll('.insurer-row')].map(f => ({
+      nombre: f.querySelector('.insurer-name').textContent.trim(),
+      factor: f.querySelector('input').value
+    }))
+  };
+})()`);
 
 informe.consola = consola;
 informe.peticionesTotales = peticiones.length;

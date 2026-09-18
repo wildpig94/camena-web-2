@@ -176,14 +176,25 @@ registra, guarda, sigue ahí después de recargar y no pide nada a ningún terce
 | Ficha de recepción: descripción, color, placas, folio del siniestro, aseguradora, fecha de entrada, notas | **El cliente**: hoy el auto no tiene dueño con teléfono, y sin eso no hay a quién avisarle nada |
 | Días en piso, contados solos, con etiqueta de demorado | **Fotos por siniestro** (D2): el taller ya las toma, pero viven sueltas en carpetas |
 | Salida al historial con fecha, y reingreso si vuelve | **Cobranza** (D4 y D5): facturado, pagado y pendiente por siniestro; hoy es un Excel por mes |
-| Catálogo de aseguradoras editable | **Lista de precios y cotización** (D3): el precio hoy es una persona, no una tabla |
+| Catálogo de aseguradoras, **cada una con su factor** | **Catálogo de refacciones con costo**: hoy el costo de cada pieza se teclea cada vez |
+| **Cotizador por aseguradora**: se capturan las piezas por cambiar, el precio sale del factor y la cotización se copia para WhatsApp | **Precio de particular**: el del seguro ya se calcula; el de particular lo sigue definiendo el dueño |
 | Respaldo en un archivo: se descarga y se vuelve a cargar | **Respaldo automático**: hoy hay que acordarse de bajarlo |
-| Instrucciones dentro de la propia app, desplegables | **Avisos al cliente** (D6 y D7) y **WhatsApp** (D8): nada sale de la máquina |
+| Instrucciones dentro de la propia app, desplegables | **Avisos al cliente** (D6 y D7) y **WhatsApp** (D8) como aviso automático |
 | Un solo archivo HTML, sin dependencias, corre en la computadora del taller | **Pendientes tipo pizarrón** (D9), y **más de una persona a la vez** |
 
-Lo que lo tiene detenido no es código: es **el dato que falta**. El precio por
-aseguradora (D3) es la única pregunta de la primera ronda que sigue sin
-respuesta, y sin esa tabla el cotizador no se puede construir sin inventarlo.
+**El cotizador (18 de septiembre).** Con el dato del taller —**175% sobre el costo
+de la refacción**, y cada aseguradora con el suyo— se construyó el módulo que
+estaba detenido: en el alta del auto se agregan las piezas por cambiar con su
+costo, el precio aparece solo con el factor de esa aseguradora, el total se ve en
+la tarjeta, y un botón copia la cotización ya escrita para pegarla en WhatsApp. Si
+el portapapeles no está —sin https no existe—, el texto se abre seleccionado para
+copiarlo a mano. Los factores se editan en el panel de aseguradoras, y **los datos
+de antes siguen abriendo**: las aseguradoras se guardaban como texto y los autos no
+tenían piezas, así que al leerlos se convierten y nadie pierde su trabajo.
+
+Lo que sigue detenido no es código: es **el costo de cada refacción**, que tampoco
+está en una lista. Un catálogo de refacciones ahorraría teclearlo, pero necesita
+que el taller lo arme una vez.
 
 **Lo que NO es.** No tiene fotos por etapa, ni conformidad firmada, ni refacciones
 detenidas: eso es el expediente. Los datos viven en el navegador de cada
