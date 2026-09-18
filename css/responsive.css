@@ -560,8 +560,10 @@ html:not(.js) .caso { animation: none; }
    toque, y entonces el globo no se cierra aunque el botón diga que está
    cerrado. Es el mismo motivo por el que el toque y el ratón se separan. */
 @media (max-width: 1140px) and (hover: hover) and (pointer: fine) {
-  .tarifa__fila:hover .servicios__globo,
-  .tarifa__fila:focus-within .servicios__globo,
+  /* Los globos del hero sí siguen abriéndose con el ratón: miden una línea y no
+     empujan nada. Los de la tabla de precios ya no: son fichas de 200 a 270 px
+     que ahora entran en el flujo, y abrirlas con solo pasar el cursor
+     reacomodaría la tabla entera. Se abren al tocar el renglón. */
   .hecho:hover .hecho__globo,
   .hecho:focus-within .hecho__globo {
     display: block;

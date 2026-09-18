@@ -2006,7 +2006,15 @@ svg.ic path[d^="M12 2a10"] {
   width: 1%;   /* la columna se encoge al contenido: no le roba ancho al nombre */
 }
 
-.servicios__globo { background: var(--ink-2); }
+/* La ficha dentro de la banda oscura: fondo de la misma familia del carbón.
+   Ojo con esta regla. Estaba escrita como «.servicios__globo» a secas, en medio
+   de la tabla de precios, y hacía dos cosas malas a la vez: le daba fondo oscuro
+   a las fichas de TODAS las bandas y, como la regla base de la ficha viene más
+   abajo en este archivo, ni siquiera se aplicaba. Resultado: en la banda oscura
+   el texto claro caía sobre papel claro — 1.07:1, ilegible— y nadie lo veía,
+   porque la ficha solo se pinta al abrirla. Lo encontró docs/medir-fichas.mjs
+   la primera vez que midió de verdad. */
+.etapa--destacada .servicios__globo { background: var(--ink-2); }
 
 /* Caja que justifica la inversión: en la banda oscura, un fondo apenas más
    claro y un filete de acento. Sin ella, la cifra de $8,000 llega sin contexto. */
@@ -2088,28 +2096,35 @@ svg.ic path[d^="M12 2a10"] {
   max-width: 42ch;
 }
 
+/* ── El detalle del renglón ──────────────────────────────────────
+   Antes era un globo de una línea que flotaba sobre lo que venía abajo: cabía
+   porque medía 99 px. Desde que el renglón lleva «Incluye», la ficha mide entre
+   200 y 270 px, y flotando tapaba media tabla: medido, 13 de 28 fichas pisaban
+   la nota o los botones del pie de su banda. Ahora se abre en su propio
+   renglón y empuja lo que sigue, igual que ya hacía en el celular: ninguna
+   ficha esconde nada.
+
+   Se abre al tocar el renglón —el botón ocupa la celda y lleva el signo— y con
+   el teclado al enfocarlo. Ya no se abre con solo pasar el ratón: con fichas de
+   este tamaño, mover el cursor por la tabla la reacomodaría entera. */
 .servicios__globo {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  right: 0;
-  z-index: var(--z-contenido);
+  display: none;
+  margin-top: var(--e-3);
   padding: var(--e-4);
   background: var(--paper-2);
   border: 1px solid var(--borde);
   border-left: 2px solid var(--acento);
   border-radius: var(--radio-sm);
-  box-shadow: var(--sombra);
   font-size: var(--t-menudo);
   line-height: 1.55;
   font-weight: var(--peso-normal);
   color: var(--texto-2);
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity var(--dur-rapida) var(--curva), transform var(--dur-rapida) var(--curva);
 }
 .servicios__globo strong { color: var(--texto); }
+.servicios__globo[data-abierto="si"],
+.tarifa__fila:focus-within .servicios__globo {
+  display: block;
+}
 
 /* ── La ficha del renglón: qué es y qué incluye ──────────────────
    La cifra de la derecha («desde $9,600») no se sostenía sola: decía cuánto y
@@ -2148,28 +2163,6 @@ svg.ic path[d^="M12 2a10"] {
   background: var(--acento);
 }
 .servicios__nota { color: var(--texto-2); }
-
-/* Los últimos renglones abren la ficha hacia arriba. Hacia abajo, una ficha de
-   cuatro puntos mide 250 px y, medido, del quinto renglón en adelante tapaba la
-   nota y los botones del pie de la banda (del cuarto en adelante). Hacia arriba tapa
-   renglones de la
-   misma lista, que es lo que ya hacía un globo de una línea. */
-.etapa--destacada .tarifa__fila:nth-last-child(-n+5) .servicios__globo {
-  top: auto;
-  bottom: calc(100% + 6px);
-}
-
-.tarifa__fila:hover .servicios__globo,
-.tarifa__fila:focus-within .servicios__globo,
-.servicios__globo[data-abierto="si"] {
-  visibility: visible;
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .servicios__globo { transition: none; transform: none; }
-}
 
 .servicios__que {
   font-size: var(--t-cuerpo);

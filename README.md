@@ -334,6 +334,7 @@ flujo de despliegue no copia esa carpeta):
 | `docs/revisar-medios.mjs` | **El que ve lo deforme.** Recorre todas las páginas y compara la proporción pintada de cada imagen y video contra la del archivo; también delata cajas con alto fijo cuyo contenido no cabe. Nació del bug de los videos aplastados. | `node docs/revisar-medios.mjs` |
 | `docs/medir-escala.mjs` | **El que cuenta los escalones.** Dice cuántos tamaños y colores de texto distintos se ven de verdad en una página. Nació de un número incómodo: teníamos 21 tamaños donde una referencia usa 8 o 10. | `node docs/medir-escala.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/medir-hero.mjs` | **El que mide el hero.** Devuelve números en vez de opiniones: tamaño del titular, cuántas líneas usa de verdad, proporción titular/entrada, cuántos tamaños y colores distintos hay, y si el hero cabe en la primera pantalla. | `node docs/medir-hero.mjs http://127.0.0.1:8899/index.html 1440` |
+| `docs/medir-fichas.mjs` | **El que abre lo que está cerrado.** Abre las 28 fichas de precio una por una y mide tres cosas que la auditoría general no puede ver: si alguna tapa la nota o los botones de su banda, si se sale de su tarjeta y **el contraste de cada texto contra su fondo real**. Nació de un texto a 1.07:1 que vivió escondido detrás de un `display: none`. | `node docs/medir-fichas.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/versionar.py` | **El que rompe el caché.** Sella la huella del contenido en las URLs de CSS y JS (`css/layout.css?v=17364851`), para que un cambio se vea al instante en el celular y el caché se siga usando cuando nada cambió. Corre solo en cada publicación. | `python3 docs/versionar.py` |
 | `docs/probar-producto.mjs` | **El probador del producto.** Abre Control de Autos con Chrome y la usa como una persona: comprueba que no pida nada externo, que las fuentes propias carguen, que no se desborde, y da de alta un auto para ver que se guarde y siga ahí tras recargar. | `node docs/probar-producto.mjs` (con el servidor en 8899) |
 
@@ -786,8 +787,8 @@ Así se ven aunque el visitante no cargue el script y las indexa el buscador. So
 precios de partida, no cerrados: el valor real se confirma por escrito.
 
 **La ficha del renglón.** Una cifra sola («desde $9,600») dice cuánto y no dice
-qué, y el dueño que compara precios se queda sin con qué comparar. Cada renglón
-de la banda de sistemas abre una ficha con tres partes:
+qué, y el dueño que compara precios se queda sin con qué comparar. Hoy **17 de
+los 28 renglones de precio** abren una ficha con tres partes:
 
 ```html
 <div class="servicios__globo" id="g-…" role="region" aria-label="Qué incluye: …">
@@ -798,18 +799,32 @@ de la banda de sistemas abre una ficha con tres partes:
 </div>
 ```
 
+Están en las bandas de marca (5), presencia (4) y sistemas (8). Las cuatro de
+producción y las siete de campañas siguen con una frase, por lo que se explica
+abajo.
+
 Reglas de esta ficha, aprendidas a golpes:
 
-- **Cosas, no promesas.** Cuatro puntos concretos y técnicos. «Lista de adeudos
-  ordenada por antigüedad» se puede construir; «más ventas» no se puede firmar.
+- **Cosas, no promesas.** Puntos concretos y técnicos. «Lista de adeudos ordenada
+  por antigüedad» se puede construir; «más ventas» no se puede firmar.
 - **El globo es un `div`, no un `span`.** Una lista dentro de un `span` no es
-  HTML válido. Se cambiaron los ocho al agregarles el «Incluye».
-- **Los últimos cinco renglones abren hacia arriba** (`nth-last-child(-n+5)`).
-  Hacia abajo, una ficha de cuatro puntos mide 250 px y tapaba la nota y los
-  botones del pie. Medido, no supuesto: antes del ajuste, cinco de las ocho
-  fichas pisaban el pie de la banda.
-- En móvil la ficha entra en el flujo (`position: static`) y empuja el
-  contenido: mide 461 px y el renglón crece a 534, sin desbordar nada.
+  HTML válido. Se cambiaron al agregarles el «Incluye».
+- **La ficha va en el flujo, no flotando.** Nació como globo de una línea que
+  flotaba sobre los renglones de abajo: cabía porque medía 99 px. Con el
+  «Incluye» mide entre 200 y 270 px, y flotando **tapaba la nota y los botones
+  del pie en 16 de 28 fichas** (medido con `docs/medir-fichas.mjs`). Ahora se
+  abre en su propio renglón y empuja lo que sigue, igual que ya hacía en el
+  celular: ninguna ficha esconde nada.
+- **Se abre al tocar, no al pasar el ratón.** Con fichas de este tamaño, mover
+  el cursor por la tabla la reacomodaría entera. El renglón conserva el cambio
+  de color como pista de que se puede tocar, y el teclado la abre al enfocarlo.
+- **Donde la columna es angosta, no hay lista.** En la banda de producción la
+  tabla vive en una columna de 120 px (la tarjeta mide 605 y el video ocupa 272
+  al lado): una lista de tres puntos ahí mide **566 px de alto y 120 de ancho**,
+  ilegible. Esos cuatro renglones llevan el mismo contenido en una frase.
+- **El fondo oscuro de la ficha es solo para la banda oscura**
+  (`.etapa--destacada .servicios__globo`). Ver la lección 8 de auditoría: estaba
+  escrito como regla global y sin efecto, y dejaba texto claro sobre papel claro.
 
 **Coherencia obligatoria de las cifras.** Hay dos precios de entrada y aparecen
 en cinco sitios: hero (línea de precios y datos), índice lateral, etapas, armador y
@@ -982,6 +997,30 @@ Estas 6 comprobaciones faltaban y por eso entraron fallos reales:
    un script. Se arregla con `grid-column` y `grid-row` explícitos: cuando una
    rejilla tiene una pieza que ocupa todo el ancho, **las demás hay que
    colocarlas a mano**.
+
+8. **Lo que está escondido no se mide.** La ficha de un renglón solo se pinta al
+   abrirla, y la auditoría general mide la página como se ve al cargar: con las
+   fichas cerradas. Así vivió sin que nadie lo viera un texto **a 1.07:1** —
+   gris claro sobre papel claro, ilegible— en la banda oscura: la regla que le
+   daba fondo oscuro a la ficha estaba escrita como `.servicios__globo` a secas,
+   en medio de la tabla de precios, y hacía dos cosas malas a la vez: le daba
+   fondo oscuro a las fichas de todas las bandas y, como la regla base viene más
+   abajo en el archivo, ni siquiera se aplicaba. De ahí el nombre de
+   `docs/medir-fichas.mjs`: **abre las 28 fichas una por una y mide el contraste
+   de cada texto contra su fondo real**, además de avisar si alguna tapa el pie
+   de su banda. Dos reglas: si algo se abre, se mide abierto; y una regla de
+   contexto (`.banda .pieza`) escrita sin su contexto no es una regla, es una
+   trampa.
+
+9. **La herramienta de medir también se equivoca.** La primera versión de
+   `medir-fichas.mjs` daba **todo por bueno**. Dentro de una plantilla de
+   JavaScript, `/[\d.]+/g` pierde la barra invertida al viajar, así que el
+   navegador recibía `/[d.]+/g`: no encontraba un solo dígito, los contrastes
+   salían `NaN` y `NaN < 4.5` es falso, así que **ningún texto fallaba nunca**.
+   Se descubrió rompiendo un color a propósito: el medidor dijo que todo estaba
+   bien. Se arregló con una clase explícita (`[0-9.]`) y ahora informa los cuatro
+   textos más apretados, para que un `NaN` o un cero no puedan pasar por un
+   visto bueno. **Un medidor que no se puede hacer fallar a propósito no sirve.**
 
 Y una cuarta, de método: **las animaciones de entrada falsean las mediciones.**
 Un elemento sin revelar lleva `translateY(22px)` y el detector de solapes lo ve
