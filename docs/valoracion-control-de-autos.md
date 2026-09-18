@@ -141,7 +141,7 @@ En orden de lo que más duele, con lo que necesita cada uno:
 | # | Falta | Qué necesita para hacerse | Tamaño |
 |---|---|---|---|
 | 1 | **El cliente**: hoy el carro no tiene dueño con teléfono | Un campo de cliente en el alta (nombre y teléfono), y que se pueda buscar por él | Chico |
-| 2 | **Fotos del siniestro** dentro del expediente | Guardar imágenes en el aparato (IndexedDB) + cámara del teléfono + borrar/ordenar | Mediano |
+| 2 | ~~Fotos del siniestro dentro del expediente~~ **Hecho (18 sep):** fotos y croquis por carro en IndexedDB, con reducción automática, aviso al entregar y biblioteca buscable de croquis. **Falta**: asociar cada pieza a su croquis, y sacar de los croquis la lista de piezas con un modelo que ve imágenes | Lo segundo, cuando haya más muestras | Mediano |
 | 3 | **Cobranza**: facturado, pagado y pendiente por siniestro | Campos de factura, pago y saldo por carro + una vista de «qué falta cobrar» | Mediano |
 | 4 | **Avisos al cliente** (llegó, ya está listo) | Plantillas de mensaje y el enlace a WhatsApp con el texto armado; automático de verdad solo si hay servidor | Mediano |
 | 5 | **Respaldo que no dependa de la memoria** | Recordatorio más insistente y, si el taller quiere, respaldo cifrado a su propia nube | Chico |

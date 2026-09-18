@@ -165,6 +165,39 @@ quiere volver a firmar, se agrega un renglón al pie; hoy no lo lleva a propósi
 - **No se enlaza desde el sitio y no entra al sitemap.** Es una herramienta, no
   una página de venta: se comparte con quien la va a usar, no se anuncia.
 
+**El expediente del carro y la biblioteca de croquis (18 de septiembre).** El
+taller dijo la frase que cambió la prioridad: **los croquis de la aseguradora solo
+se ven mientras el coche está en reparación; entregado, ya no.** O sea que hay una
+fecha límite natural para esa información, y el sistema la conoce.
+
+- **Expediente por carro**: fotos y croquis, tomados con la cámara del teléfono o
+  elegidos del carrete, guardados en el aparato. Las imágenes se reducen antes de
+  guardarlas (medido: una de 2400×1500 entra como 1600×1000 y 26 KB), así que caben
+  cientos.
+- **El aviso al marcar la salida**, que es donde está el valor: si el carro no tiene
+  ningún croquis guardado, el sistema **no lo entrega sin preguntar** —«después de
+  entregarlo, la aseguradora ya no te lo muestra»— con dos salidas: guardarlo
+  primero o marcar la salida de todos modos. Es el único aviso del sistema que evita
+  una pérdida definitiva, no un olvido pasajero.
+- **Un aviso en la tarjeta** mientras el carro está adentro: «Sin fotos ni croquis ·
+  Guardar el croquis», en ámbar.
+- **La biblioteca de croquis**: cada croquis guardado queda en una pestaña propia,
+  buscable por carro, sección o código de lámina, y se puede descargar. No se
+  duplica el archivo: **se indexa una sola vez y alimenta las dos vistas** —el
+  expediente del carro y la biblioteca—, así no hay copias que se queden viejas.
+  Es el «libro de refacciones» que el taller arma solo, con lo que las aseguradoras
+  le muestran mientras repara.
+- **El respaldo se lleva las fotos y los croquis** (decidido por el dueño), con el
+  peso a la vista en el panel antes de descargar. Comprobado el viaje completo:
+  exportar y volver a cargar repone carros, VIN, refacciones, aseguradoras y las
+  imágenes, que reaparecen en la biblioteca.
+- Los archivos viven en **IndexedDB**, no en el almacén de texto: las imágenes no
+  caben donde viven los datos y no tienen por qué ahogarlos.
+
+Con esto, el **faltante 2** de la valoración (fotos por siniestro) queda hecho, y el
+**faltante 6** (guardar los diagramas por modelo) también — con el agregado de que
+la biblioteca los vuelve buscables.
+
 **La memoria de refacciones (18 de septiembre).** El taller dijo dónde busca las
 piezas —proveedores por WhatsApp, MercadoLibre, plataformas de las aseguradoras para
 el precio oficial, y los diagramas que le mandan los proveedores— y con eso se
