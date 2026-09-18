@@ -24,7 +24,7 @@ En corto: **se puede poner a trabajar hoy y sirve; no se puede vender todavía c
 **Origen: trece notas de voz.** La encargada del taller contestó diez preguntas en
 ≈4.7 minutos de audio, transcritas en esta máquina con `faster-whisper`, sin subir
 nada a ningún servicio. De ahí salieron **nueve problemas** documentados con sus
-palabras (`docs/investigacion-taller.md`), ordenados por lo que cuestan.
+palabras (`~/productos-camena/privado/investigacion-taller.md`), ordenados por lo que cuestan.
 
 **El primero que se construyó** fue el que arrastraba a los demás: *no existe
 registro de entrada*. El expediente del carro vivía en el papel que trae la
@@ -72,8 +72,8 @@ ocho.
 4. **Particular con regla propia.** Un carro sin aseguradora no lleva factor: dice
    «el precio lo define el dueño», que es lo que el taller hace hoy.
 5. **El nombre del taller dentro.** El encabezado y la cotización dicen **Taller
-   Maranatha**; la razón social ante el SAT (Servicio Automotrices del Valle) queda
-   guardada para recibos y facturas. **Hacia afuera no se nombra a nadie**: el
+   comercial del taller** (que no se escribe en este repositorio); su razón social
+   ante el SAT queda guardada para recibos y facturas. **Hacia afuera no se nombra a nadie**: el
    sitio sigue diciendo «un taller de hojalatería y pintura».
 6. **Instrucciones dentro del programa**, desplegables, incluyendo lo nuevo: las
    piezas, la cotización y cómo instalarlo en Android y en iPhone.

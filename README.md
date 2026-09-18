@@ -131,7 +131,7 @@ solo mostrador. Está dicho así para que nadie lo contrate esperando otra cosa.
 
 **De dónde salió lo que hace.** Antes de programarlo se levantaron los dolores
 reales de un taller de hojalatería y pintura: 13 notas de voz de la encargada,
-transcritas en esta máquina y analizadas en `docs/investigacion-taller.md`. Ese
+transcritas en esta máquina y analizadas en `~/productos-camena/privado/investigacion-taller.md`. Ese
 documento —interno, no se publica— lista cada dolor con la cita que lo prueba, su
 costo y la función que lo resuelve, y marca lo que todavía falta preguntar. Es la
 base de la siguiente versión del producto.
@@ -218,7 +218,7 @@ nombre de un taller real hace que el script lo frene: es la diferencia entre
 entregar un sistema y entregar una plantilla.
 
 **En qué etapa quedó, y qué le falta.** Es **el primero de los nueve problemas que
-el taller contó** en `docs/investigacion-taller.md`: el registro de entrada (D1),
+el taller contó** en `~/productos-camena/privado/investigacion-taller.md`: el registro de entrada (D1),
 que era el más grave porque de él cuelga todo lo demás. Lo que hace hoy está
 completo y probado —`node docs/probar-producto.mjs` contra la copia archivada:
 registra, guarda, sigue ahí después de recargar y no pide nada a ningún tercero—:
@@ -872,6 +872,14 @@ hay que mover los dos sitios a la vez:
 Así se ven aunque el visitante no cargue el script y las indexa el buscador. Son
 precios de partida, no cerrados: el valor real se confirma por escrito.
 
+**Datos de personas: fuera del repositorio.** El repositorio es **público**
+(comprobado: `wildpig94/camena-web-2` → `"private": false`), así que `docs/` se lee
+desde GitHub aunque no se publique en el sitio. Todo lo que nombre o cite a una
+persona vive en `~/productos-camena/privado/`: la investigación del taller con sus
+citas, las transcripciones de las notas de voz, los contactos y los nombres del
+taller. Antes de escribir algo en `docs/`, la pregunta es si le gustaría leerlo a la
+persona de la que habla.
+
 **La ficha del renglón.** Una cifra sola («desde $9,600») dice cuánto y no dice
 qué, y el dueño que compara precios se queda sin con qué comparar. Hoy **17 de
 los 28 renglones de precio** abren una ficha con tres partes:
@@ -1204,7 +1212,7 @@ resultados **sin rearmar la página**.
       `docs/autorizaciones.md`
 - [ ] Preguntar al taller por los **precios por aseguradora** (la única pregunta de
       la primera ronda que sigue abierta; la de refacciones ya se contestó en la
-      nota del 15 de septiembre y está en `docs/investigacion-taller.md`, D9)
+      nota del 15 de septiembre y está en `~/productos-camena/privado/investigacion-taller.md`, D9)
 - [ ] Páginas individuales por servicio (la estructura ya lo permite)
 - [ ] Contenido propio: casos de estudio, recursos y herramientas
 

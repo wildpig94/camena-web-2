@@ -157,4 +157,4 @@ facturas y complementos en un Excel por mes; no puede ver lo ya pagado porque no
 tiene acceso a la cuenta de la aseguradora; el seguimiento se contesta de memoria;
 se evita mandar avances al cliente; todo pasa por WhatsApp y nada queda; y lo
 pendiente se lleva en un pizarrón que solo ella actualiza. Con las citas, en
-`docs/investigacion-taller.md`.
+`~/productos-camena/privado/investigacion-taller.md`.
