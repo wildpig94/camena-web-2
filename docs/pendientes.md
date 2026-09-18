@@ -127,3 +127,13 @@ Con el dominio en Cloudflare, lo demás sale gratis y en una sola cuenta:
 puede hacerlo) y crear un **token de API** con permisos de Access, DNS y Pages para
 que yo configure y verifique el resto. Los pasos exactos están en
 `docs/configurar-puerta.py` (los imprime si se corre sin token).
+
+## H · Dónde quedaron los dos documentos del sistema (18 de septiembre)
+
+- **`docs/valoracion-control-de-autos.md`** — interno: veredicto, historia desde
+  las trece notas de voz, los diecinueve cambios que se le hicieron, los nueve
+  faltantes con su tamaño, fortalezas y riesgos sin adornos, y cómo encuadrarlo si
+  se vende (qué se puede decir y qué no).
+- **`~/productos-camena/para-el-taller.md`** — para mostrar o imprimir: qué es,
+  qué hace hoy en palabras de mostrador, por qué conviene, qué **no** hace todavía,
+  cómo se usa en tres pasos y qué se necesita para tenerlo.
