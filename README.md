@@ -138,8 +138,8 @@ base de la siguiente versión del producto.
 
 #### Control de Autos (`~/productos-camena/control-de-autos/`, fuera del repo)
 
-Es la app que el taller ya conocía. **Ya no se publica ni se comparte por
-enlace**: vive fuera del repositorio y el sitio solo la enseña con dos capturas.
+Es la app que el taller ya conocía, más el cotizador que se le sumó el 18 de
+septiembre. **Ya no se publica ni se comparte por enlace**: vive fuera del repositorio y el sitio solo la enseña con dos capturas.
 Antes se publicaba en `producto/control-de-autos.html` para que el encargado la
 abriera desde el celular sin instalar nada, pero eso dejaba el sistema completo
 descargable para cualquiera —y el repositorio es público—, así que se retiró.
@@ -1052,6 +1052,14 @@ Estas 6 comprobaciones faltaban y por eso entraron fallos reales:
    bien. Se arregló con una clase explícita (`[0-9.]`) y ahora informa los cuatro
    textos más apretados, para que un `NaN` o un cero no puedan pasar por un
    visto bueno. **Un medidor que no se puede hacer fallar a propósito no sirve.**
+
+   La trampa volvió dos veces más, las dos en `docs/probar-producto.mjs`: dentro
+   de una plantilla de JavaScript `\$` se convierte en `$` y `\d` en `d`, así que
+   una medida escrita con expresión regular devuelve nada y **parece un cero**.
+   Regla que queda: en las expresiones que viajan dentro de una plantilla **no se
+   usan escapes** — se lee del DOM (`querySelector('.car-piezas b').textContent`)
+   en vez de recortar texto con una expresión regular. Si de plano no se puede
+   evitar, se escribe la barra doble.
 
 Y una cuarta, de método: **las animaciones de entrada falsean las mediciones.**
 Un elemento sin revelar lleva `translateY(22px)` y el detector de solapes lo ve
