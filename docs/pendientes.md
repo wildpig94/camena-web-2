@@ -69,3 +69,19 @@ cerrar sin un dato tuyo, y un número inventado cuesta más caro que un hueco.
 | 19 | **La banda de producción ocupa media fila y la otra mitad queda vacía** (tarjeta de 605 px con 605 libres al lado), y por eso su tabla de precios mide 227 px: los nombres largos se parten y ahí no cabe una ficha con lista. Dos salidas: dejar la banda a todo lo ancho con el video a la derecha, o bajar el video debajo de la tabla para que la tabla use la tarjeta completa | Banda «Video, audio y publicidad» |
 | 20 | **Dos frases que chocan con una promesa del sitio.** «Funciona en celular o computadora, **sin instalar nada**» y «**Respaldo automático** de tu información» conviven mal con «no se renta y no vive en la nube de nadie más». Si el sistema corre en un equipo del negocio, hay que decirlo así; si el respaldo va a un disco propio o a la cuenta del cliente, también | Fichas de sistemas |
 | 21 | **Dos compromisos que quedaron escritos y conviene confirmar:** «cambios de precio sin costo los primeros 30 días» (catálogo o menú digital) y nombrar «Canva o similar» como la herramienta de las plantillas de marca | Fichas de presencia y marca |
+
+## F · La app del taller: tres decisiones para que sea un programa de verdad
+
+La app ya es **instalable y funciona sin internet** (`docs/probar-instalable.mjs`
+lo comprueba: manifiesto sin errores, Chrome sin objeciones, service worker
+activo, y con la red cortada abre, carga sus fuentes y deja capturar un auto).
+Falta darle casa, y eso no lo decide el diseño.
+
+| # | Qué falta decidir | Por qué importa |
+|---|---|---|
+| 22 | **¿Qué teléfono usa la encargada?** | En Android la instalación es un botón; en iPhone son tres toques y, si se queda solo en Safari sin instalar, Apple puede borrar los datos por falta de uso |
+| 23 | **¿Dónde vive la app?** Tres caminos: (a) **Cloudflare con acceso por correo** —gratis, https y puerta, pero estrena dominio; (b) **el mismo dominio de GitHub, en otra carpeta** —lo más simple y lo único que conserva los datos que ya tenga el teléfono, aunque queda público para quien tenga el enlace; (c) **un APK** —el programa de verdad, sin servidor ni internet, a cambio de una cadena de compilación, firma y reinstalar en cada cambio | De esto depende que los datos que ya existan lleguen o no a la versión nueva |
+| 24 | **¿Hay datos capturados con el enlace viejo?** | Los datos viven **pegados al dominio**, no al archivo: si la app se muda de dominio, lo que ella haya capturado se queda atrás. Si la respuesta es sí, hay que volver a publicar esa página un rato —en el mismo dominio— para que descargue su respaldo antes de mudarse |
+
+Lo que **no** hay que decidir: si el sistema del taller (el expediente) también se
+vuelve instalable. Eso es otro producto y se decide cuando ese llegue a su turno.
