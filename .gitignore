@@ -24,6 +24,9 @@ Thumbs.db
 docs/revision/sitio/
 docs/revision/sitio/*
 
+# ─── Caché de Python (docs/redes/medir.py se importa desde otros scripts) ───
+__pycache__/
+
 # ─── Piezas de redes: se generan, no se guardan ───
 # Los PNG salen de contenido.json con docs/redes/generar.mjs. Guardarlos en el
 # repositorio sería guardar lo mismo dos veces (y sesenta archivos por mes) en un

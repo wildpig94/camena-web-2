@@ -1296,6 +1296,7 @@ Todo vive en `docs/redes/` (no se publica en el sitio):
 | `contenido.json` | Los treinta días: tema, bloque, titular, cuerpo, destacado, texto de la publicación y etiquetas. Es lo único que se edita a mano |
 | `generar.mjs` | Toma ese contenido, lo monta sobre la plantilla de la casa y saca los PNG, los textos y el calendario |
 | `salida/` | Las piezas (`NN-tema-feed.png` 1080×1350 y `NN-tema-historia.png` 1080×1920), los textos en `textos/`, el `calendario.md` y la `galeria.html` |
+| `medir.py` | Mide los PNG ya hechos: tinta, aire muerto, márgenes y franjas de color |
 
 ```bash
 node docs/redes/generar.mjs            # todo el mes
@@ -1309,11 +1310,33 @@ igual en cualquier máquina), la misma paleta (`#111111` y `#F7F6F3`) y las mism
 reglas: **sin degradados, un solo acento**, filetes de un solo estilo, y el
 destacado marcado con una barra dorada.
 
-El generador **no supone que el texto cabe**: después de montar cada pieza mide
-el contraste real de cada renglón contra su fondo, si algo se sale de la caja y
-cuántos renglones usa el titular. Si algo falla, lo dice con el día y el motivo y
-termina con error, así que una pieza mal escrita no se puede publicar por
-descuido.
+El generador **no supone que el texto cabe**. Antes de sacar cada pieza:
+
+- ajusta el titular al tamaño más grande que **llene el ancho de la columna** (entre
+  el 67% y el 100%, medido con `Range`: cada caja que devuelve el navegador es un
+  renglón real) sin pasar de tres renglones y **sin que el pie de la pieza se salga
+  del lienzo** — no sirve mirar el alto del documento, porque el lienzo recorta y el
+  navegador informa que no sobra nada;
+- ata el ancho del cuerpo y del destacado al del titular (variable `--medida`), para
+  que la jerarquía no dependa de qué tan largo salió el texto: en la versión
+  anterior había piezas donde el cuerpo era el bloque más ancho;
+- mide el contraste real de cada renglón contra su fondo y comprueba que el titular
+  sea el bloque más ancho, que el destacado no se quede atrás y que el titular no
+  use más de tres renglones.
+
+Si algo falla, lo dice con el día y el motivo y termina con error, así que una pieza
+mal escrita no se puede publicar por descuido.
+
+Además, `docs/redes/medir.py` mide los PNG ya hechos, que es otra cosa que lo que el
+navegador sabe de sí mismo: cuánta tinta quedó, dónde está el aire muerto, si la
+primera y la última marca caen en su margen y si el texto arrastra franjas de color
+(antialiasing de subpíxel) que al reescalarlas la red social se vuelven halos. Sirve
+para comparar dos versiones de la plantilla antes de decidir cuál se publica:
+
+```bash
+python3 docs/redes/medir.py                    # mide docs/redes/salida
+python3 docs/redes/medir.py ruta/a/otra/carpeta
+```
 
 ### El mes, en seis bloques
 

@@ -48,9 +48,19 @@ function plantilla(post, ancho, alto) {
   const papel = oscuro ? "#111111" : "#F7F6F3";
   const tinta = oscuro ? "#F4F3F0" : "#111111";
   const tenue = oscuro ? "#A8A8A2" : "#5C5C58";
-  const filete = oscuro ? "#2B2B2B" : "#E3E1DB";
-  const acento = oscuro ? "#E8C766" : "#8A6A0F";
+  /* Los renglones monoespaciados no comparten el tono del cuerpo: son más chicos,
+     así que necesitan más contraste para leerse igual (#CFCEC9 da 11.98:1 y
+     #4A4946 da 8.33:1, contra 7.90:1 y 6.21:1 del cuerpo). */
+  const mono = oscuro ? "#CFCEC9" : "#4A4946";
+  /* El filete mide 2 px y va a 1.97:1 en oscuro y 1.88:1 en claro. A 1 px y 1.2:1
+     era invisible y, al reescalarlo la red social, se rompía en guiones: eso era
+     lo que antes parecía un filete punteado. */
+  const filete = oscuro ? "#454545" : "#B6B6B6";
+  /* El dorado de texto en el tema claro pasa a #82620C (5.25:1). El de la casa
+     (#A8821F) da 4.68:1 sobre el papel: sirve para una barra, no para texto. */
+  const acento = oscuro ? "#E8C766" : "#82620C";
   const margen = Math.round(ancho * 0.089);
+
   /* La historia es más alta y se ve a pantalla completa, así que el tipo crece más
      que el lienzo (hasta 1.3) y el bloque de texto se centra entre el filete y el
      pie. Medido: con el crecimiento anterior (1.12) y el texto pegado arriba, la
@@ -59,19 +69,28 @@ function plantilla(post, ancho, alto) {
   const escala = alto / 1350;
   const esHistoria = alto > 1500;
   const t = (px) => Math.round(px * Math.min(esHistoria ? 1.3 : 1.12, Math.max(0.92, escala)));
+  /* Los renglones de arriba y de abajo son etiquetas de servicio, no texto de
+     display: se quedan en su tamaño. Al crecer con la historia se salían de la
+     columna (medido: dejaban 6 px de margen derecho en vez de 96). */
+  const etiqueta = (px) => px;
   const bloque = esHistoria ? ' bloque--centrado' : '';
   const parrafos = String(post.cuerpo || "").split("\n").filter((l) => l.trim())
     .map((l) => `<p>${escapar(l)}</p>`).join("");
 
   /* Lo que la revisión de las piezas dejó claro, y aquí va aplicado:
      · el pie no se parte (una línea, sin partir el teléfono);
-     · una sola clase de filete, del mismo ancho arriba y abajo;
+     · una sola clase de filete, del mismo ancho arriba y abajo, y con contraste
+       suficiente para sobrevivir al reescalado;
      · el cuerpo sube de 38 a 42 px: en un teléfono, 38 px sobre 1080 se ven como
-       12.6 px, y ahí el gris tenue del tema oscuro (#A8A8A2) se lee cansado aunque
-       dé 7.3:1 de contraste; el tamaño es lo que lo arregla, no el tono;
+       12.6 px, y ahí el gris tenue del tema oscuro se lee cansado aunque dé 7.9:1
+       de contraste; el tamaño es lo que lo arregla, no el tono;
      · el ritmo vertical es fijo: el título no flota, así que al deslizar el
        carrusel la mancha no salta de una pieza a otra;
-     · la barra del destacado es el acento de la casa y va separada del texto. */
+     · la jerarquía manda: el titular ocupa la columna entera, el destacado va más
+       grande que el cuerpo (46 contra 42) y el cuerpo se queda en 12.5 em, para
+       que no haya piezas donde el texto menudo sea el bloque más ancho;
+     · la barra del destacado es el acento de la casa y va separada del texto;
+     · el salto entre párrafos (30 px) se distingue de la interlínea (60 px). */
   return `<!doctype html><html lang="es-MX"><head><meta charset="utf-8">
 <style>
   @font-face{font-family:'Jakarta';src:url(${JAKARTA}) format('woff2');font-weight:400 700;font-display:block}
@@ -81,21 +100,22 @@ function plantilla(post, ancho, alto) {
     font-family:'Jakarta',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   .pieza{width:100%;height:100%;padding:${margen}px;display:flex;flex-direction:column}
   .arriba{display:flex;justify-content:space-between;align-items:baseline;white-space:nowrap;
-    font-family:'Mono';font-size:${t(23)}px;letter-spacing:.12em;text-transform:uppercase;color:${tenue}}
+    font-family:'Mono';font-size:${etiqueta(28)}px;letter-spacing:.12em;text-transform:uppercase;color:${mono}}
   .arriba b{color:${acento};font-weight:700}
-  .filete{border-top:1px solid ${filete};margin-top:${t(18)}px}
+  .filete{border-top:2px solid ${filete};margin-top:${t(18)}px}
   .bloque{display:flex;flex-direction:column}
   .bloque--centrado{margin:auto 0}
   .bloque--centrado .titulo{margin-top:0}
-  .titulo{margin-top:${t(120)}px;font-size:${t(96)}px;line-height:1.06;letter-spacing:-.022em;
-    font-weight:700;text-wrap:balance;max-width:21ch}
-  .cuerpo{margin-top:${t(32)}px;font-size:${t(42)}px;line-height:1.4;color:${tenue};max-width:23ch}
-  .cuerpo p + p{margin-top:${t(18)}px}
-  .pie{margin-top:${t(34)}px;font-size:${t(34)}px;line-height:1.28;font-weight:700;color:${tinta};
-    border-left:4px solid ${acento};padding-left:${t(24)}px;max-width:26ch}
-  .abajo{margin-top:auto;padding-top:${t(24)}px;border-top:1px solid ${filete};
+  .titulo{margin-top:${t(84)}px;font-size:${t(96)}px;line-height:1.06;letter-spacing:-.022em;
+    font-weight:700;text-wrap:balance}
+  .cuerpo{margin-top:${t(30)}px;font-size:${t(42)}px;line-height:1.42;color:${tenue};
+    max-width:min(15em, var(--medida, 100%));text-wrap:pretty}
+  .cuerpo p + p{margin-top:${t(30)}px}
+  .pie{margin-top:${t(34)}px;font-size:${t(46)}px;line-height:1.22;font-weight:700;color:${tinta};
+    border-left:5px solid ${acento};padding-left:${t(26)}px;max-width:min(12em, var(--medida, 100%));text-wrap:balance}
+  .abajo{margin-top:auto;padding-top:${t(26)}px;border-top:2px solid ${filete};
     display:flex;justify-content:space-between;align-items:baseline;white-space:nowrap;
-    font-family:'Mono';font-size:${t(23)}px;letter-spacing:.06em;color:${tenue}}
+    font-family:'Mono';font-size:${etiqueta(30)}px;letter-spacing:.08em;text-transform:uppercase;color:${mono}}
   .abajo b{color:${tinta};font-weight:700}
 </style></head><body>
   <div class="pieza">
@@ -106,7 +126,7 @@ function plantilla(post, ancho, alto) {
     <div class="cuerpo">${parrafos}</div>
     <div class="pie">${escapar(post.pie)}</div>
     </div>
-    <div class="abajo"><span>CAMENA · Apatzingán, Michoacán</span><span><b>WhatsApp ${escapar(datos.whatsapp)}</b></span></div>
+    <div class="abajo"><span>Apatzingán, Michoacán</span><span><b>WhatsApp ${escapar(datos.whatsapp)}</b></span></div>
   </div>
 </body></html>`;
 }
@@ -115,7 +135,7 @@ function plantilla(post, ancho, alto) {
 const perfil = mkdtempSync(join(tmpdir(), "redes-"));
 const chrome = spawn(CHROME, ["--headless=new", "--no-sandbox", "--disable-gpu",
   "--disable-software-rasterizer", "--disable-gpu-compositing", "--disable-dev-shm-usage",
-  "--hide-scrollbars", "--allow-file-access-from-files", "--remote-debugging-port=0",
+  "--hide-scrollbars", "--allow-file-access-from-files", "--disable-lcd-text", "--remote-debugging-port=0",
   `--user-data-dir=${perfil}`, "about:blank"], { stdio: ["ignore", "pipe", "pipe"] });
 const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
 const puerto = await new Promise((res, rej) => {
@@ -153,6 +173,40 @@ for (const post of datos.posts) {
     await env("Page.navigate", { url: "file://" + archivo });
     await esperar(420);
     // Se mide lo que se puede medir sin ver: contraste real, alto, y si algo se sale.
+    /* El titular se ajusta solo antes de medir nada: se busca el tamaño más grande
+       (entre el de la plantilla y 1.38 veces ese) que lo deje en tres renglones o
+       menos y que llene al menos el 72% del ancho de la columna. Así el titular
+       siempre manda: un titular corto no se queda en la mitad de la pieza. */
+    const ajuste = await ev(`(() => {
+      const t = document.querySelector('.titulo');
+      if (!t) return null;
+      const col = t.parentElement.getBoundingClientRect().width;
+      const medir = () => {
+        const r = document.createRange(); r.selectNodeContents(t);
+        const cajas = Array.from(r.getClientRects()).filter((c) => c.width > 0.5);
+        return { lineas: cajas.length, ancho: cajas.length ? Math.max.apply(null, cajas.map((c) => c.width)) : 0 };
+      };
+      const base = ${tam.alto > 1500 ? 125 : 96};
+      const tope = Math.round(base * 1.38);
+      /* "Cabe" quiere decir que el pie de la pieza siga dentro del lienzo: si el
+         texto se pasa, el pie se empuja fuera y ahí se ve. No sirve mirar el alto
+         del documento, porque el lienzo lo recorta y el navegador no lo reporta. */
+      const pie = document.querySelector('.abajo');
+      const cabe = () => pie.getBoundingClientRect().bottom <= ${tam.alto} - Math.round(${tam.ancho} * 0.089) + 0.5;
+      const piso = Math.round(base * 0.85);
+      let elegido = 0;
+      for (let s = tope; s >= piso; s -= 2) {
+        t.style.fontSize = s + 'px';
+        const m = medir();
+        if (m.lineas <= 3 && m.ancho <= col + 1 && cabe()) { elegido = s; break; }
+      }
+      t.style.fontSize = (elegido || piso) + 'px';
+      const fin = medir();
+      /* Y el cuerpo y el destacado no pueden pasar del renglón más ancho del
+         titular: así la jerarquía no depende de qué tan largo salió el texto. */
+      document.documentElement.style.setProperty('--medida', Math.round(fin.ancho) + 'px');
+      return { tam: elegido || piso, lineas: fin.lineas, ancho: Math.round(fin.ancho), columna: Math.round(col) };
+    })()`);
     const m = await ev(`(() => {
       const lum = (rgb) => { const c = rgb.map(v => { v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055,2.4); }); return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2]; };
       const num = (s) => (s.match(/[0-9.]+/g)||[]).map(Number);
@@ -169,13 +223,43 @@ for (const post of datos.posts) {
         const lh = parseFloat(cs.lineHeight);
         out.lineas[sel] = Math.round(rect.height / (lh || 1));
       });
-      out.sobra = document.documentElement.scrollHeight - ${tam.alto};
+      /* El ancho de cada renglón pintado. Se mide con Range: cada caja que
+         devuelve es un renglón real, así que se sabe si el titular manda o si el
+         cuerpo se le adelanta. Es la comprobación que antes se hacía a ojo. */
+      const anchos = {};
+      const renglones = (sel) => {
+        const out = [];
+        document.querySelectorAll(sel).forEach(function (el) {
+          const r = document.createRange();
+          const recorrer = (n) => {
+            if (n.nodeType === 3) {
+              if (n.textContent.trim()) { r.selectNodeContents(n); for (const c of r.getClientRects()) if (c.width) out.push(Math.round(c.width)); }
+            } else { for (const h of n.childNodes) recorrer(h); }
+          };
+          recorrer(el);
+        });
+        return out;
+      };
+      ['.titulo', '.cuerpo', '.pie', '.abajo', '.arriba'].forEach(function (sel) {
+        const w = renglones(sel);
+        anchos[sel] = w.length ? Math.max(...w) : 0;
+      });
+      out.anchos = anchos;
+      /* El alto del documento no sirve: el lienzo recorta y el navegador informa
+         que no sobra nada. Lo que sí se ve es el pie empujado fuera del lienzo. */
+      out.sobra = Math.max(0, Math.round(document.querySelector('.abajo').getBoundingClientRect().bottom - (${tam.alto} - Math.round(${tam.ancho} * 0.089))));
       return out;
     })()`);
     if (m.sobra > 2) problemas.push(`día ${post.dia} (${sufijo}): el contenido se pasa ${Math.round(m.sobra)} px`);
     if (m.fallos.length) problemas.push(`día ${post.dia} (${sufijo}): ${m.fallos.join("; ")}`);
     if (m.lineas['.titulo'] > 4) problemas.push(`día ${post.dia} (${sufijo}): el titular usa ${m.lineas['.titulo']} líneas`);
-    if (sufijo === "feed") resumen.push(`${String(post.dia).padStart(2,"0")} · título ${m.lineas['.titulo']} línea(s) · cuerpo ${m.lineas['.cuerpo']} · destacado ${m.lineas['.pie']}   ${m.fallos.length ? "✗ " + m.fallos.join("; ") : "✓"}`);
+    /* La jerarquía, comprobada: el titular tiene que ser el bloque más ancho y el
+       destacado no puede quedarse atrás del cuerpo. Si el cuerpo gana, la pieza
+       está mal aunque se vea "bonita". */
+    const a = m.anchos;
+    if (a['.cuerpo'] > a['.titulo']) problemas.push(`día ${post.dia} (${sufijo}): el cuerpo mide ${a['.cuerpo']} px y el titular ${a['.titulo']}`);
+    if (a['.pie'] > a['.titulo']) problemas.push(`día ${post.dia} (${sufijo}): el destacado mide ${a['.pie']} px y el titular ${a['.titulo']}`);
+    if (sufijo === "feed") resumen.push(`${String(post.dia).padStart(2,"0")} · titular ${ajuste.tam} px (${ajuste.lineas} línea(s), llena ${Math.round(100 * ajuste.ancho / ajuste.columna)}%) · cuerpo ${a['.cuerpo']} px en ${m.lineas['.cuerpo']} · destacado ${a['.pie']} px   ${m.fallos.length || ajuste.lineas > 3 ? "✗ " + m.fallos.join("; ") : "✓"}`);
     const r = await env("Page.captureScreenshot", { format: "png", clip: { x: 0, y: 0, width: tam.ancho, height: tam.alto, scale: 1 }, captureBeyondViewport: false });
     const destino = join(SALIDA, `${String(post.dia).padStart(2, "0")}-${post.tema}-${sufijo}.png`);
     writeFileSync(destino, Buffer.from(r.data, "base64"));
