@@ -156,3 +156,40 @@ los volví a medir yo antes de darlos por buenos.
 Tres cosas que la crítica quitaría, para decidir: el panel «Soluciones» del hero
 (seis enlaces al mismo ancla), tres de los cuatro botones «Armar mi paquete», y la
 banda de campañas dentro del inicio.
+
+## J · Las capturas del sistema del taller (19 de septiembre)
+
+Lo encontré midiendo las piezas de redes y se me fue el aire: **en el sitio
+publicado hay placas y folios de siniestro de coches de clientes del taller**.
+
+Qué es exactamente. Las dos capturas que están en la página de inicio
+(`assets/producto/autos-tablero.webp` y `autos-historial.webp`, más
+`autos-aseguradoras.webp`, que ya no se usa pero sigue siendo un archivo público)
+se tomaron del sistema con datos reales, no inventados. Leído con OCR:
+
+| Archivo | Lo que se alcanza a leer |
+|---|---|
+| `autos-tablero.webp` | Nissan Versa 2021, golpe en salpicadera derecha · placa `PBC-482-A` · folio `SIN-20451` · entró 25/08/2026 → Chevrolet Aveo, defensa delantera y cofre · placa `PBD-119-C` · folio `SIN-20466` · entró 05/09/2026 → Toyota Hilux, puerta trasera izquierda |
+| `autos-historial.webp` | El mismo Versa, ya entregado: entró 25/08/2026, salió 16/09/2026 |
+| `autos-aseguradoras.webp` | El mismo Versa con sus fechas, junto al panel de aseguradoras y respaldo |
+
+La página además lo dice: «Capturas de uso real, tomadas del sistema funcionando».
+O sea que el dato es de verdad y por eso mismo no puede estar ahí.
+
+Qué propongo, en orden:
+
+1. **Tapar la placa y el folio** en las tres imágenes, copiando el color de la
+   tarjeta para que el hueco se vea natural (`docs/sanear-capturas.py` ya está
+   escrito y probado). La página sigue diciendo la verdad —son capturas de uso
+   real— y deja de exponer a un tercero. Es lo más rápido y lo menos invasivo.
+2. **Volver a capturar con datos de ejemplo** y cambiar la leyenda a «Así se ve el
+   sistema, con datos de ejemplo». Más limpio todavía, y de paso arregla otra cosa:
+   las capturas son del 16 de septiembre y **la app se rediseñó el 18**, así que la
+   página está enseñando una versión que ya no existe (tema oscuro contra el tema
+   claro actual). Si se vuelve a capturar, se resuelven las dos de un golpe.
+
+Decisión pendiente: si el taller prefiere que sus coches no aparezcan ni tapados,
+la opción 2 es la única. Falta preguntarle.
+
+Lo que NO hay que hacer: dejarlo como está. Una placa con su folio de siniestro
+identifica a una persona y a su aseguradora, y el repositorio es público.
