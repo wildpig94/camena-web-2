@@ -44,7 +44,7 @@
 <link rel="stylesheet" href="css/variables.css?v=51830dcf">
 <link rel="stylesheet" href="css/base.css?v=5cffbd2b">
 <link rel="stylesheet" href="css/layout.css?v=55157b90">
-<link rel="stylesheet" href="css/components.css?v=b6543b6f">
+<link rel="stylesheet" href="css/components.css?v=e4f979e3">
 <link rel="stylesheet" href="css/animaciones.css?v=4b3dd91a">
 <link rel="stylesheet" href="css/responsive.css?v=5be8e957">
 
@@ -899,9 +899,7 @@
             </p>
           </div>
 
-          <div class="etapa__con-video">
-            <div class="etapa__con-video-tabla">
-          <table class="tarifa" id="precios-produccion">
+                    <table class="tarifa" id="precios-produccion">
             <caption class="visualmente-oculto">Precios: Video, audio y publicidad</caption>
             <thead>
               <tr>
@@ -916,7 +914,15 @@
                   <span class="tarifa__nombre">Tres videos cortos para redes</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-tres-videos-cortos-para-redes" role="region" aria-label="Qué incluye: Tres videos cortos para redes">Guion, un día de grabación y edición con música y subtítulos; versión vertical para Reels y TikTok y versión cuadrada para el feed.</span>
+                <div class="servicios__globo" id="g-tres-videos-cortos-para-redes" role="region" aria-label="Qué incluye: Tres videos cortos para redes">
+                <p class="servicios__resumen">Guion, un día de grabación y edición, con versiones para cada red.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Guion, un día de grabación y edición con música y subtítulos</li>
+                  <li>Versión vertical para Reels y TikTok</li>
+                  <li>Versión cuadrada para el feed</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $4,200</td>
             </tr>
@@ -926,7 +932,15 @@
                   <span class="tarifa__nombre">Jingle o canción de tu marca</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-jingle-o-canci-n-de-tu-marca" role="region" aria-label="Qué incluye: Jingle o canción de tu marca">Letra y melodía originales, en versión larga de 30 segundos y corta de 5 segundos para usar de intro.</span>
+                <div class="servicios__globo" id="g-jingle-o-canci-n-de-tu-marca" role="region" aria-label="Qué incluye: Jingle o canción de tu marca">
+                <p class="servicios__resumen">La parte sonora de la marca: eso que la gente tararea sin darse cuenta.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Letra y melodía originales</li>
+                  <li>Versión larga de 30 segundos</li>
+                  <li>Versión corta de 5 segundos para usar de intro</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $3,000</td>
             </tr>
@@ -936,7 +950,15 @@
                   <span class="tarifa__nombre">Campaña para redes, con la idea y las piezas</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-campa-a-para-redes-con-la-idea-y-las-pie" role="region" aria-label="Qué incluye: Campaña para redes, con la idea y las piezas">El concepto central por escrito, el calendario de publicación y las piezas gráficas o de video, según el paquete que armes.</span>
+                <div class="servicios__globo" id="g-campa-a-para-redes-con-la-idea-y-las-pie" role="region" aria-label="Qué incluye: Campaña para redes, con la idea y las piezas">
+                <p class="servicios__resumen">Primero la idea, después las piezas: qué quieres que piensen de tu negocio.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>El concepto central, por escrito</li>
+                  <li>Calendario de publicación</li>
+                  <li>Piezas gráficas o de video, según el paquete que armes</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $4,800</td>
             </tr>
@@ -946,23 +968,20 @@
                   <span class="tarifa__nombre">Publicaciones del mes, listas para subir</span>
                   <span class="tarifa__signo" aria-hidden="true"></span>
                 </button>
-                <span class="servicios__globo" id="g-publicaciones-del-mes-listas-para-subir" role="region" aria-label="Qué incluye: Publicaciones del mes, listas para subir">Piezas gráficas listas para subir, con los textos redactados y las fechas sugeridas de publicación.</span>
+                <div class="servicios__globo" id="g-publicaciones-del-mes-listas-para-subir" role="region" aria-label="Qué incluye: Publicaciones del mes, listas para subir">
+                <p class="servicios__resumen">El mes resuelto: textos, imágenes y fechas para publicar.</p>
+                <p class="servicios__etiqueta">Incluye</p>
+                <ul class="servicios__incluye">
+                  <li>Textos redactados para cada pieza</li>
+                  <li>Fechas sugeridas de publicación</li>
+                  <li>Piezas listas para subir, sin que tengas que diseñar nada</li>
+                </ul>
+              </div>
               </th>
               <td class="tarifa__precio">desde $3,000</td>
             </tr>
             </tbody>
           </table>
-            </div>
-
-            <figure class="video-pieza video-pieza--etapa">
-              <video controls preload="none" playsinline width="720" height="1280"
-                     poster="assets/video/reel-cliente.webp">
-                <source src="assets/video/reel-cliente.mp4" type="video/mp4">
-                Tu navegador no puede reproducir este video.
-              </video>
-              <figcaption>Reel de 30 segundos para el consultorio de una clienta. Se muestra con su visto bueno.</figcaption>
-            </figure>
-          </div>
 
           <div class="etapa__pie">
             <p class="etapa__paquete">Arma tu paquete y te lo cotizamos al momento.</p>

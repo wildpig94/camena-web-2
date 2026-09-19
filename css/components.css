@@ -630,27 +630,6 @@ svg.ic path[d^="M12 2a10"] {
 
 /* Video dentro de una pieza: vertical, con su marco, sin cargar nada hasta que
    alguien le da reproducir (preload="none" + póster). */
-.video-pieza { margin: 0; }
-.video-pieza video {
-  display: block;
-  width: 100%;
-  /* Sin esto el video se queda con el height="1280" del HTML y se estira: a
-     320 px de ancho medía 1280 px de alto, o sea aplastado. El alto tiene que
-     salir de la proporción del archivo (720×1280), no del atributo. */
-  height: auto;
-  max-width: 20rem;
-  margin: 0 auto;
-  border: 1px solid var(--ink-4);
-  border-radius: var(--radio-sm);
-  background: var(--mock-0);
-}
-.video-pieza figcaption {
-  margin-top: var(--e-3);
-  font-size: var(--t-menudo);
-  line-height: 1.5;
-  color: var(--texto-claro-2);
-  text-align: center;
-}
 
 /* Capturas reales del producto: se muestran como lo que son —pantallas— con
    marco de ventana y su pie. La imagen es 2x para pantallas densas y va con
@@ -2558,20 +2537,6 @@ svg.ic path[d^="M12 2a10"] {
   .caso-tarjeta:hover { transform: none; }
 }
 
-/* ═══════════════ VIDEO DENTRO DE LA ETAPA ═══════════════
-   La tabla de precios y el video, uno al lado del otro en escritorio: la etapa
-   tenía un hueco a la derecha y el video es justo la pieza que enseña lo que
-   ahí se vende. En columna, primero la tabla y luego el video. */
-.etapa__con-video { display: grid; gap: var(--e-5); align-items: start; }
-@media (min-width: 900px) {
-  .etapa__con-video { grid-template-columns: minmax(0, 1fr) 17rem; gap: var(--e-6); }
-}
-/* El pie del video estaba escrito para la sección oscura de ejemplos. Al mudarse
-   a la etapa de producción, que va sobre papel, el gris claro se quedaba en
-   2.15:1: medido. Aquí usa el gris de texto sobre claro. */
-.video-pieza--etapa { margin: 0; }
-.video-pieza--etapa figcaption { color: var(--texto-2); }
-.video-pieza--etapa video { max-width: 100%; }
 
 /* ═══════════════ CAPTURAS: ABRIR EN GRANDE ═══════════════
    Cada captura es un enlace: sin JavaScript abre la imagen a tamaño completo,

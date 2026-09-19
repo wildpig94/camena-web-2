@@ -437,7 +437,6 @@ camena-2.0/
 │                               historial). El código del producto no está aquí:
 │                               vive fuera del repo, en ~/productos-camena/
 ├── assets/video/               Videos del sitio (720×1280, comprimidos):
-│   ├── reel-cliente.mp4        Reel para cliente, con visto bueno
 │   └── *.webp                  Pósteres: no se carga nada hasta dar reproducir
 ├── como-trabajamos.html        El método completo, paso por paso
 ├── aviso-de-privacidad.html    Página legal
@@ -925,7 +924,11 @@ plantilla:
    ningún negocio.
 2. **El expediente del taller**, con capturas reales del sistema funcionando.
    Su página no se enlaza, por la misma razón.
-3. **Un reel para una clienta** (consultorio), publicado con su visto bueno.
+3. ~~Un reel para una clienta (consultorio)~~ **Retirado el 18 de septiembre** a
+   petición del dueño. El video salió del sitio **y del repositorio** (que es
+   público, así que dejarlo ahí era seguir publicándolo), y quedó guardado fuera, en
+   `~/productos-camena/privado/video-clienta/`. El procedimiento estaba previsto en
+   `docs/autorizaciones.md`; se siguió tal cual.
    La autorización está confirmada por el dueño del estudio y queda registrada
    en `docs/autorizaciones.md`. Mientras no haya permiso explícito para
    nombrarla, la pieza se queda sin nombre y sin logotipo.
@@ -1318,8 +1321,8 @@ resultados **sin rearmar la página**.
       sitio. Si se cambia, hay que cambiarlo en los tres sitios a la vez
 - [ ] Conectar `camena.mx` y reemplazar la URL de GitHub Pages (ver arriba)
 - [x] Sumar proyectos reales a los ejemplos cuando haya autorización: cuatro
-      piezas reales, con el reel de la clienta autorizado y registrado en
-      `docs/autorizaciones.md`
+      piezas reales, registradas en `docs/autorizaciones.md` (el reel de la clienta
+      se retiró a petición del dueño el 18 de septiembre)
 - [ ] Pedir permiso para **nombrar** al cliente del reel, y anotarlo en
       `docs/autorizaciones.md`
 - [ ] Preguntar al taller por los **precios por aseguradora** (la única pregunta de
