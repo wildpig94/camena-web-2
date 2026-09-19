@@ -24,6 +24,13 @@ Thumbs.db
 docs/revision/sitio/
 docs/revision/sitio/*
 
+# ─── Piezas de redes: se generan, no se guardan ───
+# Los PNG salen de contenido.json con docs/redes/generar.mjs. Guardarlos en el
+# repositorio sería guardar lo mismo dos veces (y sesenta archivos por mes) en un
+# repositorio que es público.
+docs/redes/salida/
+docs/redes/salida-*/
+
 # ─── Revisiones y tareas que salen del marcador ───
 Revision-CAMENA.md
 Revision-CAMENA.json

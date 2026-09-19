@@ -1282,6 +1282,85 @@ resultados **sin rearmar la página**.
 
 ---
 
+## Redes sociales: un mes de publicaciones
+
+El estudio vive en la web, pero a la web llega quien ya nos busca. Para que
+alguien que no nos conoce entienda qué hacemos hace falta hablar todos los días
+en otro lado. Eso se resuelve con un mes de publicaciones hecho de una vez, no
+inventando un texto cada mañana.
+
+Todo vive en `docs/redes/` (no se publica en el sitio):
+
+| Archivo | Qué es |
+| --- | --- |
+| `contenido.json` | Los treinta días: tema, bloque, titular, cuerpo, destacado, texto de la publicación y etiquetas. Es lo único que se edita a mano |
+| `generar.mjs` | Toma ese contenido, lo monta sobre la plantilla de la casa y saca los PNG, los textos y el calendario |
+| `salida/` | Las piezas (`NN-tema-feed.png` 1080×1350 y `NN-tema-historia.png` 1080×1920), los textos en `textos/`, el `calendario.md` y la `galeria.html` |
+
+```bash
+node docs/redes/generar.mjs            # todo el mes
+node docs/redes/generar.mjs 3 7        # solo los días 3 a 7
+CAMENA_REDES_SIN_IMAGENES=1 node docs/redes/generar.mjs   # solo textos y calendario
+```
+
+La plantilla no es un diseño aparte: usa las mismas fuentes del sitio
+(Plus Jakarta Sans y JetBrains Mono, incrustadas en el HTML para que el PNG salga
+igual en cualquier máquina), la misma paleta (`#111111` y `#F7F6F3`) y las mismas
+reglas: **sin degradados, un solo acento**, filetes de un solo estilo, y el
+destacado marcado con una barra dorada.
+
+El generador **no supone que el texto cabe**: después de montar cada pieza mide
+el contraste real de cada renglón contra su fondo, si algo se sale de la caja y
+cuántos renglones usa el titular. Si algo falla, lo dice con el día y el motivo y
+termina con error, así que una pieza mal escrita no se puede publicar por
+descuido.
+
+### El mes, en seis bloques
+
+Treinta días, uno por día, alternando fondo oscuro y fondo hueso para que el
+perfil no sea una pared del mismo color:
+
+1. **Quién es CAMENA** (días 1–5). Qué hacemos, para quién, y en qué nos
+   diferenciamos de una agencia.
+2. **Lo que se atora en un negocio local** (6–11). Los problemas, contados desde
+   el dolor: el catálogo que vive en WhatsApp, el inventario en la cabeza del que
+   sabe, el mes sin números.
+3. **Páginas, marca y sistemas** (12–17). Ya con el problema dicho, qué es cada
+   cosa y qué resuelve.
+4. **Cómo se trabaja** (18–22). El proceso: la semana, la revisión, los ajustes.
+5. **Precio y modelo** (23–27). Los $600 al mes o la compra, la renta contra la
+   entrega, lo que no hacemos.
+6. **Oficio** (28–30). De dónde somos, cómo se cuida el detalle y cómo se empieza.
+
+El orden no es decorativo: los primeros días son para que alguien que no nos
+conoce entienda qué hacemos y los últimos para que escriba. Publicar el bloque de
+precio antes de que se entienda el problema sería hablar de dinero sin haber
+dicho de qué.
+
+### Las reglas de voz, aplicadas
+
+Las mismas del sitio, y el generador no las revisa por ti:
+
+- Español de México, frases cortas, sin adornos. Primero el dolor, luego la
+  solución.
+- **Sin signos de admiración, sin emoji, sin mayúsculas gritadas.**
+- Nada de clientes, cifras o testimonios inventados. Si no pasó, no se dice.
+- La inteligencia artificial **no se vende como argumento**: si se menciona, es
+  para decir que no la usamos de adorno (día 27).
+- Nada de degradados, ni marquesinas, ni movimiento barato.
+
+### Cómo se usa el mes
+
+1. Se abre `salida/calendario.md`: trae la fecha real de cada día y una casilla
+   por tachar.
+2. Se copia el texto de `salida/textos/NN-tema.txt`.
+3. Se sube `NN-tema-feed.png` al muro con ese texto y `NN-tema-historia.png` como
+   historia.
+4. `salida/galeria.html` es la hoja de contactos: el mes completo de un vistazo,
+   con su texto al lado, para revisar antes de publicar.
+
+---
+
 ## Estado del proyecto
 
 - [x] Reposicionamiento completo y arquitectura de contenido
@@ -1329,6 +1408,12 @@ resultados **sin rearmar la página**.
       la primera ronda que sigue abierta; la de refacciones ya se contestó en la
       nota del 15 de septiembre y está en `~/productos-camena/privado/investigacion-taller.md`, D9)
 - [ ] Páginas individuales por servicio (la estructura ya lo permite)
+- [x] Generador de publicaciones para redes: un mes de treinta días en seis
+      bloques, con `contenido.json` como única fuente, medición de contraste y de
+      desborde por pieza, textos listos para copiar y calendario con fechas
+- [ ] Publicar los treinta días y anotar qué funcionó (alcance, respuestas y
+      cuántos escribieron) para poder decidir el mes siguiente con datos y no con
+      opiniones
 - [ ] Contenido propio: casos de estudio, recursos y herramientas
 
 ---

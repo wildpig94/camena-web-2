@@ -1,97 +1,526 @@
 {
-  "marca": "CAMENA",
-  "pie": "Estudio de diseño y sistemas · Apatzingán, Michoacán",
-  "whatsapp": "443 579 4642",
-  "tamano": {
-    "ancho": 1080,
-    "alto": 1350
+ "marca": "CAMENA",
+ "pie": "Estudio de diseño y sistemas · Apatzingán, Michoacán",
+ "whatsapp": "443 579 4642",
+ "tamano": {
+  "ancho": 1080,
+  "alto": 1350
+ },
+ "historias": {
+  "ancho": 1080,
+  "alto": 1920
+ },
+ "posts": [
+  {
+   "dia": 1,
+   "tema": "oscuro",
+   "bloque": "Quién es CAMENA",
+   "etiqueta": "Estudio de diseño y sistemas",
+   "titulo": "Cada negocio opera distinto.",
+   "cuerpo": "Su software también debería.\n\nHacemos páginas, marca y sistemas a la medida, para negocios que ya venden y no quieren complicarse.",
+   "pie": "Desde Apatzingán, Michoacán, para cualquier parte.",
+   "caption": "No vendemos plantillas ni licencias.\n\nHacemos dos cosas: páginas y marca que se ven formales, y sistemas que ordenan la operación de un negocio.\n\nLa diferencia con una agencia: hablas con quien lo hace, y lo que se entrega queda a tu nombre.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#diseñoWeb",
+    "#sistemas",
+    "#negociosLocales"
+   ]
   },
-  "historias": {
-    "ancho": 1080,
-    "alto": 1920
+  {
+   "dia": 2,
+   "tema": "claro",
+   "bloque": "Quién es CAMENA",
+   "etiqueta": "Páginas y marca",
+   "titulo": "Dos cosas, bien hechas.",
+   "cuerpo": "Una página que se ve formal y aparece cuando le buscan.\n\nY un sistema que ordena cómo trabaja el negocio por dentro.",
+   "pie": "No somos agencia. Somos quien lo hace.",
+   "caption": "Preferimos hacer dos cosas bien que diez a medias.\n\nLo primero se ve desde afuera: la página, el logo, los colores, el letrero. Lo segundo se siente adentro: cotizar, cobrar, surtir, entregar.\n\nSi tu negocio necesita las dos, se pueden hacer juntas o por partes.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#páginasWeb",
+    "#identidad",
+    "#negocioLocal"
+   ]
   },
-  "posts": [
-    {
-      "dia": 1,
-      "tema": "oscuro",
-      "bloque": "Quién es CAMENA",
-      "etiqueta": "Estudio de diseño y sistemas",
-      "titulo": "Cada negocio opera distinto.",
-      "cuerpo": "Su software también debería.\n\nHacemos páginas, marca y sistemas a la medida, para negocios que ya venden y no quieren complicarse.",
-      "pie": "Desde Apatzingán, Michoacán, para cualquier parte.",
-      "caption": "No vendemos plantillas ni licencias.\n\nHacemos dos cosas: páginas y marca que se ven formales, y sistemas que ordenan la operación de un negocio.\n\nLa diferencia con una agencia: hablas con quien lo hace, y lo que se entrega queda a tu nombre.",
-      "etiquetas": [
-        "#Apatzingán",
-        "#Michoacán",
-        "#diseñoWeb",
-        "#sistemas",
-        "#negociosLocales"
-      ]
-    },
-    {
-      "dia": 2,
-      "tema": "claro",
-      "bloque": "Quién es CAMENA",
-      "etiqueta": "Cómo trabajamos",
-      "titulo": "Hablas con quien lo hace.",
-      "cuerpo": "Sin intermediarios y sin conmutador: quien analiza tu operación es quien diseña, quien programa y quien te entrega.",
-      "pie": "Somos un estudio chico. Eso es a propósito.",
-      "caption": "En una agencia te atiende una cuenta, y el trabajo pasa por tres manos antes de llegar.\n\nAquí es al revés: quien te contesta es quien construye. Por eso no se pierde nada en el camino.",
-      "etiquetas": [
-        "#estudio",
-        "#diseño",
-        "#desarrolloWeb",
-        "#tratoDirecto",
-        "#Michoacán"
-      ]
-    },
-    {
-      "dia": 3,
-      "tema": "oscuro",
-      "bloque": "Quién es CAMENA",
-      "etiqueta": "El trabajo",
-      "titulo": "El trabajo se cuenta en días, no en meses.",
-      "cuerpo": "Una pieza sale en una semana: tres días de trabajo, uno de revisión contigo y dos de ajustes finales.\n\nUna página completa con su marca, en dos semanas.",
-      "pie": "Lo único que alarga un trabajo es que falten datos o fotos.",
-      "caption": "Nos preguntan seguido cuánto tardamos.\n\nLa respuesta honesta: una pieza (un logo, una página de una pantalla, un video) sale en una semana. Una página completa con su marca, en dos.\n\nY lo que más atora un proyecto no es el trabajo: son los datos que faltan. Por eso lo primero que hacemos es la lista de lo que hace falta.",
-      "etiquetas": [
-        "#tiemposDeEntrega",
-        "#proyectos",
-        "#diseñoWeb",
-        "#Michoacán"
-      ]
-    },
-    {
-      "dia": 4,
-      "tema": "claro",
-      "bloque": "Quién es CAMENA",
-      "etiqueta": "Lo que se entrega",
-      "titulo": "Se entrega, no se renta.",
-      "cuerpo": "El sistema queda a tu nombre. Los archivos, el dominio y los accesos también.\n\nLas páginas se pueden rentar a $600 al mes —dominio, hospedaje, ajustes y respaldos— o pagarse completas y quedar tuyas.",
-      "pie": "Sin letras chiquitas.",
-      "caption": "Dos formas de trabajar, y las dos se dicen desde el principio:\n\n· El sistema se entrega y es tuyo. No se renta.\n· La página se puede rentar a $600 al mes (incluye dominio, hospedaje y ajustes) o pagarse completa y quedar a tu nombre.\n\nLo que no hacemos: amarrarte con una mensualidad que no pediste.",
-      "etiquetas": [
-        "#sinRenta",
-        "#preciosClaros",
-        "#páginasWeb",
-        "#sistemas"
-      ]
-    },
-    {
-      "dia": 5,
-      "tema": "oscuro",
-      "bloque": "Quién es CAMENA",
-      "etiqueta": "Lo que no hacemos",
-      "titulo": "Nada de lo que no se pueda comprobar.",
-      "cuerpo": "No prometemos el primer lugar en Google ni un número de ventas: eso no depende de nosotros, y quien lo garantiza está vendiendo humo.\n\nDejamos medible lo que sí depende del trabajo.",
-      "pie": "Si algo no se puede medir, no se promete.",
-      "caption": "Esta es la parte que casi nadie escribe:\n\nNo garantizamos ventas. No garantizamos el primer lugar en buscadores. No inventamos cifras de resultados.\n\nLo que sí: dejamos medible lo que depende del trabajo —visitas, de dónde llega la gente, cuántos mensajes entran— para que sepas si sirvió.",
-      "etiquetas": [
-        "#honestidad",
-        "#publicidadHonesta",
-        "#negocios",
-        "#Michoacán"
-      ]
-    }
-  ]
+  {
+   "dia": 3,
+   "tema": "oscuro",
+   "bloque": "Quién es CAMENA",
+   "etiqueta": "Cómo trabajamos",
+   "titulo": "Hablas con quien lo hace.",
+   "cuerpo": "No hay ejecutivo de cuenta ni juntas de relleno.\n\nQuien te cotiza es quien diseña y quien programa.",
+   "pie": "Una sola persona responde por el trabajo.",
+   "caption": "Cuando un proyecto pasa por cinco manos, nadie responde por el resultado.\n\nAquí no: la misma persona que escucha lo que necesitas es la que lo construye y la que te entrega.\n\nSi algo no quedó, se corrige con quien lo hizo.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#diseñoWeb",
+    "#sinIntermediarios",
+    "#trabajoDirecto"
+   ]
+  },
+  {
+   "dia": 4,
+   "tema": "claro",
+   "bloque": "Quién es CAMENA",
+   "etiqueta": "Lo que se entrega",
+   "titulo": "Lo entregado queda a tu nombre.",
+   "cuerpo": "Las páginas se pueden rentar o comprar.\n\nLos sistemas son tuyos, siempre, con sus archivos y sus accesos.",
+   "pie": "Nada queda amarrado a nosotros.",
+   "caption": "Hay quien te hace la página y se queda con el dominio. Nosotros no.\n\nSi prefieres rentarla, se renta y nosotros nos encargamos del dominio, el hospedaje, los ajustes y los respaldos. Si prefieres comprarla, se compra y queda tuya.\n\nLos sistemas no se rentan nunca: se entregan.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#páginasWeb",
+    "#propiedad",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 5,
+   "tema": "oscuro",
+   "bloque": "Quién es CAMENA",
+   "etiqueta": "Para quién trabajamos",
+   "titulo": "Trabajamos para negocios que ya venden.",
+   "cuerpo": "No hacemos proyectos para lucirse en un portafolio.\n\nSi el negocio no está operando, no hay nada que ordenar todavía.",
+   "pie": "Primero el negocio, luego la herramienta.",
+   "caption": "Un sistema sirve cuando hay trabajo que ordenar: clientes, pedidos, refacciones, pagos, cotizaciones.\n\nCuando el negocio apenas empieza, lo que sirve es una página y una marca clara, no un sistema.\n\nDecimos cuál de las dos te toca, aunque sea la más barata.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#sistemas",
+    "#diseñoWeb",
+    "#negociosLocales"
+   ]
+  },
+  {
+   "dia": 6,
+   "tema": "claro",
+   "bloque": "Lo que se atora en un negocio local",
+   "etiqueta": "Lo que se atora",
+   "titulo": "El catálogo vive en WhatsApp.",
+   "cuerpo": "El mismo precio se escribe cuarenta veces al día.\n\nY nadie sabe con certeza cuál fue el último que se mandó.",
+   "pie": "Un catálogo que se actualiza en un solo lugar.",
+   "caption": "Cuando el catálogo está en el chat, cada vendedor tiene su versión y el cliente tiene la suya.\n\nSe pone en un solo lugar, con foto, precio y existencia. Se manda el enlace y ya.\n\nSi cambia el precio, cambia para todos al mismo tiempo.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#catálogo",
+    "#negocioLocal",
+    "#ventas"
+   ]
+  },
+  {
+   "dia": 7,
+   "tema": "oscuro",
+   "bloque": "Lo que se atora en un negocio local",
+   "etiqueta": "Lo que se atora",
+   "titulo": "El inventario está en la cabeza del que sabe.",
+   "cuerpo": "Si él no está, nadie encuentra nada.\n\nY cuando se va, se va con todo lo que sabía.",
+   "pie": "Lo que no está escrito no existe.",
+   "caption": "Hay negocios donde una sola persona sabe dónde está cada cosa, cuánto costó y a quién se le debe.\n\nEso funciona hasta que esa persona falta un día.\n\nUn inventario con nombre, costo y ubicación no reemplaza a nadie: lo respalda.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#inventario",
+    "#negocioLocal",
+    "#operación"
+   ]
+  },
+  {
+   "dia": 8,
+   "tema": "claro",
+   "bloque": "Lo que se atora en un negocio local",
+   "etiqueta": "Lo que se atora",
+   "titulo": "Se vende, pero no se sabe cuánto se ganó.",
+   "cuerpo": "Entra dinero, sale dinero, y al final del mes no hay un número.\n\nSin número no se puede decidir nada.",
+   "pie": "Sin números no hay decisiones.",
+   "caption": "Vender más no siempre es ganar más. Si no se sabe cuánto costó lo que se vendió, no se sabe si convino.\n\nNo hace falta un sistema contable enorme: hace falta que cada venta deje su costo y su margen.\n\nCon eso ya se pueden tomar decisiones.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#márgenes",
+    "#negocioLocal",
+    "#administración"
+   ]
+  },
+  {
+   "dia": 9,
+   "tema": "oscuro",
+   "bloque": "Lo que se atora en un negocio local",
+   "etiqueta": "Lo que se atora",
+   "titulo": "La página se ve vieja y ya nadie la toca.",
+   "cuerpo": "Se pagó una vez, y desde entonces nadie la volvió a abrir.\n\nEl horario cambió hace un año y ahí sigue el anterior.",
+   "pie": "Ajustes incluidos, no cotizados aparte.",
+   "caption": "Una página abandonada trabaja en contra: el cliente ve un horario falso y un teléfono que ya no existe.\n\nPor eso la renta incluye los ajustes: cambiar un precio, subir una foto, corregir el horario.\n\nLa página tiene que poder seguir al negocio, no quedarse en la foto del día que se hizo.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#páginasWeb",
+    "#ajustes",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 10,
+   "tema": "claro",
+   "bloque": "Lo que se atora en un negocio local",
+   "etiqueta": "Lo que se atora",
+   "titulo": "El cliente pregunta a las diez de la noche.",
+   "cuerpo": "Si nadie contesta, se va con el que sí contestó.\n\nY muchas veces la pregunta era siempre la misma.",
+   "pie": "Que la página conteste por ti.",
+   "caption": "Las preguntas se repiten: horario, precio, si hay existencia, si hacen envíos, dónde están.\n\nTodo eso cabe en la página, y el cliente lo encuentra a la hora que sea.\n\nLo que llega al WhatsApp ya es un cliente que quiere comprar, no uno que quiere informarse.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#páginasWeb",
+    "#atención",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 11,
+   "tema": "oscuro",
+   "bloque": "Lo que se atora en un negocio local",
+   "etiqueta": "Lo que se atora",
+   "titulo": "Todo depende de una sola persona.",
+   "cuerpo": "El dueño cotiza, cobra, compra y entrega.\n\nEl día que se enferma, se detiene el negocio.",
+   "pie": "Ordenar la operación también es crecer.",
+   "caption": "Cuando todo pasa por una mano, el negocio tiene el tamaño de esa mano.\n\nRepartir el trabajo no es desconfiar: es dejar por escrito cómo se hace cada cosa para que otro lo pueda hacer igual.\n\nEso es lo que hace un sistema.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#operación",
+    "#sistemas",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 12,
+   "tema": "claro",
+   "bloque": "Páginas, marca y sistemas",
+   "etiqueta": "Páginas",
+   "titulo": "Una página no es un folleto.",
+   "cuerpo": "Tiene que traer trabajo: aparecer en las búsquedas, resolver dudas y recibir pedidos.\n\nSi solo se ve bonita, salió cara.",
+   "pie": "Se mide si sirve, no si se ve bonita.",
+   "caption": "Una página bonita que nadie visita es un gasto con buena presentación.\n\nAntes de diseñarla se define qué tiene que lograr: que la encuentren, que confíen, que escriban.\n\nDe ahí sale todo lo demás: los textos, las fotos, el orden y hasta el color.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#páginasWeb",
+    "#diseñoWeb",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 13,
+   "tema": "oscuro",
+   "bloque": "Páginas, marca y sistemas",
+   "etiqueta": "Sistemas",
+   "titulo": "Un sistema es la operación en un solo lugar.",
+   "cuerpo": "Cotizaciones, inventario, clientes y pagos donde cualquiera del equipo los encuentra.\n\nNo en cinco libretas y tres celulares.",
+   "pie": "Un sistema, no cinco libretas.",
+   "caption": "Un sistema no es una página bonita con botones: es la manera en que el negocio trabaja, ordenada y a la vista.\n\nLo que se gana no es tecnología, es tiempo: lo que antes se preguntaba, ahora se consulta.\n\nY lo que antes se olvidaba, ahora avisa.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#sistemas",
+    "#operación",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 14,
+   "tema": "claro",
+   "bloque": "Páginas, marca y sistemas",
+   "etiqueta": "Sistemas",
+   "titulo": "Control de autos, hecho para un taller.",
+   "cuerpo": "Del ingreso del carro al día que sale entregado.\n\nCon fotos, refacciones, cotización y lo que falta por hacer.",
+   "pie": "El taller completo en una pantalla.",
+   "caption": "Cuando entran varios carros al día, el papel se pierde y la memoria falla.\n\nEl sistema guarda cada carro con sus fotos del daño, sus refacciones, su cotización y el estado en que va.\n\nCualquiera del taller abre el expediente y sabe exactamente qué sigue.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#hojalatería",
+    "#sistemas",
+    "#talleres"
+   ]
+  },
+  {
+   "dia": 15,
+   "tema": "oscuro",
+   "bloque": "Páginas, marca y sistemas",
+   "etiqueta": "Sistemas",
+   "titulo": "Cotizar en minutos, no en tardes.",
+   "cuerpo": "El precio de la refacción y el de la aseguradora, calculados solos.\n\nYa no depende de que el que sabe esté disponible.",
+   "pie": "El precio deja de depender de la memoria.",
+   "caption": "Buscar refacciones, aplicar el factor de cada aseguradora, sumar mano de obra y armar la cotización toma tardes enteras.\n\nCuando eso vive en un sistema, se hace en minutos y siempre con el mismo criterio.\n\nEl cliente recibe su número el mismo día.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#cotización",
+    "#talleres",
+    "#sistemas"
+   ]
+  },
+  {
+   "dia": 16,
+   "tema": "claro",
+   "bloque": "Páginas, marca y sistemas",
+   "etiqueta": "Marca",
+   "titulo": "La marca también es sistema.",
+   "cuerpo": "El logo, los colores, el letrero, la lona y el uniforme.\n\nTodo tiene que verse como si fuera del mismo negocio.",
+   "pie": "Que te reconozcan antes de leer tu nombre.",
+   "caption": "Una marca no es un dibujo: es el conjunto de decisiones que hacen que un negocio se vea formal en todos lados.\n\nCuando cada lona se hace aparte, cada una se ve distinta y el negocio parece más chico de lo que es.\n\nSe define una vez, y de ahí salen todas las piezas.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#identidad",
+    "#marca",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 17,
+   "tema": "oscuro",
+   "bloque": "Páginas, marca y sistemas",
+   "etiqueta": "Cómo trabajamos",
+   "titulo": "Nada de plantillas.",
+   "cuerpo": "Una plantilla obliga al negocio a trabajar como la plantilla.\n\nY el negocio no se va a cambiar para que quepa.",
+   "pie": "Se hace a la medida o no se hace.",
+   "caption": "Las plantillas sirven para lo genérico. Un negocio real tiene sus mañas: su manera de cotizar, de surtir, de cobrar.\n\nAdaptar el negocio a la herramienta es al revés y sale caro.\n\nPrimero se entiende cómo trabaja, y después se construye lo que le queda.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#aLaMedida",
+    "#sistemas",
+    "#diseñoWeb"
+   ]
+  },
+  {
+   "dia": 18,
+   "tema": "claro",
+   "bloque": "Cómo se trabaja",
+   "etiqueta": "Cómo se trabaja",
+   "titulo": "Una semana, y se ve funcionando.",
+   "cuerpo": "Tres días de trabajo, uno de revisión contigo y dos de ajustes.\n\nSe cuenta por días trabajados, no por días de calendario.",
+   "pie": "Semana cerrada, sistema entregado.",
+   "caption": "Un proyecto chico no necesita meses: necesita que alguien se siente a hacerlo.\n\nEl día de revisión no es una junta para preguntar cómo va: es para que lo uses y digas qué falta.\n\nLos ajustes que salen de ahí ya están considerados, no se cobran aparte.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#diseñoWeb",
+    "#sistemas",
+    "#entregas"
+   ]
+  },
+  {
+   "dia": 19,
+   "tema": "oscuro",
+   "bloque": "Cómo se trabaja",
+   "etiqueta": "Cómo se trabaja",
+   "titulo": "Primero se pregunta, luego se diseña.",
+   "cuerpo": "La primera conversación es para escuchar cómo trabaja el negocio.\n\nSin eso, cualquier propuesta es un adorno.",
+   "pie": "Nadie acierta adivinando.",
+   "caption": "Antes de abrir el editor hay que entender el negocio: qué vende, a quién, cómo cobra y dónde se atora.\n\nY qué le preguntan siempre los clientes.\n\nEso define lo demás. Lo demás es oficio.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#proceso",
+    "#diseñoWeb",
+    "#sistemas"
+   ]
+  },
+  {
+   "dia": 20,
+   "tema": "claro",
+   "bloque": "Cómo se trabaja",
+   "etiqueta": "Cómo se trabaja",
+   "titulo": "Se muestra a medias, no al final.",
+   "cuerpo": "Para corregir a tiempo, no para reconstruir entero.\n\nLos avances se ven funcionando desde el primer día.",
+   "pie": "Sin sorpresas en la entrega.",
+   "caption": "Cuando algo se enseña hasta el final, ya no hay margen: o se acepta con peros o se rehace con prisa.\n\nMostrando a medias, lo que se corrige cuesta minutos y no semanas.\n\nPor eso se muestra funcionando, aunque le falten cosas.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#proceso",
+    "#diseñoWeb",
+    "#sistemas"
+   ]
+  },
+  {
+   "dia": 21,
+   "tema": "oscuro",
+   "bloque": "Cómo se trabaja",
+   "etiqueta": "Cómo se trabaja",
+   "titulo": "Se entrega funcionando y con respaldo.",
+   "cuerpo": "Instalado, probado, con la información respaldada.\n\nY con quién responde si algo falla.",
+   "pie": "Entregar no es mandar archivos.",
+   "caption": "Una entrega es que el sistema quede trabajando en el negocio: en la computadora, en el celular, con los datos que ya había.\n\nY con un respaldo que se pueda recuperar, no con un archivo que nadie sabe abrir.\n\nDespués de eso, se sigue respondiendo.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#sistemas",
+    "#respaldo",
+    "#entregas"
+   ]
+  },
+  {
+   "dia": 22,
+   "tema": "claro",
+   "bloque": "Cómo se trabaja",
+   "etiqueta": "Cómo se trabaja",
+   "titulo": "Sin juntas de relleno.",
+   "cuerpo": "Las decisiones se toman por WhatsApp y los avances van por escrito.\n\nEl tiempo se va en construir, no en agendar.",
+   "pie": "El trabajo se demuestra, no se junta.",
+   "caption": "Una junta de una hora para ver un avance que se ve en dos minutos por mensaje es tiempo del negocio que se pierde.\n\nSe manda el avance, se dice qué se necesita decidir, y se decide.\n\nCuando hace falta verse, se ve uno, pero porque hace falta.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#proceso",
+    "#trabajoDirecto",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 23,
+   "tema": "oscuro",
+   "bloque": "Precio y modelo",
+   "etiqueta": "Precio",
+   "titulo": "Seiscientos al mes, o se compra.",
+   "cuerpo": "La renta incluye dominio, hospedaje, ajustes y respaldos.\n\nComprarla también se puede, y queda tuya.",
+   "pie": "Sin cobrar cada cambio por separado.",
+   "caption": "Hay negocios que prefieren no saber nada de la parte técnica: se renta, y de eso nos encargamos nosotros.\n\nY hay quienes prefieren que todo quede a su nombre: se compra, se entrega y se acabó.\n\nLas dos formas son legítimas. Lo que no se vale es cobrar cada ajuste como si fuera un proyecto nuevo.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#precio",
+    "#páginasWeb",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 24,
+   "tema": "claro",
+   "bloque": "Precio y modelo",
+   "etiqueta": "Precio",
+   "titulo": "Los sistemas se entregan, no se rentan.",
+   "cuerpo": "Se paga el trabajo, y el sistema queda en tu poder.\n\nCon sus archivos, sus accesos y su respaldo.",
+   "pie": "Lo tuyo es tuyo.",
+   "caption": "Un sistema es parte del negocio: si vive en manos de un tercero, es un riesgo.\n\nPor eso no se renta: se construye, se paga y se entrega completo.\n\nSi algún día quieres hacerlo crecer, el código está y es tuyo.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#sistemas",
+    "#propiedad",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 25,
+   "tema": "oscuro",
+   "bloque": "Precio y modelo",
+   "etiqueta": "Precio",
+   "titulo": "Se cobra por trabajo, no por hora.",
+   "cuerpo": "Antes de empezar sabes qué incluye y cuánto cuesta.\n\nSi nos tardamos más de lo previsto, es asunto nuestro.",
+   "pie": "Precio cerrado antes de empezar.",
+   "caption": "Cobrar por hora castiga al que ya sabe hacerlo: entre más rápido, menos cobra.\n\nNosotros cotizamos el trabajo completo, con lo que incluye y lo que no.\n\nAsí el negocio puede decidir con un número, no con un rango.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#precio",
+    "#presupuesto",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 26,
+   "tema": "claro",
+   "bloque": "Precio y modelo",
+   "etiqueta": "Precio",
+   "titulo": "Sin letras chiquitas.",
+   "cuerpo": "Lo que no está incluido se dice antes de empezar.\n\nNo se aparece en la factura al final.",
+   "pie": "Lo que se cotiza es lo que se paga.",
+   "caption": "Un cambio de alcance a media obra se avisa y se cotiza antes de hacerlo, no después.\n\nY si algo no lo hacemos nosotros, se dice desde el principio para que nadie se quede esperando.\n\nLa confianza sale de ahí, no del discurso.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#precio",
+    "#transparencia",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 27,
+   "tema": "oscuro",
+   "bloque": "Precio y modelo",
+   "etiqueta": "Precio",
+   "titulo": "Lo que no hacemos.",
+   "cuerpo": "No vendemos humo de inteligencia artificial, ni seguidores, ni publicidad que no podemos medir.\n\nSi no lo podemos sostener, no lo ofrecemos.",
+   "pie": "Preferimos decir que no.",
+   "caption": "Está de moda meter la palabra inteligencia artificial en todo, aunque no haga nada.\n\nLo que nosotros entregamos es oficio: diseño, código y orden. Ni más ni menos.\n\nSi un proyecto necesita algo que no dominamos, lo decimos y, si se puede, lo recomendamos con alguien que sí.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#honestidad",
+    "#sistemas",
+    "#negocioLocal"
+   ]
+  },
+  {
+   "dia": 28,
+   "tema": "claro",
+   "bloque": "Oficio",
+   "etiqueta": "Oficio",
+   "titulo": "Hecho en Apatzingán.",
+   "cuerpo": "Aquí se trabaja y aquí se piensa.\n\nNo somos una agencia de la capital con precios de la capital.",
+   "pie": "Mismo oficio, sin intermediarios.",
+   "caption": "Un negocio de aquí no necesita que vengan de fuera a cobrarle en dólares lo que se puede hacer aquí.\n\nSe trabaja con lo que hay en la región, con los proveedores de la región y con las costumbres de la región.\n\nLo que sí es igual es el estándar: se entrega al mismo nivel que en cualquier lado.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#tierraCaliente",
+    "#negocioLocal",
+    "#diseñoWeb"
+   ]
+  },
+  {
+   "dia": 29,
+   "tema": "oscuro",
+   "bloque": "Oficio",
+   "etiqueta": "Oficio",
+   "titulo": "El detalle es el trabajo.",
+   "cuerpo": "Un renglón que no cuadra, un botón que no responde, un texto que se encima.\n\nTodo eso se revisa antes de entregar.",
+   "pie": "Se prueba antes de que lo veas.",
+   "caption": "Lo que separa un trabajo de encargo de uno hecho a la carrera son cosas chicas.\n\nQue el teléfono se pueda tocar y marque. Que la foto no se deforme. Que el texto se lea en un celular viejo.\n\nNada de eso se ve en una captura de pantalla.\n\nPor eso se prueba en varios tamaños antes de decir que ya está.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#oficio",
+    "#detalle",
+    "#diseñoWeb"
+   ]
+  },
+  {
+   "dia": 30,
+   "tema": "claro",
+   "bloque": "Oficio",
+   "etiqueta": "Empezar",
+   "titulo": "Empezamos por una conversación.",
+   "cuerpo": "Cuéntanos qué haces y qué se te atora.\n\nSi no somos la opción, también te lo decimos.",
+   "pie": "Escríbenos y vemos qué te toca.",
+   "caption": "No hay que llegar con un proyecto armado ni con un presupuesto claro.\n\nBasta con decir qué vende el negocio y en qué se está perdiendo el tiempo.\n\nDe ahí sale una propuesta concreta, con precio y con fechas. Si no conviene, se dice.",
+   "etiquetas": [
+    "#Apatzingán",
+    "#Michoacán",
+    "#diseñoWeb",
+    "#sistemas",
+    "#negocioLocal"
+   ]
+  }
+ ],
+ "inicio": "2026-09-21"
 }
