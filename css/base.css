@@ -11,7 +11,7 @@
    antes (110 KB), y la variable cubre todos los pesos en un solo archivo. */
 @font-face {
   font-family: "Plus Jakarta Sans";
-  src: url("../assets/fonts/jakarta-normal-latin.woff2") format("woff2");
+  src: url("../assets/fonts/jakarta-normal-latin.woff2?v=2") format("woff2");
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
@@ -21,7 +21,7 @@
 }
 @font-face {
   font-family: "Plus Jakarta Sans";
-  src: url("../assets/fonts/jakarta-italic-latin.woff2") format("woff2");
+  src: url("../assets/fonts/jakarta-italic-latin.woff2?v=2") format("woff2");
   font-weight: 200 800;
   font-style: italic;
   font-display: swap;

@@ -1,0 +1,97 @@
+{
+  "marca": "CAMENA",
+  "pie": "Estudio de diseño y sistemas · Apatzingán, Michoacán",
+  "whatsapp": "443 579 4642",
+  "tamano": {
+    "ancho": 1080,
+    "alto": 1350
+  },
+  "historias": {
+    "ancho": 1080,
+    "alto": 1920
+  },
+  "posts": [
+    {
+      "dia": 1,
+      "tema": "oscuro",
+      "bloque": "Quién es CAMENA",
+      "etiqueta": "Estudio de diseño y sistemas",
+      "titulo": "Cada negocio opera distinto.",
+      "cuerpo": "Su software también debería.\n\nHacemos páginas, marca y sistemas a la medida, para negocios que ya venden y no quieren complicarse.",
+      "pie": "Desde Apatzingán, Michoacán, para cualquier parte.",
+      "caption": "No vendemos plantillas ni licencias.\n\nHacemos dos cosas: páginas y marca que se ven formales, y sistemas que ordenan la operación de un negocio.\n\nLa diferencia con una agencia: hablas con quien lo hace, y lo que se entrega queda a tu nombre.",
+      "etiquetas": [
+        "#Apatzingán",
+        "#Michoacán",
+        "#diseñoWeb",
+        "#sistemas",
+        "#negociosLocales"
+      ]
+    },
+    {
+      "dia": 2,
+      "tema": "claro",
+      "bloque": "Quién es CAMENA",
+      "etiqueta": "Cómo trabajamos",
+      "titulo": "Hablas con quien lo hace.",
+      "cuerpo": "Sin intermediarios y sin conmutador: quien analiza tu operación es quien diseña, quien programa y quien te entrega.",
+      "pie": "Somos un estudio chico. Eso es a propósito.",
+      "caption": "En una agencia te atiende una cuenta, y el trabajo pasa por tres manos antes de llegar.\n\nAquí es al revés: quien te contesta es quien construye. Por eso no se pierde nada en el camino.",
+      "etiquetas": [
+        "#estudio",
+        "#diseño",
+        "#desarrolloWeb",
+        "#tratoDirecto",
+        "#Michoacán"
+      ]
+    },
+    {
+      "dia": 3,
+      "tema": "oscuro",
+      "bloque": "Quién es CAMENA",
+      "etiqueta": "El trabajo",
+      "titulo": "El trabajo se cuenta en días, no en meses.",
+      "cuerpo": "Una pieza sale en una semana: tres días de trabajo, uno de revisión contigo y dos de ajustes finales.\n\nUna página completa con su marca, en dos semanas.",
+      "pie": "Lo único que alarga un trabajo es que falten datos o fotos.",
+      "caption": "Nos preguntan seguido cuánto tardamos.\n\nLa respuesta honesta: una pieza (un logo, una página de una pantalla, un video) sale en una semana. Una página completa con su marca, en dos.\n\nY lo que más atora un proyecto no es el trabajo: son los datos que faltan. Por eso lo primero que hacemos es la lista de lo que hace falta.",
+      "etiquetas": [
+        "#tiemposDeEntrega",
+        "#proyectos",
+        "#diseñoWeb",
+        "#Michoacán"
+      ]
+    },
+    {
+      "dia": 4,
+      "tema": "claro",
+      "bloque": "Quién es CAMENA",
+      "etiqueta": "Lo que se entrega",
+      "titulo": "Se entrega, no se renta.",
+      "cuerpo": "El sistema queda a tu nombre. Los archivos, el dominio y los accesos también.\n\nLas páginas se pueden rentar a $600 al mes —dominio, hospedaje, ajustes y respaldos— o pagarse completas y quedar tuyas.",
+      "pie": "Sin letras chiquitas.",
+      "caption": "Dos formas de trabajar, y las dos se dicen desde el principio:\n\n· El sistema se entrega y es tuyo. No se renta.\n· La página se puede rentar a $600 al mes (incluye dominio, hospedaje y ajustes) o pagarse completa y quedar a tu nombre.\n\nLo que no hacemos: amarrarte con una mensualidad que no pediste.",
+      "etiquetas": [
+        "#sinRenta",
+        "#preciosClaros",
+        "#páginasWeb",
+        "#sistemas"
+      ]
+    },
+    {
+      "dia": 5,
+      "tema": "oscuro",
+      "bloque": "Quién es CAMENA",
+      "etiqueta": "Lo que no hacemos",
+      "titulo": "Nada de lo que no se pueda comprobar.",
+      "cuerpo": "No prometemos el primer lugar en Google ni un número de ventas: eso no depende de nosotros, y quien lo garantiza está vendiendo humo.\n\nDejamos medible lo que sí depende del trabajo.",
+      "pie": "Si algo no se puede medir, no se promete.",
+      "caption": "Esta es la parte que casi nadie escribe:\n\nNo garantizamos ventas. No garantizamos el primer lugar en buscadores. No inventamos cifras de resultados.\n\nLo que sí: dejamos medible lo que depende del trabajo —visitas, de dónde llega la gente, cuántos mensajes entran— para que sepas si sirvió.",
+      "etiquetas": [
+        "#honestidad",
+        "#publicidadHonesta",
+        "#negocios",
+        "#Michoacán"
+      ]
+    }
+  ]
+}
