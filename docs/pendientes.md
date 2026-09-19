@@ -137,3 +137,22 @@ que yo configure y verifique el resto. Los pasos exactos están en
 - **`~/productos-camena/para-el-taller.md`** — para mostrar o imprimir: qué es,
   qué hace hoy en palabras de mostrador, por qué conviene, qué **no** hace todavía,
   cómo se usa en tres pasos y qué se necesita para tenerlo.
+
+## I · Lo que encontró la crítica externa del sitio (18 de septiembre)
+
+Medido con los scripts del repositorio a 1440, 390 y 320. Los dos hallazgos grandes
+los volví a medir yo antes de darlos por buenos.
+
+| # | Qué | Medida | Esfuerzo |
+|---|---|---|---|
+| 25 | **El titular del hero ya no cabe en dos renglones.** La frase larga mide 861 px en una columna de 812 y el `h1` pasa de 2 a 3 renglones cada ~7 s (medido: 172 px de alto con interlineado de 57.24 = 3 renglones) | `medir-hero.mjs` | 1–3 h |
+| 26 | **Las burbujas del hero se salen del hero al abrirlas.** Verificado: la tercera llega a y=1020 cuando el hero termina en 960 —**entra 60 px** en la sección clara— y las otras dos 16 px. Ningún script las medía abiertas: la lección 8 otra vez | propio | 2–4 h |
+| 27 | **El armador no puede cotizar lo más caro:** 20 casillas contra 28 renglones. Faltan el «Sistema completo» ($18,000) y las siete líneas de campañas | propio | 3–6 h |
+| 28 | **`servicios.html` no trae un solo precio** (0 apariciones de «desde $») y su `meta description` promete «cada servicio con su precio de partida» | propio | 2–3 h |
+| 29 | **El índice del hero no indexa:** sus seis enlaces van todos a `#paquetes` y mezclan los tres grupos que la casa manda separar | index.html 206-217 | 2 h |
+| 30 | **La única prueba está a 8.8 pantallas:** los ejemplos empiezan a 7,955 px, tras seis pantallas de tablas | propio | 4–8 h |
+| 31 | **La renta de $600/mes no está en la línea de precios del hero**, y es la oferta más alcanzable para el cliente real y el único ingreso recurrente | index.html | 1 h |
+
+Tres cosas que la crítica quitaría, para decidir: el panel «Soluciones» del hero
+(seis enlaces al mismo ancla), tres de los cuatro botones «Armar mi paquete», y la
+banda de campañas dentro del inicio.

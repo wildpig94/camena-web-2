@@ -572,17 +572,23 @@ decorativo: cada color significa algo y se usa solo para eso.
 |---|---|---|---|
 | **Oro** | Acento principal: marca, precios, CTA | `--oro` `#A8821F` · `--oro-lt` `#E8C766` · `--oro-tx` `#8A6A0F` | 3.31:1 sobre papel · 11.50:1 sobre tinta · 4.68:1 sobre hueso |
 | **Magenta** | El eje de sistemas: micro-sistemas, prototipos, operación | `--magenta` `#D6247A` · `--magenta-lt` `#F472B6` · `--magenta-tx` `#A81B5A` | 4.42:1 sobre papel · 7.13:1 sobre tinta · 6.54:1 sobre hueso |
-| **Verde** | Estado: disponibilidad, aprobado, lo que funciona | `--verde` `#0E9F6E` · `--verde-lt` `#34D399` · `--verde-tx` `#0A6B4C` | 3.13:1 sobre papel · 9.82:1 sobre tinta · 6.03:1 sobre hueso |
+| **Verde** | Estado: disponibilidad, aprobado, lo que funciona | `--verde` `#0E9F6E` · `--verde-lt` `#A9C46C` (pistache; **`#34D399` no existe** en `variables.css`) · `--verde-tx` `#0A6B4C` | 3.13:1 sobre papel · 9.82:1 sobre tinta · 6.03:1 sobre hueso |
 | **Carbón** | Superficies, texto y todo lo que no es acento | `--ink` `#111111` · `--paper` `#F7F6F3` | 17.47:1 |
 
 **Reglas de convivencia** (sin ellas, tres acentos se vuelven feria):
 
 1. **Un elemento, un acento.** Nunca dos en el mismo componente.
-2. **El magenta marca el eje.** Aparece en la segunda línea del titular, en la
+2. **El magenta ya no marca el eje, y esta regla era falso hasta hoy.** Decía que aparecía en la segunda línea del titular, en la
    banda de sistemas de precios, en los prototipos y en los cuatro pilares del
    catálogo. En ningún otro sitio.
 3. **El verde solo informa.** Es el punto de estado del hero y los estados de
    las maquetas («Aprobada», «En proceso»). No se usa como color de marca.
+
+> **Nota del 18 de septiembre, medida:** de la regla del magenta solo queda el
+> recuerdo. El titular va en pistache desde que el dueño pidió cambiar el texto rosa
+> por verde, y del rosa sobreviven **el tinte de una nota y el engrane del pie**. Los
+> tres tokens siguen definidos y sus pares siguen en el verificador, pero **ningún
+> componente nuevo debe usarlos**: el acento de las zonas oscuras es el verde claro.
 4. **Cero degradados.** Ni entre acentos ni dentro de uno.
 5. **Todo pasa por los alias contextuales** (`--acento`, `--acento-grafico`,
    `--acento-suave`, `--acento-linea`), nunca por una familia concreta: así una
@@ -1014,7 +1020,7 @@ correo. Nunca dice «hemos recibido tu mensaje», porque no es cierto.
 - `<title>` y meta description orientados al nuevo posicionamiento.
 - Open Graph y Twitter Card completos, con imagen 1200×630 generada para redes.
 - Datos estructurados JSON-LD: `ProfessionalService` con catálogo de servicios,
-  horario de atención y `FAQPage` con las siete preguntas **en el mismo orden y
+  horario de atención y `FAQPage` con **las nueve preguntas** (eran siete: se sumaron la de plazos de entrega y la del sistema completo) **en el mismo orden y
   con el mismo texto que se ve en la página** (Google debe indexar lo mismo que
   lee la persona).
 - `lang="es-MX"`, `canonical`, favicon completo, manifiesto, `robots.txt` y
