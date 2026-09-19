@@ -128,7 +128,13 @@ ocho.
 21. **La memoria arranca sembrada** con 19 refacciones reales de esas capturas
     (Honda de agencia y Durán Autopartes), con precio y fecha. Solo siembra cuando
     la memoria está vacía, y la versión base para otro taller no la lleva.
-22. **La versión base para otro taller** (`~/productos-camena/plantillas/control-de-autos-base/`):
+22. **El rediseño visual (18 sep).** Tema claro editorial como el sitio, cuerpo a
+    16 px, días en piso a 38, objetivos de toque de 44 px o más, cabecera y barra
+    inferior fijas, y el rojo reservado solo para tarde. Medido: la tarjeta baja de
+    415 a 196 px, el relleno de arriba de 413 a 316, y caben dos autos completos con
+    el tercero asomando (antes 1.8). **Falta**: los ~76 px de chrome que impedirían
+    que el tercer auto entre completo.
+23. **La versión base para otro taller** (`~/productos-camena/plantillas/control-de-autos-base/`):
     la misma app sin el nombre de nadie, con las tres cosas que se cambian marcadas
     al principio del archivo y un `LEEME.md`. Probada como app.
 

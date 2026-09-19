@@ -165,6 +165,40 @@ quiere volver a firmar, se agrega un renglón al pie; hoy no lo lleva a propósi
 - **No se enlaza desde el sitio y no entra al sitemap.** Es una herramienta, no
   una página de venta: se comparte con quien la va a usar, no se anuncia.
 
+**Rediseño visual: que parezca de la casa (18 de septiembre).** La app se veía como
+un panel de administración genérico: oscura con ámbar, ocho tamaños de letra y el
+techo del cuerpo en 12.5 px. Una crítica externa lo midió y el rediseño se hizo
+sobre esas medidas, comprobadas una por una:
+
+| | antes | ahora |
+|---|---|---|
+| Alto de la tarjeta de un carro | 415 px | **196 px** |
+| Relleno antes del primer auto | 413 px | **316 px** |
+| Autos a la vista en 844 px | 1.8 | **2 completos y el tercero asomando** |
+| Objetivos de toque por debajo de 44 px | 12 | **0** |
+| Tamaños de letra vivos | 8 | **5** (13, 14, 16, 22 y 38) |
+| Degradados | 1 (el badge de rayas) | **0** |
+| Sombras difusas | varias | **0** |
+
+- **Tema claro editorial, como el sitio**: papel, tinta, filetes de 1 px. Un taller
+  de día, con el teléfono al sol, se lee mejor en claro — y deja de parecerse a una
+  plantilla.
+- **El color vuelve a significar algo**: el rojo ladrillo queda **solo para tarde**
+  (14 días o más) y el resto del aviso va en oro tenue. Los chips de color por
+  aseguradora se fueron: venían de un hash y colisionaban (AXA y Qualitas salían del
+  mismo verde), así que aseguradora, placas, folio y VIN son texto.
+- **Cabecera fija y barra inferior fija** con Buscar, Nueva entrada y ajustes: con 12
+  autos la lista mide casi 5,700 px y la acción principal se había ido cuatro
+  pantallas arriba. Comprobado que la barra no tapa el último elemento.
+- **El cuerpo a 16 y el número de días en piso a 38**: era el problema real, no el
+  contraste (que ya pasaba AA). La tarjeta ahora dice lo mismo con la mitad del alto.
+- El botón dice «Cotizar» y no «Copiar cotización»: el texto largo obligaba a una
+  segunda fila y subía la tarjeta 52 px. El nombre accesible sigue completo.
+- **Lo que no se logró, y hay que decidirlo**: tres autos completos no caben. Con
+  316 px de chrome y tarjetas de 196, el tercero asoma. Para que entre entero hay que
+  quitar ~76 px de arriba —el renglón de buscador y filtro detrás del botón
+  «Buscar»—, y eso es una decisión del dueño, no del diseño.
+
 **El expediente del carro y la biblioteca de croquis (18 de septiembre).** El
 taller dijo la frase que cambió la prioridad: **los croquis de la aseguradora solo
 se ven mientras el coche está en reparación; entregado, ya no.** O sea que hay una
