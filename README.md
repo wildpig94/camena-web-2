@@ -1372,6 +1372,26 @@ Las mismas del sitio, y el generador no las revisa por ti:
   para decir que no la usamos de adorno (día 27).
 - Nada de degradados, ni marquesinas, ni movimiento barato.
 
+### El mes que sigue
+
+El segundo mes no se escribe todavía, y a propósito: primero hay que ver qué pasó
+con el primero. Lo que sí queda pensado, para cuando toque:
+
+- **Casos contados como historia**, sin nombrar clientes: el cotizador del
+  mostrador y el control de autos, contados por el problema y no por la pantalla.
+- **Una pregunta frecuente por día**, de las que ya hacen los negocios de la
+  región: cuánto cuesta, cuánto tarda, qué pasa si ya tengo página, quién escribe
+  los textos, qué pasa si un día quiero cambiarme.
+- **Errores que se ven en las páginas de negocios de aquí**, medidos uno por uno
+  (sin nombrar a nadie): teléfono que no se puede tocar, fotos deformadas, textos
+  que no se leen en un celular viejo.
+- **La semana de trabajo, día por día**, para que se sepa qué se está comprando.
+- **Lo que cuesta de verdad tener una página**: dominio, hospedaje, ajustes y
+  respaldos, con números.
+- **Antes y después** de una página rehecha, cuando haya permiso del dueño.
+
+Y una regla para el mes dos: nada entra si no se puede sostener con trabajo real.
+
 ### Cómo se usa el mes
 
 1. Se abre `salida/calendario.md`: trae la fecha real de cada día y una casilla
