@@ -157,39 +157,27 @@ Tres cosas que la crítica quitaría, para decidir: el panel «Soluciones» del 
 (seis enlaces al mismo ancla), tres de los cuatro botones «Armar mi paquete», y la
 banda de campañas dentro del inicio.
 
-## J · Las capturas del sistema del taller (19 de septiembre)
+## J · Las capturas del sistema del cliente (19 de septiembre)
 
-Lo encontré midiendo las piezas de redes y se me fue el aire: **en el sitio
-publicado hay placas y folios de siniestro de coches de clientes del taller**.
+Lo encontré midiendo las piezas de redes: **en el sitio publicado están las
+capturas del sistema que se construyó para un cliente, con datos de su operación**
+(cuatro coches con placa y folio de siniestro, con fechas de entrada y salida). El
+repositorio y el sitio son públicos, así que ahí no puede estar nada de eso: este
+repositorio es de CAMENA, y el trabajo de un cliente no se mezcla con la casa.
 
-Qué es exactamente. Las dos capturas que están en la página de inicio
-(`assets/producto/autos-tablero.webp` y `autos-historial.webp`, más
-`autos-aseguradoras.webp`, que ya no se usa pero sigue siendo un archivo público)
-se tomaron del sistema con datos reales, no inventados. Leído con OCR:
+Lo que se hizo para corregirlo, y la regla que queda:
 
-| Archivo | Lo que se alcanza a leer |
-|---|---|
-| `autos-tablero.webp` | Nissan Versa 2021, golpe en salpicadera derecha · placa `PBC-482-A` · folio `SIN-20451` · entró 25/08/2026 → Chevrolet Aveo, defensa delantera y cofre · placa `PBD-119-C` · folio `SIN-20466` · entró 05/09/2026 → Toyota Hilux, puerta trasera izquierda |
-| `autos-historial.webp` | El mismo Versa, ya entregado: entró 25/08/2026, salió 16/09/2026 |
-| `autos-aseguradoras.webp` | El mismo Versa con sus fechas, junto al panel de aseguradoras y respaldo |
+1. Las capturas publicadas se rehacen **desde el prototipo** (`control-de-autos-base`,
+   el que no lleva el nombre de ningún taller), con datos de ejemplo inventados y
+   marcados como tales. Las capturas del sistema real salen del repositorio y se
+   guardan donde va el material del cliente.
+2. La leyenda de la página deja de decir «capturas de uso real»: dice que son datos
+   de ejemplo. Si se enseña el sistema, se enseña el prototipo.
+3. Nada del cliente —ni su nombre, ni su teléfono, ni su correo, ni sus coches, ni
+   sus folios, ni sus precios— entra a este repositorio, ni al sitio, ni a las
+   piezas de redes, ni a los apuntes de `docs/`. Su material vive en
+   `~/proyectos-clientes/`, que nunca se publica.
 
-La página además lo dice: «Capturas de uso real, tomadas del sistema funcionando».
-O sea que el dato es de verdad y por eso mismo no puede estar ahí.
-
-Qué propongo, en orden:
-
-1. **Tapar la placa y el folio** en las tres imágenes, copiando el color de la
-   tarjeta para que el hueco se vea natural (`docs/sanear-capturas.py` ya está
-   escrito y probado). La página sigue diciendo la verdad —son capturas de uso
-   real— y deja de exponer a un tercero. Es lo más rápido y lo menos invasivo.
-2. **Volver a capturar con datos de ejemplo** y cambiar la leyenda a «Así se ve el
-   sistema, con datos de ejemplo». Más limpio todavía, y de paso arregla otra cosa:
-   las capturas son del 16 de septiembre y **la app se rediseñó el 18**, así que la
-   página está enseñando una versión que ya no existe (tema oscuro contra el tema
-   claro actual). Si se vuelve a capturar, se resuelven las dos de un golpe.
-
-Decisión pendiente: si el taller prefiere que sus coches no aparezcan ni tapados,
-la opción 2 es la única. Falta preguntarle.
-
-Lo que NO hay que hacer: dejarlo como está. Una placa con su folio de siniestro
-identifica a una persona y a su aseguradora, y el repositorio es público.
+Pendiente de decisión del dueño: si el caso se queda en el sitio como ejemplo (con
+capturas del prototipo) o si sale de la página y se queda solo como proyecto del
+cliente.
