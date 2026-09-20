@@ -1520,3 +1520,35 @@ vez. Todos viven en `docs/preparar-publicacion.sh`, que es la única puerta:
 
 Ese script corre igual en la máquina y en el flujo de GitHub, así que lo que se
 comprueba antes de subir es lo mismo en los dos lados.
+
+### Las direcciones viejas redirigen
+
+`wildpig94.github.io/camena-web-2/` **no se apaga en seco**: en este repositorio
+existe una rama `gh-pages` con una sola página de redirección, y GitHub Pages
+publica desde ahí. Es a propósito, por dos razones:
+
+- GitHub Pages no puede devolver un `301`, así que la página avisa, apunta su
+  `canonical` al dominio nuevo y traslada también las rutas concretas
+  (`/camena-web-2/servicios.html` termina en `camena.com.mx/servicios`).
+- Quien tenga el enlace viejo guardado —el buscador, una tarjeta, un WhatsApp—
+  llega al dominio nuevo en vez de encontrarse un 404.
+
+La rama es **huérfana**: no lleva nada del sitio viejo, que sigue entero en
+`main` y en la historia del repositorio. `main` sigue siendo el sitio: se
+publica en Cloudflare Pages, no en GitHub Pages.
+
+El sitio anterior, `wildpig94.github.io/camena-web/`, funciona igual: su propia
+rama `gh-pages` redirige al dominio nuevo.
+
+### La firma de los sitios de clientes
+
+Los sitios de clientes llevan al pie «Hecho por CAMENA». Esos enlaces apuntan
+**directo** a `https://camena.com.mx/`, sin pasar por ninguna redirección:
+
+| Sitio | Enlace de la firma |
+|---|---|
+| `cafecito-mio-web` | `https://camena.com.mx/` |
+| `esmar-transportes-web` | `https://camena.com.mx/` |
+| `zavaleta-kickboxing-web` | `https://camena.com.mx/` |
+| `dra-zuniga-web` | `https://camena.com.mx/` |
+| `chocolat-web` | `https://camena.com.mx/` (antes era texto sin enlace) |
