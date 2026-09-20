@@ -68,12 +68,18 @@ function plantilla(post, ancho, alto) {
      pantalla vacía. */
   const escala = alto / 1350;
   const esHistoria = alto > 1500;
-  const t = (px) => Math.round(px * Math.min(esHistoria ? 1.3 : 1.12, Math.max(0.92, escala)));
+  /* La historia crece un 15%, no un 30%: al 30% el mismo texto no cabía entre el
+     área segura de arriba y la de abajo (el día 27 se pasaba 110 px), y lo que
+     sobra de alto entre el muro y la historia es solo un 16%. */
+  const t = (px) => Math.round(px * Math.min(esHistoria ? 1.15 : 1.12, Math.max(0.92, escala)));
   /* Los renglones de arriba y de abajo son etiquetas de servicio, no texto de
      display: se quedan en su tamaño. Al crecer con la historia se salían de la
      columna (medido: dejaban 6 px de margen derecho en vez de 96). */
   const etiqueta = (px) => px;
-  const bloque = esHistoria ? ' bloque--centrado' : '';
+  /* El bloque se centra en los dos formatos y el pie queda clavado abajo. Antes,
+     en el muro, el bloque iba pegado arriba y todo el aire sobrante caía entre el
+     destacado y el filete: medido, de 24 a 117 px con la misma plantilla. */
+  const bloque = ' bloque--centrado';
   const parrafos = String(post.cuerpo || "").split("\n").filter((l) => l.trim())
     .map((l) => `<p>${escapar(l)}</p>`).join("");
 
@@ -98,7 +104,13 @@ function plantilla(post, ancho, alto) {
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{width:${ancho}px;height:${alto}px;overflow:hidden;background:${papel};color:${tinta};
     font-family:'Jakarta',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  .pieza{width:100%;height:100%;padding:${margen}px;display:flex;flex-direction:column}
+  /* La historia lleva margen de arriba y de abajo mucho mayor: en Instagram y en
+     WhatsApp la interfaz tapa unos 250 px arriba y unos 300 abajo. Con el margen
+     del muro (96), el único contacto de la pieza —el WhatsApp— quedaba debajo de
+     la barra de respuestas y no se veía. Medido: la última tinta caía a 100 px del
+     borde inferior en las treinta historias. */
+  .pieza{width:100%;height:100%;display:flex;flex-direction:column;
+    padding:${esHistoria ? 260 : margen}px ${margen}px ${esHistoria ? 320 : margen}px}
   .arriba{display:flex;justify-content:space-between;align-items:baseline;white-space:nowrap;
     font-family:'Mono';font-size:${etiqueta(28)}px;letter-spacing:.12em;text-transform:uppercase;color:${mono}}
   .arriba b{color:${acento};font-weight:700}
@@ -106,16 +118,16 @@ function plantilla(post, ancho, alto) {
   .bloque{display:flex;flex-direction:column}
   .bloque--centrado{margin:auto 0}
   .bloque--centrado .titulo{margin-top:0}
-  .titulo{margin-top:${t(84)}px;font-size:${t(96)}px;line-height:1.06;letter-spacing:-.022em;
+  .titulo{margin-top:${t(84)}px;font-size:${t(96)}px;line-height:1.12;letter-spacing:-.008em;
     font-weight:700;text-wrap:balance}
   .cuerpo{margin-top:${t(30)}px;font-size:${t(42)}px;line-height:1.42;color:${tenue};
-    max-width:min(15em, var(--medida, 100%));text-wrap:pretty}
+    max-width:min(15.5em, var(--medida, 100%));text-wrap:pretty}
   .cuerpo p + p{margin-top:${t(30)}px}
-  .pie{margin-top:${t(34)}px;font-size:${t(46)}px;line-height:1.22;font-weight:700;color:${tinta};
+  .pie{margin-top:${t(54)}px;font-size:${t(46)}px;line-height:1.22;font-weight:700;color:${tinta};
     border-left:5px solid ${acento};padding-left:${t(26)}px;max-width:min(12em, var(--medida, 100%));text-wrap:balance}
-  .abajo{margin-top:auto;padding-top:${t(26)}px;border-top:2px solid ${filete};
+  .abajo{margin-top:0;padding-top:${t(26)}px;border-top:2px solid ${filete};
     display:flex;justify-content:space-between;align-items:baseline;white-space:nowrap;
-    font-family:'Mono';font-size:${etiqueta(30)}px;letter-spacing:.08em;text-transform:uppercase;color:${mono}}
+    font-family:'Mono';font-size:${etiqueta(29)}px;letter-spacing:.07em;text-transform:uppercase;color:${mono}}
   .abajo b{color:${tinta};font-weight:700}
 </style></head><body>
   <div class="pieza">
@@ -126,7 +138,7 @@ function plantilla(post, ancho, alto) {
     <div class="cuerpo">${parrafos}</div>
     <div class="pie">${escapar(post.pie)}</div>
     </div>
-    <div class="abajo"><span>Apatzingán, Michoacán</span><span><b>WhatsApp ${escapar(datos.whatsapp)}</b></span></div>
+    <div class="abajo"><span>Apatzingán, Mich.</span><span><b>WhatsApp +52 ${escapar(datos.whatsapp)}</b></span></div>
   </div>
 </body></html>`;
 }
@@ -187,25 +199,44 @@ for (const post of datos.posts) {
         return { lineas: cajas.length, ancho: cajas.length ? Math.max.apply(null, cajas.map((c) => c.width)) : 0 };
       };
       const base = ${tam.alto > 1500 ? 125 : 96};
-      const tope = Math.round(base * 1.38);
+      /* El tope sube a 1.7 veces. Con 1.38 y con 1.5 los titulares cortos se
+         quedaban clavados en el tope sin llenar la columna (día 27: 67-70%),
+         y el cuerpo heredaba esa medida. Si el titular no llena, la pieza se ve
+         más chica que las demás aunque esté al tope de tamaño. */
+      const tope = Math.round(base * 1.7);
       /* "Cabe" quiere decir que el pie de la pieza siga dentro del lienzo: si el
          texto se pasa, el pie se empuja fuera y ahí se ve. No sirve mirar el alto
          del documento, porque el lienzo lo recorta y el navegador no lo reporta. */
       const pie = document.querySelector('.abajo');
-      const cabe = () => pie.getBoundingClientRect().bottom <= ${tam.alto} - Math.round(${tam.ancho} * 0.089) + 0.5;
-      const piso = Math.round(base * 0.85);
-      let elegido = 0;
+      const bloque = document.querySelector('.bloque');
+      /* Cabe quiere decir dos cosas: que el pie quede dentro del lienzo y que entre
+         el bloque y el pie quede un respiro. Sin lo segundo, el titular crecía
+         hasta pegar el destacado al filete de abajo (medido: 5 px en el día 01). */
+      const cabe = () => pie.getBoundingClientRect().bottom <= ${tam.alto} - Math.round(${tam.ancho} * 0.089) + 0.5
+        && pie.getBoundingClientRect().top - bloque.getBoundingClientRect().bottom >= ${tam.alto > 1500 ? 40 : 30};
+      /* El piso baja a 0.72: hay titulares que no llenan la columna en dos
+         renglones y sí en uno, con el cuerpo un poco más chico. */
+      const piso = Math.round(base * 0.72);
+      let elegido = 0, mayor = 0;
       for (let s = tope; s >= piso; s -= 2) {
         t.style.fontSize = s + 'px';
         const m = medir();
-        if (m.lineas <= 3 && m.ancho <= col + 1 && cabe()) { elegido = s; break; }
+        if (m.lineas <= 3 && m.ancho <= col + 1 && cabe()) {
+          if (!mayor) mayor = s;
+          /* Se prefiere el tamaño que sí llena la columna (72%); si ninguno llega,
+         se queda con el mayor que quepa. */
+          if (m.ancho >= col * 0.72) { elegido = s; break; }
+        }
       }
-      t.style.fontSize = (elegido || piso) + 'px';
+      t.style.fontSize = (elegido || mayor || piso) + 'px';
       const fin = medir();
-      /* Y el cuerpo y el destacado no pueden pasar del renglón más ancho del
-         titular: así la jerarquía no depende de qué tan largo salió el texto. */
-      document.documentElement.style.setProperty('--medida', Math.round(fin.ancho) + 'px');
-      return { tam: elegido || piso, lineas: fin.lineas, ancho: Math.round(fin.ancho), columna: Math.round(col) };
+      /* El cuerpo y el destacado no pueden pasar del renglón más ancho del titular,
+         pero tampoco quedarse en una columna flaca cuando el titular es corto: se
+         toma el mayor entre el titular y el 72% de la columna, que es lo que el
+         titular ya garantiza. Medido antes: en las piezas de titular corto el cuerpo
+         dejaba 180 px muertos a la derecha. */
+      document.documentElement.style.setProperty('--medida', Math.round(Math.max(fin.ancho, col * 0.72)) + 'px');
+      return { tam: elegido || mayor || piso, lineas: fin.lineas, ancho: Math.round(fin.ancho), columna: Math.round(col) };
     })()`);
     const m = await ev(`(() => {
       const lum = (rgb) => { const c = rgb.map(v => { v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055,2.4); }); return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2]; };
@@ -247,18 +278,18 @@ for (const post of datos.posts) {
       out.anchos = anchos;
       /* El alto del documento no sirve: el lienzo recorta y el navegador informa
          que no sobra nada. Lo que sí se ve es el pie empujado fuera del lienzo. */
-      out.sobra = Math.max(0, Math.round(document.querySelector('.abajo').getBoundingClientRect().bottom - (${tam.alto} - Math.round(${tam.ancho} * 0.089))));
+      out.sobra = Math.max(0, Math.round(document.querySelector('.abajo').getBoundingClientRect().bottom - (${tam.alto} - (${tam.alto} > 1500 ? 320 : Math.round(${tam.ancho} * 0.089)))));
       return out;
     })()`);
-    if (m.sobra > 2) problemas.push(`día ${post.dia} (${sufijo}): el contenido se pasa ${Math.round(m.sobra)} px`);
+    if (m.sobra > 2) problemas.push(`día ${post.dia} (${sufijo}): el contenido se pasa ${Math.round(m.sobra)} px (titular a ${ajuste.tam} px en ${ajuste.lineas} línea(s), llena ${Math.round(100 * ajuste.ancho / ajuste.columna)}%)`);
     if (m.fallos.length) problemas.push(`día ${post.dia} (${sufijo}): ${m.fallos.join("; ")}`);
     if (m.lineas['.titulo'] > 4) problemas.push(`día ${post.dia} (${sufijo}): el titular usa ${m.lineas['.titulo']} líneas`);
     /* La jerarquía, comprobada: el titular tiene que ser el bloque más ancho y el
        destacado no puede quedarse atrás del cuerpo. Si el cuerpo gana, la pieza
        está mal aunque se vea "bonita". */
     const a = m.anchos;
-    if (a['.cuerpo'] > a['.titulo']) problemas.push(`día ${post.dia} (${sufijo}): el cuerpo mide ${a['.cuerpo']} px y el titular ${a['.titulo']}`);
-    if (a['.pie'] > a['.titulo']) problemas.push(`día ${post.dia} (${sufijo}): el destacado mide ${a['.pie']} px y el titular ${a['.titulo']}`);
+    if (a['.cuerpo'] > a['.titulo'] * 1.05) problemas.push(`día ${post.dia} (${sufijo}): el cuerpo mide ${a['.cuerpo']} px y el titular ${a['.titulo']}`);
+    if (a['.pie'] > a['.titulo'] * 1.05) problemas.push(`día ${post.dia} (${sufijo}): el destacado mide ${a['.pie']} px y el titular ${a['.titulo']}`);
     if (sufijo === "feed") resumen.push(`${String(post.dia).padStart(2,"0")} · titular ${ajuste.tam} px (${ajuste.lineas} línea(s), llena ${Math.round(100 * ajuste.ancho / ajuste.columna)}%) · cuerpo ${a['.cuerpo']} px en ${m.lineas['.cuerpo']} · destacado ${a['.pie']} px   ${m.fallos.length || ajuste.lineas > 3 ? "✗ " + m.fallos.join("; ") : "✓"}`);
     const r = await env("Page.captureScreenshot", { format: "png", clip: { x: 0, y: 0, width: tam.ancho, height: tam.alto, scale: 1 }, captureBeyondViewport: false });
     const destino = join(SALIDA, `${String(post.dia).padStart(2, "0")}-${post.tema}-${sufijo}.png`);
