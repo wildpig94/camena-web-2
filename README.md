@@ -515,7 +515,9 @@ flujo de despliegue no copia esa carpeta):
 | `docs/revisar.sh` | **El lápiz.** Copia el sitio a una carpeta local y le inyecta el modo de revisión: se **dibuja encima de la página** con el ratón (encerrar una palabra, subrayar, una flecha) y al soltar se abre sola la ventana para escribir la instrucción. Con «Texto» se escribe el texto nuevo y se ve aplicado al instante. | `bash docs/revisar.sh` → `…/docs/revision/sitio/index.html` |
 | `docs/aplicar.mjs` | **El aplicador.** Toma el JSON del marcador y lleva los cambios de texto a los HTML reales, con simulación previa y sin tocar nada si el texto original no aparece exactamente una vez. Las notas y los dibujos quedan en `Revision-pendientes.md`. | `node docs/aplicar.mjs Revision-CAMENA.json [--escribir]` |
 | `docs/capturar-revision.mjs` | **El visor.** Abre la copia con una revisión cargada y saca una captura por página con los dibujos y las notas encima: sirve para revisar el trabajo sin abrir el navegador. | `node docs/capturar-revision.mjs Revision-CAMENA.json` |
-| `docs/cambiar-dominio.sh` | **El de la mudanza.** Pasa el sitio de `github.io` al dominio propio: cambia las 22 apariciones de la dirección vieja repartidas en 7 archivos (canonical, `og:url`, `twitter:image`, datos estructurados, sitemap, robots), crea el `CNAME` y comprueba que no quede ni una. Sin `--aplicar` solo muestra qué haría. | `bash docs/cambiar-dominio.sh camena.mx [--aplicar]` |
+| `docs/cambiar-dominio.sh` | **El de la mudanza.** Pasa el sitio de una dirección a otra: cambia las apariciones repartidas en 7 archivos (canonical, `og:url`, `twitter:image`, datos estructurados, sitemap, robots) y comprueba que no quede ni una. Sin `--aplicar` solo muestra qué haría; con `--pages` no crea el `CNAME` (eso era de GitHub Pages). | `bash docs/cambiar-dominio.sh camena.com.mx [--aplicar] [--pages]` |
+| `docs/preparar-publicacion.sh` | **La puerta.** Arma la carpeta que se sube a la web con la lista explícita de lo que se publica y corre todos los candados: páginas permitidas, cero `docs/`, cero rastro de la dirección vieja, referencias completas, HTML entero y JSON-LD válido. Si algo no cuadra, no deja publicar. Es la misma puerta que usa el flujo de GitHub. | `bash docs/preparar-publicacion.sh /tmp/camena-publicar` |
+| `docs/quitar-extensiones.sh` | **El de las direcciones.** Deja los enlaces, el canonical y el sitemap sin `.html`, que es como Cloudflare Pages sirve las páginas: así el buscador no recibe una redirección donde esperaba la página. Comprueba que ninguna dirección quede con extensión ni con doble diagonal. | `bash docs/quitar-extensiones.sh [--aplicar]` |
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
 | `docs/traducir-al-ingles.md` | **El traspaso de la traducción.** Todo lo que hay que saber para hacer la versión en inglés sin romper el formato: qué se traduce y qué no (clases, anclas, `data-*`, la estructura de las tablas), glosario de oficio, la voz en inglés, cómo publicarla y cómo comprobarla. | abrir el archivo |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
@@ -1064,16 +1066,13 @@ correo. Nunca dice «hemos recibido tu mensaje», porque no es cierto.
   `sitemap.xml`.
 - El posicionamiento local (Apatzingán, Michoacán) se conserva como parte de la
   historia de la marca, no como su límite.
-- **URL publicada:** https://wildpig94.github.io/camena-web-2/
+- **URL publicada:** https://camena.com.mx/
 - El dominio está escrito en `canonical`, Open Graph, JSON-LD, `sitemap.xml` y
-  `robots.txt` de las tres páginas. Cuando conectes `camena.mx`, hay que
-  reemplazar `https://wildpig94.github.io/camena-web-2` por el dominio nuevo en
-  esos cinco archivos, más la constante `NUEVO` si usas el script de abajo:
-
-  ```bash
-  grep -rl "wildpig94.github.io/camena-web-2" . | xargs sed -i \
-    's|https://wildpig94.github.io/camena-web-2|https://camena.mx|g'
-  ```
+  `robots.txt`. Si algún día cambia, no se hace a mano:
+  `bash docs/cambiar-dominio.sh <dominio> --aplicar --pages`.
+- Las direcciones van **sin** `.html` (`/servicios`, no `/servicios.html`):
+  Cloudflare Pages sirve las páginas así y redirige la versión con extensión.
+  El script que las deja en armonía es `docs/quitar-extensiones.sh`.
 
 ---
 
@@ -1481,31 +1480,41 @@ sistema. Se comprueba con `git log -1 --format='%an <%ae>'`.
 
 ## El dominio propio
 
-El sitio vive hoy en `https://wildpig94.github.io/camena-web-2/`. La mudanza a un
-dominio propio **no se hace a mano**: la dirección vieja aparece 22 veces en 7
-archivos —canonical, `og:url`, `twitter:image`, datos estructurados, sitemap y
-robots— y cambiarla a medias deja al buscador y a las previsualizaciones de
-WhatsApp apuntando al sitio viejo.
+El sitio vive en **`https://camena.com.mx`** (Cloudflare Pages, proyecto
+`camena`). Para llegar ahí **no se cambió nada a mano**: la dirección vieja
+aparecía 22 veces en 7 archivos —canonical, `og:url`, `twitter:image`, datos
+estructurados, sitemap y robots— y cambiarla a medias deja al buscador y a las
+previsualizaciones de WhatsApp apuntando al sitio viejo.
 
 ```bash
-bash docs/cambiar-dominio.sh camena.mx              # muestra qué cambiaría
-bash docs/cambiar-dominio.sh camena.mx --aplicar    # lo hace y crea el CNAME
+bash docs/cambiar-dominio.sh camena.com.mx              # muestra qué cambiaría
+bash docs/cambiar-dominio.sh camena.com.mx --aplicar --pages   # lo hace
 ```
 
-Después: DNS en el registrador (cuatro registros `A` a `185.199.108-111.153` y un
-`CNAME` para `www` hacia `wildpig94.github.io`), el dominio en Settings → Pages, y
-«Enforce HTTPS». Si el DNS lo lleva Cloudflare, los registros van en **DNS only**
-(nube gris): el proxy naranja estorba al certificado de GitHub Pages.
+Con `--pages` no se crea el archivo `CNAME`: eso era de GitHub Pages. Aquí el
+dominio se conecta en Cloudflare (proyecto → Custom domains) y los registros
+DNS apuntan al proyecto.
 
-**Dos candados en el flujo de publicación**, porque los dos errores caros ya
-pasaron una vez:
+**Las direcciones no llevan `.html`.** Cloudflare Pages sirve `/servicios` y
+redirige `/servicios.html` hacia ella, así que los enlaces, el canonical y el
+sitemap hablan de la dirección que de verdad se sirve. Eso lo deja
+`docs/quitar-extensiones.sh` (con `--aplicar`).
 
-1. **Lista blanca de páginas.** Si aparece una página que no sea del sitio en una
-   carpeta que se copia, la publicación **falla** en vez de regalarla en silencio.
+**Un solo proyecto sirve el dominio: `camena`.** Lo de prueba vive en ramas
+(que salen en direcciones `*.pages.dev` que no tocan el dominio) o en el
+proyecto `camena-laboratorio`. Nunca en el sitio.
+
+**Tres candados en la publicación**, porque los errores caros ya pasaron una
+vez. Todos viven en `docs/preparar-publicacion.sh`, que es la única puerta:
+
+1. **Lista blanca de páginas.** Si aparece una página que no sea del sitio en la
+   copia que se sube, la publicación **falla** en vez de regalarla en silencio.
    (Nació de que el sistema del taller se publicaba por una excepción en la lista.)
-2. **Mudanza completa.** Con `CNAME` presente, si queda una sola aparición de
-   `wildpig94.github.io` en lo que se publica, la publicación **falla** y dice el
-   comando para arreglarlo.
+2. **Nada de `docs/`.** La copia se arma con una lista explícita de archivos:
+   el repositorio es público y los archivos de trabajo no tienen por qué quedar
+   accesibles en la web. Se comprueba desde fuera que den 404.
+3. **Mudanza completa.** Si queda una sola aparición de `github.io` en lo que se
+   publica, la publicación **falla** y dice el comando para arreglarlo.
 
-Se comprueban con la simulación local antes de subir: los pasos del flujo corren
-igual en la terminal (`docs/auditar.sh`, y el candado se replica a mano).
+Ese script corre igual en la máquina y en el flujo de GitHub, así que lo que se
+comprueba antes de subir es lo mismo en los dos lados.

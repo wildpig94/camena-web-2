@@ -4,6 +4,9 @@
 #
 #   bash docs/cambiar-dominio.sh camena.mx              → muestra qué cambiaría
 #   bash docs/cambiar-dominio.sh camena.mx --aplicar    → lo cambia
+#   … --aplicar --pages  → además, para Cloudflare Pages: no crea el archivo
+#                          CNAME (eso era de GitHub Pages) y cambia las
+#                          instrucciones finales.
 #
 # Por qué existe: la dirección vieja aparece en 42 lugares de 7 archivos
 # —canonical, og:url, twitter:image, datos estructurados, sitemap y robots—.
@@ -11,14 +14,22 @@
 # compartir por WhatsApp se quedan apuntando al sitio viejo. Esto lo hace de
 # una vez y comprueba que no quede ni una aparición.
 #
-# El flujo de publicación frena el despliegue si hay CNAME y todavía queda
-# rastro de la dirección anterior, así que una migración a medias no se publica.
+# La publicación frena el despliegue si en la copia que se sube todavía queda
+# rastro de la dirección anterior (docs/preparar-publicacion.sh), así que una
+# migración a medias no se publica.
 # ═══════════════════════════════════════════════════════════════
 set -uo pipefail
 
 RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
 DOMINIO="${1:-}"
-APLICAR="${2:-}"
+APLICAR=""
+PARA_PAGES=""
+for arg in "$@"; do
+  case "$arg" in
+    --aplicar) APLICAR="--aplicar" ;;
+    --pages|--cloudflare) PARA_PAGES="--pages" ;;
+  esac
+done
 
 # Archivos que se publican. Si aparece una página nueva, se agrega aquí.
 ARCHIVOS=(
@@ -92,10 +103,18 @@ for archivo in "${ARCHIVOS[@]}"; do
   sed -i "s|$patron|$BASE_NUEVA|g" "$ruta"
 done
 
-# El CNAME es lo que le dice a GitHub Pages cuál es el dominio.
-printf '%s\n' "$DOMINIO" > "$RAIZ/CNAME"
-echo "  ✓ referencias cambiadas"
-echo "  ✓ CNAME creado con: $DOMINIO"
+# El CNAME es lo que le dice a GitHub Pages cuál es el dominio. Con Cloudflare
+# Pages no se usa: ahí el dominio se conecta desde el panel de Cloudflare, y
+# dejar el archivo sería dejar una pieza del hospedaje viejo en la raíz.
+if [[ "$PARA_PAGES" == "--pages" ]]; then
+  rm -f "$RAIZ/CNAME"
+  echo "  ✓ referencias cambiadas"
+  echo "  ✓ sin CNAME (el dominio se conecta en Cloudflare Pages)"
+else
+  printf '%s\n' "$DOMINIO" > "$RAIZ/CNAME"
+  echo "  ✓ referencias cambiadas"
+  echo "  ✓ CNAME creado con: $DOMINIO"
+fi
 
 echo
 echo "── Comprobación ──"
@@ -112,9 +131,24 @@ fi
 echo "  ✓ ninguna aparición de $BASE_VIEJA"
 echo "  ✓ $(grep -c "$DOMINIO" "$RAIZ/sitemap.xml") direcciones nuevas en el sitemap"
 
-cat <<FIN
+if [[ "$PARA_PAGES" == "--pages" ]]; then
+  cat <<FIN
 
-── Lo que sigue, en orden ──
+── Lo que sigue, en orden (Cloudflare Pages) ──
+ 1 · En Cloudflare → Workers & Pages → proyecto «camena» → Custom domains:
+       añadir  $DOMINIO  y  www.$DOMINIO
+ 2 · Los registros DNS los crea Cloudflare Pages (CNAME al proyecto).
+     El dominio raíz se aplana solo: no hay que escribir direcciones IP.
+ 3 · Redirigir www → dominio raíz con un 301:
+       Rules → Redirect Rules → si el host es www.$DOMINIO, a https://$DOMINIO
+ 4 · SSL/TLS en «Full» y activar «Always Use HTTPS»
+ 5 · Comprueba: bash docs/auditar.sh https://$DOMINIO/index.html 1440 900 dominio
+ 6 · Publica:  bash docs/preparar-publicacion.sh /tmp/camena-publicar
+FIN
+else
+  cat <<FIN
+
+── Lo que sigue, en orden (GitHub Pages) ──
  1 · DNS en tu registrador:
        A      @    185.199.108.153
        A      @    185.199.109.153
@@ -128,3 +162,4 @@ cat <<FIN
  4 · Comprueba: bash docs/auditar.sh https://$DOMINIO/index.html 1440 900 dominio
  5 · Publica: git add -A && git commit -m "El sitio pasa a $DOMINIO" && git push
 FIN
+fi

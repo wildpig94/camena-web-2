@@ -46,9 +46,9 @@ verdad**, con su propio `lang="en"`, que no necesite traductor.
    dos letras (`ES` / `EN`) y con `hreflang` y `lang` correctos.
 5. Añadir en el `<head>` de ambas:
    ```html
-   <link rel="alternate" hreflang="es" href="https://wildpig94.github.io/camena-web-2/">
-   <link rel="alternate" hreflang="en" href="https://wildpig94.github.io/camena-web-2/en/">
-   <link rel="alternate" hreflang="x-default" href="https://wildpig94.github.io/camena-web-2/">
+   <link rel="alternate" hreflang="es" href="https://camena.com.mx/">
+   <link rel="alternate" hreflang="en" href="https://camena.com.mx/en/">
+   <link rel="alternate" hreflang="x-default" href="https://camena.com.mx/">
    ```
 6. En los datos estructurados (`application/ld+json`): traducir los **valores** de
    texto y poner `"inLanguage": "en"`. **No** cambiar los nombres de las

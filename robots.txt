@@ -6,4 +6,4 @@ Allow: /
 
 # Nada que ocultar: no hay áreas privadas ni de administración.
 
-Sitemap: https://wildpig94.github.io/camena-web-2/sitemap.xml
+Sitemap: https://camena.com.mx/sitemap.xml

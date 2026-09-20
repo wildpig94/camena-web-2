@@ -5,31 +5,31 @@
      se agregan aquí con su propia entrada. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wildpig94.github.io/camena-web-2/</loc>
+    <loc>https://camena.com.mx/</loc>
     <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://wildpig94.github.io/camena-web-2/servicios.html</loc>
+    <loc>https://camena.com.mx/servicios</loc>
     <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://wildpig94.github.io/camena-web-2/como-trabajamos.html</loc>
+    <loc>https://camena.com.mx/como-trabajamos</loc>
     <lastmod>2026-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://wildpig94.github.io/camena-web-2/aviso-de-privacidad.html</loc>
+    <loc>https://camena.com.mx/aviso-de-privacidad</loc>
     <lastmod>2026-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://wildpig94.github.io/camena-web-2/terminos.html</loc>
+    <loc>https://camena.com.mx/terminos</loc>
     <lastmod>2026-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

@@ -1,19 +1,32 @@
 # ═══════════════════════════════════════════════════════════════
-# Publicación en GitHub Pages.
+# Publicación en Cloudflare Pages.
 #
 # El sitio es estático y no tiene paso de compilación: se sube tal cual.
-# Este flujo solo lo publica. Antes de hacerlo, comprueba dos cosas que
-# romperían la versión en línea y que no se ven en un diff:
-#   · que no falte ninguna referencia local (css, js, assets, fuentes)
-#   · que el JSON-LD siga siendo JSON válido
+# Este flujo lo publica en el proyecto «camena» de Cloudflare Pages, que es
+# el que sirve camena.com.mx.
 #
-# Versiones de las acciones: se mantienen en la última versión mayor. Las
-# antiguas (checkout v4 y anteriores) corrían sobre Node 20, que GitHub ya
-# retiró: seguían funcionando a la fuerza y dejaban un aviso en cada
-# publicación. Al subir de versión mayor, conviene volver a publicar y
-# comprobar el sitio en línea.
+# Antes de subir nada corre docs/preparar-publicacion.sh, la misma puerta que
+# se usa a mano en este equipo. Es a propósito: una sola lista de lo que se
+# publica y un solo juego de comprobaciones, así lo que se revisa aquí es
+# exactamente lo que se revisa en la máquina. Ese script:
+#   · copia solo las páginas del sitio (nada de docs/, README ni .github)
+#   · sella la versión de CSS y JS en las direcciones
+#   · frena si se cuela una página que no debe publicarse
+#   · frena si queda rastro de la dirección vieja (github.io)
+#   · frena si falta un archivo referenciado, si el HTML está cortado o si
+#     el JSON-LD dejó de ser JSON válido
+#
+# Lo que hace falta para que esto funcione (una sola vez):
+#   · el secreto CLOUDFLARE_API_TOKEN en el repositorio, con permiso
+#     «Account → Cloudflare Pages → Edit»
+#   · el secreto CLOUDFLARE_ACCOUNT_ID
+#
+# Nota sobre las ramas: solo `main` publica al sitio. Cualquier otra rama
+# crea una previsualización en una dirección *.pages.dev que no toca
+# camena.com.mx. Lo de prueba vive ahí o en el proyecto «camena-laboratorio»,
+# nunca en el sitio.
 # ═══════════════════════════════════════════════════════════════
-name: Publicar en GitHub Pages
+name: Publicar en Cloudflare Pages
 
 on:
   push:
@@ -22,192 +35,26 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# Un despliegue a la vez; si llega otro, espera en vez de pisarlo
+# Una publicación a la vez; si llega otra, espera en vez de pisarla
 concurrency:
-  group: pages
+  group: publicar
   cancel-in-progress: false
 
 jobs:
-  verificar:
-    name: Comprobar el sitio antes de publicar
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Verificar que existan todos los archivos referenciados
-        run: |
-          echo "── Referencias locales ──"
-          # Cada HTML se revisa contra SU carpeta: así funcionan igual las rutas
-          # de la raíz y las de una subcarpeta como producto/ o demo/.
-          fallos=0
-          for archivo in *.html */[a-z]*.html; do
-            [ -e "$archivo" ] || continue
-            dir="$(dirname "$archivo")"
-            grep -ohE '(src|href)="[^"#][^"]*"' "$archivo" \
-              | sed -E 's/.*="([^"]*)".*/\1/' \
-              | grep -vE '^(https?:|mailto:|tel:|//|#)' \
-              | sort -u > /tmp/refs.txt
-            while read -r ref; do
-              # Un enlace puede traer fragmento o parámetros: se comprueba el archivo
-              limpio="${ref%%#*}"
-              limpio="${limpio%%\?*}"
-              [ -z "$limpio" ] && continue
-              if [ ! -e "$dir/$limpio" ]; then
-                echo "  ✗ falta: $dir/$limpio (referenciado como $ref en $archivo)"
-                fallos=$((fallos + 1))
-              fi
-            done < /tmp/refs.txt
-          done
-          if [ "$fallos" -gt 0 ]; then
-            echo "✗ $fallos referencia(s) rota(s). No se publica."
-            exit 1
-          fi
-          echo "✓ Todas las referencias locales existen."
-
-      - name: Verificar el JSON-LD
-        run: |
-          python3 - <<'PY'
-          import json, re, sys, glob
-          fallos = 0
-          for archivo in glob.glob("*.html"):
-              html = open(archivo, encoding="utf-8").read()
-              for bloque in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
-                  try:
-                      json.loads(bloque)
-                      print(f"  ✓ {archivo}: JSON-LD válido")
-                  except json.JSONDecodeError as e:
-                      print(f"  ✗ {archivo}: JSON-LD inválido → {e}")
-                      fallos += 1
-          sys.exit(1 if fallos else 0)
-          PY
-
-
-      - name: Verificar que el HTML esté completo
-        run: |
-          # Un corte accidental del HTML deja la página "funcionando" pero
-          # mutilada: sin formulario, sin cierres. Esto lo detecta.
-          python3 - <<'PY'
-          import glob, re, sys
-          fallos = 0
-          PAres = ["main", "section", "div", "form", "article", "aside", "ul", "ol", "li", "dl", "details", "footer", "header", "nav"]
-          for archivo in sorted(glob.glob("*.html")):
-              html = open(archivo, encoding="utf-8").read()
-              problemas = []
-              for etiqueta in PAres:
-                  a = len(re.findall(r"<" + etiqueta + r"[\s>]", html))
-                  c = len(re.findall(r"</" + etiqueta + r">", html))
-                  if a != c:
-                      problemas.append(f"{etiqueta}: {a} abiertas / {c} cierres")
-              # Cada formulario necesita campos y cierre
-              if "<form" in html:
-                  if not re.search(r"<input|<textarea|<select", html):
-                      problemas.append("hay un <form> sin ningún campo")
-                  if "</form>" not in html:
-                      problemas.append("hay un <form> sin cerrar")
-              if problemas:
-                  print(f"  ✗ {archivo}")
-                  for p in problemas:
-                      print("      " + p)
-                  fallos += 1
-              else:
-                  print(f"  ✓ {archivo}")
-          sys.exit(1 if fallos else 0)
-          PY
-
-      - name: Verificar que existan las páginas enlazadas
-        run: |
-          for pagina in index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html 404.html; do
-            if [ -f "$pagina" ]; then echo "  ✓ $pagina"; else echo "  ✗ falta $pagina"; exit 1; fi
-          done
-
   publicar:
-    name: Publicar
-    needs: verificar
+    name: Verificar y publicar
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.despliegue.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
 
-      - name: Configurar Pages
-        uses: actions/configure-pages@v6
+      - name: Preparar y verificar el sitio
+        # Este paso es la puerta: si algo no cuadra, no se publica nada.
+        run: bash docs/preparar-publicacion.sh /tmp/camena-publicar
 
-      - name: Preparar solo lo que se publica
-        run: |
-          # Los archivos de trabajo (docs/, .github/, README, .gitignore) no
-          # forman parte del sitio y no tienen por qué quedar accesibles en la
-          # web. Se publica únicamente lo que el navegador necesita.
-          mkdir -p publicar
-          cp -r assets css js publicar/
-          cp index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html 404.html publicar/
-          cp robots.txt sitemap.xml site.webmanifest .nojekyll publicar/
-
-          # El navegador se guarda el CSS y el JS. Sellar la huella del contenido
-          # en la URL hace que un cambio de diseño se vea al instante y que, si
-          # nada cambió, el caché se siga aprovechando. Se corre sobre la copia
-          # publicada: el repo no se toca.
-          python3 docs/versionar.py publicar
-
-          # ── Candado: al sitio solo llegan capturas, nunca un sistema ──
-          # Decisión del 17 de septiembre: ningún producto se publica ni se puede
-          # probar. Los sistemas se enseñan con capturas de uso real —lo que les
-          # da valor— y nada que se pueda abrir y copiar. Como el repositorio es
-          # público, el código tampoco vive aquí: está en ~/productos-camena/.
-          # Este paso frena la publicación si algún día alguien deja caer una
-          # página de producto en una carpeta que sí se copia.
-          permitidas="index.html servicios.html como-trabajamos.html aviso-de-privacidad.html terminos.html 404.html"
-          sobrantes=""
-          for f in $(find publicar -name "*.html" | sed 's|^publicar/||'); do
-            case " $permitidas " in
-              *" $f "*) ;;
-              *) sobrantes="$sobrantes $f" ;;
-            esac
-          done
-          if [ -n "$sobrantes" ]; then
-            echo "✗ Hay páginas que no deben publicarse:$sobrantes"
-            echo "  El sitio muestra los sistemas con capturas: nada que se pueda probar."
-            echo "  Mueve el archivo fuera del repo (ver «Los dos productos» en el README)"
-            echo "  o agrégalo a la lista de permitidas si la decisión cambió."
-            exit 1
-          fi
-          echo "✓ Se publican solo las páginas del sitio: ninguna de producto."
-
-          # ── Candado: si ya hay dominio propio, no puede quedar rastro del viejo ──
-          # Cambiar de dirección a medias es peor que no cambiarla: el buscador y
-          # las previsualizaciones al compartir por WhatsApp seguirían apuntando a
-          # github.io. Cuando exista el archivo CNAME, la publicación se frena si
-          # queda una sola aparición de la dirección anterior.
-          if [ -f CNAME ]; then
-            dominio="$(tr -d '[:space:]' < CNAME)"
-            viejas=$(grep -rl "wildpig94.github.io" publicar 2>/dev/null | wc -l)
-            if [ "$viejas" -gt 0 ]; then
-              echo "✗ Hay $viejas archivo(s) que todavía apuntan a wildpig94.github.io:"
-              grep -rl "wildpig94.github.io" publicar 2>/dev/null | sed 's|^|    |'
-              echo "  Corrige con: bash docs/cambiar-dominio.sh $dominio --aplicar"
-              exit 1
-            fi
-            echo "✓ CNAME: $dominio · ninguna referencia a la dirección anterior."
-          else
-            echo "· Sin CNAME todavía: el sitio sigue en github.io (nada que comprobar)."
-          fi
-
-          echo "── Contenido que se publica ──"
-          find publicar -type f | sort | sed 's|^|  |'
-          echo "  ($(find publicar -type f | wc -l) archivos)"
-
-      - name: Empaquetar el sitio
-        # A partir de la v4, este paso NO incluye archivos ocultos en el paquete
-        # (el `.nojekyll` de arriba queda fuera). No importa: este flujo publica
-        # el artefacto tal cual, sin pasar por Jekyll, que es justo para lo que
-        # servía ese archivo.
-        uses: actions/upload-pages-artifact@v5
+      - name: Publicar en Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: publicar
-
-      - name: Desplegar
-        id: despliegue
-        uses: actions/deploy-pages@v5
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy /tmp/camena-publicar --project-name=camena --branch=main
