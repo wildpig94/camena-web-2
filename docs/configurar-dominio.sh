@@ -165,7 +165,22 @@ done
 echo
 echo "── 4 · www redirige al dominio raíz ──"
 regla="$(leer "zones/$ZONA/rulesets/phases/http_request_dynamic_redirect/entrypoint")"
-if printf '%s' "$regla" | grep -q "\"http.host eq \\\\\"www.$DOMINIO\\\\\"\""; then
+# ¿Ya existe la regla? Se mira la expresión de las reglas de verdad, con el JSON
+# leído, no el texto crudo: dentro del JSON las comillas van escapadas y una
+# comparación de texto —«\"http.host eq \\\"www.dominio\\\"\"»— no coincide nunca,
+# así que el script decía «habría que crearla» aunque la regla ya estuviera
+# puesta, y en cada pasada intentaba volver a crearla.
+existe="$(printf '%s' "$regla" | python3 -c '
+import json, sys
+try:
+    datos = json.load(sys.stdin)
+except Exception:
+    print("no"); raise SystemExit
+reglas = (datos.get("result") or {}).get("rules") or []
+buscado = sys.argv[1]
+print("si" if any(buscado in (r.get("expression") or "") for r in reglas) else "no")
+' "www.$DOMINIO")"
+if [[ "$existe" == "si" ]]; then
   hecho "la redirección de www ya existe"
 elif printf '%s' "$regla" | grep -q 'Authentication error'; then
   falta "no puedo tocar las redirecciones: al token le falta «Zone → Single Redirect → Edit»"
@@ -190,12 +205,28 @@ print(json.dumps({"rules": [{
 }]}))
 PY
 )"
-  if curl -s -m 30 -X PUT "$API/zones/$ZONA/rulesets/phases/http_request_dynamic_redirect/entrypoint" \
+  respuesta="$(curl -s -m 30 -X PUT "$API/zones/$ZONA/rulesets/phases/http_request_dynamic_redirect/entrypoint" \
        -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-       --data "$cuerpo" | grep -q '"success":true'; then
+       --data "$cuerpo")"
+  # La respuesta se lee como JSON, no como texto: la API de reglas contesta con
+  # sangría («"success": true», con espacio), y comprobar «"success":true» daba
+  # por fallida una regla que sí se había creado.
+  if printf '%s' "$respuesta" | python3 -c 'import json, sys
+d = json.load(sys.stdin)
+raise SystemExit(0 if d.get("success") else 1)' 2>/dev/null; then
     hecho "www.$DOMINIO → https://$DOMINIO (301)"
   else
-    falta "no se pudo crear la redirección (falta «Zone → Single Redirect → Edit»)"
+    falta "no se pudo crear la redirección"
+    nota "La API contestó: $(printf '%s' "$respuesta" | python3 -c 'import json, sys
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    print("respuesta ilegible"); raise SystemExit
+errores = d.get("errors") or []
+print(" · ".join(str(e.get("code")) + ": " + str(e.get("message")) for e in errores) if errores else "sin detalle")' 2>/dev/null)"
+    nota "Si el motivo es de permisos: al token le falta «Zone → Single Redirect → Edit»."
+    nota "Alternativa sin tocar el token: Cloudflare → Rules → Redirect Rules →"
+    nota "  si el hostname es www.$DOMINIO → redirección dinámica a https://$DOMINIO (301)"
   fi
 fi
 
