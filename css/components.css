@@ -104,7 +104,7 @@ svg.ic path[d^="M12 2a10"] {
 .boton--oro:hover {
   background: var(--oro-lt);
   border-color: var(--oro-lt);
-  box-shadow: 0 12px 30px rgba(168, 130, 31, 0.3);
+  box-shadow: 0 12px 30px var(--oro-halo);
 }
 
 
@@ -205,7 +205,7 @@ svg.ic path[d^="M12 2a10"] {
   background: rgba(255, 255, 255, 0.07);
 }
 .nav__enlace:hover::after { width: calc(100% - 16px); }
-.nav__enlace.is-actual { color: var(--oro-lt); background: rgba(168, 130, 31, 0.12); }
+.nav__enlace.is-actual { color: var(--oro-lt); background: var(--oro-tenue); }
 .nav__enlace.is-actual::before { width: 5px; }
 .nav__enlace.is-actual::after { width: calc(100% - 16px); }
 
@@ -226,7 +226,7 @@ svg.ic path[d^="M12 2a10"] {
   border-radius: var(--radio-control);
   transition: color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
 }
-.nav__whatsapp:hover { color: var(--oro-lt); background: rgba(168, 130, 31, 0.1); }
+.nav__whatsapp:hover { color: var(--oro-lt); background: var(--oro-tenue); }
 
 /* Botón de menú móvil */
 .menu-boton {
@@ -251,7 +251,7 @@ svg.ic path[d^="M12 2a10"] {
   width: 100%;
   height: 1.5px;
   background: var(--texto-claro);
-  border-radius: 2px;
+  border-radius: var(--radio-sm);
   transition: transform var(--dur) var(--curva), opacity var(--dur-rapida) var(--curva);
 }
 .menu-boton__lineas i:first-child { top: 0; }
@@ -289,7 +289,7 @@ svg.ic path[d^="M12 2a10"] {
    (9.82:1 sobre tinta) y no el verde oscuro que servía sobre el fondo oro. */
 .hero .sello__marca {
   background: var(--verde-lt);
-  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
+  box-shadow: 0 0 0 3px var(--verde-tenue);
 }
 
 
@@ -586,7 +586,7 @@ svg.ic path[d^="M12 2a10"] {
   max-width: 62ch;
   margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
   padding: var(--e-4) var(--e-5);
-  background: rgba(168, 130, 31, 0.07);
+  background: var(--oro-tenue);
   border-left: 2px solid var(--acento-grafico);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
   font-size: var(--t-cuerpo);
@@ -824,7 +824,7 @@ svg.ic path[d^="M12 2a10"] {
 .mock-identidad__simbolo {
   position: relative;
   width: 4.5rem; height: 4.5rem;
-  border: 1.5px solid #D9C7A7;
+  border: 1.5px solid var(--identidad-borde);
   border-radius: 50%;
   margin-bottom: var(--e-3);
 }
@@ -832,7 +832,7 @@ svg.ic path[d^="M12 2a10"] {
   content: "";
   position: absolute;
   inset: 28%;
-  background: #F4EFE6;
+  background: var(--identidad-papel);
   border-radius: 50%;
 }
 .mock-identidad__simbolo::after {
@@ -840,7 +840,7 @@ svg.ic path[d^="M12 2a10"] {
   position: absolute;
   left: 50%; bottom: 12%;
   width: 1.5px; height: 38%;
-  background: #8C5A3C;
+  background: var(--identidad-trazo);
   transform: translateX(-50%);
 }
 .mock-identidad__nombre {
@@ -848,14 +848,14 @@ svg.ic path[d^="M12 2a10"] {
   font-size: 1.75rem;
   font-weight: var(--peso-fuerte);
   letter-spacing: 0.34em;
-  color: #F4EFE6;
+  color: var(--identidad-papel);
 }
 .mock-identidad__giro {
   font-family: var(--mono);
   font-size: var(--t-micro);
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: #D9C7A7;
+  color: var(--identidad-borde);
 }
 .mock-identidad__paleta {
   display: flex;
@@ -927,7 +927,7 @@ svg.ic path[d^="M12 2a10"] {
   flex: 1;
   height: var(--h);
   background: linear-gradient(to top, rgba(168, 130, 31, 0.35), rgba(168, 130, 31, 0.85));
-  border-radius: 2px 2px 0 0;
+  border-radius: var(--radio-sm) var(--radio-sm) 0 0;
 }
 
 .mock-tabla { display: grid; gap: 6px; }
@@ -1093,7 +1093,7 @@ svg.ic path[d^="M12 2a10"] {
   width: 13px; height: 13px;
   flex-shrink: 0;
   border: 1px solid var(--ink-4);
-  border-radius: 3px;
+  border-radius: var(--radio-sm);
 }
 .mock-opcion--marcada i {
   background: var(--mock-acento);
@@ -1194,8 +1194,8 @@ svg.ic path[d^="M12 2a10"] {
 }
 .mock-chat__salida {
   justify-self: start;
-  background: rgba(168, 130, 31, 0.12);
-  border: 1px solid rgba(168, 130, 31, 0.3);
+  background: var(--oro-tenue);
+  border: 1px solid var(--oro-linea);
   color: var(--mock-acento);
   border-bottom-left-radius: 3px;
 }
@@ -1217,7 +1217,7 @@ svg.ic path[d^="M12 2a10"] {
   height: 6px;
   width: var(--w);
   background: linear-gradient(to right, rgba(168, 130, 31, 0.7), rgba(168, 130, 31, 0.25));
-  border-radius: 3px;
+  border-radius: var(--radio-sm);
 }
 .mock-audio__onda {
   display: flex;
@@ -1230,7 +1230,7 @@ svg.ic path[d^="M12 2a10"] {
   flex: 1;
   height: var(--h);
   background: rgba(232, 199, 102, 0.5);
-  border-radius: 2px;
+  border-radius: var(--radio-sm);
 }
 .mock-audio__tiempo {
   font-family: var(--mono);
@@ -1251,7 +1251,7 @@ svg.ic path[d^="M12 2a10"] {
 .mock-agenda__dias .hoy {
   color: var(--mock-0);
   background: var(--mock-acento);
-  border-radius: 3px;
+  border-radius: var(--radio-sm);
   font-weight: 700;
 }
 .mock-agenda__bloques { display: grid; gap: 6px; }
@@ -1292,7 +1292,7 @@ svg.ic path[d^="M12 2a10"] {
 .pieza-formato {
   display: grid;
   place-items: center;
-  border: 1px dashed rgba(168, 130, 31, 0.45);
+  border: 1px dashed var(--oro-linea);
   border-radius: var(--radio-sm);
   font-family: var(--mono);
   font-size: var(--t-micro);
@@ -1360,7 +1360,7 @@ svg.ic path[d^="M12 2a10"] {
    igual que en el resto de superficies oscuras del sitio. */
 .paquete--destacado {
   --acento: var(--oro-lt);
-  --acento-suave: rgba(168, 130, 31, 0.12);
+  --acento-suave: var(--oro-tenue);
   /* --texto-2 es un gris de 5.1:1 sobre papel, pero solo 3.41:1 sobre tinta.
      En esta tarjeta oscura hay que cambiar el token, no el componente. */
   --texto-2: var(--texto-claro-2);
@@ -1559,7 +1559,7 @@ svg.ic path[d^="M12 2a10"] {
 .campo__control:hover { border-color: var(--texto-2); }
 .campo__control:focus {
   border-color: var(--oro-tx);
-  box-shadow: 0 0 0 3px rgba(168, 130, 31, 0.18);
+  box-shadow: 0 0 0 3px var(--oro-foco);
   background: var(--paper-2);
   outline: none;
 }
@@ -1573,17 +1573,17 @@ svg.ic path[d^="M12 2a10"] {
 }
 .campo__control--area { resize: vertical; min-height: 6.5rem; }
 
-.campo.is-error .campo__control { border-color: #A63A2A; box-shadow: 0 0 0 3px rgba(166, 58, 42, 0.14); }
+.campo.is-error .campo__control { border-color: var(--rojo); box-shadow: 0 0 0 3px var(--rojo-tenue); }
 .campo__error {
   margin-top: var(--e-2);
   font-size: var(--t-menudo);
-  color: #A63A2A;
+  color: var(--rojo);
 }
 
 .contexto-aviso {
   margin-bottom: var(--e-4);
   padding: var(--e-3) var(--e-4);
-  background: rgba(168, 130, 31, 0.1);
+  background: var(--oro-tenue);
   border-left: 2px solid var(--acento-grafico);
   border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
   font-size: var(--t-menudo);
@@ -1601,7 +1601,7 @@ svg.ic path[d^="M12 2a10"] {
 .enviado {
   margin-top: var(--e-5);
   padding: var(--e-4) var(--e-5);
-  background: rgba(168, 130, 31, 0.08);
+  background: var(--oro-tenue);
   border: 1px solid var(--oro-linea);
   border-radius: var(--radio-sm);
   animation: aparecer var(--dur-lenta) var(--curva-salida) both;
@@ -1658,7 +1658,7 @@ svg.ic path[d^="M12 2a10"] {
    no puede heredar el color de texto claro o queda invisible. */
 .llamada .formulario__titulo { color: var(--texto); }
 .llamada .campo__control { color: var(--texto); }
-.llamada .campo__error { color: #A63A2A; }
+.llamada .campo__error { color: var(--rojo); }
 .llamada .formulario__ayuda { color: var(--texto-2); }
 .llamada .contexto-aviso { color: var(--texto); }
 
@@ -1696,7 +1696,7 @@ svg.ic path[d^="M12 2a10"] {
 .copiar.is-copiado {
   border-color: var(--oro-tx);
   color: var(--oro-tx);
-  background: rgba(168, 130, 31, 0.1);
+  background: var(--oro-tenue);
 }
 
 
@@ -1834,8 +1834,10 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-claro);
   border-color: var(--ink);
   /* Solo se cambian los tokens de texto y borde: el acento NO se toca aquí.
-     Lo pone variables.css (magenta, porque es el eje de sistemas) y si se
-     repitiera en este archivo, el orden de carga lo pisaría con el oro. */
+     Lo pone variables.css —verde claro, porque esta es una de las tres zonas
+     oscuras— y si se repitiera en este archivo, el orden de carga lo pisaría
+     con el oro. (Este comentario decía «magenta»: quedó del tiempo en que la
+     banda iba en rosa, antes de cambiarlo por verde.) */
   --texto: var(--texto-claro);
   --texto-2: var(--texto-claro-2);
   --borde: var(--borde-oscuro);
@@ -1956,7 +1958,8 @@ svg.ic path[d^="M12 2a10"] {
    barras de 1.5 px; al abrir queda solo la horizontal, que es un menos. Nada
    de texto: un «+» de verdad lo leerían en voz alta los lectores de pantalla,
    y el estado ya lo dice aria-expanded. */
-.tarifa__signo {
+.tarifa__signo,
+.sistema__signo {
   width: 13px;
   height: 13px;
   color: var(--texto-2);
@@ -1969,8 +1972,11 @@ svg.ic path[d^="M12 2a10"] {
   transition: background-size var(--dur-rapida) var(--curva), color var(--dur-rapida) var(--curva);
 }
 .tarifa__boton:hover .tarifa__signo,
-.tarifa__boton[aria-expanded="true"] .tarifa__signo { color: var(--acento); }
-.tarifa__boton[aria-expanded="true"] .tarifa__signo { background-size: 13px 1.5px, 0 0; }
+.tarifa__boton[aria-expanded="true"] .tarifa__signo,
+.sistema__abrir:hover .sistema__signo,
+.sistema[open] .sistema__signo { color: var(--acento); }
+.tarifa__boton[aria-expanded="true"] .tarifa__signo,
+.sistema[open] .sistema__signo { background-size: 13px 1.5px, 0 0; }
 
 .tarifa__precio {
   padding: var(--e-3) 0;
@@ -2157,6 +2163,101 @@ svg.ic path[d^="M12 2a10"] {
   font-weight: var(--peso-fuerte);
 }
 
+/* ── La ficha de sistema: nombre, oficio y precio a la vista; el detalle al abrir ──
+   El renglón enseña tres cosas sin abrir nada: cómo se llama el sistema, con qué
+   nombre se contrata y cuánto cuesta. Lo que se despliega es el detalle —para
+   quién es, qué problema resuelve, qué incluye y por qué cuesta eso—, porque
+   nadie decide un sistema de $9,600 leyendo cuatro renglones de golpe.
+
+   Va con <details>/<summary> nativo, y no con el botón de aria-expanded de las
+   tablas, por dos razones. Una de diseño: el nativo trae teclado, anuncio de
+   estado y apertura desde el HTML, sin una línea de JavaScript. Y una medida:
+   las fichas del botón solo se pintaban cuando el JS les ponía data-abierto, así
+   que con los scripts apagados las 28 fichas del sitio quedaban invisibles; aquí
+   eso no puede volver a pasar. */
+.sistemas {
+  display: grid;
+  margin-top: var(--e-5);
+  border-top: 1px solid var(--borde);
+}
+
+.sistema { border-bottom: 1px dotted var(--borde); }
+.sistema--completo { border-bottom: 0; }
+
+.sistema__abrir {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 13px;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-3) var(--e-3) 0;
+  cursor: pointer;
+  list-style: none;
+}
+/* El triángulo del navegador se quita: el signo propio ya dice que se abre, y el
+   estado lo anuncia el lector de pantalla por su cuenta, sin aria-expanded. */
+.sistema__abrir::-webkit-details-marker { display: none; }
+.sistema__abrir::marker { content: ""; }
+.sistema__abrir:hover .sistema__nombre { color: var(--acento); }
+
+/* El oficio del sistema va DENTRO de la ficha, no en el renglón. Medido: la
+   columna del renglón en esta banda mide 444 px y el nombre más el oficio piden
+   hasta 600, así que el oficio se partía a un segundo renglón y cada renglón
+   subía de 48 a 70 px — la banda crecía 126 px por adelantar un dato que se lee
+   igual de bien al abrir. En una sola línea el renglón mide lo mismo que los de
+   las otras cuatro bandas y la lista se puede comparar de un vistazo. */
+.sistema__tecnico {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+.sistema__nombre {
+  font-size: var(--t-cuerpo);
+  line-height: 1.4;
+  color: var(--texto);
+}
+.sistema__precio {
+  font-family: var(--mono);
+  font-size: var(--t-menudo);
+  font-weight: var(--peso-fuerte);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--acento);
+}
+
+/* El cuerpo: los mismos materiales que la ficha de las tablas, sin su
+   `display: none`, que aquí lo gobierna <details>. */
+.sistema__cuerpo {
+  margin: 0 0 var(--e-4);
+  padding: var(--e-4);
+  background: var(--paper-2);
+  border: 1px solid var(--borde);
+  border-left: 2px solid var(--acento);
+  border-radius: var(--radio-sm);
+  font-size: var(--t-menudo);
+  line-height: 1.55;
+  color: var(--texto-2);
+}
+.sistema__cuerpo p { margin: 0; }
+.sistema__cuerpo p + p { margin-top: var(--e-3); }
+.sistema__cuerpo .servicios__etiqueta + p { margin-top: var(--e-2); }
+.sistema__cuerpo strong { color: var(--texto); }
+
+/* La misma trampa que documenta la regla de .servicios__globo: el token del
+   papel NO se reasigna dentro de la banda oscura, así que sin esta línea el
+   cuerpo saldría claro con texto claro encima. */
+.etapa--destacada .sistema__cuerpo { background: var(--ink-2); }
+
+/* El contenido cerrado no ocupa NADA. Chrome cierra un <details> saltándose el
+   contenido pero dejando la caja del elemento, así que con el relleno y el
+   filete puestos cada renglón cerrado medía 145 px en vez de 80: la banda
+   pagaba 520 px de espacio invisible y no se veía de dónde salían. Con esta
+   regla la altura cerrada es exactamente la del resumen, en cualquier
+   navegador, sin depender de cómo implemente el cierre cada uno. */
+.sistema:not([open]) > .sistema__cuerpo { display: none; }
+
 .etapa__nota {
   margin-top: var(--e-4);
   padding: var(--e-3) var(--e-4);
@@ -2193,7 +2294,7 @@ svg.ic path[d^="M12 2a10"] {
   --texto-2: var(--texto-claro-2);
   --borde: var(--borde-oscuro);
   --acento: var(--oro-lt);
-  --acento-suave: rgba(168, 130, 31, 0.12);
+  --acento-suave: var(--oro-tenue);
 }
 
 .armar__titulo {
@@ -2232,7 +2333,11 @@ svg.ic path[d^="M12 2a10"] {
   font-size: var(--t-micro);
   letter-spacing: var(--tracking-etiqueta);
   text-transform: uppercase;
-  color: var(--oro-lt);
+  /* El token de acento y no el dorado claro escrito a mano: dentro del armador
+     —tarjeta oscura— --acento vale --oro-lt, y sobre papel vale el oro de
+     texto, que es el que pasa contraste. Escrito a mano, la leyenda quedaba en
+     1.59:1 en la página del diagnóstico (lo cazó la auditoría de móvil). */
+  color: var(--acento);
 }
 
 .opcion {
@@ -2247,7 +2352,7 @@ svg.ic path[d^="M12 2a10"] {
   cursor: pointer;
   transition: border-color var(--dur-rapida) var(--curva), background var(--dur-rapida) var(--curva);
 }
-.opcion:hover { border-color: var(--oro); background: rgba(168, 130, 31, 0.08); }
+.opcion:hover { border-color: var(--oro); background: var(--oro-tenue); }
 
 /* La casilla nativa se oculta y se dibuja una a medida: así mide 24px de
    verdad (el mínimo táctil) y el área de toque es la etiqueta completa.
@@ -2303,7 +2408,12 @@ svg.ic path[d^="M12 2a10"] {
   flex: 1 1 auto;
   font-size: var(--t-cuerpo);
   line-height: 1.35;
-  color: var(--texto-claro);
+  /* El token, no el color claro escrito a mano. Esta regla nació dentro del
+     armador de paquetes, que es una tarjeta oscura y por eso remapea --texto a
+     claro; cuando la misma casilla se usó en el diagnóstico —que va sobre
+     papel— el texto quedaba blanco sobre blanco, 1.07:1, y la auditoría cazó
+     las 32. Con el token, cada contexto resuelve su color. */
+  color: var(--texto);
 }
 .opcion span > span,
 .opcion span { text-wrap: pretty; }
@@ -2314,7 +2424,7 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-2);
   white-space: nowrap;
 }
-.opcion:has(input:checked) { border-color: var(--oro); background: rgba(168, 130, 31, 0.14); }
+.opcion:has(input:checked) { border-color: var(--oro); background: var(--oro-tenue); }
 .opcion:has(input:checked) em { color: var(--oro-lt); font-weight: var(--peso-fuerte); }
 
 .armar__total {
@@ -2343,6 +2453,103 @@ svg.ic path[d^="M12 2a10"] {
   font-size: var(--t-menudo);
   color: var(--texto-2);
 }
+
+/* ── El diagnóstico sin costo: ocho preguntas y un veredicto ─────────
+   No inventa componente: usa el mismo armador (fieldset, leyenda y opciones)
+   para que en el sitio no haya dos maneras de contestar. Lo propio es solo la
+   marca redonda —aquí se elige una, no varias— y el bloque del veredicto. */
+.diagnostico {
+  display: grid;
+  gap: var(--e-5);
+  margin-top: var(--e-5);
+}
+.diagnostico .opcion__marca { border-radius: 50%; }
+
+.diagnostico__resultado {
+  display: grid;
+  gap: var(--e-3);
+  margin-top: var(--e-6);
+  padding: var(--e-5);
+  background: var(--paper-2);
+  border: 1px solid var(--borde);
+  border-left: 2px solid var(--acento);
+  border-radius: var(--radio-sm);
+}
+.diagnostico__resultado[hidden] { display: none; }
+.diagnostico__titulo {
+  font-family: var(--display);
+  font-size: var(--t-n3);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--texto);
+}
+.diagnostico__texto p { margin: 0; color: var(--texto-2); }
+.diagnostico__texto p + p { margin-top: var(--e-3); }
+.diagnostico__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-3);
+  margin-top: var(--e-2);
+}
+
+/* Los hallazgos: cada hueco con su tamaño y con lo que lo resolvería. La cifra
+   manda —es lo que se mide—, así que va en la display y en el acento. */
+.diagnostico__hallazgos {
+  display: grid;
+  gap: var(--e-3);
+}
+.hallazgo {
+  padding: var(--e-4);
+  background: var(--paper);
+  border: 1px solid var(--borde);
+  border-left: 2px solid var(--acento-grafico);
+  border-radius: 0 var(--radio-sm) var(--radio-sm) 0;
+}
+.hallazgo__titulo {
+  font-family: var(--display);
+  font-size: var(--t-cuerpo);
+  line-height: 1.25;
+  color: var(--texto);
+}
+.hallazgo__detalle {
+  margin-top: var(--e-2);
+  font-size: var(--t-menudo);
+  line-height: 1.55;
+  color: var(--texto-2);
+}
+.hallazgo__resuelve {
+  margin-top: var(--e-2);
+  font-size: var(--t-menudo);
+  line-height: 1.55;
+  color: var(--texto);
+}
+.diagnostico__subtitulo {
+  margin-top: var(--e-4);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--borde);
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+.diagnostico__limites {
+  display: grid;
+  gap: var(--e-2);
+  font-size: var(--t-menudo);
+  line-height: 1.55;
+  color: var(--texto-2);
+}
+.diagnostico__nota {
+  margin-top: var(--e-3);
+  padding-top: var(--e-3);
+  border-top: 1px solid var(--borde);
+  font-size: var(--t-menudo);
+  line-height: 1.55;
+  color: var(--texto-2);
+}
+.diagnostico__nota strong { color: var(--texto); }
 
 .armar__aviso {
   font-size: var(--t-menudo);
@@ -2476,7 +2683,7 @@ svg.ic path[d^="M12 2a10"] {
   letter-spacing: -0.01em;
 }
 .giros__rotador .rotador__pregunta {
-  color: var(--texto-2);
+  color: var(--rojo-lt);
   font-weight: var(--peso-medio);
 }
 .giros__rotador .rotador__respuesta {

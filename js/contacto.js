@@ -74,7 +74,7 @@
         var aviso = document.getElementById("contexto-aviso");
         if (aviso) {
           aviso.hidden = false;
-          aviso.textContent = "Anotamos tu caso: «" + contexto + "». Complétalo abajo cuando quieras.";
+          aviso.textContent = "Anoté tu caso: «" + contexto + "». Puedes afinarlo abajo.";
         }
       });
     });
@@ -100,7 +100,7 @@
       var contexto = boton.dataset.prellenar;
       if (!contexto) return;
 
-      var texto = "Hola CAMENA, vengo de su página. " + contexto
+      var texto = "Hola CAMENA, vengo de tu página. " + contexto
         + ". Quiero saber qué me conviene y cuánto cuesta.";
       var abierto = window.open(
         "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(texto),
@@ -119,7 +119,7 @@
         }
         if (aviso) {
           aviso.hidden = false;
-          aviso.textContent = "Tu navegador bloqueó WhatsApp. Anotamos tu caso abajo: "
+          aviso.textContent = "Tu navegador bloqueó WhatsApp. Anoté tu caso abajo: "
             + "revísalo y envíalo desde aquí.";
         }
       }
@@ -175,7 +175,7 @@
       var mensaje = valorDe("campo-mensaje");
 
       var lineas = [];
-      lineas.push("Hola CAMENA, quiero contarles un proyecto.");
+      lineas.push("Hola CAMENA, quiero contarte un proyecto.");
       lineas.push("");
       lineas.push("Nombre: " + nombre.trim());
       lineas.push(tipo
@@ -186,8 +186,7 @@
       lineas.push("");
       lineas.push(mensaje.trim());
       lineas.push("");
-      lineas.push("Pueden responderme a: " + contacto.trim());
-      lineas.push("(Escribo desde su sitio web.)");
+      lineas.push("Respóndeme a: " + contacto.trim());
       return lineas.join("\n");
     }
 
@@ -272,12 +271,12 @@
         nota.textContent = "Marca lo que necesitas para ver el total.";
       } else {
         nota.textContent = elegidos.length === 1
-          ? "Un servicio. El precio final puede variar según el tamaño."
-          : elegidos.length + " servicios. El precio final puede variar según el tamaño.";
+          ? "Un servicio. El precio final depende del tamaño del proyecto."
+          : elegidos.length + " servicios. El precio final depende del tamaño del proyecto.";
       }
 
       /* El mensaje sale armado: la persona no tiene que volver a explicarse */
-      var lineas = ["Hola CAMENA, armé mi paquete desde su página:"];
+      var lineas = ["Hola CAMENA, armé mi paquete desde tu página:"];
       lineas.push("");
       elegidos.forEach(function (c) {
         lineas.push("· " + c.value + " (" + miles(Number(c.dataset.precio || 0)) + ")");
@@ -285,9 +284,9 @@
       lineas.push("");
       lineas.push(elegidos.length
         ? "Suma aproximada: " + miles(suma) + " MXN"
-        : "Todavía no sé qué necesito, quiero que me orienten.");
+        : "Todavía no sé qué necesito: ¿me orientas?");
       lineas.push("");
-      lineas.push("¿Me confirman el precio y el tiempo de entrega?");
+      lineas.push("¿Me confirmas el precio y el tiempo de entrega?");
 
       enlace.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(lineas.join("\n"));
     }

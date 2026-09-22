@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="CAMENA — Estudio creativo y tecnológico. Tu idea. Nuestra solución.">
-  <title>CAMENA — Estudio creativo y tecnológico</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="CAMENA, estudio de diseño y sistemas. Se entregan, no se rentan.">
+  <title>CAMENA — Estudio de diseño y sistemas</title>
   <defs>
     <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#E5BC55"/>
@@ -33,14 +33,14 @@
 
   <!-- wordmark -->
   <text x="220" y="152" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="600" letter-spacing="11" fill="#F6F3EA">CAMENA</text>
-  <text x="222" y="186" font-family="Helvetica, Arial, sans-serif" font-size="16.5" letter-spacing="3.4" fill="#9A968A">ESTUDIO CREATIVO Y TECNOLÓGICO</text>
+  <text x="222" y="186" font-family="Helvetica, Arial, sans-serif" font-size="16.5" letter-spacing="3.4" fill="#9A968A">ESTUDIO DE DISEÑO Y SISTEMAS</text>
 
   <!-- claim -->
-  <text x="104" y="392" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" fill="#F6F3EA">TU IDEA.</text>
-  <text x="104" y="482" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" font-style="italic" fill="#E5BC55">NUESTRA SOLUCIÓN.</text>
+  <text x="104" y="392" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" fill="#F6F3EA">SE ENTREGAN,</text>
+  <text x="104" y="482" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" font-style="italic" fill="#E5BC55">NO SE RENTAN.</text>
 
   <!-- disciplinas -->
-  <text x="104" y="542" font-family="Helvetica, Arial, sans-serif" font-size="17.5" letter-spacing="2.2" fill="#9A968A">MARCA · WEB · VIDEO · AUDIO · PUBLICIDAD · SISTEMAS · AUTOMATIZACIÓN</text>
+  <text x="104" y="542" font-family="Helvetica, Arial, sans-serif" font-size="17.5" letter-spacing="2.2" fill="#9A968A">MARCA · WEB · VIDEO · AUDIO · PUBLICIDAD · SISTEMAS A LA MEDIDA</text>
 
   <!-- canal -->
   <text x="1096" y="542" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="17.5" letter-spacing="2.2" fill="#C9962B">CAMENA LABS</text>

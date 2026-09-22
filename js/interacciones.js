@@ -129,6 +129,20 @@
     if (!evento.target.closest || !evento.target.closest("[data-globo]")) cerrarGlobos(null);
   });
 
+  /* ── Las fichas de precio se cierran al tocar fuera ──────────────
+     El desplegable nativo se cierra al volver a tocar su renglón, pero no al
+     tocar en otra parte: el dueño lo reportó el 21 de septiembre («no puedes
+     volver a minimizar esa ventana»). Aquí se agrega eso y nada más: sin
+     JavaScript el renglón sigue abriendo y cerrando, porque el desplegable es
+     del navegador. Tocar dentro de una ficha abierta no cierra nada, o no se
+     podría leer ni copiar su contenido. */
+  document.addEventListener("click", function (evento) {
+    if (evento.target.closest && evento.target.closest("details.sistema")) return;
+    document.querySelectorAll("details.sistema[open]").forEach(function (ficha) {
+      ficha.open = false;
+    });
+  });
+
   /* ── 4 · Cadena del ecosistema ────────────────────────────── */
   var cadena = document.getElementById("cadena");
   if (cadena) {

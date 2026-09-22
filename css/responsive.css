@@ -8,16 +8,23 @@
 /* ═══ ≤ 1140 px · se activa la navegación móvil ═══
    Por debajo de este ancho, los siete enlaces más el CTA no caben
    sin apretarse: es preferible el menú desplegable. */
-/* ═══ ≤ 1290 px · el menú de escritorio todavía cabe, pero justo ═══
-   Entre 1141 y 1290 px el menú completo más el botón no entran: se aprieta el
-   espaciado, baja un punto el tamaño y el WhatsApp se queda con su icono. */
+/* ═══ ≤ 1290 px · relleno de los enlaces del pie ═══
+   Los enlaces de las columnas del pie miden 19 px de alto: en tableta y
+   teléfono eso se toca con el dedo, así que llevan relleno propio. */
 @media (max-width: 1290px) {
-  /* Los enlaces de las columnas del pie miden 19 px de alto: en tableta y
-     teléfono eso se toca con el dedo, así que llevan relleno propio. */
   .pie__lista a,
   .pie__legal a,
   .pie__cierre a { display: inline-block; padding-block: 6px; }
+}
 
+/* ═══ ≤ 1400 px · el menú de escritorio no cabe, y hay que apretarlo ═══
+   Medido: a innerWidth 1291 —un píxel más que el umbral anterior— el menú
+   completo pasa de 865 a 1095 px de ancho mínimo, el botón «Iniciar proyecto»
+   se sale 67 px de la ventana y aparece barra horizontal en toda la página.
+   Y no cabe hasta 1400, donde `--ancho-max` pasa de 1240 a 1320 y le devuelve
+   40 px por lado: a 1366 el desborde es de 38 px. Este bloque cubre la banda
+   entera donde el menú suelto no entra (medido: 1291 a 1400). */
+@media (max-width: 1400px) {
   .nav { gap: var(--e-4); }
   .nav__lista { gap: var(--e-3); }
   .nav__enlace { font-size: var(--t-menudo); }
@@ -109,7 +116,7 @@
   .js .nav__enlace::after { display: none; }
   .js .nav__enlace:hover,
   .js .nav__enlace.is-actual {
-    background: rgba(168, 130, 31, 0.10);
+    background: var(--oro-tenue);
     border-left-color: var(--oro);
   }
   .js .nav__contacto {
@@ -399,6 +406,14 @@
 @media (max-width: 560px) {
 
   .marca__nombre { font-size: var(--t-cuerpo); letter-spacing: 0.18em; }
+
+  /* La ficha de sistema en un teléfono: el nombre y el precio no caben en dos
+     columnas sin partir el nombre en tres renglones, así que el precio baja
+     debajo del nombre y el signo se queda arriba a la derecha. */
+  .sistema__abrir { grid-template-columns: minmax(0, 1fr) 13px; row-gap: 0.4rem; }
+  .sistema__nombre { grid-column: 1; grid-row: 1; }
+  .sistema__precio { grid-column: 1; grid-row: 2; }
+  .sistema__signo { grid-column: 2; grid-row: 1; }
 
   /* Aire comprimido en el hero: la primera pantalla tiene que terminar en el
      botón, no en el párrafo. */

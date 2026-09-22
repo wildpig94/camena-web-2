@@ -53,8 +53,10 @@
   --rojo-linea:   rgba(178, 58, 46, 0.34);
   --oro-lt:       #E8C766;   /* texto sobre oscuro (11.50:1 sobre tinta) */
   --oro-tx:       #8A6A0F;   /* texto sobre claro (4.68:1 sobre hueso) */
-  --oro-tenue:    rgba(168, 130, 31, 0.12);
-  --oro-linea:    rgba(168, 130, 31, 0.34);
+  --oro-tenue:    rgba(168, 130, 31, 0.12);  /* fondo plano: fichas y cintas */
+  --oro-halo:     rgba(168, 130, 31, 0.3);   /* sombra suave de los botones dorados */
+  --oro-linea:    rgba(168, 130, 31, 0.34);  /* filetes y bordes */
+  --oro-foco:     rgba(168, 130, 31, 0.18);  /* anillo del campo enfocado */
 
   /* Magenta: el eje de sistemas */
   --magenta:      #D6247A;   /* gráfico: 4.42:1 sobre papel · 3.95:1 sobre tinta */
@@ -78,6 +80,14 @@
   --oro-fondo-suave:  #F4EEE0;  /* fondo de las tarjetas de marca y campañas */
   --oro-fuerte:       #6F550B;  /* acento de texto sobre fondos oro (6.14:1) */
   --filete-oro:       #E4D9BE;  /* filete sobre fondo oro (1.22:1, decorativo) */
+    /* Paleta de la maqueta de identidad del LAB. No es la del sitio: es la de la
+     marca ficticia que la maqueta dibuja —papel hueso, borde crema, trazo
+     terracota—, y va declarada aquí para que no queden colores sueltos por el
+     CSS, que es como empieza el desorden. */
+  --identidad-papel: #F4EFE6;
+  --identidad-borde: #D9C7A7;
+  --identidad-trazo: #8C5A3C;
+
   --verde-fondo:      #EFF4F0;  /* fondo de las tarjetas de presencia y producción */
   --filete-verde:     #CBDDD3;  /* filete sobre fondo verde */
 

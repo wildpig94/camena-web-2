@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Mapa del sitio de CAMENA.
-     Ajustar el dominio y las fechas al publicar.
-     Cuando existan páginas individuales por servicio o casos de estudio,
-     se agregan aquí con su propia entrada. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://camena.com.mx/</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://camena.com.mx/servicios</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://camena.com.mx/diagnostico</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://camena.com.mx/proyectos</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://camena.com.mx/como-trabajamos</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://camena.com.mx/aviso-de-privacidad</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://camena.com.mx/terminos</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

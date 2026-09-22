@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<!-- Detección de JS: sin JS todo el contenido se ve desde el inicio. -->
+<script>document.documentElement.classList.add("js");</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico sin costo — CAMENA</title>
+<meta name="description" content="Quince preguntas sobre cómo opera tu negocio, para medir lo que se te está escapando: las horas que se van en repetir, lo que se echa a perder, lo que te deben. Sin costo, y el diagnóstico lo hago yo contigo.">
+<link rel="canonical" href="https://camena.com.mx/diagnostico">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#111111">
+<meta property="og:title" content="Diagnóstico sin costo — CAMENA">
+<meta property="og:description" content="Quince preguntas para medir lo que se te está escapando: horas repetidas, merma y deudas. El diagnóstico lo hago yo contigo.">
+<meta property="og:type" content="article">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="assets/icono-camena.svg">
+<link rel="preload" href="assets/fonts/jakarta-normal-latin.woff2?v=2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="css/variables.css?v=51830dcf">
+<link rel="stylesheet" href="css/base.css?v=4f7724a5">
+<link rel="stylesheet" href="css/layout.css?v=55157b90">
+<link rel="stylesheet" href="css/components.css?v=e4f979e3">
+<link rel="stylesheet" href="css/responsive.css?v=5be8e957">
+<link rel="stylesheet" href="css/animaciones.css?v=4b3dd91a">
+</head>
+<body>
+
+<a class="saltar" href="#principal">Saltar al contenido principal</a>
+
+<header class="cabecera">
+  <div class="contenedor cabecera__interior">
+    <a class="marca" href="/" aria-label="CAMENA, volver al inicio">
+      <img class="marca__simbolo" src="assets/marca-camena.svg" alt="" width="34" height="34">
+      <span class="marca__nombre">CAMENA</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Navegación de la página">
+      <ul class="nav__lista">
+        <li><a class="nav__enlace" href="/">Inicio</a></li>
+        <li><a class="nav__enlace" href="servicios">Servicios</a></li>
+        <li><a class="nav__enlace" href="/#paquetes">Precios</a></li>
+        <li><a class="nav__enlace" href="proyectos" >Proyectos</a></li>
+        <li><a class="nav__enlace" href="/#faq">Preguntas</a></li>
+      </ul>
+      <div class="nav__contacto">
+        <a class="boton boton--solido boton--sm" href="/#empezar">Iniciar proyecto</a>
+      </div>
+    </nav>
+
+    <button class="menu-boton" id="menuBoton" type="button" aria-expanded="false"
+            aria-controls="nav" aria-label="Abrir menú de navegación">
+      <span class="menu-boton__lineas" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<main id="principal" tabindex="-1">
+  <!-- ═══════════════════ DIAGNÓSTICO ═══════════════════
+       Es un instrumento de medición, no un cotizador: recoge cómo opera el
+       negocio y hace la aritmética con esos números (horas repetidas al mes,
+       dinero que se escapa, mensajes que son la misma pregunta). No reparte
+       servicios ni dictamina: el diagnóstico lo hace el estudio con los datos
+       delante. Todo se calcula en el navegador; no hay servidor. -->
+  <section class="seccion" aria-labelledby="diag-titulo">
+    <div class="contenedor">
+
+      <header class="encabezado" data-revelar>
+        <p class="etiqueta">Diagnóstico sin costo</p>
+        <h1 class="encabezado__titulo" id="diag-titulo">Antes de proponerte nada, mido lo que se te está escapando.</h1>
+        <p class="encabezado__intro">
+          Dieciséis renglones sobre cómo opera tu negocio: qué repites, cuántas horas te lleva,
+          cuánto se te echa a perder, cuánto te deben. Con tus propios números se ve el tamaño
+          del hueco. No hay servidor de por medio y no hace falta que sepas qué necesitas;
+          para eso es el diagnóstico.
+        </p>
+      </header>
+
+      <form class="diagnostico" id="diagnostico" novalidate>
+
+        <fieldset class="armar__grupo">
+          <legend class="armar__leyenda">1 · Tu día</legend>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-dias">¿Cuántos días a la semana abre tu negocio? </label>
+            <input class="campo__control" type="number" id="d-dias" name="dias"
+                   min="1" max="7" step="1" inputmode="decimal" placeholder="5">
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-horas">¿Cuántas horas al día se te van en cosas que repites? <span class="campo__opcional">(contar, anotar, avisar, buscar)</span></label>
+            <input class="campo__control" type="number" id="d-horas" name="horas"
+                   min="0" max="24" step="0.5" inputmode="decimal" placeholder="2.5">
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-repite">¿Qué es lo que más repites?</label>
+            <textarea class="campo__control campo__control--area" id="d-repite" name="repite" rows="3" placeholder="Ej. cotizo a mano, apunto el fiado, cuento piezas, contesto lo mismo"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="armar__grupo">
+          <legend class="armar__leyenda">2 · Lo que se te escapa</legend>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-merma">A la semana, ¿cuánto se te echa a perder, se vence o desaparece? <span class="campo__opcional">pesos</span></label>
+            <input class="campo__control" type="number" id="d-merma" name="merma"
+                   min="0" max="1000000" step="1" inputmode="decimal" placeholder="300">
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-compras">¿Cuánto compras de más —o de menos— por no saber qué tienes? <span class="campo__opcional">pesos por semana</span></label>
+            <input class="campo__control" type="number" id="d-compras" name="compras"
+                   min="0" max="1000000" step="1" inputmode="decimal" placeholder="200">
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-faltantes">¿Cuántas veces al mes un cliente pide algo que sí vendes y no tienes a la mano? </label>
+            <input class="campo__control" type="number" id="d-faltantes" name="faltantes"
+                   min="0" max="1000000" step="1" inputmode="decimal" placeholder="4">
+          </div>
+        </fieldset>
+
+        <fieldset class="armar__grupo">
+          <legend class="armar__leyenda">3 · El dinero</legend>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-fiado">¿Cuánto te deben hoy, entre fiado y abonos? <span class="campo__opcional">pesos</span></label>
+            <input class="campo__control" type="number" id="d-fiado" name="fiado"
+                   min="0" max="100000000" step="1" inputmode="decimal" placeholder="8000">
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-antiguedad">¿Desde cuándo es el más viejo?</label>
+            <select class="campo__control campo__control--select" id="d-antiguedad" name="antiguedad">
+              <option value="">Escoge una</option>
+              <option value="menos-mes">Menos de un mes</option>
+              <option value="uno-tres">Entre uno y tres meses</option>
+              <option value="mas-tres">Más de tres meses</option>
+              <option value="no-se">No lo sé</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-saber">¿Cuánto tardas en saber cuánto vendiste y cuánto te queda?</label>
+            <select class="campo__control campo__control--select" id="d-saber" name="saber">
+              <option value="">Escoge una</option>
+              <option value="momento">Lo sé al momento</option>
+              <option value="dia">Al cerrar el día</option>
+              <option value="mes">Hasta que cierra el mes</option>
+              <option value="no-se">No lo sé</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-perdidas">¿Cuánto calculas que pierdes al mes por no contestar a tiempo o no tener lo que piden? <span class="campo__opcional">pesos</span></label>
+            <input class="campo__control" type="number" id="d-perdidas" name="perdidas"
+                   min="0" max="100000000" step="1" inputmode="decimal" placeholder="1500">
+          </div>
+        </fieldset>
+
+        <fieldset class="armar__grupo">
+          <legend class="armar__leyenda">4 · Los mensajes y las citas</legend>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-mensajes">¿Cuántos mensajes contestas al día? </label>
+            <input class="campo__control" type="number" id="d-mensajes" name="mensajes"
+                   min="0" max="1000000" step="1" inputmode="decimal" placeholder="20">
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-mismos">De cada diez, ¿cuántos son la misma pregunta? </label>
+            <input class="campo__control" type="number" id="d-mismos" name="mismos"
+                   min="0" max="10" step="1" inputmode="decimal" placeholder="6">
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-citas">¿Cuántas citas o pedidos se te caen al mes por olvido o por cruces? </label>
+            <input class="campo__control" type="number" id="d-citas" name="citas"
+                   min="0" max="1000000" step="1" inputmode="decimal" placeholder="3">
+          </div>
+        </fieldset>
+
+        <fieldset class="armar__grupo">
+          <legend class="armar__leyenda">5 · Con qué cuentas hoy</legend>
+          <fieldset class="armar__grupo">
+            <legend class="armar__leyenda">¿Cómo lo llevas hoy?</legend>
+            <label class="opcion"><input type="radio" name="hoy" value="cuaderno"><span class="opcion__marca" aria-hidden="true"></span><span>En cuaderno</span></label>
+            <label class="opcion"><input type="radio" name="hoy" value="hojas"><span class="opcion__marca" aria-hidden="true"></span><span>En hojas de cálculo</span></label>
+            <label class="opcion"><input type="radio" name="hoy" value="programa"><span class="opcion__marca" aria-hidden="true"></span><span>En un programa que casi no uso</span></label>
+            <label class="opcion"><input type="radio" name="hoy" value="memoria"><span class="opcion__marca" aria-hidden="true"></span><span>De memoria</span></label>
+          </fieldset>
+          <fieldset class="armar__grupo">
+            <legend class="armar__leyenda">¿Quién más lo usa?</legend>
+            <label class="opcion"><input type="radio" name="gente" value="uno"><span class="opcion__marca" aria-hidden="true"></span><span>Solo yo</span></label>
+            <label class="opcion"><input type="radio" name="gente" value="pocos"><span class="opcion__marca" aria-hidden="true"></span><span>De 2 a 5</span></label>
+            <label class="opcion"><input type="radio" name="gente" value="mas"><span class="opcion__marca" aria-hidden="true"></span><span>Más de 5</span></label>
+          </fieldset>
+          <div class="campo">
+            <label class="campo__etiqueta" for="d-intento">¿Qué has intentado, y por qué lo dejaste?</label>
+            <textarea class="campo__control campo__control--area" id="d-intento" name="intento" rows="3" placeholder="Ej. probé una app, la dejé a las dos semanas"></textarea>
+          </div>
+        </fieldset>
+
+        <p class="armar__total" aria-live="polite">
+          <button class="boton boton--solido" type="submit">Ver lo que se alcanza a ver</button>
+          <span class="armar__total-nota" id="diagFalta">Con los primeros tres renglones ya sale algo.</span>
+        </p>
+      </form>
+
+      <div class="diagnostico__resultado" id="diagResultado" hidden>
+        <p class="etiqueta">Lo que sale de tus respuestas</p>
+        <h2 class="diagnostico__titulo" id="diagResumen"></h2>
+        <div class="diagnostico__hallazgos" id="diagHallazgos"></div>
+
+        <h3 class="diagnostico__subtitulo">Lo que un sistema no resuelve</h3>
+        <div class="diagnostico__limites" id="diagLimites"></div>
+
+        <p class="diagnostico__acciones">
+          <a class="boton boton--solido" id="diagEnviar" href="https://wa.me/524435794642"
+             target="_blank" rel="noopener">Mandarme esto por WhatsApp</a>
+          <button class="boton boton--linea" type="button" id="diagOtra">Volver a contestar</button>
+        </p>
+        <p class="diagnostico__nota">
+          Esto es lo que se alcanza a ver con tus números. <strong>El diagnóstico lo hago yo
+          contigo</strong>, por llamada o por WhatsApp, con esto delante: ahí se revisa qué
+          está pasando de verdad, qué se puede quitar de encima y en qué orden, y si sales
+          sin necesitar nada, también te lo digo.
+        </p>
+      </div>
+
+      <noscript>
+        <p class="etapa__nota">
+          La medición se calcula en tu navegador, así que con JavaScript apagado no se puede
+          mostrar. Las dieciséis preguntas están arriba: contéstalas por WhatsApp con el botón
+          <a href="https://wa.me/524435794642?text=Hola%20CAMENA%2C%20quiero%20el%20diagn%C3%B3stico.%20Contesto%20las%20preguntas%3A%20">Mandarme esto por WhatsApp</a>
+          y hago el mismo trabajo contigo.
+        </p>
+      </noscript>
+
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie__legal">
+      <p class="pie__credito">© <span id="anio">2026</span> CAMENA. Todos los derechos reservados.</p>
+      <ul class="pie__legales">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="servicios">Servicios</a></li>
+        <li><a href="proyectos">Proyectos</a></li>
+        <li><a href="aviso-de-privacidad">Aviso de privacidad</a></li>
+        <li><a href="terminos">Términos del servicio</a></li>
+      </ul>
+      <p class="pie__cierre">Hecho por CAMENA · <a href="mailto:camenalabs@proton.me">camenalabs@proton.me</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById("anio").textContent = String(new Date().getFullYear());</script>
+<div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Captura en tamaño completo">
+      <button class="visor__cerrar" type="button" aria-label="Cerrar la captura">Cerrar ✕</button>
+      <img class="visor__imagen" alt="">
+    </div>
+
+<script src="js/navegacion.js?v=965243b4" defer></script>
+<script src="js/animaciones.js?v=530ce69c" defer></script>
+<script src="js/visor.js?v=54164594" defer></script>
+<script src="js/diagnostico.js" defer></script>
+</body>
+</html>

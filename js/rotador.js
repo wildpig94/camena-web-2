@@ -79,24 +79,48 @@
     return c;
   }
 
-  /* Reserva el alto de la frase más larga para que nada de abajo se mueva. */
+  /* Reserva el alto de la frase más larga para que nada de abajo se mueva.
+
+     Dos correcciones medidas, las dos nacidas del mismo error:
+
+     1 · LA RESERVA VA SOBRE EL ANCESTRO EN BLOQUE, NO SOBRE EL ELEMENTO. En
+     teléfono `.hero__linea` es `display: inline` (responsive.css:584) y en un
+     elemento en línea `min-height` NO HACE NADA. Medido a 390 px: con
+     `min-height: 400px` sobre el rotador el titular siguió midiendo 69 px,
+     mientras el mismo 400 px sobre una caja en bloque medía 400. La reserva era
+     inerte justo en Android, y el titular saltaba 34.5 px (67.8 a 320) cada vez
+     que la frase se alargaba.
+
+     2 · SE MIDE SUSTITUYENDO EL TEXTO REAL, no con un medidor aparte. En línea,
+     el medidor absoluto se resuelve contra la caja en línea —más angosta que la
+     columna— y reservaba 170 px donde hacían falta 136. Sustituir mide en el
+     contexto de verdad, con el texto de la línea 1 compartiendo renglones y con
+     `text-wrap: balance` incluido. */
   function reservarAlto(el, frases) {
+    var cont = el;
+    while (cont && getComputedStyle(cont).display === "inline") cont = cont.parentElement;
+    if (!cont) cont = el;
+    /* Se limpia antes de medir: si no, la reserva anterior acota la medición y
+       el valor sube solo cada vez que se vuelve a llamar. */
+    cont.style.minHeight = "";
+    el.style.minHeight = "";
+    var salida = el.querySelector(".rotador__texto") || el;
+    /* Lo que hay dentro se guarda como NODOS, no como texto. Sustituir el texto
+       y volver a escribir el original borraba los dos colores del rotador de
+       giros: el reparto problema/solución vive en dos <span>, y quedaban
+       aplanados en un solo color en cuanto se volvía a medir —al arrancar y otra
+       vez cuando terminaban de cargar las fuentes—. Lo reportó el dueño el 21 de
+       septiembre viendo el texto de un solo color. */
+    var guardado = document.createDocumentFragment();
+    while (salida.firstChild) guardado.appendChild(salida.firstChild);
     /* Se mide el texto sin el separador: «//» no se ve, pero suma caracteres. */
-    var limpias = frases.map(function (f) { return f.split(SEPARADOR).join(' ').replace(/\s+/g, ' '); });
+    var limpias = frases.map(function (f) { return f.split(SEPARADOR).join(" ").replace(/\s+/g, " "); });
     var masLarga = limpias.reduce(function (a, b) { return b.length > a.length ? b : a; }, "");
-    var copia = window.getComputedStyle(el);
-    var medidor = document.createElement("span");
-    medidor.setAttribute("aria-hidden", "true");
-    medidor.style.cssText = "position:absolute;left:0;right:0;visibility:hidden;pointer-events:none;";
-    medidor.style.font = copia.font;
-    medidor.style.lineHeight = copia.lineHeight;
-    medidor.style.letterSpacing = copia.letterSpacing;
-    medidor.style.display = "block";
-    medidor.textContent = masLarga;
-    el.appendChild(medidor);
-    var alto = medidor.getBoundingClientRect().height;
-    el.removeChild(medidor);
-    if (alto > 0) el.style.minHeight = Math.ceil(alto) + "px";
+    salida.textContent = masLarga;
+    var alto = cont.getBoundingClientRect().height;
+    salida.textContent = "";
+    salida.appendChild(guardado);
+    if (alto > 0) cont.style.minHeight = Math.ceil(alto) + "px";
   }
 
   rotadores.forEach(function (el) {
@@ -106,7 +130,12 @@
     var salida = document.createElement("span");
     salida.className = "rotador__texto";
     var inicial = (el.textContent || "").trim() || frases[0];
-    salida.textContent = inicial;
+    /* La primera frase se pinta con el mismo reparto de color que las demás.
+       Antes se escribía de un golpe y quedaba plana: en el rotador de giros, que
+       parte la frase en problema (rojo) y solución (verde), la primera frase
+       —la que más se ve, porque es la que está ahí al cargar— salía de un solo
+       color y el reparto aparecía recién a los siete segundos. */
+    pintarPartes(salida, inicial);
     el.textContent = "";
     el.appendChild(salida);
     el.appendChild(crearCursor());
@@ -196,4 +225,18 @@
        hay foco, así que la pausa no hacía falta y sí rompía. */
     setTimeout(paso, MS_ESCRITA);
   });
+
+  /* La fuente entra después (font-display: swap y este script es `defer`), así
+     que la reserva se vuelve a medir cuando termina de cargar: con otra fuente
+     el mismo texto puede partirse en otro número de renglones. La función limpia
+     antes de medir, así que repetirla es seguro (comprobado: tres pasadas dan el
+     mismo número en los siete anchos probados). */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      rotadores.forEach(function (el) {
+        var frases = frasesDe(el);
+        if (frases.length >= 2) reservarAlto(el, frases);
+      });
+    });
+  }
 })();

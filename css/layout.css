@@ -106,7 +106,7 @@
   --borde-fuerte: var(--ink-4);
   --acento: var(--oro-lt);
   --acento-grafico: var(--oro);
-  --acento-suave: rgba(168, 130, 31, 0.14);
+    --acento-suave: var(--oro-tenue);
   --acento-linea: var(--oro-linea);
   padding-top: clamp(3rem, 2rem + 5vw, 6rem);
   /* El aire de abajo no es decorativo: es donde se abren las tarjetas. */
@@ -182,6 +182,12 @@
    segunda alterna en pistache. El rojo es el tono aclarado, porque sobre la
    tinta el ladrillo puro se queda en 3.18:1. Medido: 4.95:1. */
 .hero__titulo .hero__linea:first-child { color: var(--rojo-lt); }
+
+/* La misma condición en rojo, en la banda de sistemas: «Ya vendes.» es el
+   estado del negocio, la parte que no alterna, y el verde queda para lo que sí
+   cambia. Es el reparto que ya usaba el titular del hero, extendido a la banda.
+   El rojo aclarado es el mismo par medido (4.95:1 sobre tinta). */
+.etapa--destacada .etapa__condicion { color: var(--rojo-lt); }
 
 /* La segunda línea se distingue por color, no por inclinación: en una
    geométrica la cursiva falsa se nota, y el contraste editorial es más
@@ -945,9 +951,20 @@ a.dato__valor:hover { color: var(--acento); }
 .pie__claim {
   margin-top: var(--e-4);
   font-family: var(--display);
-  font-style: italic;
   font-size: var(--t-cuerpo);
   color: var(--oro-lt);
+}
+
+/* La credencial del cierre: el nombre y el oficio con el que firma el estudio.
+   Va en redonda y no en cursiva —la cursiva era una voz, y una firma se lee
+   mejor derecha— y el oficio en la mono de las etiquetas, que es la voz de los
+   datos en todo el sitio. */
+.pie__credencial {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  color: var(--texto-claro-2);
 }
 
 .pie__titulo {
@@ -989,7 +1006,7 @@ a.dato__valor:hover { color: var(--acento); }
 }
 .pie__destacado:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(168, 130, 31, 0.28);
+  box-shadow: 0 10px 24px var(--oro-halo);
   color: var(--ink);
   background: var(--oro-lt);
 }

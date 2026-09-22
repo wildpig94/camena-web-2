@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<!-- Detección de JS: sin JS todo el contenido se ve desde el inicio. -->
+<script>document.documentElement.classList.add("js");</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proyectos — CAMENA</title>
+<meta name="description" content="Los sistemas que CAMENA ha construido de principio a fin: el del mostrador, que cotiza y cobra sin salir del trabajo, y el de un taller, que sigue cada auto hasta la entrega. Con las funciones de cada uno a la vista.">
+<link rel="canonical" href="https://camena.com.mx/proyectos">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#111111">
+<meta property="og:title" content="Proyectos — CAMENA">
+<meta property="og:description" content="Sistemas construidos de principio a fin, con sus funciones a la vista.">
+<meta property="og:type" content="article">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="assets/icono-camena.svg">
+<link rel="preload" href="assets/fonts/jakarta-normal-latin.woff2?v=2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="css/variables.css?v=51830dcf">
+<link rel="stylesheet" href="css/base.css?v=4f7724a5">
+<link rel="stylesheet" href="css/layout.css?v=55157b90">
+<link rel="stylesheet" href="css/components.css?v=e4f979e3">
+<link rel="stylesheet" href="css/responsive.css?v=5be8e957">
+<link rel="stylesheet" href="css/animaciones.css?v=4b3dd91a">
+</head>
+<body>
+
+<a class="saltar" href="#principal">Saltar al contenido principal</a>
+
+<header class="cabecera">
+  <div class="contenedor cabecera__interior">
+    <a class="marca" href="/" aria-label="CAMENA, volver al inicio">
+      <img class="marca__simbolo" src="assets/marca-camena.svg" alt="" width="34" height="34">
+      <span class="marca__nombre">CAMENA</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Navegación de la página">
+      <ul class="nav__lista">
+        <li><a class="nav__enlace" href="/">Inicio</a></li>
+        <li><a class="nav__enlace" href="servicios">Servicios</a></li>
+        <li><a class="nav__enlace" href="/#paquetes">Precios</a></li>
+        <li><a class="nav__enlace" href="proyectos" aria-current="page">Proyectos</a></li>
+        <li><a class="nav__enlace" href="/#faq">Preguntas</a></li>
+      </ul>
+      <div class="nav__contacto">
+        <a class="boton boton--solido boton--sm" href="/#empezar">Iniciar proyecto</a>
+      </div>
+    </nav>
+
+    <button class="menu-boton" id="menuBoton" type="button" aria-expanded="false"
+            aria-controls="nav" aria-label="Abrir menú de navegación">
+      <span class="menu-boton__lineas" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<main id="principal" tabindex="-1">
+
+  <!-- ═══════════════════ PROYECTOS ═══════════════════
+       Cada proyecto es un <article class="lab-pieza"> con la misma estructura:
+       capturas, el problema, qué se hizo, por qué así y la lista de lo que hace
+       hoy. Agregar el siguiente es copiar un bloque y cambiarle el contenido:
+       la sección no se rearma. -->
+  <section class="seccion seccion--oscura" id="proyectos" aria-labelledby="proyectos-titulo">
+    <div class="contenedor">
+
+      <header class="encabezado encabezado--claro" data-revelar>
+        <p class="etiqueta etiqueta--claro">Proyectos</p>
+        <h1 class="encabezado__titulo" id="proyectos-titulo">Sistemas construidos de principio a fin.</h2>
+        <p class="encabezado__intro">
+          Ninguno se compró hecho ni salió de una plantilla. Cada uno empezó por el
+          problema de un negocio —cotizar a mano, no saber qué hay en el taller— y
+          terminó en una herramienta que se usa todos los días. Aquí está cada uno con
+          sus funciones a la vista, para que puedas juzgar el trabajo y no la promesa.
+        </p>
+      </header>
+
+      <p class="lab__regla">
+        Se construyeron aquí, completos, y salieron de un problema de negocio real.
+        Ninguno se vende tal cual: el tuyo se construye desde cero y se adapta a cómo
+        operas hoy.
+      </p>
+
+      <div class="lab" data-revelar-grupo>
+
+<!-- ─── EJEMPLO 1 · MOSTRADOR (sistema propio, sin cliente detrás) ───
+             No lleva enlace: el producto terminado se enseña en capturas. Un enlace
+             para probar un sistema es un enlace para copiarlo. -->
+        <article class="lab-pieza lab-pieza--ancha" data-revelar>
+          <div class="lab-pieza__visual lab-pieza__visual--capturas">
+            <figure class="captura">
+              <a class="captura__abrir" href="assets/mostrador/mostrador-flujo.webp" data-visor aria-label="Ver esta captura en tamaño completo"><img src="assets/mostrador/mostrador-flujo.webp" width="1240" height="900" loading="lazy" decoding="async"
+                   alt="Tres pantallas del mismo sistema, en orden de uso: la captura del cliente con los productos frecuentes en botones, el descuento con el cobro en efectivo y el cambio ya calculado, y la nota de venta armada con folio, fecha, conceptos, impuesto, total, forma de pago y cambio."><span class="captura__lupa" aria-hidden="true"></span></a>
+              <figcaption>De izquierda a derecha: se captura, se cobra y la nota sale armada. Los datos son de ejemplo, de ningún negocio.</figcaption>
+            </figure>
+            <figure class="captura">
+              <a class="captura__abrir" href="assets/mostrador/mostrador-escritorio.webp" data-visor aria-label="Ver esta captura en tamaño completo"><img src="assets/mostrador/mostrador-escritorio.webp" width="1240" height="900" loading="lazy" decoding="async"
+                   alt="La misma venta en la computadora del mostrador: a la izquierda los campos de captura con seis productos frecuentes y el total en la barra de abajo; a la derecha la vista previa del ticket, que se va armando sola conforme se captura."><span class="captura__lupa" aria-hidden="true"></span></a>
+              <figcaption>En la computadora del mostrador: se captura a la izquierda y el ticket se arma a la derecha.</figcaption>
+            </figure>
+            <figure class="captura">
+              <a class="captura__abrir" href="assets/mostrador/mostrador-corte.webp" data-visor aria-label="Ver esta captura en tamaño completo"><img src="assets/mostrador/mostrador-corte.webp" width="1240" height="900" loading="lazy" decoding="async"
+                   alt="El corte de caja del día en el sistema: mil setecientos noventa y cinco pesos cobrados en dos notas pagadas, ticket promedio de ochocientos noventa y siete, desglose por forma de pago —una en efectivo y una con tarjeta— y la lista de las notas del día, cada una con su folio, hora, cliente, número de conceptos, estado y total."><span class="captura__lupa" aria-hidden="true"></span></a>
+              <figcaption>El corte del día: lo cobrado, el promedio por nota, cuánto entró por cada forma de pago y cada folio a la vista.</figcaption>
+            </figure>
+          </div>
+          <div class="lab-pieza__info">
+            <p class="lab-pieza__meta">
+              <span class="chip chip--proyecto">Sistema propio</span>
+              <span class="lab-pieza__area">Sistemas</span>
+            </p>
+            <h3 class="lab-pieza__titulo">Mostrador: cotizar y cobrar sin salir del trabajo</h3>
+            <details class="lab-pieza__caso">
+              <summary class="lab-pieza__abrir">
+                <span>Ver el caso completo</span>
+                <span class="lab-pieza__signo" aria-hidden="true"></span>
+              </summary>
+              <dl class="lab-pieza__ficha">
+              <div><dt>El problema</dt><dd>Cotizar en el mostrador es sacar cuentas a mano, escribir la nota en el celular y volver a teclear los precios para mandarla. Y al cerrar el día nadie sabe cuánto se cobró ni de qué forma.</dd></div>
+              <div><dt>Qué hice</dt><dd>Un solo archivo que captura conceptos, calcula descuento e impuesto, arma el ticket y lo deja listo para enviar por WhatsApp. Trae corte de caja del día y también imprime en la impresora térmica de 80 mm del mostrador.</dd></div>
+              <div><dt>Por qué así</dt><dd>Se opera con una mano mientras se atiende. Todo el flujo cabe en una pantalla, el total nunca se pierde de vista y lo que más se vende se agrega con un toque. Corre en el teléfono o en la computadora, sin instalarse y sin internet.</dd></div>
+            </dl>
+              <p class="servicios__etiqueta">Lo que hace hoy</p>
+              <ul class="servicios__incluye">
+                <li>Capturar conceptos y cantidades: el foco vuelve solo al campo y la cantidad se repone</li>
+                <li>Calcular descuento, impuesto, total y cambio, con la aritmética en centavos</li>
+                <li>Armar la nota con folio, fecha, conceptos, impuesto, forma de pago y cambio</li>
+                <li>Imprimir el ticket de 80 mm o guardarlo en PDF</li>
+                <li>Llevar el corte del día: notas pagadas, lo cobrado, el promedio por nota y el desglose por forma de pago</li>
+                <li>Exportar el corte a CSV para la contabilidad</li>
+                <li>Mandar la nota al cliente por WhatsApp</li>
+                <li>Respaldar y restaurar los datos desde un archivo, y trabajar sin internet</li>
+              </ul>
+              <p class="lab-pieza__pie">Ninguna de las dos piezas se vende tal cual. Esta enseña el flujo completo del mostrador funcionando; el sistema de un negocio se construye desde cero, con su catálogo, su respaldo y su forma de cobrar.</p>
+            </details>
+          </div>
+        </article>
+
+<!-- ─── EJEMPLO 2 · CONTROL DE AUTOS (el sistema del taller) ─── -->
+        <article class="lab-pieza lab-pieza--ancha" data-revelar>
+          <div class="lab-pieza__visual lab-pieza__visual--capturas">
+            <figure class="captura">
+              <a class="captura__abrir" href="assets/producto/autos-tablero.webp" data-visor aria-label="Ver esta captura en tamaño completo"><img src="assets/producto/autos-tablero.webp" width="1240" height="900" loading="lazy" decoding="async"
+                   alt="Pantalla principal del sistema de control de autos, con datos de ejemplo: tres autos en el taller, cada uno con su descripción, color, placa, folio del siniestro, aseguradora y los días que lleva en piso, con la etiqueta de demorado en el más viejo y los botones para editar, entregar o eliminar."><span class="captura__lupa" aria-hidden="true"></span></a>
+              <figcaption>Los autos que están en el taller ahora: qué son, de qué aseguradora y cuántos días llevan.</figcaption>
+            </figure>
+            <figure class="captura">
+              <a class="captura__abrir" href="assets/producto/autos-historial.webp" data-visor aria-label="Ver esta captura en tamaño completo"><img src="assets/producto/autos-historial.webp" width="1240" height="900" loading="lazy" decoding="async"
+                   alt="Pestaña de historial del sistema, con datos de ejemplo: un auto ya entregado, con su fecha de salida y el botón para reingresarlo si vuelve al taller."><span class="captura__lupa" aria-hidden="true"></span></a>
+              <figcaption>Al entregar, el auto pasa al historial con su fecha de salida. Si vuelve, se reingresa.</figcaption>
+            </figure>
+            <p class="captura__nota">Capturas del prototipo, con datos de ejemplo. El sistema es para talleres de hojalatería y pintura: entradas, días en piso y entregas.</p>
+          </div>
+          <div class="lab-pieza__info">
+            <p class="lab-pieza__meta">
+              <span class="chip chip--proyecto">Sistema propio</span>
+              <span class="lab-pieza__area">Sistemas</span>
+            </p>
+            <h3 class="lab-pieza__titulo">Control de autos: entradas, días en piso y entregas</h3>
+            <details class="lab-pieza__caso">
+              <summary class="lab-pieza__abrir">
+                <span>Ver el caso completo</span>
+                <span class="lab-pieza__signo" aria-hidden="true"></span>
+              </summary>
+              <dl class="lab-pieza__ficha">
+              <div><dt>El problema</dt><dd>En un taller, saber qué carros hay adentro suele depender de la memoria y de una libreta: no hay forma de ver de un jalón cuántos días lleva cada uno, de qué aseguradora vino, ni qué se entregó el mes pasado.</dd></div>
+              <div><dt>Qué hice</dt><dd>Un sistema que registra cada auto al entrar —descripción, color, placas, folio del siniestro y aseguradora— y cuenta los días que lleva en piso. Avisa cuáles ya se pasaron de tiempo y los manda al historial con su fecha de salida.</dd></div>
+              <div><dt>Por qué así</dt><dd>Se captura una vez, al recibir el carro, y de ahí sale todo lo demás: el conteo de días, la etiqueta de demorado, el historial y el respaldo. Corre en la computadora del taller y los datos no salen de ahí.</dd></div>
+            </dl>
+              <p class="servicios__etiqueta">Lo que hace hoy</p>
+              <ul class="servicios__incluye">
+                <li>Registrar la entrada con descripción, color, placas, folio del siniestro, VIN y aseguradora</li>
+                <li>Contar los días que lleva cada auto en piso, en número grande en su tarjeta</li>
+                <li>Avisar por tiempo sin que nadie tenga que acordarse: filete en oro a los 7 días y rojo a los 14</li>
+                <li>Guardar el expediente del carro con fotos y croquis tomados desde el teléfono</li>
+                <li>Guardar cada croquis en una biblioteca que sirve para el siguiente carro parecido</li>
+                <li>Recordar lo que ya se cobró por la misma refacción</li>
+                <li>Cotizar con el factor de cobro de cada aseguradora y copiar la cotización para WhatsApp</li>
+                <li>Marcar la salida al historial con su fecha, reingresar el carro si vuelve, y respaldar todo con las fotos</li>
+              </ul>
+              <p class="lab-pieza__pie">El prototipo se configura al instalarlo: el nombre del taller, sus aseguradoras y su factor de cobro. Lo que se ve aquí son datos de ejemplo.</p>
+            </details>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="lab__cierre" data-revelar>
+        <a class="boton boton--linea boton--claro" href="/#empezar">Quiero algo así para mi negocio</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie__legal">
+      <p class="pie__credito">© <span id="anio">2026</span> CAMENA. Todos los derechos reservados.</p>
+      <ul class="pie__legales">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="servicios">Servicios</a></li>
+        <li><a href="proyectos">Proyectos</a></li>
+        <li><a href="aviso-de-privacidad">Aviso de privacidad</a></li>
+        <li><a href="terminos">Términos del servicio</a></li>
+      </ul>
+      <p class="pie__cierre">Hecho por CAMENA · <a href="mailto:camenalabs@proton.me">camenalabs@proton.me</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById("anio").textContent = String(new Date().getFullYear());</script>
+<div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Captura en tamaño completo">
+      <button class="visor__cerrar" type="button" aria-label="Cerrar la captura">Cerrar ✕</button>
+      <img class="visor__imagen" alt="">
+    </div>
+
+<script src="js/navegacion.js?v=965243b4" defer></script>
+<script src="js/animaciones.js?v=530ce69c" defer></script>
+<script src="js/visor.js?v=54164594" defer></script>
+</body>
+</html>
