@@ -394,6 +394,14 @@ El sitio pasó por tres correcciones: primero sonaba a agencia genérica, despu�
 explicación defensiva y al final a estudio que hace sobre todo páginas web. La voz
 que quedó es esta, y aplica a cualquier texto nuevo:
 
+**El criterio frase por frase está en `docs/editor.md`** —el manual del editor:
+las seis familias que rechinan (calcos del inglés, jerga de otro oficio,
+preposición mal puesta, sujeto ambiguo, coloquial donde el texto se vende formal y
+tono importado), las frases aprobadas que no se tocan y la tabla donde se acumula
+cada corrección que manda el dueño—. Esta sección es la voz de la página; ese
+documento es cómo se juzga una frase suelta. `AGENTS.md` manda leerlo antes de
+tocar una sola palabra.
+
 | Regla | Se escribe así | No se escribe así |
 |---|---|---|
 | **Entra por el dolor, no por la justificación.** | «Si tu imagen no está a la altura de tu trabajo, pierdes clientes. Si tu operación vive en un cuaderno, pierdes dinero.» | «Casi nadie llega pidiendo un servicio…» |
@@ -529,6 +537,7 @@ material del cliente a `~/proyectos-clientes/taller-maranatha/docs/`.
 | `docs/laboratorio.html` | **El laboratorio.** Selectores de color con contraste medido en vivo, seis texturas de fondo y cuatro formas de resaltar un título, cada una con su CSS para copiar. | `http://127.0.0.1:8899/docs/laboratorio.html` |
 | `docs/traducir-al-ingles.md` | **El traspaso de la traducción.** Todo lo que hay que saber para hacer la versión en inglés sin romper el formato: qué se traduce y qué no (clases, anclas, `data-*`, la estructura de las tablas), glosario de oficio, la voz en inglés, cómo publicarla y cómo comprobarla. | abrir el archivo |
 | `docs/recetas.md` | **El recetario.** Las recetas de una pieza: resaltar un título, cambiar un color, poner una textura, mover un precio… y qué comprobar antes de dar el cambio por bueno. | abrir el archivo |
+| `docs/editor.md` | **El editor.** El manual de redacción y el entrenamiento: las seis familias que rechinan, las frases aprobadas, el proceso de revisión, lo que el editor no hace nunca y la tabla donde se acumula cada corrección que manda el dueño. Aplica a todo texto visible en español, de cualquier página; las páginas en inglés van por `docs/traducir-al-ingles.md`. | abrir el archivo |
 | `docs/revisar-medios.mjs` | **El que ve lo deforme.** Recorre todas las páginas y compara la proporción pintada de cada imagen y video contra la del archivo; también delata cajas con alto fijo cuyo contenido no cabe. Nació del bug de los videos aplastados. | `node docs/revisar-medios.mjs` |
 | `docs/medir-escala.mjs` | **El que cuenta los escalones.** Dice cuántos tamaños y colores de texto distintos se ven de verdad en una página. Nació de un número incómodo: teníamos 21 tamaños donde una referencia usa 8 o 10. | `node docs/medir-escala.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/medir-hero.mjs` | **El que mide el hero.** Devuelve números en vez de opiniones: tamaño del titular, cuántas líneas usa de verdad, proporción titular/entrada, cuántos tamaños y colores distintos hay, y si el hero cabe en la primera pantalla. | `node docs/medir-hero.mjs http://127.0.0.1:8899/index.html 1440` |
