@@ -229,7 +229,7 @@
     evento.preventDefault();
     var faltan = sinContestar();
     if (faltan.length) {
-      falta.textContent = "Con los primeros tres renglones ya sale algo: cuántos días abres, cuántas horas se te van en repetir, y qué es lo que repites.";
+      falta.textContent = "Contesta lo que falta para ver el resultado.";
       faltan[0].focus();
       return;
     }

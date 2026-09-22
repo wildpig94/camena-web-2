@@ -20,7 +20,7 @@ acumula, y cada corrección nueva hace más listo al editor.
 
 ## 1 · Las seis familias que rechinan
 
-Cada renglón de la tabla del dueño es un caso; agrupados son seis maneras de
+Cada renglón de la tabla del dueño es un caso; agrupados son siete maneras de
 escribir mal, y son las que el editor busca en cualquier texto nuevo.
 
 | # | Familia | Cómo se reconoce | Ejemplo (y su arreglo) |
@@ -31,6 +31,7 @@ escribir mal, y son las que el editor busca en cualquier texto nuevo.
 | 4 | **Sujeto ambiguo** | La frase no dice quién hace qué, y el lector puede entender lo contrario. *Repetido* suena a que lo repetiste tú | «que el nombre no esté repetido» → «que el nombre **no lo esté usando ya alguien más**» |
 | 5 | **Adverbio coloquial en texto que se vende formal** | Se usa en la calle y no es error, pero al lado de un texto profesional se lee informal de más. No se prohíbe el coloquio: se le pide la forma plena | «Cada negocio opera **distinto**» → «Cada negocio opera **de forma distinta**» |
 | 6 | **Tono importado** | Suena a agencia de fuera más que a taller de aquí, aunque se entienda. Es cuestión de dónde se siente el estudio | «Diseñado **píxel a píxel** en Apatzingán» → «**Hecho a mano**, en Apatzingán» |
+| 7 | **Narración de la máquina** (texto de log interno) | La frase cuenta cómo está hecho el sitio o qué hace por dentro: cuántas preguntas trae el instrumento, que se calcula en el navegador, que no hay servidor, para qué sirve la página. Al visitante no le sirve de nada y lo saca de su negocio para meterlo en el nuestro | «**dieciséis renglones** con tus números» → «las horas que se van en repetir, lo que se echa a perder, lo que te deben» |
 
 **La prueba que las junta todas:** leer la frase en voz alta como si se la
 estuvieras diciendo al cliente enfrente. Si al decirla se siente uno disfrazado
@@ -73,6 +74,10 @@ La tabla tal como la mandó el dueño, con la frase real del archivo y en qué q
 | 6 | Tarjeta «Compites bajando tus precios…» | «…porque **nada te distingue**.» `index.html:345` | Esta sí es natural | — | 🔒 |
 | 7 | Pie de página | «**Diseñado píxel a píxel** en Apatzingán, Michoacán» `index.html:1595` | Frase importada del inglés; suena a agencia de fuera | «**Hecho a mano**, en Apatzingán, Michoacán» | ✅ |
 | 8 | Formulario, presupuesto | El sitio decía «¿De cuánto es el proyecto?» `index.html:1475` | — | La frase aprobada es **«¿De cuánto andamos hablando?»**: el dueño la celebró y ya es la que está escrita ahí | ✅ |
+| 9 | Invitación del inicio, tras las seis tarjetas | «…**dieciséis renglones con tus números** —horas que se van en repetir, lo que se echa a perder, lo que te deben— y el diagnóstico lo hago contigo.» `index.html:398` | La cuenta del instrumento es asunto de casa, y *renglón* es una línea que se escribe: de las dieciséis, la mayoría son números y dos son elegir | «…las horas que se van en repetir, lo que se echa a perder, lo que te deben. El diagnóstico lo hago contigo. Si sales sin necesitar nada, te lo digo.» | ✅ |
+| 10 | Entrada del diagnóstico | «**Dieciséis renglones** sobre cómo opera tu negocio… **No hay servidor de por medio** y no hace falta que sepas qué necesitas; **para eso es el diagnóstico**.» `diagnostico.html:72` | Lo mismo, más dos frases que hablan de la máquina y de para qué sirve la página | «Cómo opera tu negocio: qué repites, cuántas horas te lleva, cuánto se te echa a perder, cuánto te deben. Con tus propios números se ve el tamaño del hueco. No hace falta que sepas qué necesitas.» | ✅ |
+| 11 | Aviso de faltantes del diagnóstico | «**Con los primeros tres renglones ya sale algo**: cuántos días abres, cuántas horas se te van en repetir…» `diagnostico.html:194` y `js/diagnostico.js:232` | Narra por dentro lo que el instrumento hace con las respuestas | «Contesta lo que falta para ver el resultado.»: el mismo registro llano de «Marca lo que necesitas para ver el total» | ✅ |
+| 12 | Aviso sin JavaScript | «**Las dieciséis preguntas** están arriba…» `diagnostico.html:221` | Otra vez la cuenta del instrumento | «Las preguntas están arriba…» | ✅ |
 
 ## 4 · Antes de dar un texto por bueno
 
@@ -98,6 +103,9 @@ La tabla tal como la mandó el dueño, con la frase real del archivo y en qué q
 - **No renombra un servicio a medias.** El nombre de una ficha aparece en el
   armador, en el mensaje de WhatsApp y en el README: se cambia en todos lados, y
   la abreviatura del armador tiene que seguir siendo prefijo del nombre.
+- **No cuenta la máquina.** Cuántas preguntas trae el instrumento, en qué se
+  calcula, si hay servidor o no: eso es de casa. El visitante viene a que le
+  midan su negocio, no a conocer el nuestro.
 - **No traduce.** Las páginas en inglés no se rigen por este manual.
 - **No reescribe los textos legales por su cuenta.** `terminos.html` y
   `aviso-de-privacidad.html` se corrigen con el mismo criterio, pero avisando:
@@ -121,8 +129,18 @@ Y al revés también: cuando el dueño aprueba una frase —como las dos del apa
 2—, entra a la lista de lo que no se toca. Lo aprobado entrena tanto como lo
 corregido.
 
+**Esperando su palabra (candidatos que encontró el editor):** el aviso del
+formulario de contacto, «Este formulario no guarda nada en ningún servidor»
+`index.html:1508`; el aviso sin JavaScript, «La medición se calcula en tu
+navegador» `diagnostico.html:220`; y un «renglón por renglón» del armador de
+precios `index.html:1256`. Los tres hablan de la máquina, y los dos primeros
+además prometen algo al visitante —que no se guarda nada—, así que el editor no
+los toca sin que él diga: en el aviso de privacidad esa misma explicación sí
+tiene que estar.
+
 **Bitácora**
 
 | Fecha | Qué entró | Qué se hizo |
 |---|---|---|
+| 22 sep 2026 | **Segunda entrega:** «nada de texto de log interno, nada de 16 renglones» | Nace la familia 7 (narración de la máquina). Cinco frases corregidas en cuatro lugares: la invitación del inicio, la entrada del diagnóstico, el aviso de faltantes —en el HTML y en el JavaScript— y el aviso sin JavaScript. Quedan tres candidatos esperando su palabra, anotados abajo |
 | 22 sep 2026 | Primera entrega: 8 renglones (6 correcciones, 2 aprobaciones) | Seis familias nuevas y dos frases aprobadas. Aplicadas las siete correcciones en el inicio y, donde la misma frase vivía, en el README, los pendientes, el comentario del CSS que cita el hero, las muestras del hero del laboratorio y las publicaciones de redes. Publicado el mismo día |

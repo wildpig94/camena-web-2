@@ -2454,7 +2454,7 @@ svg.ic path[d^="M12 2a10"] {
   color: var(--texto-2);
 }
 
-/* ── El diagnóstico sin costo: ocho preguntas y un veredicto ─────────
+/* ── El diagnóstico sin costo: sus preguntas y un veredicto ──────────
    No inventa componente: usa el mismo armador (fieldset, leyenda y opciones)
    para que en el sitio no haya dos maneras de contestar. Lo propio es solo la
    marca redonda —aquí se elige una, no varias— y el bloque del veredicto. */
