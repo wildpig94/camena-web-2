@@ -43,7 +43,7 @@ El eje se repite en todas las secciones, y ahí está la prueba de que es el eje
 
 | Sección | Cómo se ve el eje |
 |---|---|
-| Hero | Etiqueta de estado con punto verde, titular en dos renglones (`Cada negocio opera distinto.` / `Su software también debería.`, este último en magenta) y la tira de condiciones en mono: `Sin piezas sobrantes · Sin adaptaciones forzadas`. |
+| Hero | Etiqueta de estado con punto verde, titular en dos renglones (`Cada negocio es distinto.` / `Su software también debería.`, este último en magenta) y la tira de condiciones en mono: `Sin piezas sobrantes · Sin adaptaciones forzadas`. |
 | Índice lateral | Sin caja: lista tipográfica con filete vertical. Abre con los cuatro pilares y cierra con las dos líneas aparte. |
 | Diagnósticos | La sección se titula **«¿Qué te está costando dinero?»** y cada tarjeta nombra el costo (regateo, ventas que no cuadran, deudas que no se cobran). La tarjeta resaltada es la operativa. |
 | Precios | Tres etapas (marca · presencia · **sistemas**) y **dos líneas aparte** (producción de contenido y proyectos especiales). La etapa de sistemas es la banda protagonista, en magenta. |
@@ -577,7 +577,7 @@ máquina. Lo que quedó:
 | | Texto |
 |---|---|
 | Sello | Estudio de diseño y sistemas · Apatzingán, Michoacán |
-| Titular | **Cada negocio opera distinto.** / **Su software también debería.** |
+| Titular | **Cada negocio es distinto.** / **Su software también debería.** |
 | Entrada | Software y páginas hechos para tu negocio, sin renta mensual. |
 | Cierre | Somos un estudio de diseño y sistemas. Trabajamos de forma remota con negocios de cualquier parte del mundo, desde Apatzingán, Michoacán. |
 
@@ -786,7 +786,7 @@ Cuatro cosas que no se ven en una captura de pantalla pero se sienten al usarlo:
 3. **Botones que responden.** Al pasar el mouse crecen un 2 % y levantan una
    sombra profunda; al pulsarlos bajan un 0.5 %. Nada de rebotes ni de bucles, y
    todo desactivado con `prefers-reduced-motion`.
-4. **El sello del pie.** «Diseñado píxel a píxel en Apatzingán», con un engrane
+4. **El sello del pie.** «Hecho a mano, en Apatzingán, Michoacán», con un engrane
    dibujado a mano: dientes de longitud irregular, aro levemente ovalado. Es la
    firma de quien lo hizo, no el logo otra vez.
 
@@ -1482,7 +1482,7 @@ Y una regla para el mes dos: nada entra si no se puede sostener con trabajo real
       terminado entra a una carpeta que sí se copia
 - [x] Sección de ejemplos solo con trabajo real: cotizador, producto y dos
       videos; retiradas las maquetas de plantilla
-- [x] Precios de campañas y eventos a nivel de estudio, con el alcance explicado
+- [x] Precios de campañas y eventos con calidad de producción profesional, con el alcance explicado
 - [x] Hero en oscuro, descripción del estudio al pie y trabajo remoto en todo el
       mundo dicho en el hero, el contacto, el FAQ y los datos estructurados
 - [x] Herramientas de trabajo: marcador de revisión, laboratorio de estilos y
