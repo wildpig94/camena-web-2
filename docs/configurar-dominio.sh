@@ -12,15 +12,14 @@
 # volver a comprobar. Es idempotente: si algo ya está como debe, lo dice y
 # sigue.
 #
-# Lo que deja como debe:
+# Lo que deja como debe: cuatro pasos, seis ajustes.
 #   1 · DNS: CNAME del dominio raíz y de www hacia el proyecto de Pages
-#   2 · SSL/TLS en Full (strict)
-#   3 · Always Use HTTPS encendido
-#   4 · Ofuscación de correos APAGADA: Cloudflare la enciende sola y reescribe
-#       los mailto del sitio; sin JavaScript el visitante ve «[email protected]»
-#       en vez de la dirección. El sitio dice «funciona sin JavaScript» y el
-#       aviso de privacidad necesita ese correo legible.
-#   5 · www redirige al dominio raíz con un 301 (una sola dirección pública)
+#   2 · Cifrado: SSL/TLS en Full (strict) y «Always Use HTTPS» encendido
+#   3 · Que Cloudflare no reescriba el sitio: la ofuscación de correos APAGADA,
+#       porque Cloudflare la enciende sola y reescribe los mailto del sitio; sin
+#       JavaScript el visitante ve «[email protected]» en vez de la dirección, y
+#       el aviso de privacidad necesita ese correo legible.
+#   4 · www redirige al dominio raíz con un 301 (una sola dirección pública)
 #
 # El token necesita estos permisos:
 #   · Zone → DNS → Edit
