@@ -186,9 +186,13 @@ cliente.
 
 ## K · La remodelación del 21 de septiembre (lo que falta decidir)
 
-Todo lo de esta sección está **aplicado y medido** en el árbol de trabajo, sin
-commit y sin publicar. Lo que falta es tu respuesta, no trabajo. Los números son
-los que se contestan: «sí al 1 y al 3».
+Todo lo de esta sección está **aplicado, medido y confirmado** en `main` (dos
+commits del 22 de septiembre). Lo que falta es tu respuesta, no trabajo. Los
+números son los que se contestan: «sí al 1 y al 3».
+
+**Antes de todo: el sitio no se publicó** (punto 8). El código está en `main`,
+pero el flujo de Cloudflare falla porque el repositorio perdió sus dos secretos,
+y sin ellos no hay manera de subir nada.
 
 | # | Qué | Qué necesito de ti |
 |---|---|---|
@@ -198,9 +202,10 @@ los que se contestan: «sí al 1 y al 3».
 | 4 | **La palabra «Automatización» fuera del índice.** Estaba en el índice del hero, en el pie y en los datos que lee Google; ahora dice **«Tareas repetidas»**, y la etiqueta «Sistemas y automatización» es solo «Sistemas». El servicio sigue vendiéndose como una ficha («Automatización de una tarea repetida», $3,600) | Confirmarlo o cambiarlo. Ojo con el efecto: los datos estructurados son lo que asocia la búsqueda; si quieres seguir capturando quien busca «automatización», eso se resuelve con una página aparte, no con el índice del hero |
 | 5 | **Las tres deudas del prototipo Mostrador**, la pieza que se enseña como prueba. `~/mostrador/ESTADO.md` las tiene reproducidas: respaldo automático (todo vive en el `localStorage` de un navegador), un corte de caja que se puede destruir con un clic normal ($1,160 → $58), y un catálogo que no existe (en una ferretería de 1,000 referencias cada venta se teclea entera) | Decidir si se cierran antes de usarlo como carta de presentación. Son **9 a 15 días** según ese mismo documento, en ese orden |
 | 6 | **El teléfono paga 363 px y el escritorio ahorra.** A 1440 el inicio encogió 58 px con la conversión a fichas; a 390 creció 363 px, porque el precio va debajo del nombre. La alternativa medida —nombre y precio en la misma línea— ahorra 393 px a 390 pero parte cinco nombres en tres renglones, y **a 320 es peor** (193 px más y 23 nombres partidos) | Confirmar el criterio: prefiero que ningún nombre se rompa en tres renglones, aunque cueste 363 px en teléfono |
-| 7 | **El `lastmod` del sitemap** dice 15 de enero y las páginas cambiaron en septiembre | Ponerle la fecha el día que se publique, no antes |
+| 7 | **El `lastmod` del sitemap** decía 15 de enero y las páginas cambiaron en septiembre. Ya está puesto al **22 de septiembre** («El sitio vende el problema resuelto, no la inteligencia artificial»). Que quede dicho: la fecha se pone el día que se publica, y se publica cuando el punto 8 esté resuelto | Nada, si te parece bien la fecha. Si la publicación se retrasa más de una semana, se vuelve a poner |
+| 8 | **La publicación está detenida: el repositorio se quedó sin los secretos de Cloudflare.** `gh secret list` sale vacío: no están `CLOUDFLARE_API_TOKEN` ni `CLOUDFLARE_ACCOUNT_ID`. No es el código —la puerta pasa y la carpeta de publicación se arma con sus 47 archivos— ni la cuenta: el 20 de septiembre el mismo flujo publicó sin problema. Y no puedo ponerlos yo: un token de Cloudflare solo se crea desde el panel, con tu sesión | Dos comandos, y con eso lo publico: `gh secret set CLOUDFLARE_API_TOKEN` (token nuevo con permiso **Account → Cloudflare Pages → Edit**) y `gh secret set CLOUDFLARE_ACCOUNT_ID`. Después, «Re-run all jobs» en el flujo: **no hay que tocar el código ni volver a subir nada**. El flujo ahora dice esto mismo en su propio registro cuando falta alguno |
 
 **Lo que quedó de rondas anteriores y sigue sin respuesta:** la cara y el nombre
 —elegiste cara y nombre de pila, falta la foto y el nombre exacto para publicarlos—,
-el `lastmod` del punto 7, y la promesa electoral de `terminos.html` que autoriza
-mostrar trabajo de un cliente con permiso tácito (ver el apartado J).
+y la promesa electoral de `terminos.html` que autoriza mostrar trabajo de un
+cliente con permiso tácito (ver el apartado J).

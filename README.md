@@ -301,8 +301,10 @@ publicarla en la página de GitHub —ahí el sistema queda descargable para cua
 que pase por el repositorio público, y su código entra a la historia de git para
 siempre— y llevarla a **Cloudflare Pages con una Access policy por correo**: https
 para que el teléfono la instale, y una puerta para que solo entre quien se
-autorice. El procedimiento completo está en `docs/publicar-en-cloudflare.md`, y
-`docs/publicar-cloudflare.sh` hace el trabajo: comprueba que la app esté sana
+autorice. El procedimiento completo y los dos scripts que hacen el trabajo
+—`publicar-cloudflare.sh` y `configurar-puerta.py`— se fueron con el material
+del cliente a `~/proyectos-clientes/taller-maranatha/docs/`: no viven en este
+repositorio, que es público. El publicador comprueba que la app esté sana
 —incluida la prueba de «sin internet»—, la publica y verifica que la dirección
 responda.
 
@@ -508,8 +510,11 @@ python3 -m http.server 8899 --bind 127.0.0.1
 
 ## Revisar y editar el sitio tú mismo
 
-Tres herramientas de trabajo que viven en `docs/` y **nunca se publican** (el
-flujo de despliegue no copia esa carpeta):
+Las herramientas de trabajo que viven en `docs/` y **nunca se publican** (el
+flujo de despliegue no copia esa carpeta). Las que son del proyecto del cliente
+—`publicar-cloudflare.sh`, `configurar-puerta.py` y `publicar-en-cloudflare.md`
+— no están en esta tabla porque no están en este repositorio: se fueron con el
+material del cliente a `~/proyectos-clientes/taller-maranatha/docs/`.
 
 | Herramienta | Para qué sirve | Cómo se abre |
 |---|---|---|
@@ -529,8 +534,6 @@ flujo de despliegue no copia esa carpeta):
 | `docs/medir-hero.mjs` | **El que mide el hero.** Devuelve números en vez de opiniones: tamaño del titular, cuántas líneas usa de verdad, proporción titular/entrada, cuántos tamaños y colores distintos hay, y si el hero cabe en la primera pantalla. | `node docs/medir-hero.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/medir-fichas.mjs` | **El que abre lo que está cerrado.** Abre las 28 fichas de precio una por una y mide tres cosas que la auditoría general no puede ver: si alguna tapa la nota o los botones de su banda, si se sale de su tarjeta y **el contraste de cada texto contra su fondo real**. Nació de un texto a 1.07:1 que vivió escondido detrás de un `display: none`. | `node docs/medir-fichas.mjs http://127.0.0.1:8899/index.html 1440` |
 | `docs/versionar.py` | **El que rompe el caché.** Sella la huella del contenido en las URLs de CSS y JS (`css/layout.css?v=17364851`), para que un cambio se vea al instante en el celular y el caché se siga usando cuando nada cambió. Corre solo en cada publicación. | `python3 docs/versionar.py` |
-| `docs/configurar-puerta.py` | **El de la puerta.** Pone Cloudflare Access delante de la app: crea el equipo de Zero Trust si falta, una política reutilizable con los correos autorizados, la aplicación para el dominio, y **verifica desde fuera** que una petición sin sesión acabe en la pantalla de entrar y no en la app. Sin `--aplicar` solo dice qué haría. | `CLOUDFLARE_API_TOKEN=… python3 docs/configurar-puerta.py --dominio … --correos … [--aplicar]` |
-| `docs/publicar-cloudflare.sh` | **El que publica la app del taller.** Comprueba que la carpeta esté completa y que lleve el nombre de un taller de verdad (y no de la plantilla), corre las dos pruebas sirviendo la app como se sirve en internet, publica en Cloudflare Pages y verifica que la dirección responda. Con `--solo-probar` hace todo menos publicar. | `bash docs/publicar-cloudflare.sh --solo-probar` |
 | `docs/probar-instalable.mjs` | **El que pregunta si ya es un programa.** Pide al navegador sus propias cuentas: que el manifiesto no tenga errores, que Chrome la considere instalable, que el service worker quede activo —y lo que de verdad importa— que **sin internet abra, cargue sus fuentes y deje capturar**. Nació al convertir la app del taller en programa instalable. | `node docs/probar-instalable.mjs` |
 | `docs/probar-producto.mjs` | **El probador del producto.** Abre Control de Autos con Chrome y la usa como una persona: comprueba que no pida nada externo, que las fuentes propias carguen, que no se desborde, y da de alta un auto para ver que se guarde y siga ahí tras recargar. | `node docs/probar-producto.mjs` (con el servidor en 8899) |
 

@@ -52,6 +52,37 @@ jobs:
         # Este paso es la puerta: si algo no cuadra, no se publica nada.
         run: bash docs/preparar-publicacion.sh /tmp/camena-publicar
 
+      - name: Comprobar que están los dos secretos
+        # Sin este paso, cuando falta un secreto el flujo falla al final con
+        # «it's necessary to set a CLOUDFLARE_API_TOKEN» y hay que adivinar qué
+        # falta y dónde se arregla. Pasó el 22 de septiembre de 2026: los dos
+        # secretos desaparecieron del repositorio y el sitio se quedó con la
+        # versión vieja sin que nada lo dijera.
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CUENTA: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          falta=""
+          if [[ -z "$TOKEN" ]]; then
+            falta="CLOUDFLARE_API_TOKEN"
+          fi
+          if [[ -z "$CUENTA" ]]; then
+            falta="${falta:+$falta, }CLOUDFLARE_ACCOUNT_ID"
+          fi
+          if [[ -n "$falta" ]]; then
+            echo "::error::Faltan secretos en el repositorio:$falta"
+            echo "El sitio NO se publicó. Para arreglarlo, una sola vez:"
+            echo "  1 · Crear un token en https://dash.cloudflare.com/profile/api-tokens"
+            echo "      con el permiso «Account → Cloudflare Pages → Edit»."
+            echo "  2 · gh secret set CLOUDFLARE_API_TOKEN"
+            echo "  3 · gh secret set CLOUDFLARE_ACCOUNT_ID"
+            echo "      (el id de la cuenta está en la barra lateral del panel de Cloudflare)"
+            echo "  4 · Volver a correr este flujo (Re-run all jobs): no hace falta"
+            echo "      tocar el código ni volver a subir nada."
+            exit 1
+          fi
+          echo "Los dos secretos están puestos."
+
       - name: Publicar en Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
