@@ -33,7 +33,7 @@ fi
 # Si cambia el sitio, esta lista cambia: es la misma que usa el candado.
 PAGINAS=(
   index.html servicios.html como-trabajamos.html aviso-de-privacidad.html
-  terminos.html 404.html
+  terminos.html 404.html proyectos.html diagnostico.html
 )
 CARPETAS=(assets css js)
 SUELTOS=(robots.txt sitemap.xml site.webmanifest .nojekyll)
@@ -159,6 +159,11 @@ for archivo in sorted(glob.glob(os.path.join(destino, "*.html"))):
             fallos += 1
 
     problemas = []
+    # Los comentarios se quitan antes de contar: ahí se nombran etiquetas
+    # —«el desplegable nativo <details>»— y contarlas daba por roto un HTML
+    # que está completo. Este candado tiene que fallar por defectos, no por
+    # la documentación que explica el propio archivo.
+    html = re.sub(r"<!--.*?-->", "", html, flags=re.S)
     for etiqueta in pares:
         a = len(re.findall(r"<" + etiqueta + r"[\s>]", html))
         c = len(re.findall(r"</" + etiqueta + r">", html))

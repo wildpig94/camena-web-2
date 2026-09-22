@@ -99,9 +99,13 @@ const informe = await ev(`(() => {
   let totalMuestras = 0;
 
   document.querySelectorAll(".etapa").forEach((cont) => {
+    /* Las fichas dejaron de ser un botón con aria-expanded y son <details>
+       nativos (.sistema): se abren con la propiedad open, no con data-abierto.
+       Se aceptan
+       las dos formas para que este medidor sirva también en una página que
+       todavía tenga el componente viejo. */
     const tabla = cont.querySelector(".tarifa");
-    if (!tabla) return;
-    const fichas = [...cont.querySelectorAll(".servicios__globo")];
+    const fichas = [...cont.querySelectorAll(".sistema, .servicios__globo")];
     if (!fichas.length) return;
     const pie = cont.querySelector(".etapa__pie");
     const nota = cont.querySelector(".etapa__nota");
@@ -111,7 +115,7 @@ const informe = await ev(`(() => {
     muestras = [];
 
     fichas.forEach((g) => {
-      g.setAttribute("data-abierto", "si");
+      if (g.tagName === "DETAILS") g.open = true; else g.setAttribute("data-abierto", "si");
       const b = g.getBoundingClientRect();
       /* Las medidas del pie y de la nota se toman DESPUÉS de abrir: si la ficha
          entra en el flujo, empuja todo lo que viene abajo, y comparar contra la
@@ -158,13 +162,13 @@ const informe = await ev(`(() => {
       if (b.left < -1 || b.right > document.documentElement.clientWidth + 1) fueraDePantalla++;
       const d = document.documentElement;
       desborde = Math.max(desborde, d.scrollWidth - d.clientWidth);
-      g.removeAttribute("data-abierto");
+      if (g.tagName === "DETAILS") g.open = false; else g.removeAttribute("data-abierto");
     });
 
     todas.push(...muestras);
     bandas.push({
       banda: [...cont.classList].filter((c) => c.startsWith("etapa--")).join(","),
-      filas: tabla.querySelectorAll("tbody tr").length,
+      filas: tabla ? tabla.querySelectorAll("tbody tr").length : cont.querySelectorAll(".sistema").length,
       fichas: fichas.length,
       conIncluye: cont.querySelectorAll(".servicios__etiqueta").length,
       altoFicha: altos.length ? Math.min(...altos) + "–" + Math.max(...altos) : "",

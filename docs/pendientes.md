@@ -13,7 +13,7 @@ Documento interno: no se publica.
 | 1 | ~~Plazos de entrega~~ **Resuelto.** El FAQ cuenta el trabajo en días: una pieza sale en una semana (3 de trabajo, 1 de revisión y 2 de ajustes), una página con su marca en dos, y la primera entrega de un sistema en una o dos semanas | Falta solo si quieres un número por tipo de pieza, en vez del rango |
 | 2 | **Cara y nombre de quién atiende** | Elegir A (cara sin nombre), B (cara y nombre de pila), C (nombre completo) o D (sin cara). Si es A, B o C, una foto tuya trabajando |
 | 3 | **Redes sociales** | Si te comprometes a publicar una pieza por semana. Si la respuesta es no, no se abre nada todavía: un perfil vacío resta |
-| 4 | **El lema del pie:** «Tu idea. Nuestra solución.» | Cambiarlo por algo verificable, por ejemplo «Sistemas que se entregan, no se rentan». Está en el pie, en Open Graph y en los datos estructurados |
+| 4 | ~~**El lema del pie:** «Tu idea. Nuestra solución.»~~ **Resuelto (21 de septiembre).** Dice «Sistemas que se entregan, no se rentan» en el pie, en Open Graph, en los datos estructurados y en la tarjeta de compartir, que lo traía dibujado | — |
 | 5 | **¿Enlazar el sistema de control de autos** desde el ejemplo? | Hoy se muestran dos capturas de uso y ningún enlace, por la misma razón que se despublicó el otro: lo que se puede abrir se puede copiar |
 
 ## B · Estructura (cambios de fondo, necesitan tu visto bueno)
@@ -181,3 +181,26 @@ Lo que se hizo para corregirlo, y la regla que queda:
 Pendiente de decisión del dueño: si el caso se queda en el sitio como ejemplo (con
 capturas del prototipo) o si sale de la página y se queda solo como proyecto del
 cliente.
+
+---
+
+## K · La remodelación del 21 de septiembre (lo que falta decidir)
+
+Todo lo de esta sección está **aplicado y medido** en el árbol de trabajo, sin
+commit y sin publicar. Lo que falta es tu respuesta, no trabajo. Los números son
+los que se contestan: «sí al 1 y al 3».
+
+| # | Qué | Qué necesito de ti |
+|---|---|---|
+| 1 | **El patrón de la ficha.** Los 28 servicios del inicio son ahora fichas desplegables nativas (`.sistema`): nombre y precio a la vista, y al abrir, el oficio, lo que incluye y por qué cuesta eso. Ya está en las cinco bandas y no queda una sola tabla de precios | Un vistazo y un sí, o qué cambiarías. Si cambia algo, se corrige en el componente y baja a las 28 de una vez |
+| 2 | **Las cuatro fichas de campañas sin motivo del precio.** Marca completa para la campaña ($7,200) · Base de datos y control de simpatizantes ($10,800) · Respuestas automáticas y atención por WhatsApp ($3,600) · Página con la propuesta y el registro ($8,400). Las 24 restantes ya lo dicen, fundado en lo que la ficha incluye y en los plazos que el FAQ ya publica | El dato que falta de cada una (qué trae de más, qué incluye, a dónde llegan los datos). **Sin inventar**: un número inventado cuesta más caro que un hueco |
+| 3 | **El mismo servicio a dos precios.** La banda de sistemas vende «Respuestas y avisos por WhatsApp» a **$2,400** y la de campañas «Respuestas automáticas y atención por WhatsApp» a **$3,600**. Un cliente que lea las dos va a preguntar la diferencia, y hoy el sitio no la explica | O se unifican, o la de campañas dice qué trae de más |
+| 4 | **La palabra «Automatización» fuera del índice.** Estaba en el índice del hero, en el pie y en los datos que lee Google; ahora dice **«Tareas repetidas»**, y la etiqueta «Sistemas y automatización» es solo «Sistemas». El servicio sigue vendiéndose como una ficha («Automatización de una tarea repetida», $3,600) | Confirmarlo o cambiarlo. Ojo con el efecto: los datos estructurados son lo que asocia la búsqueda; si quieres seguir capturando quien busca «automatización», eso se resuelve con una página aparte, no con el índice del hero |
+| 5 | **Las tres deudas del prototipo Mostrador**, la pieza que se enseña como prueba. `~/mostrador/ESTADO.md` las tiene reproducidas: respaldo automático (todo vive en el `localStorage` de un navegador), un corte de caja que se puede destruir con un clic normal ($1,160 → $58), y un catálogo que no existe (en una ferretería de 1,000 referencias cada venta se teclea entera) | Decidir si se cierran antes de usarlo como carta de presentación. Son **9 a 15 días** según ese mismo documento, en ese orden |
+| 6 | **El teléfono paga 363 px y el escritorio ahorra.** A 1440 el inicio encogió 58 px con la conversión a fichas; a 390 creció 363 px, porque el precio va debajo del nombre. La alternativa medida —nombre y precio en la misma línea— ahorra 393 px a 390 pero parte cinco nombres en tres renglones, y **a 320 es peor** (193 px más y 23 nombres partidos) | Confirmar el criterio: prefiero que ningún nombre se rompa en tres renglones, aunque cueste 363 px en teléfono |
+| 7 | **El `lastmod` del sitemap** dice 15 de enero y las páginas cambiaron en septiembre | Ponerle la fecha el día que se publique, no antes |
+
+**Lo que quedó de rondas anteriores y sigue sin respuesta:** la cara y el nombre
+—elegiste cara y nombre de pila, falta la foto y el nombre exacto para publicarlos—,
+el `lastmod` del punto 7, y la promesa electoral de `terminos.html` que autoriza
+mostrar trabajo de un cliente con permiso tácito (ver el apartado J).

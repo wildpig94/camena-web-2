@@ -172,19 +172,42 @@ function esperarReal(ms) {
      no rompe nada y no da error de consola: sin esta lista, su ausencia
      pasa desapercibida. */
   var esperados = /index\.html$|\/$/.test(location.pathname) ? {
-    ".etapa": 4,
-    /* Los precios dejaron de ser listas y son tablas (commit de precios 20%
-       arriba). El selector viejo —.servicios li— se quedó aquí y reportaba un
-       faltante que no existía: 0 de 26. Hoy son 28 renglones en cinco tablas. */
-    ".tarifa tbody tr": 28,
-    ".opcion input": 16,
-    ".flujo li": 6,
-    ".flujo__enlace": 1,
-    ".lab-pieza__ficha": 3,
-    ".lab-pieza": 3,
-    ".faq__item": 8,
-    ".caso-tarjeta": 7,
+    /* Los números se volvieron a medir el 21 de septiembre de 2026, en el DOM
+       y no en el HTML crudo, porque esta lista llevaba meses por detrás del
+       sitio: pedía tres piezas de ejemplo cuando quedan dos, y seis renglones
+       de una sección —.flujo— que se retiró. Una auditoría que grita en falso
+       deja de leerse, y entonces no avisa cuando de verdad falta algo.
+       Lo que cambió desde la medición anterior: los ocho renglones de la banda
+       de sistemas son ocho fichas desplegables (.sistema), y el armador ganó la
+       casilla del sistema completo, que era el renglón más caro y no se podía
+       cotizar. */
+    ".etapa": 5,
+    /* Las cinco tablas de precio son ahora cinco listas de fichas
+       desplegables: los 28 servicios del inicio, contando los ocho de la
+       banda de sistemas. Ya no hay una sola tabla de precios. */
+    ".sistema": 28,
+    ".sistema__cuerpo": 28,
+    ".opcion input": 21,
+    /* Los ejemplos salieron del inicio el 21 de septiembre: viven completos en
+       proyectos.html, y aquí queda el enlace. Las piezas se cuentan en la rama
+       de esa página. */
+    ".faq__item": 10,
+    ".caso-tarjeta": 6,
     ".panel__lista li": 6
+  } : /diagnostico/.test(location.pathname) ? {
+    /* El diagnóstico: ocho preguntas y 32 opciones. Si se pierde una pregunta
+       al editar, este renglón lo dice. */
+    ".armar__grupo": 7,
+    ".campo__control": 14,
+    ".opcion": 7,
+    ".armar__leyenda": 7
+  } : /proyectos/.test(location.pathname) ? {
+    /* La página de proyectos: aquí viven las piezas completas. Si alguna se
+       pierde al copiar el siguiente proyecto, este renglón lo dice. */
+    ".lab-pieza": 2,
+    ".lab-pieza__ficha": 2,
+    ".servicios__incluye": 2,
+    ".captura": 5
   } : {};
   var faltantes = [];
   Object.keys(esperados).forEach(function (sel) {

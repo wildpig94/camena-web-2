@@ -28,7 +28,9 @@ PAGINAS = [
     "como-trabajamos.html",
     "aviso-de-privacidad.html",
     "terminos.html",
-    "producto/control-de-autos.html",
+    "404.html",
+    "proyectos.html",
+    "diagnostico.html",
 ]
 
 # Solo los archivos propios de los que el navegador se guarda copia. El `?v=`

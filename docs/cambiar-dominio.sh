@@ -34,7 +34,7 @@ done
 # Archivos que se publican. Si aparece una página nueva, se agrega aquí.
 ARCHIVOS=(
   index.html servicios.html como-trabajamos.html aviso-de-privacidad.html
-  terminos.html 404.html
+  terminos.html proyectos.html diagnostico.html 404.html
   sitemap.xml robots.txt site.webmanifest
 )
 
@@ -54,11 +54,14 @@ if [[ ! "$DOMINIO" =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-
 fi
 
 # La dirección actual se saca del propio sitio, no de un valor escrito a mano.
-BASE_VIEJA="$(grep -o 'https://[a-z0-9.-]*\.github\.io[^"< ]*' "$RAIZ/sitemap.xml" 2>/dev/null | head -1)"
+# Antes buscaba una dirección de github.io, que era el hospedaje de entonces:
+# desde la migración del 20 de septiembre el sitio vive en su dominio, así que
+# esa búsqueda no encontraba nada y el guion se negaba a correr. Ahora toma la
+# primera dirección del sitemap, sea cual sea, y sirve para cualquier migración.
+BASE_VIEJA="$(grep -o '<loc>https://[^<]*' "$RAIZ/sitemap.xml" 2>/dev/null | head -1 | sed 's|<loc>||')"
 BASE_VIEJA="${BASE_VIEJA%/}"
 if [[ -z "$BASE_VIEJA" ]]; then
-  echo "✗ No encontré la dirección actual en sitemap.xml."
-  echo "  Si ya migraste, revisa que no queden restos: grep -rl github.io ."
+  echo "✗ No encontré ninguna dirección en sitemap.xml."
   exit 1
 fi
 BASE_NUEVA="https://$DOMINIO"

@@ -17,7 +17,10 @@ set -uo pipefail
 RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
 DESTINO="$RAIZ/docs/revision/sitio"
 PUERTO="${PUERTO:-8899}"
-PAGINAS=(index.html servicios.html como-trabajamos.html)
+# Las páginas que se revisan con el marcador. Si aparece una página nueva con
+# texto que revisar, se agrega aquí: si falta, no entra a la copia y no se puede
+# marcar sobre ella.
+PAGINAS=(index.html servicios.html como-trabajamos.html proyectos.html diagnostico.html)
 
 if [[ "${1:-}" == "--limpio" ]]; then
   rm -rf "$DESTINO"
@@ -61,7 +64,10 @@ PY
 if curl -s -o /dev/null --max-time 2 "http://127.0.0.1:$PUERTO/index.html"; then
   echo "· el servidor ya estaba corriendo en el puerto $PUERTO"
 else
-  (cd "$RAIZ" && nohup python3 -m http.server "$PUERTO" --bind 127.0.0.1 >/tmp/camena-server.log 2>&1 &)
+  # Se sirve con docs/servir-en-local.py y no con http.server a secas: el sitio
+  # usa direcciones limpias (/servicios, /proyectos) y http.server no las
+  # resuelve, así que con él cualquier enlace del menú daba 404 en la copia.
+  (cd "$RAIZ" && nohup python3 docs/servir-en-local.py "$PUERTO" docs/revision/sitio >/tmp/camena-server.log 2>&1 &)
   sleep 1.5
   echo "· servidor levantado en el puerto $PUERTO"
 fi
@@ -71,7 +77,7 @@ cat <<FIN
 ────────────────────────────────────────────────────────────
  Listo. Abre esta dirección en el navegador:
 
-   http://127.0.0.1:$PUERTO/docs/revision/sitio/index.html
+   http://127.0.0.1:$PUERTO/            (la copia, con sus direcciones limpias)
 
  Se revisa dibujando encima de la página:
 

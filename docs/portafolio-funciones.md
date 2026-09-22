@@ -46,11 +46,17 @@ movimiento, no el cambio de información. **No lo vuelvas a congelar.**
 
 ## 2 · Globo de detalle en una fila (precio o dato)
 
-**Qué es:** una fila que al tocarla o pasar el ratón abre una tarjeta con el
-detalle. En escritorio flota; en móvil entra en el flujo y empuja el contenido.
+**Qué es:** una fila que al tocarla abre una tarjeta con el detalle. En escritorio
+flota; en móvil entra en el flujo y empuja el contenido.
 
-**Dónde vive:** `js/interacciones.js` (clic y teclado) + `.servicios__globo` en
+**Dónde vive:** `js/interacciones.js` (clic y teclado) + `.hecho__globo` en
 `css/components.css` y su ajuste en `css/responsive.css`.
+
+**Dónde se usa hoy:** **solo en la franja de precios del hero** (los tres datos
+que abren su explicación). Las fichas de precio lo usaron hasta el 21 de
+septiembre; hoy usan el desplegable nativo de la pieza 3, porque este mecanismo
+solo se pinta cuando el JavaScript le pone el atributo y sin scripts quedaba
+invisible.
 
 **Cómo se usa:** un botón con `data-globo="id"` y `aria-expanded`, y el globo con
 ese `id`.
@@ -63,23 +69,62 @@ activa con puntero fino, porque en táctil se queda pegado.
 
 ---
 
-## 3 · Tabla de precios
+## 3 · Ficha de servicio (el precio y su motivo)
 
-**Qué es:** la lista de precios como tabla de verdad (`table`, `thead`,
-`th scope`, `td`), con el signo `+` que se dibuja con CSS y se vuelve `−` al
-abrir.
+**Qué es:** el renglón de precio de todo el sitio. Enseña tres cosas sin abrir
+nada —cómo se llama el servicio, cuánto cuesta y que se puede abrir— y al abrir
+explica el oficio con el que se contrata, para quién es, qué problema resuelve,
+qué incluye y **por qué cuesta eso**. El 21 de septiembre reemplazó a la tabla de
+precios: **no queda una sola `<table class="tarifa">` en el sitio.**
 
-**Dónde vive:** `.tarifa*` en `css/components.css`; el patrón de móvil en
-`css/responsive.css`.
+**Dónde vive:** `.sistema*` en `css/components.css`; el apilado de móvil en
+`css/responsive.css`. El contenido del renglón está en `index.html`, en las cinco
+bandas (`#precios-marca`, `#precios-presencia`, `#precios-sistemas`,
+`#precios-produccion`, `#precios-campanas`), que son las anclas que usan las
+tarjetas de diagnóstico.
 
-**Cómo se usa:** `<table class="tarifa">` con `<caption class="visualmente-oculto>`
-para el nombre accesible, filas `.tarifa__fila`, celda del nombre `.tarifa__que`
-con el botón `.tarifa__boton` y celda del precio `.tarifa__precio`.
+**Cómo se usa:**
 
-**Reglas que no se rompen:** la columna del precio lleva `width: 1%` para
-encogerse al contenido y no robarle ancho al nombre; las cifras van con
-`font-variant-numeric: tabular-nums` para alinearse; nada de cebra, ni cajas, ni
-fondo de color (eso es lo que la hace parecer plantilla).
+```html
+<details class="sistema">
+  <summary class="sistema__abrir">
+    <span class="sistema__nombre">…</span>
+    <span class="sistema__precio">desde $9,600</span>
+    <span class="sistema__signo" aria-hidden="true"></span>
+  </summary>
+  <div class="sistema__cuerpo">
+    <p class="sistema__tecnico">…</p>              <!-- el oficio, en una línea -->
+    <p class="servicios__etiqueta">Para quién es</p>
+    <p>…</p>
+    <p class="servicios__etiqueta">Incluye</p>
+    <ul class="servicios__incluye">…</ul>
+    <p class="servicios__nota"><strong>Por qué cuesta esto:</strong> …</p>
+  </div>
+</details>
+```
+
+**Reglas que no se rompen:**
+- **Desplegable nativo, no botón con `aria-expanded`.** Trae teclado, anuncio de
+  estado y apertura sin una línea de JavaScript. Con el botón, las 28 fichas del
+  sitio quedaban invisibles con los scripts apagados (medido: 0 de 28).
+- **El contenido cerrado no ocupa nada.** Chrome cierra un `<details>` saltándose
+  el contenido pero dejando la caja del elemento: sin la regla
+  `.sistema:not([open]) > .sistema__cuerpo { display: none }` cada renglón cerrado
+  medía 145 px en vez de 80.
+- **El oficio va dentro de la ficha, no en el renglón.** Medido: la columna del
+  renglón mide 444 px y el nombre más el oficio piden 600, así que en el renglón se
+  parte y cuesta 126 px de alto por renglón.
+- **El mismo nombre en la ficha, en el armador y en los datos estructurados.** En
+  el armador puede ir abreviado, pero la abreviatura tiene que ser **el principio**
+  del nombre completo. El mensaje que sale por WhatsApp lleva el nombre completo.
+- **Toda ficha tiene su casilla en el armador**, con el mismo precio. Sin eso, hay
+  servicios que no se pueden cotizar.
+- Las cifras van con `font-variant-numeric: tabular-nums` para alinearse, y nada de
+  cebra, ni cajas, ni fondo de color: se sostiene con filetes de un píxel, aire y
+  cifras monoespaciadas.
+- **La clase se llama `.sistema`, no `.ficha`**: `layout.css` ya tenía una `.ficha`
+  —la ficha técnica del estudio, con `position: sticky` y 32 px de relleno— y
+  heredarla costaba 64 px de relleno invisible por renglón.
 
 ---
 
@@ -160,7 +205,17 @@ nuevo.
 - **Verificación**: `docs/movil.mjs` (render, contraste, desborde, objetivos),
   `docs/revisar-medios.mjs` (medios deformados y cajas recortadas),
   `docs/medir-hero.mjs`, `docs/medir-escala.mjs`,
-  `docs/verificar-contraste.py` (paleta contra WCAG AA).
+  `docs/verificar-contraste.py` (paleta contra WCAG AA),
+  `docs/auditar.sh` (estructura, contraste real renderizado, desbordes y
+  expectativas de elementos por página) y `docs/medir-fichas.mjs` (**abre lo que
+  está cerrado**: si una ficha tapa el pie de su banda, se sale de su tarjeta o
+  deja un texto por debajo del contraste, con la ficha abierta y medida).
+- **Las listas de páginas**: una página nueva hay que agregarla en **cinco**
+  lugares —`preparar-publicacion.sh`, `quitar-extensiones.sh`,
+  `cambiar-dominio.sh`, `versionar.py` y `revisar.sh`— o queda fuera de la
+  publicación, del sellado de caché, del cambio de dominio o del lápiz. Es lo que
+  pasó con `proyectos.html` el 21 de septiembre: faltaba en `cambiar-dominio.sh`
+  y en `revisar.sh`.
 
 **Regla que no se rompe:** nada se publica sin pasar las cinco comprobaciones. Y
 toda medición tiene que **aislar lo que mide**: contar rectángulos de un

@@ -1,9 +1,9 @@
 # CAMENA 2.0
 
-Sitio del estudio creativo y tecnológico **CAMENA**.
+Sitio del estudio de diseño y sistemas **CAMENA**.
 Estático, sin dependencias, sin paso de compilación: se sube tal cual.
 
-> **Tu idea. Nuestra solución.**
+> **Sistemas que se entregan, no se rentan.**
 
 ---
 
@@ -15,8 +15,9 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 
 | Página | Para qué sirve |
 |---|---|
-| `index.html` | Qué se vende con precio, siete diagnósticos, cuatro etapas, tres ejemplos, armador de paquete, preguntas y contacto. El proceso no está aquí: vive completo en `como-trabajamos.html` y solo se ve si alguien lo elige en el menú |
+| `index.html` | Qué se vende con precio en fichas desplegables, seis diagnósticos, cinco bandas de precio, un ejemplo y el enlace a los demás, armador de paquete, preguntas y contacto. El proceso no está aquí: vive completo en `como-trabajamos.html` y solo se ve si alguien lo elige en el menú |
 | `servicios.html` | El catálogo completo: los siete servicios en detalle |
+| `proyectos.html` | Los sistemas construidos, con sus capturas y **la lista de funciones de cada uno** (`Lo que hace hoy`). Es la página que crece: agregar el siguiente proyecto es copiar un bloque y cambiarle el contenido |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
 | `aviso-de-privacidad.html` · `terminos.html` | Lo legal |
 | `404.html` | La página de dirección equivocada. Va **autocontenida** (sin `css/` ni `js/` del sitio) porque GitHub Pages la sirve en cualquier ruta rota, y ahí los enlaces relativos se resolverían contra esa carpeta. Sus enlaces y fuentes usan ruta absoluta, que es correcta ya con dominio propio |
@@ -822,8 +823,13 @@ tiempo): es preferible perder el efecto a que un bloque se quede invisible.
 - Contraste verificado con medición, no a ojo: `docs/verificar-contraste.py`
   comprueba la paleta y `docs/auditar.sh` mide el texto realmente renderizado,
   componiendo fondos semitransparentes capa por capa.
-- Funciona sin JavaScript: el menú queda visible y desplegable, los paneles se
-  muestran y todo el contenido es legible. El JS solo añade comodidad.
+- Funciona sin JavaScript: el menú queda visible y desplegable y **las 28 fichas de
+  precio abren y se leen**. Medido el 21 de septiembre con los scripts apagados: 28
+  fichas y 28 resúmenes en el DOM, y la página mide lo mismo que con ellos. Antes
+  esta línea era falsa —las fichas del botón solo se pintaban cuando el JS les ponía
+  `data-abierto`, así que sin scripts eran invisibles—. Por eso los precios usan el
+  desplegable nativo del navegador. El JS solo añade comodidad: el rotador y el visor
+  de capturas.
 
 ---
 
@@ -845,7 +851,10 @@ si se quiere revisar antes: `python3 docs/versionar.py`.
 ---
 ## Rendimiento
 
-- Sin frameworks, sin dependencias, sin build. Cuatro archivos JS pequeños.
+- Sin frameworks, sin dependencias, sin build. **Seis archivos JS, 42 KB en total**
+  (medido el 21 de septiembre), y ninguna página carga los que no usa: el inicio
+  seis, las secundarias dos o tres. La ruta crítica del inicio —HTML, CSS, JS y
+  fuentes— son **376 KB**; las capturas (337 KB) van en carga diferida.
 - Tres archivos de fuente auto-hospedados (88 KB), los dos de la primera pantalla
   precargados, con `font-display: swap` y `unicode-range` limitado a latino.
 - Las maquetas del LAB son interfaces construidas con CSS, no imágenes: cero
@@ -876,7 +885,7 @@ decidir. El sitio las responde de forma explícita, sin inventar nada:
 | Pregunta | Dónde se responde |
 |---|---|
 | ¿Quién eres y me vas a facturar? | Bloque de contacto: quién atiende, base, horario |
-| ¿Cuánto cuesta y cómo se paga? | Cuatro etapas de precios con tarifa a la vista, armador de paquete y FAQ |
+| ¿Cuánto cuesta y cómo se paga? | Cinco bandas de precio en fichas desplegables, con el motivo de cada precio, armador de paquete y FAQ |
 | ¿Y si no funciona, o después de la entrega qué? | FAQ y «Términos del servicio» |
 
 La prueba que sustituye a un portafolio de clientes que aún no existe es el
@@ -911,15 +920,22 @@ superficie oscura, las dos pesaban igual y ninguna destacaba.
 3. **Campañas y proyectos especiales** — su propia disciplina (08), con la
    advertencia de normativa electoral dentro y no mezclada con el resto.
 
-### Los tres ejemplos de proyectos
+### Los ejemplos de proyectos
 
 La sección se llamaba «laboratorio» y sonaba a borrador de aficionado. Ahora se
 presenta como **ejemplos de proyectos**, con las etiquetas en palabras llanas
-—`El problema · Qué hicimos · Por qué así`— y una frase ancla que educa: ninguno
-se vende tal cual, cada uno se construye desde cero.
+—`El problema · Qué hicimos · Por qué así`—, la frase ancla que educa (ninguno se
+vende tal cual: el tuyo se construye desde cero y se adapta) y, desde el 21 de
+septiembre, **la lista de funciones de cada sistema** (`Lo que hace hoy`), que es lo
+que sostiene el precio.
 
-Son **tres piezas y las tres son trabajo real**, sin una sola maqueta de
-plantilla:
+**Viven en `proyectos.html`**, con una sola pieza en el inicio y un botón «Ver los
+proyectos». El motivo es de longitud: la prueba completa pesaba 1,063 px más en el
+escritorio, y el inicio bajó de 14,537 a 13,474 px. Cada proyecto es un
+`<article class="lab-pieza">` con la misma estructura, y `docs/auditar.sh` cuenta
+las piezas de cada página: perder una al copiar la siguiente no pasa desapercibido.
+
+Las dos piezas son trabajo real, sin una sola maqueta de plantilla:
 
 1. **Mostrador**, el cotizador y cobrador de mostrador: con capturas del sistema
    funcionando y sin enlace, porque el código de una página publicada se descarga
@@ -972,20 +988,41 @@ cliente que lo contrata.
 **⚠️ Los precios viven en el HTML, nunca en JavaScript.** Aparecen dos veces y
 hay que mover los dos sitios a la vez:
 
-1. La tabla visible de cada etapa (desde el commit de precios en tablas, los
-   renglones son filas de tabla, no elementos de lista; el nombre lleva dentro un
-   botón que abre el detalle):
+1. La ficha visible de cada servicio. **Ya no hay una sola tabla de precios**: las
+   cinco bandas son listas de fichas desplegables nativas (`.sistema`), que se abren
+   con el teclado y sin JavaScript:
    ```html
-   <tr class="tarifa__fila">
-     <th scope="row" class="tarifa__que">
-       <button class="tarifa__boton" type="button" data-globo="…" aria-expanded="false">…</button>
-     </th>
-     <td class="tarifa__precio">desde $9,600</td>
-   </tr>
+   <details class="sistema">
+     <summary class="sistema__abrir">
+       <span class="sistema__nombre">…</span>
+       <span class="sistema__precio">desde $9,600</span>
+       <span class="sistema__signo" aria-hidden="true"></span>
+     </summary>
+     <div class="sistema__cuerpo">
+       <p class="sistema__tecnico">…</p>            <!-- el oficio, en una línea -->
+       <p class="servicios__etiqueta">Incluye</p>
+       <ul class="servicios__incluye">…</ul>
+       <p class="servicios__nota"><strong>Por qué cuesta esto:</strong> …</p>
+     </div>
+   </details>
    ```
+   Tres reglas que no se rompen:
+   - **El nombre es el mismo en los tres lugares**: la ficha, el armador y los datos
+     estructurados. En el armador puede ir abreviado —es una lista compacta—, pero
+     **la abreviatura tiene que ser el principio del nombre completo** («Página de
+     una pantalla», no «Página corta»): así se puede ir y volver sin adivinar. El
+     mensaje que sale por WhatsApp lleva el nombre completo, porque manda el
+     atributo `value`, no el texto visible.
+   - **El oficio va dentro de la ficha**, no en el renglón: medido, la columna del
+     renglón mide 444 px en la banda de sistemas y el nombre más el oficio piden
+     600, así que en el renglón se partiría y costaría 126 px de alto por renglón.
+   - **Cada ficha tiene su casilla en el armador**, con el precio de la ficha. Las
+     siete de campañas y el sistema completo faltaban y no se podían cotizar; era
+     el punto 27 de `docs/pendientes.md`, cerrado el 21 de septiembre. Si llega un
+     servicio nuevo, son dos lugares o el armador queda cojo.
 2. La casilla equivalente del armador de paquete, que además suma el total:
    ```html
-   <label class="opcion"><input type="checkbox" name="sistema" value="Cotizar y cobrar" data-precio="9600">…</label>
+   <label class="opcion"><input type="checkbox" name="sistema" value="Cotizador y control de adeudos" data-precio="9600">…</label>
    ```
 
 Así se ven aunque el visitante no cargue el script y las indexa el buscador. Son
@@ -1045,7 +1082,7 @@ la primera respuesta del FAQ, además de los datos estructurados. Hoy son **$1,8
 el diseño y $9,600 los sistemas**. Estuvieron desincronizados —el FAQ decía
 $3,500— y eso rompe la confianza justo en la pregunta que más se hace. Comprobado
 el 16 de septiembre: cero apariciones de las cifras viejas en las tres páginas
-públicas, y las 28 filas de las cinco tablas dicen lo mismo.
+públicas, y las 28 fichas de las cinco bandas dicen lo mismo.
 
 ### Sobre el formulario
 
@@ -1261,6 +1298,13 @@ cierres antes de desplegar, y falla si algo no cuadra.
   emulación de móvil.** Así se encontró un `ReferenceError` que rompía las
   animaciones y dejaba secciones invisibles en el teléfono: en escritorio no se
   manifestaba. Conviene revisar `consola` en la salida de `movil.mjs`.
+- **El contraste puede salir en falso si la medición cae a media transición de
+  entrada.** El 21 de septiembre `docs/auditar.sh` reportó dos fallos de
+  contraste en las preguntas del FAQ —texto blanco sobre papel, 1.08:1— y la
+  corrida siguiente dio cero. Medido aparte, con la página ya asentada, esas
+  mismas preguntas están en **17.47:1**. Antes de tocar un color por un fallo de
+  contraste, conviene repetir la corrida y medir el elemento solo: la animación
+  de aparición mete el texto a media opacidad y el auditor lo lee así.
 
 ---
 
@@ -1439,9 +1483,12 @@ Y una regla para el mes dos: nada entra si no se puede sostener con trabajo real
       geométrica auto-hospedada (Jakarta Sans + JetBrains Mono, 88 KB), índice
       del hero sin caja, etiqueta de estado con punto verde, filetes punteados,
       botones con escala contenida y sello de taller en el pie
-- [ ] Decidir el lema: «Tu idea. Nuestra solución.» sigue en el pie, en Open
-      Graph y en los datos estructurados, y es lo más genérico que queda del
-      sitio. Si se cambia, hay que cambiarlo en los tres sitios a la vez
+- [x] **Resuelto el 21 de septiembre.** El lema «Tu idea. Nuestra solución.» se
+      cambió por «Sistemas que se entregan, no se rentan.» en los tres sitios
+      —pie, Open Graph y datos estructurados— y también en la **tarjeta de
+      compartir** (`assets/og-camena.svg` y sus dos imágenes), que lo llevaba
+      cocido en el dibujo y era lo primero que veía un prospecto al recibir el
+      enlace por WhatsApp
 - [ ] Conectar `camena.mx` y reemplazar la URL de GitHub Pages (ver arriba)
 - [x] Sumar proyectos reales a los ejemplos cuando haya autorización: cuatro
       piezas reales, registradas en `docs/autorizaciones.md` (el reel de la clienta
