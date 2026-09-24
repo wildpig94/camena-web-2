@@ -21,6 +21,10 @@
 #       el aviso de privacidad necesita ese correo legible.
 #   4 · www redirige al dominio raíz con un 301 (una sola dirección pública)
 #
+# No borra reglas ajenas: el conjunto de redirecciones de la fase se reescribe a
+# partir de lo que ya había, así que el enlace corto del QR (`/qr`, ver
+# docs/qr.py) sobrevive a cada pasada.
+#
 # El token necesita estos permisos:
 #   · Zone → DNS → Edit
 #   · Zone → Zone Settings → Edit
@@ -189,10 +193,18 @@ elif printf '%s' "$regla" | grep -q 'Authentication error'; then
 elif [[ "$APLICAR" != "--aplicar" ]]; then
   nota "habría que crear la regla: www.$DOMINIO → https://$DOMINIO (301)"
 else
-  cuerpo="$(python3 - "$DOMINIO" <<'PY'
-import json, sys
+  # El cuerpo se arma a partir de las reglas que YA existen, no de cero: este
+  # PUT reemplaza todo el conjunto de la fase, así que enviar solo la regla de
+  # www borraría cualquier otra que viva ahí —por ejemplo el enlace corto del QR
+  # (`/qr`, ver docs/qr.py)—. Lo que no es de este script, no se toca.
+  cuerpo="$(REGLAS="$regla" python3 - "$DOMINIO" <<'PY'
+import json, os, sys
 d = sys.argv[1]
-print(json.dumps({"rules": [{
+try:
+    actual = (json.loads(os.environ.get("REGLAS") or "{}").get("result") or {}).get("rules") or []
+except Exception:
+    actual = []
+nueva = {
     "action": "redirect",
     "description": "www al dominio raíz",
     "enabled": True,
@@ -202,7 +214,8 @@ print(json.dumps({"rules": [{
         "target_url": {"expression": f'concat("https://{d}", http.request.uri.path)'},
         "preserve_query_string": True,
     }},
-}]}))
+}
+print(json.dumps({"rules": actual + [nueva]}))
 PY
 )"
   respuesta="$(curl -s -m 30 -X PUT "$API/zones/$ZONA/rulesets/phases/http_request_dynamic_redirect/entrypoint" \
