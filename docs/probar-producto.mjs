@@ -3,10 +3,10 @@
    Uso: node docs/probar-producto.mjs [url] [ancho] [alto]
 
    El sistema ya no vive en este repositorio: está en
-   ~/productos-camena/control-de-autos/. Hay que servirlo desde ahí, porque la
+   ~/Trabajo/Clientes/varios/taller-maranatha/app/. Hay que servirlo desde ahí, porque la
    página pide sus fuentes y su favicon en ../assets/:
 
-     cd ~/productos-camena && python3 -m http.server 8900 --bind 127.0.0.1
+     cd ~/Trabajo/Clientes/varios/taller-maranatha/app && python3 -m http.server 8900 --bind 127.0.0.1
      node docs/probar-producto.mjs http://127.0.0.1:8900/control-de-autos/index.html
 
    La ruta anterior (control-de-autos/index.html, dentro del sitio) ya no

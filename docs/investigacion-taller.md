@@ -9,9 +9,9 @@ Ahora vive en la carpeta privada de los productos, junto a los demás documentos
 nombran a personas:
 
 ```
-~/productos-camena/privado/investigacion-taller.md            (el análisis: 9 problemas, con citas)
-~/productos-camena/privado/transcripciones/primera-ronda.md   (las 13 notas de voz, transcritas)
-~/productos-camena/privado/contactos.md                       (teléfonos y correos)
+~/Trabajo/Clientes/varios/taller-maranatha/privado/investigacion-taller.md            (el análisis: 9 problemas, con citas)
+~/Trabajo/Clientes/varios/taller-maranatha/privado/transcripciones/primera-ronda.md   (las 13 notas de voz, transcritas)
+~/Trabajo/Clientes/varios/taller-maranatha/privado/contactos.md                       (teléfonos y correos)
 ```
 
 Lo que sí se queda aquí, porque no lleva datos de nadie: la valoración del sistema

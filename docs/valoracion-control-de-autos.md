@@ -24,7 +24,7 @@ En corto: **se puede poner a trabajar hoy y sirve; no se puede vender todavía c
 **Origen: trece notas de voz.** La encargada del taller contestó diez preguntas en
 ≈4.7 minutos de audio, transcritas en esta máquina con `faster-whisper`, sin subir
 nada a ningún servicio. De ahí salieron **nueve problemas** documentados con sus
-palabras (`~/productos-camena/privado/investigacion-taller.md`), ordenados por lo que cuestan.
+palabras (`~/Trabajo/Clientes/varios/taller-maranatha/privado/investigacion-taller.md`), ordenados por lo que cuestan.
 
 **El primero que se construyó** fue el que arrastraba a los demás: *no existe
 registro de entrada*. El expediente del carro vivía en el papel que trae la
@@ -134,7 +134,7 @@ ocho.
     415 a 196 px, el relleno de arriba de 413 a 316, y caben dos autos completos con
     el tercero asomando (antes 1.8). **Falta**: los ~76 px de chrome que impedirían
     que el tercer auto entre completo.
-23. **La versión base para otro taller** (`~/productos-camena/plantillas/control-de-autos-base/`):
+23. **La versión base para otro taller** (`~/Trabajo/CAMENA/identidad/productos/plantillas/control-de-autos-base/`):
     la misma app sin el nombre de nadie, con las tres cosas que se cambian marcadas
     al principio del archivo y un `LEEME.md`. Probada como app.
 

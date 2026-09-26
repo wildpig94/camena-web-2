@@ -19,7 +19,7 @@
  *
  * El servidor tiene que servir la carpeta del producto, porque el service worker
  * solo existe con https o en local:
- *   cd ~/productos-camena && python3 -m http.server 8900 --bind 127.0.0.1
+ *   cd ~/Trabajo/Clientes/varios/taller-maranatha/app && python3 -m http.server 8900 --bind 127.0.0.1
  */
 import { spawn } from "node:child_process";
 import { mkdtempSync } from "node:fs";

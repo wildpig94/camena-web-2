@@ -23,7 +23,7 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 | `404.html` | La página de dirección equivocada. Va **autocontenida** (sin `css/` ni `js/` del sitio) porque GitHub Pages la sirve en cualquier ruta rota, y ahí los enlaces relativos se resolverían contra esa carpeta. Sus enlaces y fuentes usan ruta absoluta, que es correcta ya con dominio propio |
 
 **Los productos terminados no viven aquí.** `Control de Autos` y el expediente del
-taller están en `~/productos-camena/`, fuera del repositorio, y el sitio solo los
+taller están en `~/Trabajo/CAMENA/identidad/productos/`, fuera del repositorio, y el sitio solo los
 enseña con capturas. El motivo está en «Los dos productos».
 
 **Regla al añadir contenido:** si algo explica pero no ayuda a decidir, va en
@@ -53,7 +53,7 @@ El eje se repite en todas las secciones, y ahí está la prueba de que es el eje
 ### Los dos productos
 
 Hay **dos** productos, y **ninguno de los dos vive en este repo**: su código está
-en `~/productos-camena/`, para que no se pueda leer ni copiar desde GitHub. El
+en `~/Trabajo/CAMENA/identidad/productos/`, para que no se pueda leer ni copiar desde GitHub. El
 sitio no los publica ni los deja probar: los enseña **solo con capturas de uso
 real**, que es lo que le da valor a la pieza.
 
@@ -62,7 +62,7 @@ real**, que es lo que le da valor a la pieza.
 | Qué es | El **expediente del taller**, reconstruido desde los dolores reales | La app original de **Control de Autos**, tal como la usaba el taller |
 | Diseño | El sistema de diseño del sitio (`css/variables.css`) | Propio: fondo oscuro, Oswald + IBM Plex Sans |
 | Se muestra | En los ejemplos del inicio, con capturas reales y **sin enlace para abrirlo** | Igual: capturas reales, **sin enlace** |
-| Archivos | `~/productos-camena/taller/` (`taller.html` + `taller.js`) | `~/productos-camena/control-de-autos/index.html` |
+| Archivos | `~/Trabajo/CAMENA/identidad/productos/taller/` (`taller.html` + `taller.js`) | `~/Trabajo/Clientes/varios/taller-maranatha/app/index.html` |
 | Guarda en | `camena:taller:estado` (+ fotos en IndexedDB) | `taller_autos_v1` y `taller_aseguradoras_v1` |
 
 Ninguno de los dos es una maqueta: los dos se abren y se usan. Y ninguno se
@@ -84,7 +84,7 @@ regalarla en silencio (ver el paso «Preparar solo lo que se publica»).
 > historia de git, así que quien mire los commits anteriores todavía puede
 > encontrarlo.
 
-#### Expediente del taller (fuera del repo, en `~/productos-camena/taller/`)
+#### Expediente del taller (fuera del repo, en `~/Trabajo/CAMENA/identidad/productos/taller/`)
 
 El expediente del taller no es una maqueta: es un producto completo y funcional.
 En los ejemplos del inicio **se muestra con capturas reales, sin enlace para
@@ -132,12 +132,12 @@ solo mostrador. Está dicho así para que nadie lo contrate esperando otra cosa.
 
 **De dónde salió lo que hace.** Antes de programarlo se levantaron los dolores
 reales de un taller de hojalatería y pintura: 13 notas de voz de la encargada,
-transcritas en esta máquina y analizadas en `~/productos-camena/privado/investigacion-taller.md`. Ese
+transcritas en esta máquina y analizadas en `~/Trabajo/Clientes/varios/taller-maranatha/privado/investigacion-taller.md`. Ese
 documento —interno, no se publica— lista cada dolor con la cita que lo prueba, su
 costo y la función que lo resuelve, y marca lo que todavía falta preguntar. Es la
 base de la siguiente versión del producto.
 
-#### Control de Autos (`~/productos-camena/control-de-autos/`, fuera del repo)
+#### Control de Autos (`~/Trabajo/Clientes/varios/taller-maranatha/app/`, fuera del repo)
 
 Es la app que el taller ya conocía, más el cotizador que se le sumó el 18 de
 septiembre. **Ya no se publica ni se comparte por enlace**: vive fuera del repositorio y el sitio solo la enseña con dos capturas.
@@ -318,7 +318,7 @@ Dos cosas que se ajustaron pensando en esa puerta:
 - **El icono de la pestaña es el icono de la app**, no el favicon del estudio: es
   la herramienta de un cliente, no un anuncio de CAMENA.
 
-**La versión base para otro taller** vive en `~/productos-camena/plantillas/control-de-autos-base/`:
+**La versión base para otro taller** vive en `~/Trabajo/CAMENA/identidad/productos/plantillas/control-de-autos-base/`:
 la misma app **sin el nombre de ningún taller**, con las tres cosas que se cambian
 —nombre, aseguradoras con su factor y color de acento— juntas y marcadas al
 principio del archivo, más un `LEEME.md` con el checklist. Probada como app: se
@@ -327,7 +327,7 @@ nombre de un taller real hace que el script lo frene: es la diferencia entre
 entregar un sistema y entregar una plantilla.
 
 **En qué etapa quedó, y qué le falta.** Es **el primero de los nueve problemas que
-el taller contó** en `~/productos-camena/privado/investigacion-taller.md`: el registro de entrada (D1),
+el taller contó** en `~/Trabajo/Clientes/varios/taller-maranatha/privado/investigacion-taller.md`: el registro de entrada (D1),
 que era el más grave porque de él cuelga todo lo demás. Lo que hace hoy está
 completo y probado —`node docs/probar-producto.mjs` contra la copia archivada:
 registra, guarda, sigue ahí después de recargar y no pide nada a ningún tercero—:
@@ -446,7 +446,7 @@ camena-2.0/
 │                               ejemplos: el sistema funcionando, sin demo
 ├── assets/producto/            Capturas de Control de Autos (tablero e
 │                               historial). El código del producto no está aquí:
-│                               vive fuera del repo, en ~/productos-camena/
+│                               vive fuera del repo, en ~/Trabajo/CAMENA/identidad/productos/
 ├── assets/video/               Videos del sitio (720×1280, comprimidos):
 │   └── *.webp                  Pósteres: no se carga nada hasta dar reproducir
 ├── como-trabajamos.html        El método completo, paso por paso
@@ -960,7 +960,7 @@ Las dos piezas son trabajo real, sin una sola maqueta de plantilla:
 3. ~~Un reel para una clienta (consultorio)~~ **Retirado el 18 de septiembre** a
    petición del dueño. El video salió del sitio **y del repositorio** (que es
    público, así que dejarlo ahí era seguir publicándolo), y quedó guardado fuera, en
-   `~/productos-camena/privado/video-clienta/`. El procedimiento estaba previsto en
+   `~/Trabajo/Clientes/varios/taller-maranatha/privado/video-clienta/`. El procedimiento estaba previsto en
    `docs/autorizaciones.md`; se siguió tal cual.
    La autorización está confirmada por el dueño del estudio y queda registrada
    en `docs/autorizaciones.md`. Mientras no haya permiso explícito para
@@ -1044,7 +1044,7 @@ precios de partida, no cerrados: el valor real se confirma por escrito.
 **Datos de personas: fuera del repositorio.** El repositorio es **público**
 (comprobado: `wildpig94/camena-web-2` → `"private": false`), así que `docs/` se lee
 desde GitHub aunque no se publique en el sitio. Todo lo que nombre o cite a una
-persona vive en `~/productos-camena/privado/`: la investigación del taller con sus
+persona vive en `~/Trabajo/Clientes/varios/taller-maranatha/privado/`: la investigación del taller con sus
 citas, las transcripciones de las notas de voz, los contactos y los nombres del
 taller. Antes de escribir algo en `docs/`, la pregunta es si le gustaría leerlo a la
 persona de la que habla.
@@ -1479,7 +1479,7 @@ Y una regla para el mes dos: nada entra si no se puede sostener con trabajo real
       catálogo de servicios abierto por sistemas y tesis en «Cómo trabajamos»
 - [x] Sistemas enseñados **solo con capturas**, con su ficha en los ejemplos y
       **fuera del repositorio**: el expediente del taller y Control de Autos viven
-      en `~/productos-camena/`, y la publicación frena si un archivo de producto
+      en `~/Trabajo/CAMENA/identidad/productos/`, y la publicación frena si un archivo de producto
       terminado entra a una carpeta que sí se copia
 - [x] Sección de ejemplos solo con trabajo real: cotizador, producto y dos
       videos; retiradas las maquetas de plantilla
@@ -1510,7 +1510,7 @@ Y una regla para el mes dos: nada entra si no se puede sostener con trabajo real
       `docs/autorizaciones.md`
 - [ ] Preguntar al taller por los **precios por aseguradora** (la única pregunta de
       la primera ronda que sigue abierta; la de refacciones ya se contestó en la
-      nota del 15 de septiembre y está en `~/productos-camena/privado/investigacion-taller.md`, D9)
+      nota del 15 de septiembre y está en `~/Trabajo/Clientes/varios/taller-maranatha/privado/investigacion-taller.md`, D9)
 - [ ] Páginas individuales por servicio (la estructura ya lo permite)
 - [x] Generador de publicaciones para redes: un mes de treinta días en seis
       bloques, con `contenido.json` como única fuente, medición de contraste y de

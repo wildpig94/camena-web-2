@@ -7,7 +7,7 @@ puede aparecer en el sitio si se puede contestar «sí» a las dos columnas.
 
 | Pieza en el sitio | Autorización para publicar | Permiso para nombrar al cliente |
 |---|---|---|
-| Reel para clienta (`assets/video/reel-cliente.mp4`) | **Retirado el 18 de septiembre** a petición del dueño. Salió del sitio y del repositorio; el archivo quedó en `~/productos-camena/privado/video-clienta/` | No aplica |
+| Reel para clienta (`assets/video/reel-cliente.mp4`) | **Retirado el 18 de septiembre** a petición del dueño. Salió del sitio y del repositorio; el archivo quedó en `~/Trabajo/Clientes/varios/taller-maranatha/privado/video-clienta/` | No aplica |
 | Promo de CAMENA (`assets/video/camena-promo.mp4`) | No aplica — es material propio | No aplica |
 | Cotizador y expediente del taller | No aplica — son productos de CAMENA | No aplica |
 
@@ -53,7 +53,7 @@ mismo documento tenía escrito:
 
 1. Se quitó la pieza de `index.html` (la figura con el `<video>` y su pie de foto).
 2. Se sacaron `assets/video/reel-cliente.mp4` y su póster `.webp` del repositorio, y
-   **quedaron guardados fuera**, en `~/productos-camena/privado/video-clienta/`: no se
+   **quedaron guardados fuera**, en `~/Trabajo/Clientes/varios/taller-maranatha/privado/video-clienta/`: no se
    borró nada del cliente, solo se dejó de publicar.
 3. Se retiró el CSS que quedaba sin uso (`video-pieza`), y con la pieza fuera la
    tabla de esa banda pasó de 227 a 531 px de ancho: los cuatro renglones de

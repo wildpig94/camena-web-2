@@ -26,7 +26,11 @@ import { fileURLToPath } from "node:url";
 
 const AQUI = dirname(fileURLToPath(import.meta.url));
 const RAIZ = join(AQUI, "..");
-const PROTOTIPO = "/home/alexis/productos-camena/plantillas/control-de-autos-base";
+// Se lee del entorno para que una mudanza de carpetas no rompa este guion en
+// silencio otra vez (pasó el 24 de septiembre de 2026). Se puede apuntar a otra
+// copia así:  CAMENA_PROTOTIPO=/otra/ruta node docs/capturar-prototipo.mjs
+const PROTOTIPO = process.env.CAMENA_PROTOTIPO
+  ?? "/home/alexis/Trabajo/CAMENA/identidad/productos/plantillas/control-de-autos-base";
 const SALIDA = join(AQUI, "capturas-prototipo");
 const DESTINO = join(RAIZ, "assets", "producto");
 const CHROME = "/home/alexis/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome";

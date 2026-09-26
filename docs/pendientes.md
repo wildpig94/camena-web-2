@@ -85,7 +85,7 @@ Falta darle casa, y eso no lo decide el diseño.
 
 **Cómo se publica, cuando se decida** (para que no haya que pensarlo de nuevo):
 
-1. Copiar la carpeta `~/productos-camena/control-de-autos/` al repositorio del sitio
+1. Copiar la carpeta `~/Trabajo/Clientes/varios/taller-maranatha/app/` al repositorio del sitio
    (ya es autocontenida: lleva sus fuentes, sus iconos y su manifiesto).
 2. En `.github/workflows/publicar.yml`, agregarla al paso que copia
    (`cp -r control-de-autos publicar/`) y sumar sus páginas a la lista `permitidas`
@@ -134,7 +134,7 @@ que yo configure y verifique el resto. Los pasos exactos están en
   las trece notas de voz, los diecinueve cambios que se le hicieron, los nueve
   faltantes con su tamaño, fortalezas y riesgos sin adornos, y cómo encuadrarlo si
   se vende (qué se puede decir y qué no).
-- **`~/productos-camena/para-el-taller.md`** — para mostrar o imprimir: qué es,
+- **`~/Trabajo/Clientes/varios/taller-maranatha/entrega/para-el-taller.md`** — para mostrar o imprimir: qué es,
   qué hace hoy en palabras de mostrador, por qué conviene, qué **no** hace todavía,
   cómo se usa en tres pasos y qué se necesita para tenerlo.
 
@@ -210,3 +210,21 @@ y sin ellos no hay manera de subir nada.
 —elegiste cara y nombre de pila, falta la foto y el nombre exacto para publicarlos—,
 y la promesa electoral de `terminos.html` que autoriza mostrar trabajo de un
 cliente con permiso tácito (ver el apartado J).
+
+---
+
+## L · El servicio de cuidado mensual (26 de septiembre)
+
+Se agregó a la banda de sistemas la ficha **«Cuidado del sistema, cada mes»**
+($600 al mes) y se corrigieron las dos frases que decían que el sistema no se paga
+por mes: la nota de la banda de sistemas y la de presencia. **La promesa no
+cambia**: el sistema se entrega y queda a tu nombre; lo que se cobra cada mes es
+que siga cuidado, y es opcional. Medido con `docs/medir-fichas.mjs` a 1440 y a
+390 px: 29 fichas, ninguna tapa el pie de su banda, y contraste AA en las 207
+piezas de texto de las fichas abiertas.
+
+| # | Qué falta decidir | Por qué importa |
+|---|---|---|
+| 56 | **El precio: $600 al mes.** Se puso el mismo de la renta de páginas para no contradecir la lista ya publicada, pero el cuidado de un sistema no lleva dominio ni hospedaje, así que hay quien lo pondría por debajo (la valoración del taller propone $500) | Es tu decisión, y una vez publicado se sostiene en las conversaciones |
+| 57 | **La ficha NO entró al armador de paquete.** Todos los demás servicios tienen su casilla ahí y este no, a propósito: el armador suma un total de una sola vez y meter un mes dentro lo volvería mentira. Sigue el precedente de la renta de páginas, que tampoco está en el armador | Confirmar que así se queda, o decidir cómo se cotiza lo mensual |
+| 58 | **Falta el renglón del respaldo.** La ficha dice «ajustes, soporte y acompañamiento» y **no** promete respaldo, porque el respaldo automático todavía no existe: hoy es un botón que baja un JSON a la carpeta de Descargas del mismo teléfono. Ese renglón se agrega a la ficha el día que el respaldo exista de verdad | Es la regla de siempre —nada inventado— y es justo lo que justifica la mensualidad |
