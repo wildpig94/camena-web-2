@@ -20,7 +20,7 @@ PUERTO="${PUERTO:-8899}"
 # Las páginas que se revisan con el marcador. Si aparece una página nueva con
 # texto que revisar, se agrega aquí: si falta, no entra a la copia y no se puede
 # marcar sobre ella.
-PAGINAS=(index.html servicios.html como-trabajamos.html proyectos.html diagnostico.html)
+PAGINAS=(index.html servicios.html como-trabajamos.html proyectos.html diagnostico.html campanas.html)
 
 if [[ "${1:-}" == "--limpio" ]]; then
   rm -rf "$DESTINO"

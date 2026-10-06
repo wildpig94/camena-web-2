@@ -34,7 +34,7 @@ done
 # Archivos que se publican. Si aparece una página nueva, se agrega aquí.
 ARCHIVOS=(
   index.html servicios.html como-trabajamos.html aviso-de-privacidad.html
-  terminos.html proyectos.html diagnostico.html 404.html
+  terminos.html proyectos.html diagnostico.html campanas.html 404.html
   sitemap.xml robots.txt site.webmanifest
 )
 

@@ -33,7 +33,7 @@ fi
 # Si cambia el sitio, esta lista cambia: es la misma que usa el candado.
 PAGINAS=(
   index.html servicios.html como-trabajamos.html aviso-de-privacidad.html
-  terminos.html 404.html proyectos.html diagnostico.html
+  terminos.html 404.html proyectos.html diagnostico.html campanas.html
 )
 CARPETAS=(assets css js)
 SUELTOS=(robots.txt sitemap.xml site.webmanifest .nojekyll)

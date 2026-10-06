@@ -172,28 +172,28 @@ function esperarReal(ms) {
      no rompe nada y no da error de consola: sin esta lista, su ausencia
      pasa desapercibida. */
   var esperados = /index\.html$|\/$/.test(location.pathname) ? {
-    /* Los números se volvieron a medir el 21 de septiembre de 2026, en el DOM
-       y no en el HTML crudo, porque esta lista llevaba meses por detrás del
-       sitio: pedía tres piezas de ejemplo cuando quedan dos, y seis renglones
-       de una sección —.flujo— que se retiró. Una auditoría que grita en falso
-       deja de leerse, y entonces no avisa cuando de verdad falta algo.
-       Lo que cambió desde la medición anterior: los ocho renglones de la banda
-       de sistemas son ocho fichas desplegables (.sistema), y el armador ganó la
-       casilla del sistema completo, que era el renglón más caro y no se podía
-       cotizar. */
-    ".etapa": 5,
-    /* Las cinco tablas de precio son ahora cinco listas de fichas
-       desplegables: los 28 servicios del inicio, contando los ocho de la
-       banda de sistemas. Ya no hay una sola tabla de precios. */
-    ".sistema": 28,
-    ".sistema__cuerpo": 28,
-    ".opcion input": 21,
+    /* El inicio se recortó el 1 de octubre de 2026: el catálogo de las 28 fichas
+       y el armador se mudaron a /servicios, y aquí quedaron las tres etapas como
+       resumen, cada una con su rango de precio y su enlace al catálogo. Las
+       fichas se cuentan en la rama de /servicios. */
+    ".etapa": 3,
     /* Los ejemplos salieron del inicio el 21 de septiembre: viven completos en
-       proyectos.html, y aquí queda el enlace. Las piezas se cuentan en la rama
-       de esa página. */
+       proyectos.html, y aquí queda el enlace. */
     ".faq__item": 10,
     ".caso-tarjeta": 6,
     ".panel__lista li": 6
+  } : /servicios/.test(location.pathname) ? {
+    /* Aquí viven las 28 fichas de precio y el armador completo desde el 1 de
+       octubre. Si una ficha se pierde al mover o al editar, este renglón lo dice. */
+    ".sistema": 28,
+    ".sistema__cuerpo": 28,
+    ".opcion input": 21,
+    ".disciplina": 8
+  } : /campanas/.test(location.pathname) ? {
+    /* La página de campañas: lo que se entrega, en siete renglones, y cinco
+       bloques con su encabezado. Si se pierde el llamado, se ve aquí. */
+    ".campos li": 7,
+    ".encabezado": 5
   } : /diagnostico/.test(location.pathname) ? {
     /* El diagnóstico: ocho preguntas y 32 opciones. Si se pierde una pregunta
        al editar, este renglón lo dice. */

@@ -15,8 +15,9 @@ Todo lo demás vive en páginas propias, enlazadas pero fuera del camino:
 
 | Página | Para qué sirve |
 |---|---|
-| `index.html` | Qué se vende con precio en fichas desplegables, seis diagnósticos, cinco bandas de precio, un ejemplo y el enlace a los demás, armador de paquete, preguntas y contacto. El proceso no está aquí: vive completo en `como-trabajamos.html` y solo se ve si alguien lo elige en el menú |
-| `servicios.html` | El catálogo completo: los siete servicios en detalle |
+| `index.html` | El titular, los seis diagnósticos, **tres etapas con su rango de precio** y el enlace al catálogo, el laboratorio, las preguntas y el contacto. El proceso no está aquí: vive completo en `como-trabajamos.html` y solo se ve si alguien lo elige en el menú |
+| `servicios.html` | **El catálogo completo**: las 28 fichas de precio con lo que incluye cada una y por qué cuesta eso, más el armador de paquete. Se mudaron aquí desde el inicio el 1 de octubre de 2026, porque el inicio medía 12,895 px y un catálogo no es una portada |
+| `campanas.html` | Campañas políticas y eventos: otro público y otras reglas. Explica qué se entrega y enlaza a las fichas de campaña del catálogo, sin repetir precios |
 | `proyectos.html` | Los sistemas construidos, con sus capturas y **la lista de funciones de cada uno** (`Lo que hace hoy`). Es la página que crece: agregar el siguiente proyecto es copiar un bloque y cambiarle el contenido |
 | `como-trabajamos.html` | El método paso por paso y la mecánica de pago |
 | `aviso-de-privacidad.html` · `terminos.html` | Lo legal |

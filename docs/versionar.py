@@ -30,6 +30,7 @@ PAGINAS = [
     "terminos.html",
     "404.html",
     "proyectos.html",
+    "campanas.html",
     "diagnostico.html",
 ]
 
