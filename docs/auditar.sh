@@ -177,10 +177,16 @@ function esperarReal(ms) {
        resumen, cada una con su rango de precio y su enlace al catálogo. Las
        fichas se cuentan en la rama de /servicios. */
     ".etapa": 3,
-    /* Los ejemplos salieron del inicio el 21 de septiembre: viven completos en
-       proyectos.html, y aquí queda el enlace. */
+    /* Los dolores se recortaron a tres el 1 de octubre: uno por etapa —marca,
+       presencia y operación—, y los otros tres viven en el historial. */
+    ".caso-tarjeta": 3,
+    /* Los dos proyectos: una captura y una línea cada uno, con el enlace a la
+       página donde están completos. */
+    ".lab-pieza": 2,
+    /* El FAQ se ve corto —cuatro preguntas— pero las nueve siguen en el DOM,
+       dentro de «Más preguntas»: el JSON-LD de la página declara las nueve, así
+       que borrar alguna rompería la concordancia con lo que lee Google. */
     ".faq__item": 10,
-    ".caso-tarjeta": 6,
     ".panel__lista li": 6
   } : /servicios/.test(location.pathname) ? {
     /* Aquí viven las 28 fichas de precio y el armador completo desde el 1 de
