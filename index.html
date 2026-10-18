@@ -173,8 +173,6 @@
 
     <!-- ═══════════════════ 01 · HERO ═══════════════════ -->
 <section class="hero" id="inicio" aria-labelledby="hero-titulo">
-    <div class="hero__rejilla" aria-hidden="true"></div>
-
     <div class="contenedor hero__interior">
       <div class="hero__principal">
         <!-- Etiqueta de estado: dónde está el estudio y qué hace, en mono chica.
@@ -278,6 +276,17 @@
            apagado (superficie clara, letra menuda, sin subrayados) para que en la
            primera pantalla el ojo vaya al titular y al botón de WhatsApp. -->
       <aside class="hero__panel" aria-labelledby="panel-titulo">
+        <!-- El plano del negocio: un local de 12 x 6 m dibujado a escala (ventana,
+             mostrador con barra, traspatio con su puerta, dos mesas y cotas). Es
+             decoración, pero no es un patrón: es un dibujo con sus medidas, el
+             mismo que este taller hace antes de escribir una línea de código.
+             Va en línea, así que no cuesta ni una petición. -->
+        <svg class="plano" viewBox="0 0 480 290" fill="none" aria-hidden="true" focusable="false">
+        <path class="plano__muro" d="M4 4H160 M300 4H476 M4 236H60 M104 236H476 M4 4V236 M476 4V236 M60 236V192 M320 4V60 M320 96V124 M320 124H476 M320 96H284" pathLength="100"/>
+        <path class="plano__fino" d="M160 2H300 M160 6H300 M160 0V8 M300 0V8 M60 192A44 44 0 0 1 104 236 M284 96A36 36 0 0 1 320 60 M120 171H310 M160 205a9 9 0 1 1 .1 0 M215 205a9 9 0 1 1 .1 0 M270 205a9 9 0 1 1 .1 0 M12 68H40 M12 148H40 M64 82a7 7 0 1 1 .1 0 M120 82a7 7 0 1 1 .1 0 M64 158a7 7 0 1 1 .1 0 M120 158a7 7 0 1 1 .1 0" pathLength="100" vector-effect="non-scaling-stroke"/>
+        <path class="plano__mueble" d="M120 155H310V187H120Z M12 40H40V96H12Z M12 120H40V176H12Z M92 82a17 17 0 1 1 .1 0 M92 158a17 17 0 1 1 .1 0" pathLength="100"/>
+        <path class="plano__cota" d="M4 240V266 M-1 267L9 257 M120 240V266 M115 267L125 257 M310 240V266 M305 267L315 257 M476 240V266 M471 267L481 257 M4 262H476" pathLength="100" vector-effect="non-scaling-stroke"/>
+        </svg>
         <div class="panel">
           <h2 class="panel__titulo" id="panel-titulo">Soluciones</h2>
           <ul class="panel__lista">

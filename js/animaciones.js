@@ -13,6 +13,27 @@
 (function () {
   "use strict";
 
+  /* ── Entrada con transición de navegación ─────────────────────
+     Si el navegador encadena las páginas (View Transitions), la foto de la
+     página que entra se toma en el primer fotograma. Con el titular y el plano
+     todavía en opacidad cero, viajaría una hoja vacía. Se marca el documento
+     mientras dura la transición —`css/animaciones.css` tiene la regla que deja
+     todo puesto— y se suelta al terminar, para que el revelado al hacer scroll
+     siga siendo el de siempre. La marca de llegada se queda: el titular y el
+     plano no vuelven a entrar cuando la entrada ya la contó la transición.
+
+     Solo se marca si de verdad hay transición: en una carga normal este evento
+     puede llegar sin ella, y ahí la entrada animada es la que va. */
+  if ("onpagereveal" in window) {
+    window.addEventListener("pagereveal", function (evento) {
+      if (!evento.viewTransition) return;
+      var raiz = document.documentElement;
+      var soltar = function () { raiz.classList.remove("entrando"); };
+      raiz.classList.add("entrando", "llegada");
+      evento.viewTransition.finished.then(soltar, soltar);
+    });
+  }
+
   var piezas = Array.prototype.slice.call(document.querySelectorAll("[data-revelar]"));
   var maquetas = Array.prototype.slice.call(document.querySelectorAll(".lab-pieza"));
   var todos = piezas.concat(maquetas);

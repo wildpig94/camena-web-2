@@ -91,6 +91,42 @@
   --verde-fondo:      #EFF4F0;  /* fondo de las tarjetas de presencia y producción */
   --filete-verde:     #CBDDD3;  /* filete sobre fondo verde */
 
+  /* ── La mesa: el fondo del hero ──────────────────────────────────
+     El hero dejó de ser una tinta plana. Ahora es la mesa del taller con la
+     lámpara prendida y, en la columna del índice, el plano del negocio: un local
+     de 12 x 6 m dibujado a escala. No hay cuadrícula ni patrón: lo que dibuja el
+     plano son el dibujo y sus marcas, no un papel pintado. (Se probó con retícula
+     de papel técnico y se quitó: una cuadrícula de dos ejes sobre negro es el
+     fondo que usa todo el mundo, y este taller no dibuja con plantilla.)
+
+     Todo va en hueso con alfa, nunca en un acento: una mesa se ilumina, no se
+     pinta con los colores de la marca. Eso deja los tres acentos libres para lo
+     que ya tenían asignado (rojo: la línea fija del titular; verde: la línea
+     que alterna y el estado; oro: botones y precios).
+
+     Se dibuja con CSS. Cero imágenes, cero peticiones, cero peso: lo único que
+     entra al navegador es esta lista de alfas y un SVG de ruido en línea. */
+  --plano-luz:    rgba(244, 243, 240, 0.060);  /* la lámpara, su centro */
+  --plano-luz-2:  rgba(244, 243, 240, 0.014);  /* el halo que la abre */
+  --plano-sombra: rgba(0, 0, 0, 0.42);         /* lo que queda fuera del cono */
+  --plano-muro:    rgba(244, 243, 240, 0.130);  /* los muros del plano */
+  --plano-trazo:   rgba(244, 243, 240, 0.100);  /* el mostrador, la estantería, las mesas */
+  --plano-detalle: rgba(244, 243, 240, 0.075);  /* cristales, arcos de puerta, sillas */
+  --plano-linea:   rgba(244, 243, 240, 0.150);  /* los filetes del hero */
+  --plano-tic:     rgba(244, 243, 240, 0.340);  /* las puntas de cota */
+  /* El grano: un SVG en línea con ruido fractal. Es lo que separa «un
+     rectángulo negro» de «una superficie», y en una zona vacía mueve el fondo
+     entre #131313 y #1D1D1D. El ruido va en gris de #2A2A2A y no en blanco a
+     propósito: un grano claro saca destellos de #242424 y eso le quita contraste
+     a la línea roja del titular. */
+  /* La escala del margen: una tesela de 10 × 150 px con el pelo de la línea y
+     cinco marcas —cuatro de 5 px cada 30, una de 10 px cada 150—. Va como SVG y
+     no como capas de degradado a propósito: dos ejes de degradado en un fondo
+     son, literalmente, la cuadrícula que este rediseño quitó, y el detector de
+     diseño las marca como patrón. Una tesela dibujada dice lo que es. */
+  --plano-escala: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='150'%3E%3Cg fill='%23F4F3F0'%3E%3Crect width='1' height='150' opacity='.15'/%3E%3Crect width='10' height='1' opacity='.5'/%3E%3Crect y='30' width='5' height='1' opacity='.34'/%3E%3Crect y='60' width='5' height='1' opacity='.34'/%3E%3Crect y='90' width='5' height='1' opacity='.34'/%3E%3Crect y='120' width='5' height='1' opacity='.34'/%3E%3C/g%3E%3C/svg%3E");
+  --plano-grano: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.165 0 0 0 0 0.165 0 0 0 0 0.165 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.09'/%3E%3C/svg%3E");
+
   /* ── Superficies y bordes por contexto ────────────────────────
    Ojo con la distinción: `--linea` es un filete decorativo (1.2:1 basta),
    `--borde-fuerte` delimita un control y por eso necesita 3:1. */

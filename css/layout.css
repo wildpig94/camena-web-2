@@ -89,7 +89,22 @@
 .cierre-seccion a { font-weight: var(--peso-medio); }
 
 
-/* ═══════════════ HERO ═══════════════ */
+/* ═══════════════ HERO · EL PLANO DEL NEGOCIO ═══════════════
+   El hero no es una tinta plana: es la mesa del taller con la lámpara prendida
+   en el costado derecho y, en la columna del índice, el plano de un negocio
+   dibujado a escala. Cada filete del hero va acotado, como en un plano. Esa es
+   la idea y manda sobre lo demás, porque es lo que este negocio hace antes de
+   entregar: medir.
+
+   Y no hay patrón de fondo a propósito. Se probó con la retícula de papel
+   técnico —la que pide el tema a gritos— y se quitó: dos ejes de cuadrícula
+   sobre negro es el fondo con el que se ve todo el mundo, y aquí el plano lo
+   dibujan el dibujo y sus marcas (la luz, las cotas, la escala), no un papel
+   pintado. Un fondo así compite con el titular; un dibujo lo subraya.
+
+   Todo se dibuja con CSS: degradados, filetes y un SVG de ruido en línea. Cero
+   peticiones, cero bytes de imagen, cero JavaScript. Los tres acentos quedan
+   libres para lo que ya tenían asignado. */
 .hero {
   position: relative;
   /* Por encima de la sección que sigue: las tarjetas de la franja de precios
@@ -98,7 +113,27 @@
   /* Fondo oscuro: la página abre en tinta y el contenido de abajo va sobre
      papel, así que el contraste entre las dos mitades es el recurso. Los
      tokens de texto y acento se cambian aquí (no en los componentes). */
-  background: var(--ink);
+  background-color: var(--ink);
+  /* Del fondo a la superficie, en este orden: grano, viñeta, lámpara y su halo.
+     La luz ya no es un foco de esquina: es una ventana alta en el costado
+     derecho, que alumbra de una vez el índice y el plano que va debajo, y deja el
+     titular en penumbra, que es donde el rojo y el verde pasan mejor. La viñeta
+     cierra la esquina de abajo a la izquierda para que la luz tenga de dónde
+     venir.
+
+     La lámpara se queda en su esquina a propósito: si su centro cae debajo del
+     titular, la tinta de abajo sube a #262626 y la línea roja baja hasta
+     3.86:1. Con el centro en la esquina —y con el grano en gris medio, que no
+     levanta el fondo— la línea roja mide 4.74:1 de mediana y 4.61:1 en su peor
+     píxel, medido a 1440 y a 390 sobre los píxeles pintados. Sobre los tokens el
+     par sigue en 4.95:1; lo que se pierde es un poco de aire, no el margen. */
+  background-image:
+    var(--plano-grano),
+    radial-gradient(88% 74% at 4% 106%, var(--plano-sombra) 0%, transparent 64%),
+    radial-gradient(56% 68% at 97% 28%, var(--plano-luz) 0%, transparent 74%),
+    radial-gradient(118% 150% at 104% 26%, var(--plano-luz-2) 0%, transparent 82%);
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 160px 160px, 100% 100%, 100% 100%, 100% 100%;
   color: var(--texto-claro);
   --texto: var(--texto-claro);
   --texto-2: var(--texto-claro-2);
@@ -119,35 +154,81 @@
   .hero { padding-bottom: 9rem; }
 }
 
-/* Retícula técnica de fondo: da contexto de estudio, muy baja presencia */
-/* Textura cuadriculada: dos retículas superpuestas —una fina y otra gruesa—
-   en tinta oro, sobre el fondo cálido. Es papel de cuaderno técnico, no una
-   imagen: cero peso y cero peticiones. */
-.hero__rejilla {
-  position: absolute;
-  inset: 0;
-  /* Anillos concéntricos en vez de cuadrícula: dos familias de círculos
-     —uno grande y tenue, otro chico y más marcado— dibujadas con degradados
-     radiales. Es el mismo recurso que la cuadrícula (contexto de estudio sin
-     una sola petición ni un byte de imagen), pero con otra geometría: el
-     toroide se lee como instrumento, la cuadrícula se leía como papel.
-     Los anillos no llevan relleno: el centro queda hueco y por ahí pasa el
-     texto sin que el patrón compita. */
+/* ── El plano del negocio ────────────────────────────────────────
+   El arco del compás se fue y en su lugar hay un dibujo: el plano de un local de
+   12 x 6 m a escala 1:40 —ventana a la calle, mostrador con su barra de
+   taburetes, traspatio con puerta, dos mesas y la cota de abajo—. No es un patrón
+   ni una textura: es un plano, con sus medidas, y eso es lo que este taller hace
+   antes de escribir la primera línea.
+
+   Vive en la columna del índice, debajo de la lista, porque ahí estaba el único
+   hueco de la primera pantalla: entre el pie del panel y el borde del hero había
+   más de 200 px de nada. El dibujo ocupa ese hueco en vez de dejar un agujero.
+
+   Se dibuja con tres grosores distintos —muro, mueble, detalle— para que se lea
+   de un vistazo: lo que separa el espacio pesa más que lo que lo amuebla. Todo
+   en hueso con alfa, como el resto del fondo. */
+.hero .plano {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* El dibujo abre la columna y el índice va debajo, como la leyenda de un
+     plano. El aire de abajo es el que separa el dibujo de «Soluciones». */
+  margin: var(--e-2) 0 var(--e-5);
+  /* Es decoración: ni se selecciona ni se arrastra. */
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.hero .plano__muro   { stroke: var(--plano-muro);    stroke-width: 8; }
+.hero .plano__mueble { stroke: var(--plano-trazo);   stroke-width: 1.5; }
+.hero .plano__fino   { stroke: var(--plano-detalle); stroke-width: 1; }
+.hero .plano__cota   { stroke: var(--plano-linea);   stroke-width: 1; }
+
+/* ── La cota: el filete del hero, con punta ───────────────────────
+   En un plano, la línea que mide algo lleva una punta en cada extremo. Los
+   filetes que separan los bloques del hero se dibujan así —un pelo de 1 px y
+   dos marcas de 5 px en las puntas—, y con eso el mismo recurso de siempre
+   (línea + bloque) empieza a hablar el idioma del plano.
+
+   Se dibujan con `background-image` y no con pseudo-elementos: una cota no
+   ocupa ni un píxel de layout ni obliga a tocar el HTML. El `border-box` es lo
+   que hace que la punta arranque en el mismo filo que el filete. */
+.hero__somos,
+.hero__precios-breve,
+.hero__hechos {
   background-image:
-    radial-gradient(circle at center,
-      transparent 0 12px,
-      rgba(244, 243, 240, 0.085) 12px 13.5px,
-      transparent 13.5px),
-    radial-gradient(circle at center,
-      transparent 0 3px,
-      rgba(244, 243, 240, 0.05) 3px 4px,
-      transparent 4px);
-  background-size:
-    clamp(52px, 6vw, 84px) clamp(52px, 6vw, 84px),
-    clamp(13px, 1.5vw, 21px) clamp(13px, 1.5vw, 21px);
-  background-position: center top, center top;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35));
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35));
+    linear-gradient(var(--plano-tic) 0 0),
+    linear-gradient(var(--plano-tic) 0 0);
+  background-repeat: no-repeat;
+  background-size: 1px 5px, 1px 5px;
+  background-position: 0 0, 100% 0;
+  background-origin: border-box;
+  background-clip: border-box;
+}
+
+/* ── La escala del margen ─────────────────────────────────────────
+   Una línea de escala —pelo de 1 px con marcas cada 30 px y una más larga cada
+   cinco— corre por el margen izquierdo, a la altura de todo el bloque de texto.
+   Es la mitad que le faltaba al fondo: la luz y el plano ocupan la derecha, y
+   la izquierda tenía la frase pero ninguna marca; con la escala, el titular se
+   lee como lo que está medido, y el hero queda dibujado de los dos lados.
+
+   Va en el margen a propósito —a media distancia entre el filo de la pantalla y
+   la primera letra, con `--margen / 2`— para que no roce ni el borde ni el
+   texto, y se retira donde el margen deja de existir. */
+.hero__interior::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--margen) * -0.5);
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  /* La tesela mide 150 px de alto: la escala se corta sola en el alto que tenga
+     el bloque de texto, sin una medida fija que se pueda quedar corta. */
+  background-image: var(--plano-escala);
+  background-repeat: repeat-y;
+  background-position: 0 0;
 }
 
 .hero__interior {
@@ -219,7 +300,8 @@
 .hero__somos {
   margin-top: var(--e-6);
   padding-top: var(--e-4);
-  border-top: 1px solid var(--borde);
+  /* Filete de cota, no un separador de plantilla: ver «La cota» arriba. */
+  border-top: 1px solid var(--plano-linea);
   max-width: 60ch;
   font-size: var(--t-menudo);
   line-height: 1.6;
@@ -234,7 +316,9 @@
   gap: var(--e-4);
   margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
   padding-top: var(--e-5);
-  border-top: 1px dotted var(--borde);
+  /* Era punteado. El punteado decía «aquí hay otra cosa»; la cota dice «aquí
+     empieza lo que sigue, y está medido». */
+  border-top: 1px solid var(--plano-linea);
 }
 .hecho dt {
   font-family: var(--mono);
@@ -347,16 +431,49 @@
    la columna del titular, como una columna de revista técnica. */
 .hero__panel {
   position: relative;
+  /* El aire de arriba es el que deja pasar la cota horizontal sin pegarse al
+     título del índice. */
+  padding-top: var(--e-4);
   padding-left: clamp(1.25rem, 0.8rem + 1.6vw, 2.75rem);
 }
+/* La cota de arriba: el índice queda dentro de una escuadra —la línea que
+   corre por el margen izquierdo y la que lo cierra arriba—, que es como se
+   rotula una pieza en un plano. Una sola caja habría vuelto a ser el «menú
+   lateral de plantilla» que se quitó a propósito; una escuadra de pelos de
+   1 px es un dibujo, no un contenedor. */
+.hero__panel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background-image:
+    linear-gradient(var(--plano-linea) 0 0),
+    linear-gradient(var(--plano-tic) 0 0),
+    linear-gradient(var(--plano-tic) 0 0);
+  background-repeat: no-repeat;
+  background-size: 100% 1px, 1px 6px, 1px 6px;
+  background-position: 0 0, 0 0, 100% 0;
+}
+/* El filete que separa el índice del titular también es una cota: mide la
+   columna y lleva punta en los dos extremos. Los 8 px de ancho son el sitio
+   de las puntas, no del filete: la línea sigue midiendo 1 px y el índice no se
+   corre ni un píxel porque el hueco ya estaba en el relleno. */
 .hero__panel::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 4px;
-  bottom: 4px;
-  width: 1px;
-  background: var(--borde);
+  top: 0;
+  bottom: 2px;
+  width: 8px;
+  background-image:
+    linear-gradient(var(--plano-linea) 0 0),
+    linear-gradient(var(--plano-tic) 0 0),
+    linear-gradient(var(--plano-tic) 0 0);
+  background-repeat: no-repeat;
+  background-size: 1px 100%, 8px 1px, 8px 1px;
+  background-position: 0 0, 0 0, 0 100%;
 }
 
 .panel__titulo {
@@ -1270,7 +1387,7 @@ a.dato__valor:hover { color: var(--acento); }
   display: none;
   margin-top: var(--e-5);
   padding-top: var(--e-5);
-  border-top: 1px solid var(--borde);
+  border-top: 1px solid var(--plano-linea);
   max-width: 46ch;
   font-size: var(--t-cuerpo);
   line-height: 1.6;

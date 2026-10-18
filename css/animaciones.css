@@ -60,6 +60,31 @@
   50%      { opacity: 0.4; transform: scale(0.72); }
 }
 
+/* ── El plano del hero: se traza ───────────────────────────────
+   El único momento de autor del hero. El plano se dibuja solo, en cuatro tiempos
+   y en el orden en que lo dibujaría una mano: primero los muros que separan el
+   espacio, después lo que lo amuebla, luego los detalles —cristales, arcos de
+   puerta— y al final las cotas. No es un adorno: es el mismo gesto que hace el
+   taller antes de escribir nada.
+
+   Se hace con `stroke-dashoffset`, que no toca layout ni obliga a medir el largo
+   de cada trazo: los `pathLength="100"` del SVG normalizan todos los caminos a
+   100, así que el mismo `dasharray` sirve para todos. */
+.js .hero .plano path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: trazar-plano 1300ms var(--curva-salida) forwards;
+}
+.js .hero .plano__muro   { animation-delay: 320ms; }
+.js .hero .plano__mueble { animation-delay: 820ms; }
+.js .hero .plano__fino   { animation-delay: 1080ms; }
+.js .hero .plano__cota   { animation-delay: 1380ms; }
+
+@keyframes trazar-plano {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
 /* ── Panel del hero: entrada escalonada de sus filas ─────────── */
 .js .hero__panel {
   opacity: 0;
@@ -124,6 +149,81 @@
 /* ── Cabecera: se esconde al bajar, vuelve al subir ──────────── */
 .cabecera--oculta { transform: translateY(-100%); }
 
+/* ═══════════════ TRANSICIONES ENTRE PÁGINAS ═══════════════
+   El navegador guarda una foto de la página que sale y otra de la que entra, y
+   las encadena él mismo en el compositor. No hay JavaScript, no hay librería y
+   no hay una petición de más: por eso son «renderizadas» y no «animadas por la
+   página». Solo las usan los navegadores que entienden `@view-transition`
+   (Chrome y Safari hoy); donde no, el enlace funciona igual y sin transición. */
+@view-transition { navigation: auto; }
+
+/* La cabecera y el botón de WhatsApp son la misma pieza en todas las páginas.
+   Con nombre propio, el navegador no las vuelve a pintar: las deja quietas
+   mientras cambia el resto de la hoja. Se nombran por `#flotante` y no por
+   `.flotante` porque «Volver al inicio» comparte clase, y dos elementos con el
+   mismo nombre anulan la transición entera. */
+.cabecera  { view-transition-name: cabecera; }
+#flotante  { view-transition-name: flotante; }
+::view-transition-group(cabecera),
+::view-transition-group(flotante),
+::view-transition-old(cabecera),
+::view-transition-new(cabecera),
+::view-transition-old(flotante),
+::view-transition-new(flotante) { animation: none; }
+
+/* La hoja que sale se levanta un poco y la que entra llega desde abajo. Nada
+   más: lo que tiene que sentirse es el cambio de hoja, no un baile. La página
+   nueva no escala, porque el texto se ve sucio mientras se mueve. */
+::view-transition-old(root) { animation: hoja-sale 200ms var(--curva) both; }
+::view-transition-new(root) { animation: hoja-entra 420ms var(--curva-salida) both; }
+
+@keyframes hoja-sale {
+  to { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes hoja-entra {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Cuando la página llega con transición, la foto que viaja se toma en el primer
+   fotograma: si el titular y el plano todavía estuvieran en opacidad cero,
+   viajaría una hoja vacía y el contenido aparecería después, a saltos.
+
+   Son dos marcas y no una, porque son dos problemas distintos:
+
+   · `.entrando` dura lo que dura el encadenado. Con ella puesta, todo —incluido
+     el revelado al hacer scroll— está ya en su sitio mientras el navegador toma
+     la foto. La pone `js/animaciones.js` al empezar y la suelta al terminar.
+   · `.llegada` se queda en el documento. La entrada del titular, del índice y
+     del plano no debe repetirse después de la transición: si se soltara todo al
+     terminar, el titular desaparecía y volvía a subir —medido: opacidad 0 a los
+     200 ms y otra vez a 1 a los 500—, que es animar dos veces el mismo gesto. */
+html.entrando .hero__linea,
+html.entrando .hero__panel,
+html.entrando [data-revelar] {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+html.entrando .plano path {
+  stroke-dasharray: none !important;
+  stroke-dashoffset: 0 !important;
+  animation: none !important;
+}
+
+html.llegada .hero__linea,
+html.llegada .hero__panel {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+html.llegada .plano path {
+  stroke-dasharray: none !important;
+  stroke-dashoffset: 0 !important;
+  animation: none !important;
+}
+
 /* ── Movimiento reducido: se apaga todo lo decorativo ────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -142,6 +242,18 @@
     transform: none !important;
     animation: none !important;
   }
+
+  /* El plano aparece entero, sin trazo. */
+  .js .hero .plano path {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  /* Navegar con movimiento reducido: corte seco, sin encadenado. */
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
 
   .boton:hover,
   .flotante:hover,

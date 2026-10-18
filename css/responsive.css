@@ -196,12 +196,18 @@
     margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
     padding-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
     padding-left: 0;
-    border-top: 1px dotted var(--borde);
+    border-top: 1px solid var(--plano-linea);
   }
-  /* El filete vertical solo tiene sentido cuando el índice va al lado del
-     titular. Al pasar debajo, la separación la hace el filete superior. */
-  .hero__panel::before { display: none; }
+  /* La escuadra de cotas solo tiene sentido cuando el índice va al lado del
+     titular: al pasar debajo, la separación la hace el filete superior y las
+     puntas de la cota vertical ya no miden nada. */
+  .hero__panel::before,
+  .hero__panel::after { display: none; }
   .hero__panel .panel { max-width: 46rem; }
+  /* Con el índice a todo lo ancho, el plano se estira a 709 px y se come una
+     pantalla entera: se limita al ancho de su columna de escritorio para que
+     siga leyéndose como un dibujo y no como un mapa. */
+  .hero .plano { max-width: 26rem; }
   .ficha, .proceso__detalle { position: static; }
   .proceso__detalle { min-height: 0; }
 
@@ -331,6 +337,19 @@
   .flotante__texto { display: none; }
 
   .hero { padding-top: clamp(2rem, 1.5rem + 3vw, 3rem); }
+
+  /* La escala del margen necesita margen: por debajo de 768 px la pantalla mide
+     30 px de aire a cada lado y la línea se leería como parte del filo. */
+  .hero__interior::before { display: none; }
+
+  /* La lámpara baja aquí y no en escritorio: en un teléfono el titular ocupa
+     todo el ancho y la luz le cae encima a la línea roja, que es la que peor
+     contrasta. Con la luz al 75 % el titular mide 4.5:1 o más y la esquina sigue
+     encendida. Medido sobre los píxeles pintados, no sobre el token. */
+  .hero {
+    --plano-luz:   rgba(244, 243, 240, 0.045);
+    --plano-luz-2: rgba(244, 243, 240, 0.010);
+  }
 
   .hero__hechos {
     grid-template-columns: minmax(0, 1fr);

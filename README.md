@@ -605,7 +605,8 @@ renta por mes. Ninguna de las dos frases usa «soluciones», «transformar»,
 3.625rem)` da 32 px en 320, 33.4 en 390, 42.3 en 768, 48.3 en 1024 y 58 en
 escritorio. Se comprueba con `docs/medir-hero.mjs`, que además vigila la
 proporción titular/entrada (2.9 en escritorio) y que el hero quepa en la primera
-pantalla: cabe a 1440 px (838 px de alto con ventana de 900).
+pantalla: cabe a 1440 px (887 px de alto con ventana de 900, medido el 17 de
+septiembre tras el rediseño del fondo).
 
 **Un detalle que se aprende una vez y no se olvida:** en teléfono el titular
 fluye porque `.js .hero__linea` de `animaciones.css` declara `display: block`
@@ -615,6 +616,66 @@ que mande. El precio de que el titular fluya es que el `transform` de la
 animación no se aplica en un elemento en línea: en teléfono la entrada por líneas
 queda en un fundido.
 
+### El hero: el plano del negocio
+
+El hero lleva **el plano de un negocio**, dibujado a escala, en la columna del
+índice: un local de 12 × 6 m con su ventana a la calle, el mostrador con su barra
+de taburetes, el traspatio con su puerta, dos mesas y la cota de abajo. El índice
+de servicios va debajo, en el sitio donde iría la leyenda de un plano. Es la
+única marca grande de la primera pantalla y no es un adorno: es el dibujo que
+este taller hace antes de escribir la primera línea, y cada negocio le sale
+distinto —que es justo lo que dice el titular.
+
+**Sin cuadrícula, y es una decisión.** Se probó antes con la retícula de papel
+técnico; se quitó. Una cuadrícula de dos ejes sobre negro es el fondo que usa
+todo el mundo —el detector de diseño la marca como uno de los patrones que
+delatan una página hecha con prisa— y aquí el plano lo dibujan el dibujo y sus
+marcas, no un papel pintado.
+
+Todo se dibuja con CSS y SVG en línea. Cero imágenes, cero peticiones: el plano
+son cuatro `<path>` en el HTML y los alfas están en `variables.css` (`--plano-*`).
+
+| Pieza | Cómo está hecha | Por qué |
+|---|---|---|
+| **El plano** | Un SVG en línea de 480 × 290 unidades (12 × 6 m a 40 px/m) con tres grosores: muro 8, mueble 1.5, detalle 1 | Un dibujo se lee por el grosor: lo que separa el espacio pesa más que lo que lo amuebla. Va en la columna del índice porque ahí estaba el único hueco de la primera pantalla —más de 200 px de nada entre el pie del panel y el borde del hero— y el dibujo lo ocupa en vez de dejarlo vacío |
+| **El trazo** | `stroke-dashoffset` con `pathLength="100"` en cada `path` | El plano se dibuja solo, en el orden en que lo haría una mano: muros, muebles, detalles y cotas. Es el único momento de autor del hero. Sin JavaScript y con movimiento reducido sale entero, de una vez |
+| **La luz** | Dos degradados radiales en el costado derecho, en hueso con alfa (6 % y 1.4 %) | Ya no es un foco de esquina sino una ventana alta: alumbra de una vez el índice y el plano, y deja el titular en penumbra, que es donde el rojo y el verde pasan mejor. Con la luz centrada bajo el titular, la tinta sube a `#262626` y la línea roja cae a 3.86:1 |
+| **El grano** | Un `feTurbulence` dentro de un `data:` URI, en gris `#2A2A2A` y a 9 % de alfa | Es lo que separa «un rectángulo negro» de «una superficie»: en una zona vacía el fondo se mueve entre `#0F0F0F` y `#191919`. El gris es medio y no blanco a propósito: el grano claro sacaba destellos de `#242424` y le quitaba contraste a la línea roja |
+| **Las cotas** | Filetes de 1 px con puntas de 5 px, dibujados con `background-image` | En un plano, la línea que mide algo lleva punta en cada extremo. Todos los filetes del hero son cotas: los datos, la presentación, la línea de precios y el índice. El índice queda dentro de una **escuadra** —cota arriba y cota al margen— que es como se rotula una pieza, sin volver a la caja de menú lateral que se quitó |
+| **La escala** | Una tesela SVG de 10 × 150 px con el pelo de la línea y marcas cada 30 px (la quinta, el doble de larga), repetida en el margen izquierdo | Es la mitad que le faltaba al fondo: la luz y el plano ocupan la derecha, y a la izquierda solo estaba la frase. Con la escala al margen, el titular se lee como lo que está medido |
+
+**La regla que las ordena:** todo va en **hueso con alfa**, nunca en un acento.
+Un plano se dibuja con grafito sobre el papel, no con los colores de la marca, y
+eso deja los tres acentos libres para lo que ya tenían asignado (rojo: la línea
+fija del titular; verde: la línea que alterna y el estado; oro: botones y
+precios). Por eso el fondo puede ser rico sin que la paleta se vuelva feria.
+
+**Lo medido, no lo supuesto.** El contraste se comprobó *sobre los píxeles que el
+navegador pinta*, no sobre el token, porque un fondo con luz y grano ya no es un
+color:
+
+| Texto del hero | 1440 px | 390 px |
+|---|---|---|
+| Línea roja (54 px, AA de letra grande) | 4.74:1 de mediana · 4.61:1 el peor píxel | 4.74 / 4.61 |
+| Línea verde (54 px) | 9.31:1 | 9.22:1 |
+| Texto menudo del índice (14 px, necesita 4.5) | 6.66:1 | — |
+| Pie del índice, sobre la ventana de luz | 6.90:1 | — |
+
+El par de tokens (`rojo-lt` sobre `ink`) sigue midiendo 4.95:1 en
+`docs/verificar-contraste.py`, que es lo que impide que entre un color sin medir.
+
+**Lo que cuesta en alto:** en escritorio, nada: el hero mide 887 px en 1440 con
+el plano dentro (la columna del índice crece de 404 a 636 px y sigue siendo más
+baja que la del texto, que es la que manda). En teléfono el hero pasa de 1407 a
+1647 px porque el plano entra al final de la columna; el botón queda donde
+estaba, arriba.
+
+**Para deshacerlo:** el plano son cuatro `<path>` en `index.html` y las reglas
+`.hero .plano*` de `layout.css`; el fondo son la regla `.hero` (luz y grano) y los
+tokens `--plano-*`. El laboratorio de patrones con el que se eligió el fondo
+anterior está en `docs/fondos-hero.html` y quedó retirado.
+
+### Color
 ### Color
 
 Base de carbón y hueso, y **tres acentos con trabajo asignado**. Ninguno es
