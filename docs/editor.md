@@ -48,7 +48,7 @@ el dueño como **buenas**, y son el modelo de lo que se busca:
   de las mejores frases del sitio»*. Ya es la frase que está escrita ahí.
 
 La prueba para decidir de qué lado cae una frase: **¿un dueño de negocio de
-Apatzingán diría esto en su mostrador sin sonar raro?** Si sí, se queda aunque
+Michoacán diría esto en su mostrador sin sonar raro?** Si sí, se queda aunque
 no sea de manual. Lo que se persigue no es un español impecable: es un español
 **de aquí**, que no suene a nadie más.
 
@@ -78,6 +78,7 @@ La tabla tal como la mandó el dueño, con la frase real del archivo y en qué q
 | 10 | Entrada del diagnóstico | «**Dieciséis renglones** sobre cómo opera tu negocio… **No hay servidor de por medio** y no hace falta que sepas qué necesitas; **para eso es el diagnóstico**.» `diagnostico.html:72` | Lo mismo, más dos frases que hablan de la máquina y de para qué sirve la página | «Cómo opera tu negocio: qué repites, cuántas horas te lleva, cuánto se te echa a perder, cuánto te deben. Con tus propios números se ve el tamaño del hueco. No hace falta que sepas qué necesitas.» | ✅ |
 | 11 | Aviso de faltantes del diagnóstico | «**Con los primeros tres renglones ya sale algo**: cuántos días abres, cuántas horas se te van en repetir…» `diagnostico.html:194` y `js/diagnostico.js:232` | Narra por dentro lo que el instrumento hace con las respuestas | «Contesta lo que falta para ver el resultado.»: el mismo registro llano de «Marca lo que necesitas para ver el total» | ✅ |
 | 12 | Aviso sin JavaScript | «**Las dieciséis preguntas** están arriba…» `diagnostico.html:221` | Otra vez la cuenta del instrumento | «Las preguntas están arriba…» | ✅ |
+| 13 | Pie, aviso de privacidad, datos estructurados y publicaciones de redes (18 de octubre de 2026) | «Hecho a mano, **en Apatzingán, Michoacán**» · «con base en **Apatzingán, Michoacán**» · `addressLocality`/`addressRegion` en el JSON-LD · pie y etiquetas «#Apatzingán #Michoacán» de las publicaciones | El estudio se mudó y el sitio decidió no llevar ciudad: un sitio que dice dónde vive envejece cada vez que la casa cambia, y el negocio no depende de eso | «**Hecho a mano**» (sin ciudad) · «con base en **México**» · JSON-LD con `addressCountry` y `areaServed` «Trabajo remoto en cualquier parte del mundo» · pie de redes «Estudio de diseño y sistemas · Trabajo a distancia» y las etiquetas locales fuera. Deja sin efecto la ciudad de la fila 7 | ✅ |
 
 ## 4 · Antes de dar un texto por bueno
 

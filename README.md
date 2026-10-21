@@ -34,7 +34,7 @@ una página secundaria. El inicio no es un folleto.
 
 ## Qué es esto
 
-CAMENA es un **estudio de diseño y sistemas** en Apatzingán: construye
+CAMENA es un **estudio de diseño y sistemas** que trabaja a distancia: construye
 **micro-sistemas y herramientas digitales a partir de la forma de trabajar de
 cada negocio**, y trabaja la identidad, las interfaces y el contenido que lo
 sostienen. La frase que gobierna el sitio es la del titular: *cada negocio opera
@@ -578,10 +578,10 @@ máquina. Lo que quedó:
 
 | | Texto |
 |---|---|
-| Sello | Estudio de diseño y sistemas · Apatzingán, Michoacán |
+| Sello | Estudio de diseño y sistemas · Trabajo a distancia |
 | Titular | **Cada negocio es distinto.** / **Su software también debería.** |
 | Entrada | Software y páginas hechos para tu negocio, sin renta mensual. |
-| Cierre | Somos un estudio de diseño y sistemas. Trabajamos de forma remota con negocios de cualquier parte del mundo, desde Apatzingán, Michoacán. |
+| Cierre | CAMENA es un estudio de diseño y sistemas. Trabajo a distancia con negocios de cualquier parte del mundo: WhatsApp, videollamada y correo. |
 
 **El titular son dos frases completas, y eso manda sobre todo lo demás.** Se
 probó con una versión corta —«Páginas y sistemas / sin plantilla.»— que cabía en
@@ -849,7 +849,7 @@ Cuatro cosas que no se ven en una captura de pantalla pero se sienten al usarlo:
 3. **Botones que responden.** Al pasar el mouse crecen un 2 % y levantan una
    sombra profunda; al pulsarlos bajan un 0.5 %. Nada de rebotes ni de bucles, y
    todo desactivado con `prefers-reduced-motion`.
-4. **El sello del pie.** «Hecho a mano, en Apatzingán, Michoacán», con un engrane
+4. **El sello del pie.** «Hecho a mano», con un engrane
    dibujado a mano: dientes de longitud irregular, aro levemente ovalado. Es la
    firma de quien lo hizo, no el logo otra vez.
 
@@ -947,7 +947,7 @@ inventar ninguno**:
 - WhatsApp y teléfono: `+52 443 579 4642` → `https://wa.me/524435794642`
 - Correo: `camenalabs@proton.me`
 - Horario: lunes a sábado, 9:00–20:00 h
-- Base: Apatzingán, Michoacán · trabajo remoto en todo México
+- Base: México · trabajo remoto en todo el mundo
 
 Aparecen en `index.html`, en `js/contacto.js` (constantes al inicio del archivo)
 y en los datos estructurados del `<head>`.
@@ -1178,8 +1178,11 @@ correo. Nunca dice «hemos recibido tu mensaje», porque no es cierto.
   lee la persona).
 - `lang="es-MX"`, `canonical`, favicon completo, manifiesto, `robots.txt` y
   `sitemap.xml`.
-- El posicionamiento local (Apatzingán, Michoacán) se conserva como parte de la
-  historia de la marca, no como su límite.
+- **El sitio no lleva ciudad, y es a propósito.** La casa del estudio cambia; el
+  sitio no debe envejecer con ella. El alcance se dice siempre igual —«trabajo a
+  distancia», «cualquier parte del mundo»— en el sello del héroe, la entrada, el
+  FAQ, el pie, los datos estructurados (que solo declaran el país) y las
+  publicaciones de redes.
 - **URL publicada:** https://camena.com.mx/
 - El dominio está escrito en `canonical`, Open Graph, JSON-LD, `sitemap.xml` y
   `robots.txt`. Si algún día cambia, no se hace a mano:

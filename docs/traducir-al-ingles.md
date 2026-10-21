@@ -168,7 +168,7 @@ inglés tiene que sonar igual, no como folleto corporativo:
 | sin renta mensual | no monthly fee | |
 | precio de partida | starting price | los precios son en pesos: **conservar MXN** |
 | días en piso | days in the shop | |
-| Apatzingán, Michoacán | Apatzingán, Michoacán | no traducir topónimos |
+| México | Mexico | el país va en su forma inglesa; cualquier otro topónimo, tal cual |
 | «páginas web» | websites | |
 | «quítate el cuaderno de encima» | get the notebook off your back | conservar el tono, no el calco |
 
